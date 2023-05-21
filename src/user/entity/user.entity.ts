@@ -10,14 +10,18 @@ enum Role {
 export class User {
   @ObjectIdColumn()
   id: ObjectId;
-
   @Column()
-  fullName: string;
-
+  fistName: string;
+  @Column()
+  lastName: string;
   @Column()
   password: string;
-  @Column()
+  @Column({ unique: true })
   email: string;
   @Column({ type: 'enum', enum: Role })
   role: Role;
+  @Column()
+  createdAt: Date;
+  @Column()
+  updatedAt: Date;
 }

@@ -1,7 +1,7 @@
 // database.module.ts
 import { Module, OnModuleInit } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from '../entity/user.entity';
+import { User } from '../user/entity/user.entity';
 import { DatabaseService } from './database.service';
 
 @Module({
