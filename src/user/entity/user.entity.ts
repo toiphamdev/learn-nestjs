@@ -11,7 +11,7 @@ export class User {
   @ObjectIdColumn()
   id: ObjectId;
   @Column()
-  fistName: string;
+  firstName: string;
   @Column()
   lastName: string;
   @Column()
@@ -24,4 +24,6 @@ export class User {
   createdAt: Date;
   @Column()
   updatedAt: Date;
+  @Column()
+  isActive: boolean;
 }

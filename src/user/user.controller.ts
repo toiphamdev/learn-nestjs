@@ -1,7 +1,8 @@
-import { Controller, Body, Post, Get } from '@nestjs/common';
+import { Controller, Body, Post, Get, UseGuards, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
-import { ObjectId } from 'typeorm';
+import { JwtAuthGuard } from '../auth/guard';
+import { Request } from 'express';
 
 @Controller('user')
 export class UserController {
@@ -11,7 +12,13 @@ export class UserController {
     return this.userService.createUser(user);
   }
   @Get()
-  getUserById() {
+  getAllUser() {
     return this.userService.getUser();
+  }
+  @UseGuards(new JwtAuthGuard('jwt'))
+  @Get('profile')
+  getProfile(@Req() req: Request) {
+    const user = req.user;
+    return this.userService.getProfile(user['id']);
   }
 }
