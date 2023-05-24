@@ -29,7 +29,7 @@ export class AuthService {
       throw new UnauthorizedException('Something went wrong!');
     }
   }
-  generateToken(email: string, id: ObjectId): string {
+  generateToken(email: string, id: number): string {
     const accessToken = this.jwtService.sign(
       { email, id },
       {
@@ -46,7 +46,7 @@ export class AuthService {
     );
     return accessToken;
   }
-  savedCookie(email: string, id: ObjectId, res: Response): void {
+  savedCookie(email: string, id: number, res: Response): void {
     const refreshToken = this.jwtService.sign(
       { email, id },
       {

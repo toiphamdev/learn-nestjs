@@ -7,8 +7,17 @@ import { AuthModule } from './auth/auth.module';
 import 'dotenv/config';
 import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database/database.module';
+import { ProductModule } from './product/product.module';
+import { AllcodeModule } from './allcode/allcode.module';
 @Module({
-  imports: [MulterModule.register(), AuthModule, UserModule, DatabaseModule],
+  imports: [
+    MulterModule.register(),
+    AuthModule,
+    UserModule,
+    DatabaseModule,
+    ProductModule,
+    AllcodeModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

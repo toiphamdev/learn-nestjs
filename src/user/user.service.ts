@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
-import { ObjectId, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Role, UserDto } from './dto/user.dto';
 import { plainToClass } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
@@ -28,7 +28,7 @@ export class UserService {
     const user = await this.userRespository.find();
     return user;
   }
-  async getProfile(id: ObjectId): Promise<UserDto> {
+  async getProfile(id: number): Promise<UserDto> {
     const user = await this.userRespository.findOneById(id);
     delete user.password;
     return plainToClass(UserDto, user);

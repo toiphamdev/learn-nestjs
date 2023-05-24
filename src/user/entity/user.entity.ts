@@ -1,4 +1,4 @@
-import { Entity, Column, ObjectIdColumn, ObjectId } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 enum Role {
   USER = 'USER',
@@ -8,8 +8,8 @@ enum Role {
 
 @Entity()
 export class User {
-  @ObjectIdColumn()
-  id: ObjectId;
+  @PrimaryGeneratedColumn()
+  id: number;
   @Column()
   firstName: string;
   @Column()
@@ -24,6 +24,4 @@ export class User {
   createdAt: Date;
   @Column()
   updatedAt: Date;
-  @Column()
-  isActive: boolean;
 }

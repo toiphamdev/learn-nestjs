@@ -1,6 +1,5 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsEmail, IsNotEmpty, MinLength, IsEnum } from 'class-validator';
-import { ObjectId } from 'typeorm';
+import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 
 export enum Role {
   USER = 'USER',
@@ -9,7 +8,7 @@ export enum Role {
 }
 export class UserDto {
   @Expose()
-  id: ObjectId;
+  id: number;
   @IsNotEmpty()
   firstName: string;
   @IsNotEmpty()

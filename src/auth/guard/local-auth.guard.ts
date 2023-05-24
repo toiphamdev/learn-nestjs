@@ -10,7 +10,6 @@ export class LocalAuthGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    // Thực hiện xác thực tùy chỉnh ở đây
     const request = context.switchToHttp().getRequest();
     const { email, password } = request.body;
     const validate = this.validateUser(email, password, request);
