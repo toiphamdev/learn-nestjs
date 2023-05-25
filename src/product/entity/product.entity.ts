@@ -34,8 +34,5 @@ export class Product {
   @Column()
   updatedAt: Date;
   @OneToOne(() => ProductDetail, (detail) => detail.product)
-  @JoinColumn({
-    name: 'detailId',
-  })
   detail: ProductDetail;
 }

@@ -31,7 +31,6 @@
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
-    "mongodb": "^5.2.0",
     "mysql2": "^3.3.2",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",

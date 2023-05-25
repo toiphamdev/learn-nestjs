@@ -1,9 +1,13 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class ProductDetailDto {
+  @IsNotEmpty()
   productId: number;
+  @IsNotEmpty()
   name: string;
+  @IsNotEmpty()
   originalPrice: number;
   discountPrice: number;
-  image: string[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

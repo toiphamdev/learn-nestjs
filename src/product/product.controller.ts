@@ -1,8 +1,9 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductDto } from './dto/product.dto';
 import { ProductService } from './product.service';
 import { ProductDetailDto } from './dto/product-detail.dto';
 import { ProductDetail } from './entity/product-detail.entity';
+import { ProductImageDto } from './dto/product-image.dto';
 
 @Controller('product')
 export class ProductController {
@@ -20,5 +21,18 @@ export class ProductController {
     productDetail: ProductDetail;
   }> {
     return this.productService.createProductDetail(detail);
+  }
+  @Get(':id')
+  getProductById(@Param() param: { id: number }): Promise<{
+    message: string;
+    product: ProductDto;
+  }> {
+    return this.productService.getProductById(param.id);
+  }
+  @Post(':images')
+  addedImage(@Body() images: ProductImageDto[]): Promise<{
+    message: string;
+  }> {
+    return this.productService.addImageToProduct(images);
   }
 }

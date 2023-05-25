@@ -1,27 +1,31 @@
 import {
   Entity,
   Column,
-  ObjectIdColumn,
-  ObjectId,
   OneToOne,
-  Relation,
-  JoinColumn,
   PrimaryGeneratedColumn,
+  JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Product } from './product.entity';
+import { ProductImage } from './product-image.entity';
 
 @Entity()
 export class ProductDetail {
   @PrimaryGeneratedColumn()
   id: number;
-  @OneToOne(() => Product, (product) => product.detail)
-  product: Relation<Product>;
+  @OneToOne(() => Product, (product) => product.detail, { onDelete: 'CASCADE' })
+  @JoinColumn({ foreignKeyConstraintName: 'productId' })
+  product: Product;
+  @Column({ unique: true })
+  productId: number;
   @Column()
   name: string;
   @Column()
   originalPrice: number;
   @Column()
   discountPrice: number;
+  @OneToMany(() => ProductImage, (image) => image.productDetail)
+  images: ProductImage[];
   @Column()
   createdAt: Date;
   @Column()
