@@ -10,6 +10,9 @@ import { DatabaseModule } from './database/database.module';
 import { ProductModule } from './product/product.module';
 import { AllcodeModule } from './allcode/allcode.module';
 import { UploadModule } from './upload/upload.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { ClearImageModule } from './clear-image/clear-image.module';
+import { ClearImageService } from './clear-image/clear-image.service';
 @Module({
   imports: [
     MulterModule.register(),
@@ -19,8 +22,10 @@ import { UploadModule } from './upload/upload.module';
     ProductModule,
     AllcodeModule,
     UploadModule,
+    ScheduleModule.forRoot(),
+    ClearImageModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ClearImageService],
 })
 export class AppModule {}
