@@ -12,7 +12,7 @@ export class ProductImage {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ unique: true })
-  src: string;
+  name: string;
   @ManyToOne(() => ProductDetail, (productDetail) => productDetail.images, {
     onDelete: 'CASCADE',
   })
@@ -20,8 +20,8 @@ export class ProductImage {
   productDetail: ProductDetail;
   @Column()
   productDetailId: number;
-  @Column()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
-  @Column()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
 }

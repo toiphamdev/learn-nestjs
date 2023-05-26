@@ -26,8 +26,8 @@ export class ProductDetail {
   discountPrice: number;
   @OneToMany(() => ProductImage, (image) => image.productDetail)
   images: ProductImage[];
-  @Column()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
-  @Column()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
 }

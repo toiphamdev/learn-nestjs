@@ -29,10 +29,10 @@ export class Product {
   material: string;
   @Column()
   brandId: string;
-  @Column()
-  createdAt: Date;
-  @Column()
-  updatedAt: Date;
   @OneToOne(() => ProductDetail, (detail) => detail.product)
   detail: ProductDetail;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt: Date;
 }

@@ -2,6 +2,7 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { Product } from './entity/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as fs from 'fs-extra';
 import { ProductDto } from './dto/product.dto';
 import { ProductDetail } from './entity/product-detail.entity';
 import { ProductDetailDto } from './dto/product-detail.dto';
@@ -84,28 +85,37 @@ export class ProductService {
 
     await queryRunner.connect();
     await queryRunner.startTransaction();
-
+    let countSuccess = 0;
+    //Use query builder in transaction
+    const queryBuilder =
+      this.productImageRepository.createQueryBuilder('images');
     try {
-      // Sử dụng query builder trong transaction
-      const queryBuilder =
-        this.productImageRepository.createQueryBuilder('images');
-
       for (const image of images) {
-        // Thêm các thao tác cơ sở dữ liệu vào query builder
-        queryBuilder.insert().values(image).execute();
+        //move image from temp to upload
+        const tempPath = `./public/temp/${image.name}`;
+        const destinationPath = `./public/uploads/images/${image.name}`;
+        const move = await fs.move(tempPath, destinationPath);
+        console.log(move, tempPath);
+        //create product image
+        const isadded = await queryBuilder.insert().values(image).execute();
+        if (isadded) {
+          countSuccess = countSuccess + 1;
+        }
       }
-
-      // Commit transaction nếu không có lỗi
       await queryRunner.commitTransaction();
       return {
         message: 'success',
       };
     } catch (error) {
       // Rollback transaction nếu có lỗi
+      if (countSuccess > 0) {
+        for (let i = 0; i < countSuccess; i++) {
+          await this.productImageRepository.delete({ name: images[i].name });
+        }
+      }
       await queryRunner.rollbackTransaction();
       throw new ForbiddenException('Somethings went wrong!');
     } finally {
-      // Đóng kết nối và giải phóng query runner
       await queryRunner.release();
     }
   }

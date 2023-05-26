@@ -5,5 +5,5 @@ export class ProductImageDto {
   @IsNotEmpty()
   productDetailId: number;
   @IsNotEmpty()
-  src: string;
+  name: string;
 }

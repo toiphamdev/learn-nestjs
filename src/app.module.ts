@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database/database.module';
 import { ProductModule } from './product/product.module';
 import { AllcodeModule } from './allcode/allcode.module';
+import { UploadModule } from './upload/upload.module';
 @Module({
   imports: [
     MulterModule.register(),
@@ -17,6 +18,7 @@ import { AllcodeModule } from './allcode/allcode.module';
     DatabaseModule,
     ProductModule,
     AllcodeModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],
