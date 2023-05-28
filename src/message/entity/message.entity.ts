@@ -15,7 +15,7 @@ export class Message {
   roomId: number;
   @Column({ default: true })
   unRead: boolean;
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

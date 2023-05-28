@@ -17,8 +17,7 @@ export class UserController {
   getAllUser() {
     return this.userService.getUser();
   }
-  @Roles(Role.USER)
-  @UseGuards(new JwtAuthGuard('jwt'), RolesGuard)
+  @UseGuards(new JwtAuthGuard('jwt'))
   @Get('profile')
   getProfile(@Req() req: Request) {
     const user = req.user;

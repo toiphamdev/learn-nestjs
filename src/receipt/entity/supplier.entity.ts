@@ -13,7 +13,7 @@ export class Supplier {
   email: string;
   @OneToMany(() => Receipt, (reciept) => reciept.supplier)
   receipts: Receipt[];
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

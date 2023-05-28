@@ -26,7 +26,7 @@ export class User {
   roleId: Role;
   @Column()
   phoneNumber: string;
-  @Column()
+  @Column({ default: 'avatar.png' })
   image: string;
   @Column()
   dob: string;
@@ -52,7 +52,7 @@ export class User {
   roomsAsUserTwo: RoomMessage[];
   @OneToMany(() => Receipt, (receipt) => receipt.user)
   receipts: Receipt[];
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

@@ -15,7 +15,7 @@ export class TypeVoucher {
   minValue: number;
   @OneToMany(() => Voucher, (voucher) => voucher.typeVoucher)
   voucher: Voucher[];
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

@@ -19,7 +19,21 @@ export class UserDto {
   @MinLength(6)
   password: string;
   @Expose()
-  role: Role = Role.USER;
+  roleId: Role = Role.USER;
+  @Expose()
+  genderId?: string;
+  @Expose()
+  phoneNumber: string;
+  @Expose()
+  image: string;
+  @Expose()
+  dob: string;
+  @Expose()
+  statusId: string;
+  @Expose()
+  token: string;
+  @Expose()
+  isActiveEmail: boolean;
   @Expose()
   createdAt: Date;
   @Expose()

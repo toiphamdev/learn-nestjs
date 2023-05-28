@@ -9,6 +9,7 @@ import { ProductDetailDto } from './dto/product-detail.dto';
 import { ProductImage } from './entity/product-image.entity';
 import { ProductImageDto } from './dto/product-image.dto';
 import path from 'path';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class ProductService {
@@ -20,6 +21,7 @@ export class ProductService {
     @InjectRepository(ProductImage)
     private readonly productImageRepository: Repository<ProductImage>,
   ) {}
+  //product service
   async createProduct(
     product: ProductDto,
   ): Promise<{ message: string; product: Product }> {
@@ -35,28 +37,7 @@ export class ProductService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
-  async createProductDetail(
-    detail: ProductDetailDto,
-  ): Promise<{ message: string; productDetail: ProductDetail }> {
-    try {
-      const product = await this.productRepository.findOneById(
-        detail.productId,
-      );
-      const productDetail = new ProductDetail();
-      productDetail.name = detail.name;
-      productDetail.productId = product.id;
-      const updatedProdDetail = await this.productDetailRepository.save(
-        productDetail,
-      );
-      return {
-        message: 'Create product success!',
-        productDetail: updatedProdDetail,
-      };
-    } catch (error) {
-      console.log(error);
-      throw new ForbiddenException('Something went wrong!');
-    }
-  }
+
   async getProductById(id: number): Promise<{
     message: string;
     product: ProductDto;
@@ -66,7 +47,7 @@ export class ProductService {
         where: {
           id,
         },
-        relations: ['detail', 'detail.images'],
+        relations: ['detail', 'detail.images', 'comments'],
       });
       if (product) {
         return {
@@ -75,9 +56,11 @@ export class ProductService {
         };
       }
     } catch (error) {
+      console.log(error);
       throw new ForbiddenException('Something went wrong!');
     }
   }
+
   async addImageToProduct(images: ProductImageDto[]): Promise<{
     message: string;
   }> {
@@ -120,6 +103,7 @@ export class ProductService {
       await queryRunner.release();
     }
   }
+
   async deleteProduct(id: number): Promise<{ message: string }> {
     try {
       const product = await this.productRepository.findOne({
@@ -128,22 +112,70 @@ export class ProductService {
         },
         relations: ['detail', 'detail.images'],
       });
-      for (const productDetail of product.detail) {
-        for (const image of productDetail.images) {
-          const imagePath = `./public/uploads/images/${image.name}`;
-          await fs.remove(imagePath);
-          console.log(`item ${image.name} has been deleted`);
+      if (product) {
+        for (const productDetail of product.detail) {
+          for (const image of productDetail.images) {
+            const imagePath = `./public/uploads/images/${image.name}`;
+            await fs.remove(imagePath);
+            console.log(`item ${image.name} has been deleted`);
+          }
         }
-      }
-      const itemDeleted = await this.productRepository.delete({ id });
-      if (itemDeleted.affected > 0) {
-        return {
-          message: 'success',
-        };
+        const itemDeleted = await this.productRepository.delete({ id });
+        if (itemDeleted.affected > 0) {
+          return {
+            message: 'success',
+          };
+        }
+      } else {
+        throw new ForbiddenException('Product not found');
       }
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Somethings went wrong');
+    }
+  }
+
+  async updateProduct(product: ProductDto): Promise<{ message: string }> {
+    try {
+      const updatedProduct = await this.productRepository.update(
+        {
+          id: product.id,
+        },
+        product,
+      );
+      if (updatedProduct.affected) {
+        return {
+          message: 'success',
+        };
+      } else {
+        throw new ForbiddenException('Somethings went wrong!');
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Somethings went wrong!');
+    }
+  }
+  //product detail service
+  async createProductDetail(
+    detail: ProductDetailDto,
+  ): Promise<{ message: string; productDetail: ProductDetail }> {
+    try {
+      const product = await this.productRepository.findOneById(
+        detail.productId,
+      );
+      const productDetail = new ProductDetail();
+      productDetail.name = detail.name;
+      productDetail.productId = product.id;
+      const updatedProdDetail = await this.productDetailRepository.save(
+        productDetail,
+      );
+      return {
+        message: 'Create detail product success!',
+        productDetail: updatedProdDetail,
+      };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
     }
   }
 }

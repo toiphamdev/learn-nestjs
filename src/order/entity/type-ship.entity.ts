@@ -11,7 +11,7 @@ export class TypeShip {
   price: number;
   @OneToMany(() => Order, (order) => order.typeShip)
   orders: Order[];
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

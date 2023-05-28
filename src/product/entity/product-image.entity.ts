@@ -23,7 +23,7 @@ export class ProductImage {
   productDetail: ProductDetail;
   @Column()
   productDetailId: number;
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

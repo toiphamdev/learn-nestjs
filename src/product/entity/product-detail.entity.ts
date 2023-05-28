@@ -19,7 +19,7 @@ export class ProductDetail {
   })
   @JoinColumn({ foreignKeyConstraintName: 'productId' })
   product: Product;
-  @Column({ unique: true })
+  @Column()
   productId: number;
   @OneToMany(() => ProductDetailSize, (size) => size.productDetail)
   size: ProductDetailSize[];
@@ -33,7 +33,7 @@ export class ProductDetail {
   description: string;
   @OneToMany(() => ProductImage, (image) => image.productDetail)
   images: ProductImage[];
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

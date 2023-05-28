@@ -27,8 +27,8 @@ export class Product {
   @OneToMany(() => ProductDetail, (detail) => detail.product)
   detail: ProductDetail[];
   @OneToMany(() => Comment, (comment) => comment.product)
-  comment: Comment[];
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  comments: Comment[];
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

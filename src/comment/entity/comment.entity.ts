@@ -19,21 +19,23 @@ export class Comment {
   image: string;
   @Column()
   parenId: number;
-  @ManyToOne(() => Product, (prod) => prod.comment)
+  @ManyToOne(() => Product, (prod) => prod.comments)
   @JoinColumn()
   product: Product;
-  @Column()
+  @Column({ nullable: true })
   productId: number;
+  @Column()
+  start: number;
   @ManyToOne(() => Blog, (blog) => blog.comments)
   @JoinColumn()
   blog: Blog;
-  @Column()
+  @Column({ nullable: true })
   blogId: number;
   @ManyToOne(() => User, (user) => user.comments)
   user: User;
   @Column()
   userId: number;
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;

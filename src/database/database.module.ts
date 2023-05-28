@@ -28,11 +28,11 @@ import { ReceiptDetail } from '../receipt/entity/reciept-detail.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      database: 'ecom',
-      username: 'root',
-      password: null,
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      database: process.env.DB_NAME,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_USERPASSWORD,
       synchronize: true,
       entities: [
         User,

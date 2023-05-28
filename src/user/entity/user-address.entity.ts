@@ -28,7 +28,7 @@ export class UserAddress {
   shipEmail: string;
   @OneToMany(() => Order, (order) => order.addressUser)
   orders: Order[];
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
