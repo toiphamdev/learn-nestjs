@@ -8,6 +8,7 @@ import { ProductDetail } from './entity/product-detail.entity';
 import { ProductDetailDto } from './dto/product-detail.dto';
 import { ProductImage } from './entity/product-image.entity';
 import { ProductImageDto } from './dto/product-image.dto';
+import path from 'path';
 
 @Injectable()
 export class ProductService {
@@ -117,6 +118,32 @@ export class ProductService {
       throw new ForbiddenException('Somethings went wrong!');
     } finally {
       await queryRunner.release();
+    }
+  }
+  async deleteProduct(id: number): Promise<{ message: string }> {
+    try {
+      const product = await this.productRepository.findOne({
+        where: {
+          id,
+        },
+        relations: ['detail', 'detail.images'],
+      });
+      for (const productDetail of product.detail) {
+        for (const image of productDetail.images) {
+          const imagePath = `./public/uploads/images/${image.name}`;
+          await fs.remove(imagePath);
+          console.log(`item ${image.name} has been deleted`);
+        }
+      }
+      const itemDeleted = await this.productRepository.delete({ id });
+      if (itemDeleted.affected > 0) {
+        return {
+          message: 'success',
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Somethings went wrong');
     }
   }
 }

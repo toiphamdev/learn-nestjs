@@ -2,9 +2,10 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import { Repository } from 'typeorm';
-import { Role, UserDto } from './dto/user.dto';
+import { UserDto } from './dto/user.dto';
 import { plainToClass } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
+import { Role } from './entity/roles.enum';
 
 @Injectable()
 export class UserService {

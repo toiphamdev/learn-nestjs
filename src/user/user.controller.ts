@@ -1,8 +1,10 @@
 import { Controller, Body, Post, Get, UseGuards, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
-import { JwtAuthGuard } from '../auth/guard';
+import { JwtAuthGuard, RolesGuard } from '../auth/guard';
 import { Request } from 'express';
+import { Roles } from '../auth/decorator/roles.decorator';
+import { Role } from './entity/roles.enum';
 
 @Controller('user')
 export class UserController {
@@ -15,7 +17,8 @@ export class UserController {
   getAllUser() {
     return this.userService.getUser();
   }
-  @UseGuards(new JwtAuthGuard('jwt'))
+  @Roles(Role.USER)
+  @UseGuards(new JwtAuthGuard('jwt'), RolesGuard)
   @Get('profile')
   getProfile(@Req() req: Request) {
     const user = req.user;

@@ -13,6 +13,13 @@ import { UploadModule } from './upload/upload.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ClearImageModule } from './clear-image/clear-image.module';
 import { ClearImageService } from './clear-image/clear-image.service';
+import { BannerModule } from './banner/banner.module';
+import { CommentModule } from './comment/comment.module';
+import { BlogModule } from './blog/blog.module';
+import { VoucherModule } from './voucher/voucher.module';
+import { OrderModule } from './order/order.module';
+import { MessageModule } from './message/message.module';
+import { ReceiptModule } from './receipt/receipt.module';
 @Module({
   imports: [
     MulterModule.register(),
@@ -24,6 +31,13 @@ import { ClearImageService } from './clear-image/clear-image.service';
     UploadModule,
     ScheduleModule.forRoot(),
     ClearImageModule,
+    BannerModule,
+    CommentModule,
+    BlogModule,
+    VoucherModule,
+    OrderModule,
+    MessageModule,
+    ReceiptModule,
   ],
   controllers: [AppController],
   providers: [AppService, ClearImageService],

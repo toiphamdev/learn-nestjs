@@ -18,13 +18,13 @@ export class ClearImageService {
         const timeDifference = new Date().getTime() - birthtime.getTime();
         const minutesDifference = Math.floor(timeDifference / (1000 * 60));
 
-        if (minutesDifference > 5) {
+        if (minutesDifference > 30) {
           await fs.remove(filePath);
-          console.log(`Đã xóa tệp tin ${file}`);
+          console.log(`Image ${file} has been deleted`);
         }
       });
     } catch (err) {
-      console.error('Lỗi khi xóa ảnh:', err);
+      console.error('Error of clear Images expried:', err);
     }
   }
 }

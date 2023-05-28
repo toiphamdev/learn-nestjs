@@ -1,11 +1,6 @@
-import {
-  Entity,
-  Column,
-  OneToOne,
-  JoinColumn,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { ProductDetail } from './product-detail.entity';
+import { Comment } from '../../comment/entity/comment.entity';
 
 @Entity()
 export class Product {
@@ -13,9 +8,9 @@ export class Product {
   id: number;
   @Column()
   name: string;
-  @Column()
+  @Column({ type: 'longtext' })
   contentMarkdown: string;
-  @Column()
+  @Column({ type: 'longtext' })
   contentHtml: string;
   @Column()
   categoryId: string;
@@ -29,8 +24,10 @@ export class Product {
   material: string;
   @Column()
   brandId: string;
-  @OneToOne(() => ProductDetail, (detail) => detail.product)
-  detail: ProductDetail;
+  @OneToMany(() => ProductDetail, (detail) => detail.product)
+  detail: ProductDetail[];
+  @OneToMany(() => Comment, (comment) => comment.product)
+  comment: Comment[];
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

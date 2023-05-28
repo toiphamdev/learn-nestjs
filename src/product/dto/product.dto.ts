@@ -5,11 +5,13 @@ export class ProductDto {
   id: number;
   @IsNotEmpty()
   name: string;
-  contentMarkdown?: string;
-  contentHtml?: string;
+  @IsNotEmpty()
+  contentMarkdown: string;
+  @IsNotEmpty()
+  contentHtml: string;
   categoryId?: string;
   statusId?: string;
-  detail?: ProductDetailDto;
+  detail?: ProductDetailDto[];
   view?: number;
   madeBy?: string;
   material?: string;
