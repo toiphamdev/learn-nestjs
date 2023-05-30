@@ -1,6 +1,6 @@
 import { Expose, Transform } from 'class-transformer';
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
-import { Role } from '../entity/roles.enum';
+import { Role } from '../entities/roles.enum';
 
 export class UserDto {
   @Expose()

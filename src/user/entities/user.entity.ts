@@ -1,12 +1,12 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Role } from './roles.enum';
 import { UserAddress } from './user-address.entity';
-import { Blog } from '../../blog/entity/blog.entity';
-import { Comment } from '../../comment/entity/comment.entity';
-import { VoucherUsed } from '../../voucher/entity/voucher-used.entity';
-import { Message } from 'src/message/entity/message.entity';
-import { RoomMessage } from 'src/message/entity/room-message.entity';
-import { Receipt } from 'src/receipt/entity/reciept.entity';
+import { Blog } from '../../blog/entities/blog.entity';
+import { Comment } from '../../comment/entities/comment.entity';
+import { VoucherUsed } from '../../voucher/entities/voucher-used.entity';
+import { Message } from 'src/message/entities/message.entity';
+import { RoomMessage } from 'src/message/entities/room-message.entity';
+import { Receipt } from 'src/receipt/entities/reciept.entity';
 
 @Entity()
 export class User {

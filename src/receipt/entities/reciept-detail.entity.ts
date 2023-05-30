@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Receipt } from './reciept.entity';
-import { ProductDetailSize } from 'src/product/entity/product-detail-size.entity';
+import { ProductDetailSize } from 'src/product/entities/product-detail-size.entity';
 
 @Entity()
 export class ReceiptDetail {

@@ -1,5 +1,5 @@
-import { Voucher } from 'src/voucher/entity/voucher.entity';
-import { UserAddress } from '../../user/entity/user-address.entity';
+import { Voucher } from 'src/voucher/entities/voucher.entity';
+import { UserAddress } from '../../user/entities/user-address.entity';
 import {
   Column,
   Entity,

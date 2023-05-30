@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { ProductDetail } from './product-detail.entity';
 import { OrderDetail } from 'src/order/entity/order-detail.entity';
-import { ReceiptDetail } from 'src/receipt/entity/reciept-detail.entity';
+import { ReceiptDetail } from 'src/receipt/entities/reciept-detail.entity';
 
 @Entity()
 export class ProductDetailSize {

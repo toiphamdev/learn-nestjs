@@ -11,11 +11,11 @@ import {
 import { ProductDto } from './dto/product.dto';
 import { ProductService } from './product.service';
 import { ProductDetailDto } from './dto/product-detail.dto';
-import { ProductDetail } from './entity/product-detail.entity';
+import { ProductDetail } from './entities/product-detail.entity';
 import { ProductImageDto } from './dto/product-image.dto';
 import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Roles } from 'src/auth/decorator/roles.decorator';
-import { Role } from 'src/user/entity/roles.enum';
+import { Role } from 'src/user/entities/roles.enum';
 
 @Controller('product')
 export class ProductController {

@@ -4,7 +4,7 @@ import { UserDto } from './dto/user.dto';
 import { JwtAuthGuard, RolesGuard } from '../auth/guard';
 import { Request } from 'express';
 import { Roles } from '../auth/decorator/roles.decorator';
-import { Role } from './entity/roles.enum';
+import { Role } from './entities/roles.enum';
 
 @Controller('user')
 export class UserController {

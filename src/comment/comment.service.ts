@@ -1,6 +1,6 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Comment } from './entity/comment.entity';
+import { Comment } from './entities/comment.entity';
 import { Repository } from 'typeorm';
 import { CommentDto } from './dto/comment.dto';
 

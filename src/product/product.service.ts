@@ -1,15 +1,14 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { Product } from './entity/product.entity';
+import { Product } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as fs from 'fs-extra';
 import { ProductDto } from './dto/product.dto';
-import { ProductDetail } from './entity/product-detail.entity';
+import { ProductDetail } from './entities/product-detail.entity';
 import { ProductDetailDto } from './dto/product-detail.dto';
-import { ProductImage } from './entity/product-image.entity';
+import { ProductImage } from './entities/product-image.entity';
 import { ProductImageDto } from './dto/product-image.dto';
-import path from 'path';
-import { plainToClass } from 'class-transformer';
+import { MyGateway } from 'src/socket/socket.gateway';
 
 @Injectable()
 export class ProductService {
@@ -20,6 +19,7 @@ export class ProductService {
     private readonly productDetailRepository: Repository<ProductDetail>,
     @InjectRepository(ProductImage)
     private readonly productImageRepository: Repository<ProductImage>,
+    private readonly socketGateway: MyGateway,
   ) {}
   //product service
   async createProduct(
@@ -28,6 +28,9 @@ export class ProductService {
     try {
       const createdProd = await this.productRepository.save(product);
       if (createdProd) {
+        this.socketGateway.server.emit('productUpdated', {
+          productId: createdProd.id,
+        });
         return {
           message: 'Create product success!',
           product: createdProd,

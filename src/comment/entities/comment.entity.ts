@@ -1,6 +1,6 @@
-import { User } from 'src/user/entity/user.entity';
-import { Blog } from '../../blog/entity/blog.entity';
-import { Product } from '../../product/entity/product.entity';
+import { User } from 'src/user/entities/user.entity';
+import { Blog } from '../../blog/entities/blog.entity';
+import { Product } from '../../product/entities/product.entity';
 import {
   Column,
   Entity,

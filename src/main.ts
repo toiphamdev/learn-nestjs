@@ -10,11 +10,12 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
   app.enableCors({
-    origin: true,
+    origin: ['http://localhost:5173'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
   app.useStaticAssets(join(__dirname, '..', './public'));
+  const PORT = process.env.PORT || 8080;
   await app.listen(8080);
 }
 bootstrap();

@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { ProductDetail } from './product-detail.entity';
-import { Comment } from '../../comment/entity/comment.entity';
+import { Comment } from '../../comment/entities/comment.entity';
 
 @Entity()
 export class Product {

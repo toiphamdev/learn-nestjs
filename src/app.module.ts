@@ -20,6 +20,7 @@ import { VoucherModule } from './voucher/voucher.module';
 import { OrderModule } from './order/order.module';
 import { MessageModule } from './message/message.module';
 import { ReceiptModule } from './receipt/receipt.module';
+import { SocketModule } from './socket/socket.module';
 @Module({
   imports: [
     MulterModule.register(),
@@ -38,6 +39,7 @@ import { ReceiptModule } from './receipt/receipt.module';
     OrderModule,
     MessageModule,
     ReceiptModule,
+    SocketModule,
   ],
   controllers: [AppController],
   providers: [AppService, ClearImageService],
