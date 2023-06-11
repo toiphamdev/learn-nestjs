@@ -11,7 +11,7 @@ export class ProductDto {
   contentHtml: string;
   categoryId?: string;
   statusId?: string;
-  detail?: ProductDetailDto[];
+  // detail?: ProductDetailDto[];
   view?: number;
   madeBy?: string;
   material?: string;

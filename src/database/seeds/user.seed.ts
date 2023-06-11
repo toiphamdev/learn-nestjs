@@ -5,6 +5,7 @@ import { User } from '../../user/entities/user.entity'; // Thay thế đường 
 import { Role } from '../../user/entities/roles.enum';
 import { RegisterUserDto } from 'src/user/dto/register-user.dto';
 import { Gender } from '../../user/entities/genders.enum';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserSeed {
@@ -15,14 +16,14 @@ export class UserSeed {
 
   async seed(): Promise<void> {
     const existingUsers = await this.userRepository.count();
-
+    const password = await bcrypt.hashSync('123456', 10);
     if (existingUsers === 0) {
       const users: RegisterUserDto[] = [
         {
           firstName: 'I am',
           lastName: 'admin',
           email: 'admin@gmail.com',
-          password: '123456',
+          password: password,
           roleId: Role.ADMIN,
           phoneNumber: '02020220',
           genderId: Gender.MALE,
@@ -33,7 +34,7 @@ export class UserSeed {
           firstName: 'I am',
           lastName: 'user',
           email: 'user1@gmail.com',
-          password: '123456',
+          password: password,
           roleId: Role.USER,
           phoneNumber: '0202022330',
           genderId: Gender.MALE,
