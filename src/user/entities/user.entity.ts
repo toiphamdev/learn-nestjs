@@ -28,13 +28,13 @@ export class User {
   phoneNumber: string;
   @Column({ default: 'avatar.png' })
   image: string;
-  @Column()
-  dob: string;
-  @Column()
+  @Column({ default: '19/5/2000' })
+  dob?: string;
+  @Column({ nullable: true })
   statusId: string;
-  @Column()
+  @Column({ nullable: true })
   token: string;
-  @Column()
+  @Column({ default: false })
   isActiveEmail: boolean;
   @OneToMany(() => UserAddress, (address) => address.user)
   address: UserAddress[];

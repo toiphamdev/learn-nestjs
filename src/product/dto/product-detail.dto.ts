@@ -1,5 +1,6 @@
 import { Expose } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
+import { ProductDetailSizeDto } from './product-detail-size.dto';
 
 export class ProductDetailDto {
   @IsNotEmpty()
@@ -12,6 +13,7 @@ export class ProductDetailDto {
   originalPrice: number;
   @Expose()
   discountPrice: number;
-  createdAt?: Date;
+  productDetailSize: ProductDetailSizeDto[];
+  createdAt: Date;
   updatedAt?: Date;
 }
