@@ -13,7 +13,7 @@ import {
 export class Comment {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column('longtext')
+  @Column('text')
   content: string;
   @Column()
   image: string;

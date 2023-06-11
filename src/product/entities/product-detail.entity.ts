@@ -29,7 +29,7 @@ export class ProductDetail {
   originalPrice: number;
   @Column()
   discountPrice: number;
-  @Column({ type: 'longtext' })
+  @Column({ type: 'text' })
   description: string;
   @OneToMany(() => ProductImage, (image) => image.productDetail)
   images: ProductImage[];

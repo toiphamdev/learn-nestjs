@@ -8,9 +8,9 @@ export class Product {
   id: number;
   @Column()
   name: string;
-  @Column({ type: 'longtext' })
+  @Column({ type: 'text' })
   contentMarkdown: string;
-  @Column({ type: 'longtext' })
+  @Column({ type: 'text' })
   contentHtml: string;
   @Column()
   categoryId: string;

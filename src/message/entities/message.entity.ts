@@ -6,7 +6,7 @@ import { RoomMessage } from './room-message.entity';
 export class Message {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ type: 'longtext' })
+  @Column({ type: 'text' })
   text: string;
   @ManyToOne(() => User, (user) => user.messages)
   user: User;

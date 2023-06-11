@@ -5,11 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { ProductDetail } from './entities/product-detail.entity';
 import { ProductImage } from './entities/product-image.entity';
-import { MyGateway } from 'src/socket/socket.gateway';
+import { SocketModule } from 'src/socket/socket.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Product, ProductDetail, ProductImage])],
+  imports: [
+    TypeOrmModule.forFeature([Product, ProductDetail, ProductImage]),
+    SocketModule,
+  ],
   controllers: [ProductController],
-  providers: [ProductService, MyGateway],
+  providers: [ProductService],
 })
 export class ProductModule {}

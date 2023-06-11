@@ -11,7 +11,7 @@ import { Comment } from '../../comment/entities/comment.entity';
 export class Blog {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ type: 'longtext' })
+  @Column({ type: 'text' })
   shortDescription: string;
   @Column()
   title: string;
@@ -21,9 +21,9 @@ export class Blog {
   statusId: string;
   @Column()
   image: string;
-  @Column({ type: 'longtext' })
+  @Column({ type: 'text' })
   contentMarkdown: string;
-  @Column({ type: 'longtext' })
+  @Column({ type: 'text' })
   contentHtml: string;
   @ManyToOne(() => User, (user) => user.blogs)
   user: User;

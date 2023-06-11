@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class Banner {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ type: 'longtext' })
+  @Column({ type: 'text' })
   description: string;
   @Column()
   name: string;
