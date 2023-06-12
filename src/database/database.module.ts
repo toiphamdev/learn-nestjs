@@ -8,6 +8,8 @@ import { User } from '../user/entities/user.entity';
 import { Product } from '../product/entities/product.entity';
 import { UserAddress } from '../user/entities/user-address.entity';
 import { UserAddressSeed } from './seeds/user-address.seed';
+import { TypeShipSeed } from './seeds/type-ship.seed';
+import { TypeShip } from '../order/entity/type-ship.entity';
 
 @Module({
   imports: [
@@ -19,9 +21,9 @@ import { UserAddressSeed } from './seeds/user-address.seed';
       }),
       imports: undefined,
     }),
-    TypeOrmModule.forFeature([User, Product, UserAddress]),
+    TypeOrmModule.forFeature([User, Product, UserAddress, TypeShip]),
   ],
-  providers: [UserSeed, DatabaseService, UserAddressSeed],
+  providers: [UserSeed, DatabaseService, UserAddressSeed, TypeShipSeed],
 })
 export class DatabaseModule implements OnModuleInit {
   constructor(private readonly databaseService: DatabaseService) {}
