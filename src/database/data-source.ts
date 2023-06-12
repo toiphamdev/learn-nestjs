@@ -6,7 +6,7 @@ import { ProductDetail } from '../product/entities/product-detail.entity';
 import { ProductImage } from '../product/entities/product-image.entity';
 import { ProductDetailSize } from '../product/entities/product-detail-size.entity';
 import { UserAddress } from '../user/entities/user-address.entity';
-import { Allcode } from '../allcode/allcode.entity';
+import { Allcode } from '../allcode/entities/allcode.entity';
 import { Banner } from '../banner/entities/banner.entity';
 import { Comment } from '../comment/entities/comment.entity';
 import { Blog } from '../blog/entities/blog.entity';

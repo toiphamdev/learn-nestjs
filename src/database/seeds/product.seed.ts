@@ -1,7 +1,7 @@
 // import { Injectable } from '@nestjs/common';
 // import { InjectRepository } from '@nestjs/typeorm';
 // import { Repository } from 'typeorm';
-// import { ProductDto } from '../../product/dto/product.dto';
+// import { CreatedProductDto } from '../../product/dto/created-product.dto';
 // import { Product } from '../../product/entities/product.entity';
 
 // @Injectable()
@@ -15,12 +15,13 @@
 //     const existingUsers = await this.productRepository.count();
 
 //     if (existingUsers === 0) {
-//         const products: ProductDto[]=[
-//             {
-//                 name:""
-//             }
-//         ]
-//       await this.productRepository.save(products);
+//       const products: CreatedProductDto[] = [
+//         {
+//           name: 'Quần kaki dài nam giả jean co giãn nhẹ QKKJ01 PigoFashion',
+//         categoryId:""
+//         },
+//       ];
+//         await this.productRepository.save(products);
 //       console.log('Seed data users created successfully.');
 //     } else {
 //       console.log('Seed data users already exists.');

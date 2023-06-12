@@ -1,7 +1,7 @@
 import { IsNotEmpty } from 'class-validator';
 import { ProductDetailDto } from './product-detail.dto';
 
-export class ProductDto {
+export class CreatedProductDto {
   name: string;
   @IsNotEmpty()
   contentMarkdown: string;
