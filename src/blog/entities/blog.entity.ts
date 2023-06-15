@@ -19,8 +19,8 @@ export class Blog {
   subjectId: string;
   @Column()
   statusId: string;
-  @Column()
-  image: string;
+  @Column({ type: 'text', array: true })
+  images: string[];
   @Column({ type: 'text' })
   contentMarkdown: string;
   @Column({ type: 'text' })

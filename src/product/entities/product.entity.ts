@@ -24,6 +24,8 @@ export class Product {
   material: string;
   @Column()
   brandId: string;
+  @Column({ default: 0 })
+  sold: number;
   @OneToMany(() => ProductDetail, (detail) => detail.product)
   detail: ProductDetail[];
   @OneToMany(() => Comment, (comment) => comment.product)

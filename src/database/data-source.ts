@@ -3,7 +3,6 @@ import { DataSourceOptions, DataSource } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { Product } from '../product/entities/product.entity';
 import { ProductDetail } from '../product/entities/product-detail.entity';
-import { ProductImage } from '../product/entities/product-image.entity';
 import { ProductDetailSize } from '../product/entities/product-detail-size.entity';
 import { UserAddress } from '../user/entities/user-address.entity';
 import { Allcode } from '../allcode/entities/allcode.entity';
@@ -45,7 +44,6 @@ export const dataSourceOptions: DataSourceOptions = {
     Product,
     ProductDetail,
     ProductDetailSize,
-    ProductImage,
   ],
   migrations: ['dist/database/migrations/*.js'],
 };

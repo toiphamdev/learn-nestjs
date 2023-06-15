@@ -4,8 +4,6 @@ import {
   Post,
   UseGuards,
   Res,
-  Get,
-  Param,
   ForbiddenException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
@@ -20,14 +18,18 @@ export class AuthController {
   constructor(private authService: AuthService) {}
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Req() req: Request, @Res() res: Response): Promise<any> {
-    const user = plainToClass(UserDto, req.user);
-    const accessToken = this.authService.generateToken(user.email, user.id);
-    this.authService.savedCookie(user.email, user.id, res);
-    return res.status(200).json({
-      accessToken,
-      user,
-    });
+  login(@Req() req: Request, @Res() res: Response) {
+    try {
+      const user = plainToClass(UserDto, req.user);
+      const accessToken = this.authService.generateToken(user.email, user.id);
+      this.authService.savedCookie(user.email, user.id, res);
+      return res.status(200).json({
+        accessToken,
+        user,
+      });
+    } catch (error) {
+      throw new ForbiddenException('Somethings went wrong');
+    }
   }
 
   @UseGuards(new JwtCookieAuthGuard('jwt-cookie'))

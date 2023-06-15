@@ -1,11 +1,12 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class AllcodeDto {
+export class UpdateAllcodeDto {
+  @IsNotEmpty()
+  id: number;
   @IsNotEmpty()
   type: string;
   @IsNotEmpty()
   value: string;
   code?: string;
-  createdAt: Date;
   updatedAt?: Date;
 }

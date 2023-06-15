@@ -6,8 +6,6 @@ import * as fs from 'fs-extra';
 import { ProductDto } from './dto/product.dto';
 import { ProductDetail } from './entities/product-detail.entity';
 import { ProductDetailDto } from './dto/product-detail.dto';
-import { ProductImage } from './entities/product-image.entity';
-import { ProductImageDto } from './dto/product-image.dto';
 import { MyGateway } from 'src/socket/socket.gateway';
 
 @Injectable()
@@ -17,8 +15,6 @@ export class ProductService {
     private readonly productRepository: Repository<Product>,
     @InjectRepository(ProductDetail)
     private readonly productDetailRepository: Repository<ProductDetail>,
-    @InjectRepository(ProductImage)
-    private readonly productImageRepository: Repository<ProductImage>,
     private readonly socketGateway: MyGateway,
   ) {}
   //product service
@@ -26,6 +22,7 @@ export class ProductService {
     product: ProductDto,
   ): Promise<{ message: string; product: Product }> {
     try {
+      console.log('product', product);
       const createdProd = await this.productRepository.save(product);
       if (createdProd) {
         this.socketGateway.server.emit('productUpdated', {
@@ -37,6 +34,7 @@ export class ProductService {
         };
       }
     } catch (error) {
+      console.log(error);
       throw new ForbiddenException('Something went wrong!');
     }
   }
@@ -50,7 +48,7 @@ export class ProductService {
         where: {
           id,
         },
-        relations: ['detail', 'detail.images', 'comments'],
+        relations: ['detail', 'comments'],
       });
       if (product) {
         return {
@@ -64,48 +62,48 @@ export class ProductService {
     }
   }
 
-  async addImageToProduct(images: ProductImageDto[]): Promise<{
-    message: string;
-  }> {
-    const queryRunner =
-      this.productImageRepository.manager.connection.createQueryRunner();
+  // async addImageToProduct(images: ProductImageDto[]): Promise<{
+  //   message: string;
+  // }> {
+  //   const queryRunner =
+  //     this.productImageRepository.manager.connection.createQueryRunner();
 
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-    let countSuccess = 0;
-    //Use query builder in transaction
-    const queryBuilder =
-      this.productImageRepository.createQueryBuilder('images');
-    try {
-      for (const image of images) {
-        //move image from temp to upload
-        const tempPath = `./public/temp/${image.name}`;
-        const destinationPath = `./public/uploads/images/${image.name}`;
-        const move = await fs.move(tempPath, destinationPath);
-        console.log(move, tempPath);
-        //create product image
-        const isadded = await queryBuilder.insert().values(image).execute();
-        if (isadded) {
-          countSuccess = countSuccess + 1;
-        }
-      }
-      await queryRunner.commitTransaction();
-      return {
-        message: 'success',
-      };
-    } catch (error) {
-      // Rollback transaction nếu có lỗi
-      if (countSuccess > 0) {
-        for (let i = 0; i < countSuccess; i++) {
-          await this.productImageRepository.delete({ name: images[i].name });
-        }
-      }
-      await queryRunner.rollbackTransaction();
-      throw new ForbiddenException('Somethings went wrong!');
-    } finally {
-      await queryRunner.release();
-    }
-  }
+  //   await queryRunner.connect();
+  //   await queryRunner.startTransaction();
+  //   let countSuccess = 0;
+  //   //Use query builder in transaction
+  //   const queryBuilder =
+  //     this.productImageRepository.createQueryBuilder('images');
+  //   try {
+  //     for (const image of images) {
+  //       //move image from temp to upload
+  //       const tempPath = `./public/temp/${image.name}`;
+  //       const destinationPath = `./public/uploads/images/${image.name}`;
+  //       const move = await fs.move(tempPath, destinationPath);
+  //       console.log(move, tempPath);
+  //       //create product image
+  //       const isadded = await queryBuilder.insert().values(image).execute();
+  //       if (isadded) {
+  //         countSuccess = countSuccess + 1;
+  //       }
+  //     }
+  //     await queryRunner.commitTransaction();
+  //     return {
+  //       message: 'success',
+  //     };
+  //   } catch (error) {
+  //     // Rollback transaction nếu có lỗi
+  //     if (countSuccess > 0) {
+  //       for (let i = 0; i < countSuccess; i++) {
+  //         await this.productImageRepository.delete({ name: images[i].name });
+  //       }
+  //     }
+  //     await queryRunner.rollbackTransaction();
+  //     throw new ForbiddenException('Somethings went wrong!');
+  //   } finally {
+  //     await queryRunner.release();
+  //   }
+  // }
 
   async deleteProduct(id: number): Promise<{ message: string }> {
     try {
@@ -118,9 +116,9 @@ export class ProductService {
       if (product) {
         for (const productDetail of product.detail) {
           for (const image of productDetail.images) {
-            const imagePath = `./public/uploads/images/${image.name}`;
+            const imagePath = `./public/uploads/images/${image}`;
             await fs.remove(imagePath);
-            console.log(`item ${image.name} has been deleted`);
+            console.log(`item ${image} has been deleted`);
           }
         }
         const itemDeleted = await this.productRepository.delete({ id });
@@ -169,9 +167,38 @@ export class ProductService {
       const productDetail = new ProductDetail();
       productDetail.name = detail.name;
       productDetail.productId = product.id;
+      productDetail.originalPrice = detail.originalPrice;
+      productDetail.discountPrice = detail.discountPrice;
+      productDetail.description = detail.description;
+      productDetail.createdAt = new Date();
+      productDetail.images = detail.images;
       const updatedProdDetail = await this.productDetailRepository.save(
         productDetail,
       );
+      if (updatedProdDetail) {
+        for (const image of detail.images) {
+          const tempPath = `./public/temp/${image}`;
+          const destinationPath = `./public/uploads/images/${image}`;
+          const successMoves: string[] = [];
+          try {
+            await fs.move(tempPath, destinationPath);
+            successMoves.push(image);
+          } catch (error) {
+            console.log(updatedProdDetail);
+            // Rollback moves if error occurs
+            if (updatedProdDetail) {
+              this.productDetailRepository.delete(updatedProdDetail.id);
+            }
+            console.log(error);
+            for (const successMove of successMoves) {
+              const rollbackPath = `./public/temp/${successMove}`;
+              await fs.move(destinationPath, rollbackPath);
+            }
+            throw new ForbiddenException('Somethings went wrong');
+            console.log(successMoves);
+          }
+        }
+      }
       return {
         message: 'Create detail product success!',
         productDetail: updatedProdDetail,

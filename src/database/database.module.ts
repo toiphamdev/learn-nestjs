@@ -10,6 +10,17 @@ import { UserAddress } from '../user/entities/user-address.entity';
 import { UserAddressSeed } from './seeds/user-address.seed';
 import { TypeShipSeed } from './seeds/type-ship.seed';
 import { TypeShip } from '../order/entity/type-ship.entity';
+import { TypeVoucher } from '../voucher/entities/type-voucher.entity';
+import { TypeVoucherSeed } from './seeds/type-voucher.seed';
+import { Supplier } from '../receipt/entities/supplier.entity';
+import { SupplierSeed } from './seeds/supplier.seed';
+import { BannerSeed } from './seeds/banner.seed';
+import { Banner } from '../banner/entities/banner.entity';
+import { AllcodeSeed } from './seeds/allcode.seed';
+import { Allcode } from '../allcode/entities/allcode.entity';
+import { ProductSeed } from './seeds/product.seed';
+import { ProductDetailSeed } from './seeds/product-detail.seed';
+import { ProductDetail } from '../product/entities/product-detail.entity';
 
 @Module({
   imports: [
@@ -21,9 +32,31 @@ import { TypeShip } from '../order/entity/type-ship.entity';
       }),
       imports: undefined,
     }),
-    TypeOrmModule.forFeature([User, Product, UserAddress, TypeShip]),
+    TypeOrmModule.forFeature([
+      User,
+      Product,
+      UserAddress,
+      TypeShip,
+      TypeVoucher,
+      Supplier,
+      Banner,
+      Allcode,
+      Product,
+      ProductDetail,
+    ]),
   ],
-  providers: [UserSeed, DatabaseService, UserAddressSeed, TypeShipSeed],
+  providers: [
+    UserSeed,
+    DatabaseService,
+    UserAddressSeed,
+    TypeShipSeed,
+    TypeVoucherSeed,
+    SupplierSeed,
+    BannerSeed,
+    AllcodeSeed,
+    ProductSeed,
+    ProductDetailSeed,
+  ],
 })
 export class DatabaseModule implements OnModuleInit {
   constructor(private readonly databaseService: DatabaseService) {}

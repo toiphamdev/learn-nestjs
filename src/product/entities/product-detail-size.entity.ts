@@ -21,6 +21,10 @@ export class ProductDetailSize {
   @JoinColumn()
   productDetail: ProductDetail;
   @Column()
+  name: string;
+  @Column()
+  quantity: number;
+  @Column()
   width: string;
   @Column()
   height: string;

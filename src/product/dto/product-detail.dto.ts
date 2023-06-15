@@ -13,6 +13,10 @@ export class ProductDetailDto {
   originalPrice: number;
   @Expose()
   discountPrice: number;
+  @Expose()
+  images: string[];
+  description: string;
+  @Expose()
   productDetailSize?: ProductDetailSizeDto[];
   createdAt: Date;
   updatedAt?: Date;

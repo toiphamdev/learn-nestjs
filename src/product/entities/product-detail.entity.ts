@@ -7,7 +7,6 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { Product } from './product.entity';
-import { ProductImage } from './product-image.entity';
 import { ProductDetailSize } from './product-detail-size.entity';
 
 @Entity()
@@ -31,8 +30,8 @@ export class ProductDetail {
   discountPrice: number;
   @Column({ type: 'text' })
   description: string;
-  @OneToMany(() => ProductImage, (image) => image.productDetail)
-  images: ProductImage[];
+  @Column({ type: 'text', array: true })
+  images: string[];
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
