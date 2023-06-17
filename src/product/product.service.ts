@@ -7,6 +7,8 @@ import { ProductDto } from './dto/product.dto';
 import { ProductDetail } from './entities/product-detail.entity';
 import { ProductDetailDto } from './dto/product-detail.dto';
 import { MyGateway } from 'src/socket/socket.gateway';
+import { SearchService } from 'src/search/search.service';
+import { SearchProductDto } from './dto/search-product.dto';
 
 @Injectable()
 export class ProductService {
@@ -16,6 +18,7 @@ export class ProductService {
     @InjectRepository(ProductDetail)
     private readonly productDetailRepository: Repository<ProductDetail>,
     private readonly socketGateway: MyGateway,
+    private readonly searchService: SearchService,
   ) {}
   //product service
   async createProduct(
@@ -23,11 +26,16 @@ export class ProductService {
   ): Promise<{ message: string; product: Product }> {
     try {
       console.log('product', product);
-      const createdProd = await this.productRepository.save(product);
+      const createdProd = await this.productRepository.save({
+        statusId: 'DRAFT',
+        createdAt: new Date(),
+        ...product,
+      });
       if (createdProd) {
         this.socketGateway.server.emit('productUpdated', {
           productId: createdProd.id,
         });
+        this.searchService.indexProduct(createdProd);
         return {
           message: 'Create product success!',
           product: createdProd,
@@ -61,49 +69,6 @@ export class ProductService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
-
-  // async addImageToProduct(images: ProductImageDto[]): Promise<{
-  //   message: string;
-  // }> {
-  //   const queryRunner =
-  //     this.productImageRepository.manager.connection.createQueryRunner();
-
-  //   await queryRunner.connect();
-  //   await queryRunner.startTransaction();
-  //   let countSuccess = 0;
-  //   //Use query builder in transaction
-  //   const queryBuilder =
-  //     this.productImageRepository.createQueryBuilder('images');
-  //   try {
-  //     for (const image of images) {
-  //       //move image from temp to upload
-  //       const tempPath = `./public/temp/${image.name}`;
-  //       const destinationPath = `./public/uploads/images/${image.name}`;
-  //       const move = await fs.move(tempPath, destinationPath);
-  //       console.log(move, tempPath);
-  //       //create product image
-  //       const isadded = await queryBuilder.insert().values(image).execute();
-  //       if (isadded) {
-  //         countSuccess = countSuccess + 1;
-  //       }
-  //     }
-  //     await queryRunner.commitTransaction();
-  //     return {
-  //       message: 'success',
-  //     };
-  //   } catch (error) {
-  //     // Rollback transaction nếu có lỗi
-  //     if (countSuccess > 0) {
-  //       for (let i = 0; i < countSuccess; i++) {
-  //         await this.productImageRepository.delete({ name: images[i].name });
-  //       }
-  //     }
-  //     await queryRunner.rollbackTransaction();
-  //     throw new ForbiddenException('Somethings went wrong!');
-  //   } finally {
-  //     await queryRunner.release();
-  //   }
-  // }
 
   async deleteProduct(id: number): Promise<{ message: string }> {
     try {
@@ -195,7 +160,6 @@ export class ProductService {
               await fs.move(destinationPath, rollbackPath);
             }
             throw new ForbiddenException('Somethings went wrong');
-            console.log(successMoves);
           }
         }
       }
@@ -208,4 +172,40 @@ export class ProductService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
+
+  searchProducts = async (query: SearchProductDto) => {
+    if (!query.page && !query.size) {
+      query.page = 1;
+      query.size = 2;
+    }
+    const filler = [];
+    if (query.categoryId) {
+      filler.push({ term: { categoryId: query.categoryId } });
+    }
+    const must = query.name
+      ? [{ match_phrase_prefix: { name: query.name } }]
+      : [];
+    const response = await this.searchService.searchProducts({
+      from: (query.page - 1) * query.size, // Vị trí bắt đầu của trang
+      size: query.size, // Số lượng kết quả trả về cho mỗi trang
+      query: {
+        bool: {
+          must: must,
+          filter: [...filler],
+        },
+      },
+    });
+
+    // Xử lý kết quả tìm kiếm ở đây
+    const totalHits = response.hits.total.valueOf(); // Tổng số kết quả
+    const productIds = response.hits.hits.map((hit) => {
+      const product = hit._source as Product;
+      return product.id;
+    });
+    const products = await this.productRepository.findByIds(productIds);
+    return {
+      products,
+      totalHits,
+    };
+  };
 }

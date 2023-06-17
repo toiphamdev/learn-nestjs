@@ -5,9 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { ProductDetail } from './entities/product-detail.entity';
 import { SocketModule } from 'src/socket/socket.module';
+import { SearchModule } from 'src/search/search.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Product, ProductDetail]), SocketModule],
+  imports: [
+    TypeOrmModule.forFeature([Product, ProductDetail]),
+    SocketModule,
+    SearchModule,
+  ],
   controllers: [ProductController],
   providers: [ProductService],
 })

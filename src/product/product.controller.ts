@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { ProductDto } from './dto/product.dto';
@@ -15,6 +16,7 @@ import { ProductDetail } from './entities/product-detail.entity';
 import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Roles } from 'src/auth/decorator/roles.decorator';
 import { Role } from 'src/user/entities/roles.enum';
+import { SearchProductDto } from './dto/search-product.dto';
 
 @Controller('product')
 export class ProductController {
@@ -69,5 +71,13 @@ export class ProductController {
     productDetail: ProductDetail;
   }> {
     return this.productService.createProductDetail(detail);
+  }
+
+  @Get()
+  getProductByName(
+    @Query()
+    query: SearchProductDto,
+  ) {
+    return this.productService.searchProducts(query);
   }
 }

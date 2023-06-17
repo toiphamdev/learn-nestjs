@@ -21,8 +21,11 @@ import { OrderModule } from './order/order.module';
 import { MessageModule } from './message/message.module';
 import { ReceiptModule } from './receipt/receipt.module';
 import { SocketModule } from './socket/socket.module';
+import { SearchModule } from './search/search.module';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     MulterModule.register(),
     AuthModule,
     UserModule,
@@ -40,6 +43,7 @@ import { SocketModule } from './socket/socket.module';
     MessageModule,
     ReceiptModule,
     SocketModule,
+    SearchModule,
   ],
   controllers: [AppController],
   providers: [AppService, ClearImageService],

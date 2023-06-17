@@ -16,11 +16,11 @@ export class Product {
   categoryId: string;
   @Column()
   statusId: string;
-  @Column()
+  @Column({ default: 0 })
   view: number;
-  @Column()
+  @Column({ nullable: true })
   madeBy: string;
-  @Column()
+  @Column({ nullable: true })
   material: string;
   @Column()
   brandId: string;
