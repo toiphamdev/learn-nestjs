@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ElasticsearchService } from '@nestjs/elasticsearch';
 import slugify from 'slugify';
+import { Blog } from 'src/blog/entities/blog.entity';
 import { Product } from 'src/product/entities/product.entity';
 import { removeDiacritics } from 'src/utils/string.utils';
 
@@ -42,7 +43,7 @@ export class SearchService {
         body: {
           mappings: {
             properties: {
-              name: { type: 'text' },
+              title: { type: 'text' },
               shortDescription: { type: 'text' },
             },
           },
@@ -106,6 +107,72 @@ export class SearchService {
   async searchProducts(query: any) {
     return await this.esService.search({
       index: this.configService.get('ELASTICSEARCH_PRODUCT_INDEX'),
+      body: query,
+    });
+  }
+
+  public async indexBlog(blog: Blog) {
+    const options = {
+      lower: true, // Convert the slug to lowercase
+      remove: /[*+~.()'"!:@]/g, // Remove special characters
+      replacement: ' ', // Replace spaces with hyphens
+    };
+    const title = slugify(removeDiacritics(blog.title.toLowerCase()), options);
+    const shortDescription = slugify(
+      removeDiacritics(blog.shortDescription.toLowerCase()),
+      options,
+    );
+    blog.title = title;
+    blog.shortDescription = shortDescription;
+    return await this.esService.index({
+      index: this.configService.get('ELASTICSEARCH_PRODUCT_INDEX'),
+      body: blog,
+    });
+  }
+  public async removeBlog(prodId: number) {
+    await this.esService.deleteByQuery({
+      index: this.configService.get('ELASTICSEARCH_PRODUCT_INDEX'),
+      body: {
+        query: {
+          match: {
+            id: prodId,
+          },
+        },
+      },
+    });
+  }
+
+  public async updateBlog(blog: Blog) {
+    const options = {
+      lower: true, // Convert the slug to lowercase
+      remove: /[*+~.()'"!:@]/g, // Remove special characters
+      replacement: ' ', // Replace spaces with hyphens
+    };
+    const title = slugify(removeDiacritics(blog.title.toLowerCase()), options);
+    const shortDescription = slugify(
+      removeDiacritics(blog.shortDescription.toLowerCase()),
+      options,
+    );
+    blog.title = title;
+    blog.shortDescription = shortDescription;
+    return await this.esService.updateByQuery({
+      index: this.configService.get('ELASTICSEARCH_BLOG_INDEX'),
+      body: {
+        query: {
+          match: {
+            id: blog.id,
+          },
+        },
+        script: {
+          source: `ctx._source = params`,
+          params: blog,
+        },
+      },
+    });
+  }
+  async searchBlogs(query: any) {
+    return await this.esService.search({
+      index: this.configService.get('ELASTICSEARCH_BLOG_INDEX'),
       body: query,
     });
   }
