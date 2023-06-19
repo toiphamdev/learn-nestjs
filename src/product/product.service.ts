@@ -201,9 +201,18 @@ export class ProductService {
         query.page = 1;
         query.size = 2;
       }
+      if (query.name) {
+        const options = {
+          lower: true, // Convert the slug to lowercase
+          remove: /[*+~.()'"!:@]/g, // Remove special characters
+          replacement: ' ', // Replace spaces with hyphens
+        };
+        const q = slugify(removeDiacritics(query.name.toLowerCase()), options);
+        query.name = q;
+      }
       const filler = [];
-      if (query.categoryId) {
-        filler.push({ term: { categoryId: query.categoryId } });
+      if (query.statusId) {
+        filler.push({ term: { statusId: query.statusId } });
       }
       const must = query.name
         ? [{ match_phrase_prefix: { name: query.name } }]
@@ -225,7 +234,6 @@ export class ProductService {
         const product = hit._source as Product;
         return product.id;
       });
-
       const products = await this.productRepository
         .createQueryBuilder('product')
         .leftJoinAndSelect('product.detail', 'detail')
@@ -288,6 +296,11 @@ export class ProductService {
           categoryId: query.categoryId,
         });
       }
+      if (query.statusId) {
+        queryBuilder.andWhere('product.statusId = :statusId', {
+          statusId: query.statusId,
+        });
+      }
       if (query.sold) {
         queryBuilder.orderBy('product.price', query.sold);
       }
@@ -298,13 +311,23 @@ export class ProductService {
         const skip = (query.page - 1) * query.size;
         queryBuilder = queryBuilder.skip(skip).take(query.size);
       } else {
-        queryBuilder = queryBuilder.skip(0).take(2);
+        query.page = 1;
+        query.size = 10;
+        const skip = (query.page - 1) * query.size;
+        queryBuilder = queryBuilder.skip(skip).take(query.size);
       }
       const products = await queryBuilder
         .leftJoin('product.detail', 'detail')
         .select(['product', 'detail.images'])
         .getManyAndCount();
-      return products;
+      return {
+        products: products[0],
+        meta: {
+          current: query.page,
+          size: query.size,
+          totalItems: products[1],
+        },
+      };
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');

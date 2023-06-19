@@ -29,6 +29,7 @@ export class SearchService {
           mappings: {
             properties: {
               name: { type: 'text' },
+              statusId: { type: 'keyword' },
             },
           },
         },
@@ -45,6 +46,7 @@ export class SearchService {
             properties: {
               title: { type: 'text' },
               shortDescription: { type: 'text' },
+              statusId: { type: 'keyword' },
             },
           },
         },

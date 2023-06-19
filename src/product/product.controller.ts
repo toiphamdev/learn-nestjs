@@ -74,7 +74,7 @@ export class ProductController {
   }
 
   @Get()
-  fillterProduct(@Query() query: object) {
+  fillterProduct(@Query() query: SearchProductDto) {
     return this.productService.fillterProducts(query);
   }
 
