@@ -21,6 +21,7 @@ import { Allcode } from '../allcode/entities/allcode.entity';
 import { ProductSeed } from './seeds/product.seed';
 import { ProductDetailSeed } from './seeds/product-detail.seed';
 import { ProductDetail } from '../product/entities/product-detail.entity';
+import { SearchModule } from 'src/search/search.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { ProductDetail } from '../product/entities/product-detail.entity';
       Product,
       ProductDetail,
     ]),
+    SearchModule,
   ],
   providers: [
     UserSeed,

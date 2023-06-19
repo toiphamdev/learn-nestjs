@@ -32,14 +32,6 @@ export class ProductController {
     return this.productService.createProduct(product);
   }
 
-  @Get(':id')
-  getProductById(@Param() param: { id: number }): Promise<{
-    message: string;
-    product: ProductDto;
-  }> {
-    return this.productService.getProductById(param.id);
-  }
-
   // @Roles(Role.ADMIN)
   // @UseGuards(JwtAuthGuard, RolesGuard)
   // @Post(':images')
@@ -73,11 +65,24 @@ export class ProductController {
     return this.productService.createProductDetail(detail);
   }
 
-  @Get()
+  @Get('/search')
   getProductByName(
     @Query()
     query: SearchProductDto,
   ) {
     return this.productService.searchProducts(query);
+  }
+
+  @Get()
+  fillterProduct(@Query() query: object) {
+    return this.productService.fillterProducts(query);
+  }
+
+  @Get(':id')
+  getProductById(@Param() param: { id: number }): Promise<{
+    message: string;
+    product: ProductDto;
+  }> {
+    return this.productService.getProductById(param.id);
   }
 }

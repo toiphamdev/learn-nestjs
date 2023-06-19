@@ -30,6 +30,8 @@ export class Product {
   detail: ProductDetail[];
   @OneToMany(() => Comment, (comment) => comment.product)
   comments: Comment[];
+  @Column({ type: 'text', array: true })
+  colors: string[];
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

@@ -4,6 +4,7 @@ import {
   Post,
   UseGuards,
   Res,
+  Get,
   ForbiddenException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
@@ -33,7 +34,7 @@ export class AuthController {
   }
 
   @UseGuards(new JwtCookieAuthGuard('jwt-cookie'))
-  @Post('refresh')
+  @Get('refresh')
   getAccessToken(@Req() req: Request): { accessToken: string } {
     try {
       const user = plainToClass(UserDto, req.user);

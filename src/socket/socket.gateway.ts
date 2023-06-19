@@ -6,6 +6,7 @@ export class MyGateway {
   @WebSocketServer()
   server: Server;
   onModuleInit() {
+    console.log('socket have been running');
     this.server.on('connection', (socket) => {
       console.log(`${socket.id} has been connected`);
     });

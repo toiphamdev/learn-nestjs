@@ -3,12 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatedProductDto } from '../../product/dto/created-product.dto';
 import { Product } from '../../product/entities/product.entity';
+import { SearchService } from 'src/search/search.service';
 
 @Injectable()
 export class ProductSeed {
   constructor(
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
+    private searchService: SearchService,
   ) {}
 
   async seed(): Promise<void> {
@@ -26,10 +28,15 @@ export class ProductSeed {
           material: 'cc',
           statusId: 'ACTIVE',
           view: 0,
+          colors: ['red', 'blue'],
           createdAt: new Date(),
         },
       ];
       await this.productRepository.save(products);
+      const prods = await this.productRepository.find();
+      for (const prod of prods) {
+        await this.searchService.indexProduct(prod);
+      }
       console.log('Seed data products created successfully.');
     } else {
       console.log('Seed data products already exists.');

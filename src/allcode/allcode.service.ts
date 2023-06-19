@@ -40,9 +40,22 @@ export class AllcodeService {
     }
   }
 
-  async getAllCodeByType(type: string): Promise<AllcodeDto[]> {
+  async getAllCodeByType(
+    type: string,
+    page: number | undefined,
+    size: number | undefined,
+  ): Promise<AllcodeDto[]> {
+    if (!page || !size) {
+      page = 1;
+      size = 10;
+    }
+    const skip = (page - 1) * size;
     try {
-      const typecode = await this.allcodeRepository.find({ where: { type } });
+      const typecode = await this.allcodeRepository.find({
+        where: { type },
+        skip: skip,
+        take: size,
+      });
       return typecode;
     } catch (error) {
       console.log(error);

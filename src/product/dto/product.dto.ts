@@ -13,6 +13,7 @@ export class ProductDto {
   statusId?: string;
   detail?: ProductDetailDto[];
   view?: number;
+  colors: string[];
   sold: number;
   madeBy?: string;
   material?: string;

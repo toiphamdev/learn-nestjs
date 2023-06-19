@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { AllcodeService } from './allcode.service';
@@ -15,6 +16,7 @@ import { Role } from '../user/entities/roles.enum';
 import { Roles } from '../auth/decorator/roles.decorator';
 import { type } from 'os';
 import { UpdateAllcodeDto } from './dto/update-allcode.dto';
+import { query } from 'express';
 
 @Controller('all-code')
 export class AllcodeController {
@@ -31,8 +33,15 @@ export class AllcodeController {
   }
 
   @Get(':type')
-  getAllCodeByType(@Param() param: { type: string }): Promise<AllcodeDto[]> {
-    return this.allcodeService.getAllCodeByType(param.type);
+  getAllCodeByType(
+    @Param() param: { type: string },
+    @Query() query: { page: number | undefined; size: number | undefined },
+  ): Promise<AllcodeDto[]> {
+    return this.allcodeService.getAllCodeByType(
+      param.type,
+      query.page,
+      query.size,
+    );
   }
 
   @Roles(Role.ADMIN)
