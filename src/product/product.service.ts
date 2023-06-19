@@ -246,7 +246,7 @@ export class ProductService {
     }
   };
 
-  fillterProducts = async (query: any) => {
+  fillterProducts = async (query: SearchProductDto) => {
     try {
       let queryBuilder = this.productRepository.createQueryBuilder('product');
 
@@ -291,9 +291,12 @@ export class ProductService {
       if (query.sold) {
         queryBuilder.orderBy('product.price', query.sold);
       }
-      if (query.page && query.pageSize) {
-        const skip = (query.page - 1) * query.pageSize;
-        queryBuilder = queryBuilder.skip(skip).take(query.pageSize);
+      if (query.createdAt) {
+        queryBuilder.orderBy('product.createdAt', query.createdAt);
+      }
+      if (query.page && query.size) {
+        const skip = (query.page - 1) * query.size;
+        queryBuilder = queryBuilder.skip(skip).take(query.size);
       } else {
         queryBuilder = queryBuilder.skip(0).take(2);
       }
