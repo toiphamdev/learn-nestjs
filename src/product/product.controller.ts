@@ -73,12 +73,26 @@ export class ProductController {
   getProductByName(
     @Query()
     query: SearchProductDto,
-  ) {
+  ): Promise<{
+    data: Product[];
+    meta: {
+      current: number;
+      size: number;
+      totalItems: number | object;
+    };
+  }> {
     return this.productService.searchProducts(query);
   }
 
   @Get()
-  fillterProduct(@Query() query: SearchProductDto) {
+  fillterProduct(@Query() query: SearchProductDto): Promise<{
+    data: Product[];
+    meta: {
+      current: number;
+      size: number;
+      totalItems: number;
+    };
+  }> {
     return this.productService.fillterProducts(query);
   }
 

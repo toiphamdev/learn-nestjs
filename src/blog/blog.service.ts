@@ -53,7 +53,7 @@ export class BlogService {
   searchBlogs = async (
     query: SearchBlogDto,
   ): Promise<{
-    blogs: Blog[];
+    data: Blog[];
     meta: {
       current: number;
       size: number;
@@ -112,7 +112,7 @@ export class BlogService {
         .getMany();
 
       return {
-        blogs,
+        data: blogs,
         meta: {
           current: query.page,
           size: query.size,

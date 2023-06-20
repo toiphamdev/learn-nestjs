@@ -148,12 +148,12 @@ export class ProductService {
   searchProducts = async (
     query: SearchProductDto,
   ): Promise<{
+    data: Product[];
     meta: {
       current: number;
       size: number;
-      totalItems: object | number;
+      totalItems: number | object;
     };
-    products: Product[];
   }> => {
     try {
       if (!query.page && !query.size) {
@@ -201,7 +201,7 @@ export class ProductService {
         .where({ id: In(productIds) })
         .getMany();
       return {
-        products,
+        data: products,
         meta: {
           current: query.page,
           size: query.size,
@@ -214,7 +214,16 @@ export class ProductService {
     }
   };
 
-  fillterProducts = async (query: SearchProductDto) => {
+  fillterProducts = async (
+    query: SearchProductDto,
+  ): Promise<{
+    data: Product[];
+    meta: {
+      current: number;
+      size: number;
+      totalItems: number;
+    };
+  }> => {
     try {
       let queryBuilder = this.productRepository.createQueryBuilder('product');
 
@@ -290,7 +299,7 @@ export class ProductService {
         ])
         .getManyAndCount();
       return {
-        products: products[0],
+        data: products[0],
         meta: {
           current: query.page,
           size: query.size,
@@ -316,7 +325,7 @@ export class ProductService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
-
+  //product detail
   async createProductDetail(
     detail: ProductDetailDto,
   ): Promise<{ message: string; productDetail: ProductDetail }> {

@@ -37,7 +37,7 @@ export class AllcodeController {
     @Param() param: { type: string },
     @Query() query: { page: number | undefined; size: number | undefined },
   ): Promise<{
-    typecodes: AllcodeDto[];
+    data: AllcodeDto[];
     meta: {
       current: number;
       size: number;

@@ -45,7 +45,7 @@ export class AllcodeService {
     page: number | undefined,
     size: number | undefined,
   ): Promise<{
-    typecodes: AllcodeDto[];
+    data: AllcodeDto[];
     meta: {
       current: number;
       size: number;
@@ -64,7 +64,7 @@ export class AllcodeService {
         take: size,
       });
       return {
-        typecodes: typecode[0],
+        data: typecode[0],
         meta: {
           current: page,
           size: size,

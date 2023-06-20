@@ -16,6 +16,7 @@ import { Role } from 'src/user/entities/roles.enum';
 import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Request } from 'express';
 import { SearchBlogDto } from './dto/searchBlog.dto';
+import { Blog } from './entities/blog.entity';
 
 @Controller('blog')
 export class BlogController {
@@ -34,7 +35,14 @@ export class BlogController {
   }
 
   @Get()
-  searchBlogs(@Query() query: SearchBlogDto) {
+  searchBlogs(@Query() query: SearchBlogDto): Promise<{
+    data: Blog[];
+    meta: {
+      current: number;
+      size: number;
+      totalItems: number | object;
+    };
+  }> {
     return this.blogService.searchBlogs(query);
   }
 
