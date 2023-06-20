@@ -31,7 +31,7 @@ export class AllcodeController {
   }> {
     return this.allcodeService.createTypeCode(typecode);
   }
-
+  //da push len
   @Get(':type')
   getAllCodeByType(
     @Param() param: { type: string },
