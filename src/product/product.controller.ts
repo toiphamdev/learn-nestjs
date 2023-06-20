@@ -17,6 +17,7 @@ import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Roles } from 'src/auth/decorator/roles.decorator';
 import { Role } from 'src/user/entities/roles.enum';
 import { SearchProductDto } from './dto/search-product.dto';
+import { Product } from './entities/product.entity';
 
 @Controller('product')
 export class ProductController {
@@ -27,7 +28,7 @@ export class ProductController {
   @Post()
   createNewProduct(@Body() product: ProductDto): Promise<{
     message: string;
-    product: ProductDto;
+    product: Product;
   }> {
     return this.productService.createProduct(product);
   }
@@ -52,9 +53,12 @@ export class ProductController {
 
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Put()
-  updateProductById(@Body() product: ProductDto): Promise<{ message: string }> {
-    return this.productService.updateProduct(product);
+  @Put(':id')
+  updateProductById(
+    @Body() product: ProductDto,
+    @Param() param: { id: number },
+  ): Promise<{ message: string }> {
+    return this.productService.updateProduct(product, param.id);
   }
   //handle detail product
   @Post('/detail')
@@ -84,5 +88,13 @@ export class ProductController {
     product: ProductDto;
   }> {
     return this.productService.getProductById(param.id);
+  }
+
+  @Put('/detail/:id')
+  updateProductDetail(
+    @Body() detail: ProductDetail,
+    @Param() param: { id: number },
+  ) {
+    return this.productService.updateProductDetail(param.id, detail);
   }
 }

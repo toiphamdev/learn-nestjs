@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Product } from './product.entity';
 import { ProductDetailSize } from './product-detail-size.entity';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Entity()
 export class ProductDetail {
@@ -32,6 +33,11 @@ export class ProductDetail {
   description: string;
   @Column({ type: 'text', array: true })
   images: string[];
+  @Column({ nullable: true })
+  colorId: string;
+  @ManyToOne(() => Allcode, (color) => color.productDetails)
+  @JoinColumn({ name: 'colorId', referencedColumnName: 'code' })
+  color: Allcode;
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

@@ -36,7 +36,14 @@ export class AllcodeController {
   getAllCodeByType(
     @Param() param: { type: string },
     @Query() query: { page: number | undefined; size: number | undefined },
-  ): Promise<AllcodeDto[]> {
+  ): Promise<{
+    typecodes: AllcodeDto[];
+    meta: {
+      current: number;
+      size: number;
+      totalItems: number;
+    };
+  }> {
     return this.allcodeService.getAllCodeByType(
       param.type,
       query.page,

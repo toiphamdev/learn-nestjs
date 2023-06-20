@@ -27,6 +27,7 @@ export class ProductDetailSeed {
           originalPrice: 25,
           productId: products[0].id,
           discountPrice: 20,
+          colorId: 'do',
           images: [
             'apn4396-den-cjn3030-dba-1.webp',
             'apn4396-den-1.webp',
@@ -44,6 +45,7 @@ export class ProductDetailSeed {
           originalPrice: 25,
           productId: products[0].id,
           discountPrice: 20,
+          colorId: 'xanh',
           images: [
             'apn4396-nav-2.webp',
             'apn4396-nav-1.webp',

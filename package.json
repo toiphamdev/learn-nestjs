@@ -41,6 +41,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
+    "diacritic": "^0.0.2",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.1.1",
     "orm": "^7.1.0",

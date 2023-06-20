@@ -72,7 +72,7 @@ export class AllcodeSeed {
         },
         {
           code: 'ACTIVE',
-          type: 'STATUS_BLOG',
+          type: 'STATUS',
           value: 'Hoạt động',
           createdAt: new Date(),
         },
@@ -84,25 +84,7 @@ export class AllcodeSeed {
         },
         {
           code: 'DELETED',
-          type: 'STATUS_BLOG',
-          value: 'Đã xóa',
-          createdAt: new Date(),
-        },
-        {
-          code: 'ACTIVE',
-          type: 'STATUS_BANNER',
-          value: 'Hoạt động',
-          createdAt: new Date(),
-        },
-        {
-          code: 'INACTIVE',
-          type: 'STATUS_BANNER',
-          value: 'Không hoạt động',
-          createdAt: new Date(),
-        },
-        {
-          code: 'DELETED',
-          type: 'STATUS_BANNER',
+          type: 'STATUS',
           value: 'Đã xóa',
           createdAt: new Date(),
         },

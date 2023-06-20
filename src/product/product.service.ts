@@ -1,4 +1,8 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Product } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
@@ -37,7 +41,7 @@ export class ProductService {
           productId: createdProd.id,
         });
 
-        this.searchService.indexProduct({ ...createdProd });
+        this.searchService.indexProduct(createdProd);
         return {
           message: 'Create product success!',
           product: createdProd,
@@ -61,6 +65,9 @@ export class ProductService {
         relations: ['detail', 'comments'],
       });
       if (product) {
+        await this.productRepository.update(product.id, {
+          view: product.view + 1,
+        });
         return {
           message: 'success',
           product,
@@ -107,22 +114,26 @@ export class ProductService {
     }
   }
 
-  async updateProduct(product: ProductDto): Promise<{ message: string }> {
+  async updateProduct(
+    product: ProductDto,
+    id: number,
+  ): Promise<{ message: string }> {
     try {
       const updatedProduct = await this.productRepository.update(
         {
-          id: product.id,
+          id: id,
         },
         product,
       );
       if (updatedProduct.affected) {
         const productUpdated = await this.productRepository.findOne({
-          where: { id: product.id },
+          where: { id: id },
         });
         this.socketGateway.server.emit('productUpdated', {
           productId: productUpdated.id,
         });
-        this.searchService.updateProduct(productUpdated);
+        console.log(productUpdated);
+        await this.searchService.updateProduct(productUpdated);
         return {
           message: 'success',
         };
@@ -134,58 +145,6 @@ export class ProductService {
       throw new ForbiddenException('Somethings went wrong!');
     }
   }
-  //product detail service
-  async createProductDetail(
-    detail: ProductDetailDto,
-  ): Promise<{ message: string; productDetail: ProductDetail }> {
-    try {
-      const product = await this.productRepository.findOneById(
-        detail.productId,
-      );
-      const productDetail = new ProductDetail();
-      productDetail.name = detail.name;
-      productDetail.productId = product.id;
-      productDetail.originalPrice = detail.originalPrice;
-      productDetail.discountPrice = detail.discountPrice;
-      productDetail.description = detail.description;
-      productDetail.createdAt = new Date();
-      productDetail.images = detail.images;
-      const updatedProdDetail = await this.productDetailRepository.save(
-        productDetail,
-      );
-      if (updatedProdDetail) {
-        for (const image of detail.images) {
-          const tempPath = `./public/temp/${image}`;
-          const destinationPath = `./public/uploads/images/${image}`;
-          const successMoves: string[] = [];
-          try {
-            await fs.move(tempPath, destinationPath);
-            successMoves.push(image);
-          } catch (error) {
-            console.log(updatedProdDetail);
-            // Rollback moves if error occurs
-            if (updatedProdDetail) {
-              this.productDetailRepository.delete(updatedProdDetail.id);
-            }
-            console.log(error);
-            for (const successMove of successMoves) {
-              const rollbackPath = `./public/temp/${successMove}`;
-              await fs.move(destinationPath, rollbackPath);
-            }
-            throw new ForbiddenException('Somethings went wrong');
-          }
-        }
-      }
-      return {
-        message: 'Create detail product success!',
-        productDetail: updatedProdDetail,
-      };
-    } catch (error) {
-      console.log(error);
-      throw new ForbiddenException('Something went wrong!');
-    }
-  }
-
   searchProducts = async (
     query: SearchProductDto,
   ): Promise<{
@@ -237,7 +196,8 @@ export class ProductService {
       const products = await this.productRepository
         .createQueryBuilder('product')
         .leftJoinAndSelect('product.detail', 'detail')
-        .select(['product', 'detail.images'])
+        .leftJoinAndSelect('product.status', 'status')
+        .select(['product', 'detail.images', 'status.value', 'status.code'])
         .where({ id: In(productIds) })
         .getMany();
       return {
@@ -318,7 +278,16 @@ export class ProductService {
       }
       const products = await queryBuilder
         .leftJoin('product.detail', 'detail')
-        .select(['product', 'detail.images'])
+        .leftJoinAndSelect('product.status', 'status')
+        .leftJoinAndSelect('detail.color', 'color')
+        .select([
+          'product',
+          'detail.images',
+          'status.value',
+          'status.code',
+          'color.value',
+          'color.code',
+        ])
         .getManyAndCount();
       return {
         products: products[0],
@@ -333,4 +302,106 @@ export class ProductService {
       throw new ForbiddenException('Something went wrong!');
     }
   };
+
+  async getProductdetailByProdId(id: number): Promise<ProductDetail[]> {
+    try {
+      const details = await this.productDetailRepository.find({
+        where: {
+          productId: id,
+        },
+      });
+      return details;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+
+  async createProductDetail(
+    detail: ProductDetailDto,
+  ): Promise<{ message: string; productDetail: ProductDetail }> {
+    try {
+      const product = await this.productRepository.findOneById(
+        detail.productId,
+      );
+      const productDetail = new ProductDetail();
+      productDetail.name = detail.name;
+      productDetail.productId = product.id;
+      productDetail.originalPrice = detail.originalPrice;
+      productDetail.discountPrice = detail.discountPrice;
+      productDetail.description = detail.description;
+      productDetail.createdAt = new Date();
+      productDetail.images = detail.images;
+      const updatedProdDetail = await this.productDetailRepository.save(
+        productDetail,
+      );
+      if (updatedProdDetail) {
+        for (const image of detail.images) {
+          const tempPath = `./public/temp/${image}`;
+          const destinationPath = `./public/uploads/images/${image}`;
+          const successMoves: string[] = [];
+          try {
+            await fs.move(tempPath, destinationPath);
+            successMoves.push(image);
+          } catch (error) {
+            console.log(updatedProdDetail);
+            // Rollback moves if error occurs
+            if (updatedProdDetail) {
+              this.productDetailRepository.delete(updatedProdDetail.id);
+            }
+            console.log(error);
+            for (const successMove of successMoves) {
+              const rollbackPath = `./public/temp/${successMove}`;
+              await fs.move(destinationPath, rollbackPath);
+            }
+            throw new ForbiddenException('Somethings went wrong');
+          }
+        }
+      }
+      return {
+        message: 'Create detail product success!',
+        productDetail: updatedProdDetail,
+      };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+  async updateProductDetail(id: number, dt: ProductDetailDto) {
+    try {
+      const oldImages = dt.images;
+      const detail = await this.productDetailRepository.findOne({
+        where: { id },
+      });
+      const newImages = detail.images;
+      const imagesToRemove = newImages.filter(
+        (image) => !oldImages.includes(image),
+      );
+      const imagesToAdd = oldImages.filter(
+        (image) => !newImages.includes(image),
+      );
+      for (const image of imagesToRemove) {
+        const destinationPath = `./public/uploads/images/${image}`;
+        await fs.remove(destinationPath);
+      }
+      for (const image of imagesToAdd) {
+        const tempPath = `./public/temp/${image}`;
+        const destinationPath = `./public/uploads/images/${image}`;
+        await fs.move(tempPath, destinationPath);
+      }
+      console.log(imagesToAdd, imagesToRemove);
+      const updatedProdDetail = await this.productDetailRepository.update(
+        id,
+        dt,
+      );
+      if (updatedProdDetail.affected > 0) {
+        return {
+          message: 'success',
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
 }

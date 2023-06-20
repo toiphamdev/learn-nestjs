@@ -28,7 +28,7 @@ export class ProductSeed {
           material: 'cc',
           statusId: 'ACTIVE',
           view: 0,
-          colors: ['red', 'blue'],
+          colors: ['do', 'xanh'],
           createdAt: new Date(),
         },
       ];

@@ -1,6 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+  JoinColumn,
+  ManyToMany,
+  JoinTable,
+  AfterLoad,
+} from 'typeorm';
 import { ProductDetail } from './product-detail.entity';
 import { Comment } from '../../comment/entities/comment.entity';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Entity()
 export class Product {
@@ -8,21 +19,24 @@ export class Product {
   id: number;
   @Column()
   name: string;
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true })
   contentMarkdown: string;
   @Column({ type: 'text' })
   contentHtml: string;
-  @Column()
+  @Column({ nullable: true })
   categoryId: string;
-  @Column()
+  @Column({ default: 'DRAFT' })
   statusId: string;
+  @ManyToOne(() => Allcode, (status) => status.products)
+  @JoinColumn({ name: 'statusId', referencedColumnName: 'code' })
+  status: Allcode;
   @Column({ default: 0 })
   view: number;
   @Column({ nullable: true })
   madeBy: string;
   @Column({ nullable: true })
   material: string;
-  @Column()
+  @Column({ nullable: true })
   brandId: string;
   @Column({ default: 0 })
   sold: number;
@@ -30,7 +44,7 @@ export class Product {
   detail: ProductDetail[];
   @OneToMany(() => Comment, (comment) => comment.product)
   comments: Comment[];
-  @Column({ type: 'text', array: true })
+  @Column({ type: 'text', array: true, nullable: true })
   colors: string[];
   @Column()
   createdAt: Date;

@@ -44,19 +44,33 @@ export class AllcodeService {
     type: string,
     page: number | undefined,
     size: number | undefined,
-  ): Promise<AllcodeDto[]> {
+  ): Promise<{
+    typecodes: AllcodeDto[];
+    meta: {
+      current: number;
+      size: number;
+      totalItems: number;
+    };
+  }> {
     if (!page || !size) {
       page = 1;
       size = 10;
     }
     const skip = (page - 1) * size;
     try {
-      const typecode = await this.allcodeRepository.find({
+      const typecode = await this.allcodeRepository.findAndCount({
         where: { type },
         skip: skip,
         take: size,
       });
-      return typecode;
+      return {
+        typecodes: typecode[0],
+        meta: {
+          current: page,
+          size: size,
+          totalItems: typecode[1],
+        },
+      };
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Somethings went wrong');

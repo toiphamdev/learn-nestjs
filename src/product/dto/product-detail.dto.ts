@@ -16,6 +16,7 @@ export class ProductDetailDto {
   @Expose()
   images: string[];
   description: string;
+  colorId?: string;
   @Expose()
   productDetailSize?: ProductDetailSizeDto[];
   createdAt: Date;

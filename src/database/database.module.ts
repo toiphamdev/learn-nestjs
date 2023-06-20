@@ -22,6 +22,8 @@ import { ProductSeed } from './seeds/product.seed';
 import { ProductDetailSeed } from './seeds/product-detail.seed';
 import { ProductDetail } from '../product/entities/product-detail.entity';
 import { SearchModule } from 'src/search/search.module';
+import { Blog } from 'src/blog/entities/blog.entity';
+import { BlogSeed } from './seeds/blog.seed';
 
 @Module({
   imports: [
@@ -44,6 +46,7 @@ import { SearchModule } from 'src/search/search.module';
       Allcode,
       Product,
       ProductDetail,
+      Blog,
     ]),
     SearchModule,
   ],
@@ -58,6 +61,7 @@ import { SearchModule } from 'src/search/search.module';
     AllcodeSeed,
     ProductSeed,
     ProductDetailSeed,
+    BlogSeed,
   ],
 })
 export class DatabaseModule implements OnModuleInit {

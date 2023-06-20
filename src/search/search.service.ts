@@ -120,20 +120,22 @@ export class SearchService {
       replacement: ' ', // Replace spaces with hyphens
     };
     const title = slugify(removeDiacritics(blog.title.toLowerCase()), options);
-    const shortDescription = slugify(
-      removeDiacritics(blog.shortDescription.toLowerCase()),
-      options,
-    );
     blog.title = title;
-    blog.shortDescription = shortDescription;
+    if (blog.shortDescription) {
+      const shortDescription = slugify(
+        removeDiacritics(blog.shortDescription.toLowerCase()),
+        options,
+      );
+      blog.shortDescription = shortDescription;
+    }
     return await this.esService.index({
-      index: this.configService.get('ELASTICSEARCH_PRODUCT_INDEX'),
+      index: this.configService.get('ELASTICSEARCH_BLOG_INDEX'),
       body: blog,
     });
   }
   public async removeBlog(prodId: number) {
     await this.esService.deleteByQuery({
-      index: this.configService.get('ELASTICSEARCH_PRODUCT_INDEX'),
+      index: this.configService.get('ELASTICSEARCH_BLOG_INDEX'),
       body: {
         query: {
           match: {
