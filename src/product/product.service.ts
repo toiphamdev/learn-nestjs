@@ -15,6 +15,8 @@ import { SearchService } from 'src/search/search.service';
 import { SearchProductDto } from './dto/search-product.dto';
 import { removeDiacritics } from 'src/utils/string.utils';
 import slugify from 'slugify';
+import { ProductDetailSize } from './entities/product-detail-size.entity';
+import { ProductDetailSizeDto } from './dto/product-detail-size.dto';
 
 @Injectable()
 export class ProductService {
@@ -23,6 +25,8 @@ export class ProductService {
     private readonly productRepository: Repository<Product>,
     @InjectRepository(ProductDetail)
     private readonly productDetailRepository: Repository<ProductDetail>,
+    @InjectRepository(ProductDetailSize)
+    private readonly productDetailSizeRepository: Repository<ProductDetailSize>,
     private readonly socketGateway: MyGateway,
     private readonly searchService: SearchService,
   ) {}
@@ -58,12 +62,14 @@ export class ProductService {
     product: ProductDto;
   }> {
     try {
-      const product = await this.productRepository.findOne({
-        where: {
-          id,
-        },
-        relations: ['detail', 'comments'],
-      });
+      const product = await this.productRepository
+        .createQueryBuilder('product')
+        .where('product.id = :id', { id: id })
+        .leftJoinAndSelect('product.detail', 'detail')
+        .leftJoinAndSelect('detail.size', 'size')
+        .leftJoinAndSelect('detail.color', 'color')
+        .select(['product', 'size', 'color.code', 'color.value', 'detail'])
+        .getOne();
       if (product) {
         await this.productRepository.update(product.id, {
           view: product.view + 1,
@@ -197,7 +203,17 @@ export class ProductService {
         .createQueryBuilder('product')
         .leftJoinAndSelect('product.detail', 'detail')
         .leftJoinAndSelect('product.status', 'status')
-        .select(['product', 'detail.images', 'status.value', 'status.code'])
+        .leftJoinAndSelect('detail.color', 'color')
+        .select([
+          'product',
+          'detail.images',
+          'detail.discountPrice',
+          'detail.iginalPrice',
+          'status.value',
+          'status.code',
+          'color.value',
+          'color.code',
+        ])
         .where({ id: In(productIds) })
         .getMany();
       return {
@@ -225,19 +241,24 @@ export class ProductService {
     };
   }> => {
     try {
-      let queryBuilder = this.productRepository.createQueryBuilder('product');
+      let queryBuilder = this.productRepository
+        .createQueryBuilder('product')
+        .leftJoin('product.detail', 'detail');
 
       if (query.fromPrice && query.toPrice) {
         queryBuilder = queryBuilder.where(
-          'product.price BETWEEN :fromPrice AND :toPrice',
+          'detail.discountPrice BETWEEN :fromPrice AND :toPrice',
           { fromPrice: query.fromPrice, toPrice: query.toPrice },
         );
       } else if (query.fromPrice) {
-        queryBuilder = queryBuilder.where('product.price >= :fromPrice', {
-          fromPrice: query.fromPrice,
-        });
+        queryBuilder = queryBuilder.where(
+          'detail.discountPrice >= :fromPrice',
+          {
+            fromPrice: query.fromPrice,
+          },
+        );
       } else if (query.toPrice) {
-        queryBuilder = queryBuilder.where('product.price <= :toPrice', {
+        queryBuilder = queryBuilder.where('detail.discountPrice <= :toPrice', {
           toPrice: query.toPrice,
         });
       }
@@ -285,25 +306,33 @@ export class ProductService {
         const skip = (query.page - 1) * query.size;
         queryBuilder = queryBuilder.skip(skip).take(query.size);
       }
-      const products = await queryBuilder
-        .leftJoin('product.detail', 'detail')
+      const response = await queryBuilder
+        .select(['product.id'])
+        .getManyAndCount();
+      const productIds = response[0].map((item) => item.id);
+      const products = await this.productRepository
+        .createQueryBuilder('product')
+        .leftJoinAndSelect('product.detail', 'detail')
         .leftJoinAndSelect('product.status', 'status')
         .leftJoinAndSelect('detail.color', 'color')
         .select([
           'product',
           'detail.images',
+          'detail.discountPrice',
+          'detail.originalPrice',
           'status.value',
           'status.code',
           'color.value',
           'color.code',
         ])
-        .getManyAndCount();
+        .where({ id: In(productIds) })
+        .getMany();
       return {
-        data: products[0],
+        data: products,
         meta: {
           current: query.page,
           size: query.size,
-          totalItems: products[1],
+          totalItems: response[1],
         },
       };
     } catch (error) {
@@ -378,15 +407,15 @@ export class ProductService {
   }
   async updateProductDetail(id: number, dt: ProductDetailDto) {
     try {
-      const oldImages = dt.images;
+      const newImages = dt.images ? dt.images : [];
       const detail = await this.productDetailRepository.findOne({
         where: { id },
       });
-      const newImages = detail.images;
-      const imagesToRemove = newImages.filter(
+      const oldImages = detail.images ? detail.images : [];
+      const imagesToAdd = newImages.filter(
         (image) => !oldImages.includes(image),
       );
-      const imagesToAdd = oldImages.filter(
+      const imagesToRemove = oldImages.filter(
         (image) => !newImages.includes(image),
       );
       for (const image of imagesToRemove) {
@@ -398,16 +427,133 @@ export class ProductService {
         const destinationPath = `./public/uploads/images/${image}`;
         await fs.move(tempPath, destinationPath);
       }
-      console.log(imagesToAdd, imagesToRemove);
       const updatedProdDetail = await this.productDetailRepository.update(
         id,
         dt,
       );
       if (updatedProdDetail.affected > 0) {
+        this.socketGateway.server.send('productUpdated', {
+          productId: detail.productId,
+        });
         return {
           message: 'success',
         };
       }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+
+  async deleteProductDetail(id: number): Promise<{ message: string }> {
+    try {
+      const detail = await this.productDetailRepository.findOne({
+        where: { id },
+      });
+      for (const image of detail.images) {
+        const destinationPath = `./public/uploads/images/${image}`;
+        await fs.remove(destinationPath);
+      }
+      const deletedProdDetail = await this.productDetailRepository.delete(id);
+      if (deletedProdDetail.affected > 0) {
+        this.socketGateway.server.send('productUpdated', {
+          productId: detail.productId,
+        });
+        return { message: 'success' };
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+
+  async getDetailByProductId(productId: number): Promise<ProductDetail[]> {
+    try {
+      const details = await this.productDetailRepository.find({
+        where: {
+          productId: productId,
+        },
+      });
+      return details;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+
+  async createDetailSize(
+    size: ProductDetailSizeDto,
+  ): Promise<{ message: string }> {
+    try {
+      size.createdAt = new Date();
+      const createdSize = await this.productDetailSizeRepository.save(size);
+      if (createdSize) {
+        const detail = await this.productDetailRepository.findOne({
+          where: { id: createdSize.productDetailId },
+        });
+        this.socketGateway.server.send('productUpdated', {
+          productId: detail.productId,
+        });
+        return {
+          message: 'success',
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+
+  async updateSize(
+    id: number,
+    size: ProductDetailSizeDto,
+  ): Promise<{ message: string }> {
+    try {
+      const updatedSize = await this.productDetailSizeRepository.update(
+        id,
+        size,
+      );
+      if (updatedSize.affected > 0) {
+        const detail = await this.productDetailRepository.findOne({
+          where: { id: size.productDetailId },
+        });
+        this.socketGateway.server.send('productUpdated', {
+          productId: detail.productId,
+        });
+        return {
+          message: 'success',
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+
+  async deleteSize(id: number): Promise<{ message: string }> {
+    try {
+      const deletedSize = await this.productDetailSizeRepository.delete(id);
+      if (deletedSize.affected > 0) {
+        return {
+          message: 'success',
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+
+  async getAllSizeByDetailId(
+    productDetailId: number,
+  ): Promise<ProductDetailSize[]> {
+    try {
+      const sizes = this.productDetailSizeRepository.find({
+        where: {
+          productDetailId: productDetailId,
+        },
+      });
+      return sizes;
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');

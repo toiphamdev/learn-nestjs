@@ -18,6 +18,7 @@ import { Roles } from 'src/auth/decorator/roles.decorator';
 import { Role } from 'src/user/entities/roles.enum';
 import { SearchProductDto } from './dto/search-product.dto';
 import { Product } from './entities/product.entity';
+import { ProductDetailSizeDto } from './dto/product-detail-size.dto';
 
 @Controller('product')
 export class ProductController {
@@ -62,6 +63,8 @@ export class ProductController {
   }
   //handle detail product
   @Post('/detail')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   createProductDetail(@Body() detail: ProductDetailDto): Promise<{
     message: string;
     productDetail: ProductDetail;
@@ -105,10 +108,57 @@ export class ProductController {
   }
 
   @Put('/detail/:id')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   updateProductDetail(
     @Body() detail: ProductDetail,
     @Param() param: { id: number },
   ) {
     return this.productService.updateProductDetail(param.id, detail);
+  }
+
+  @Delete('/detail/:id')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  deleteProdDetail(
+    @Param() param: { id: number },
+  ): Promise<{ message: string }> {
+    return this.productService.deleteProductDetail(param.id);
+  }
+
+  @Get('/detail/:productId')
+  getAllProductDetail(
+    @Param() param: { productId: number },
+  ): Promise<ProductDetail[]> {
+    return this.productService.getDetailByProductId(param.productId);
+  }
+
+  @Post('/size')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  createSize(@Body() size: ProductDetailSizeDto): Promise<{ message: string }> {
+    return this.productService.createDetailSize(size);
+  }
+
+  @Put('/size/:id')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  updateSize(
+    @Body() size: ProductDetailSizeDto,
+    @Param() param: { id: number },
+  ): Promise<{ message: string }> {
+    return this.productService.updateSize(param.id, size);
+  }
+
+  @Delete('/size/:id')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  deleteSize(@Param() param: { id: number }): Promise<{ message: string }> {
+    return this.productService.deleteSize(param.id);
+  }
+
+  @Get('/size/:productDetailId')
+  getSizeByProductDetailId(@Param() param: { productDetailId: number }) {
+    return this.productService.getAllSizeByDetailId(param.productDetailId);
   }
 }

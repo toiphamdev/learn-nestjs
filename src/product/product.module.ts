@@ -6,10 +6,11 @@ import { Product } from './entities/product.entity';
 import { ProductDetail } from './entities/product-detail.entity';
 import { SocketModule } from 'src/socket/socket.module';
 import { SearchModule } from 'src/search/search.module';
+import { ProductDetailSize } from './entities/product-detail-size.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Product, ProductDetail]),
+    TypeOrmModule.forFeature([Product, ProductDetail, ProductDetailSize]),
     SocketModule,
     SearchModule,
   ],

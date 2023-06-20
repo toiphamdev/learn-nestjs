@@ -7,6 +7,7 @@ import { BlogDto } from './dto/blog.dto';
 import { removeDiacritics } from 'src/utils/string.utils';
 import slugify from 'slugify';
 import { SearchBlogDto } from './dto/searchBlog.dto';
+import * as fs from 'fs-extra';
 
 @Injectable()
 export class BlogService {
@@ -20,7 +21,13 @@ export class BlogService {
     try {
       blog.createdAt = new Date();
       const createdBlog = await this.blogRepository.save(blog);
+      const images = blog.images ? blog.images : [];
       if (createdBlog) {
+        for (const image of images) {
+          const tempPath = `./public/temp/${image}`;
+          const destinationPath = `./public/uploads/blogs/${image}`;
+          await fs.move(tempPath, destinationPath);
+        }
         await this.searchService.indexBlog(createdBlog);
       }
       return {
@@ -34,6 +41,28 @@ export class BlogService {
 
   async updateBlog(blog: BlogDto, id: number): Promise<{ message: string }> {
     try {
+      const newImages = blog.images ? blog.images : [];
+      const oldBlog = await this.blogRepository.findOne({
+        where: {
+          id,
+        },
+      });
+      const oldImages = oldBlog.images ? oldBlog.images : [];
+      const imagesToAdd = newImages.filter(
+        (image) => !oldImages.includes(image),
+      );
+      const imagesToRemove = oldImages.filter(
+        (image) => !newImages.includes(image),
+      );
+      for (const image of imagesToRemove) {
+        const destinationPath = `./public/uploads/blogs/${image}`;
+        await fs.remove(destinationPath);
+      }
+      for (const image of imagesToAdd) {
+        const tempPath = `./public/temp/${image}`;
+        const destinationPath = `./public/uploads/blogs/${image}`;
+        await fs.move(tempPath, destinationPath);
+      }
       const updateBlog = await this.blogRepository.update(id, { ...blog });
       if (updateBlog.affected > 0) {
         const updatedBlog = await this.blogRepository.findOne({
