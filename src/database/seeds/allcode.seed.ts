@@ -166,6 +166,18 @@ export class AllcodeSeed {
           value: 'Hủy đơn',
           createdAt: new Date(),
         },
+        {
+          code: 'do',
+          type: 'COLOR',
+          value: 'Đỏ',
+          createdAt: new Date(),
+        },
+        {
+          code: 'xanh',
+          type: 'COLOR',
+          value: 'Xanh',
+          createdAt: new Date(),
+        },
       ];
       await this.allCodeRepository.save(allcodes);
       console.log('Seed data allcodes created successfully.');

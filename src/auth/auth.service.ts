@@ -34,14 +34,14 @@ export class AuthService {
       { email, id },
       {
         secret: process.env.JWT_SECRET,
-        expiresIn: '30m',
+        expiresIn: process.env.EX_TIME_ACCESS,
       },
     );
     const refreshToken = this.jwtService.sign(
       { email, id },
       {
         secret: process.env.JWT_SECRET,
-        expiresIn: '1d',
+        expiresIn: process.env.EX_TIME_REFRESH,
       },
     );
     return accessToken;
