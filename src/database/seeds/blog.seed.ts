@@ -23,6 +23,7 @@ export class BlogSeed {
           subjectId: 'xu huong thoi trang',
           contentHtml: '<p>hh</p>',
           contentMarkdown: 'hh',
+          userId: 1,
           statusId: 'ACTIVE',
           view: 0,
           images: ['hh.jpg', 'qq.jpg'],
