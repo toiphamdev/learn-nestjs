@@ -22,9 +22,9 @@ import { query } from 'express';
 export class AllcodeController {
   constructor(private readonly allcodeService: AllcodeService) {}
 
+  @Post()
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Post()
   createTypeCode(@Body() typecode: AllcodeDto): Promise<{
     message: string;
     statusCode: number;
@@ -51,18 +51,18 @@ export class AllcodeController {
     );
   }
 
+  @Put()
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Put()
   updateAllcode(
     @Body() body: UpdateAllcodeDto,
   ): Promise<{ message: string; err: boolean }> {
     return this.allcodeService.updateAllcode(body);
   }
 
+  @Delete(':id')
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Delete(':id')
   deleteAllcode(
     @Param() param: { id: number },
   ): Promise<{ message: string; err: boolean }> {
