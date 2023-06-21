@@ -19,6 +19,7 @@ export class BannerSeed {
           description: 'Giảm giá tới 50% cho bộ sưu tập mùa hè',
           image: 'summer-sale.jpg',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           name: 'Hàng mới về',
@@ -26,6 +27,7 @@ export class BannerSeed {
           description: 'Khám phá xu hướng thời trang mới nhất',
           image: 'new-arrivals.jpg',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           name: 'Ngày lễ đặc biệt',
@@ -33,6 +35,7 @@ export class BannerSeed {
           description: 'Mua sắm những bộ trang phục hoàn hảo cho ngày lễ',
           image: 'holiday-specials.jpg',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           name: 'Bộ sưu tập mùa đông',
@@ -41,6 +44,7 @@ export class BannerSeed {
             'Giữ ấm áp và phong cách với bộ sưu tập mùa đông của chúng tôi',
           image: 'winter-collection.jpg',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
       await this.bannerRepository.save(banners);

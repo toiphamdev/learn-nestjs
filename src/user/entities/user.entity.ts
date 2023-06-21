@@ -30,7 +30,7 @@ export class User {
   image: string;
   @Column({ default: '19/5/2000' })
   dob?: string;
-  @Column({ nullable: true })
+  @Column({ default: 'OFF' })
   statusId: string;
   @Column({ nullable: true })
   token: string;

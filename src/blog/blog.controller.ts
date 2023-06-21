@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -47,7 +48,20 @@ export class BlogController {
   }
 
   @Put(':id')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   updateBlog(@Body() blog: BlogDto, @Param() param: { id: number }) {
     return this.blogService.updateBlog(blog, param.id);
+  }
+
+  @Get(':id')
+  getBlogDetail(@Param() param: { id: number }): Promise<Blog> {
+    return this.blogService.getBlogById(param.id);
+  }
+  @Delete(':id')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  deleteBlog(@Param() param: { id: number }): Promise<{ message: string }> {
+    return this.blogService.deleteBlog(param.id);
   }
 }

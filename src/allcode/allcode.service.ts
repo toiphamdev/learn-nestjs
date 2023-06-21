@@ -29,6 +29,7 @@ export class AllcodeService {
         ? allcode.code
         : slugify(removeDiacritics(allcode.value.toLowerCase()), options);
       typecode.createdAt = new Date();
+      typecode.updatedAt = new Date();
       await this.allcodeRepository.save(typecode);
       return {
         statusCode: 201,
@@ -81,6 +82,7 @@ export class AllcodeService {
     allcode: UpdateAllcodeDto,
   ): Promise<{ message: string; err: boolean }> {
     try {
+      allcode.updatedAt = new Date();
       const updatedAllcode = await this.allcodeRepository.update(
         allcode.id,
         allcode,

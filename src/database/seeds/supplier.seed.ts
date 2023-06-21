@@ -19,24 +19,28 @@ export class SupplierSeed {
           name: 'Nguyễ văn a',
           address: 'Thành phố Hồ Chí Minh',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           email: 'nguyenvanb@mail.com',
           name: 'Nguyễ văn b',
           address: 'Thành phố Hồ Chí Minh',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           email: 'nguyenvanc@mail.com',
           name: 'Nguyễ văn c',
           address: 'Thành phố Hồ Chí Minh',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           email: 'nguyenvand@mail.com',
           name: 'Nguyễ văn d',
           address: 'Thành phố Hồ Chí Minh',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
       await this.supplierRepository.save(suppliers);

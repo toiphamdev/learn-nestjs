@@ -20,6 +20,7 @@ export class BlogService {
   async createBlog(blog: BlogDto): Promise<{ message: string }> {
     try {
       blog.createdAt = new Date();
+      blog.updatedAt = new Date();
       const createdBlog = await this.blogRepository.save(blog);
       const images = blog.images ? blog.images : [];
       if (createdBlog) {
@@ -42,6 +43,7 @@ export class BlogService {
   async updateBlog(blog: BlogDto, id: number): Promise<{ message: string }> {
     try {
       const newImages = blog.images ? blog.images : [];
+      blog.updatedAt = new Date();
       const oldBlog = await this.blogRepository.findOne({
         where: {
           id,
@@ -68,7 +70,7 @@ export class BlogService {
         const updatedBlog = await this.blogRepository.findOne({
           where: { id },
         });
-        await this.searchService.indexBlog(updatedBlog);
+        this.searchService.updateBlog(updatedBlog);
       }
       return {
         message: 'success',
@@ -132,7 +134,6 @@ export class BlogService {
         const blog = item._source as Blog;
         return blog.id;
       });
-      console.log(response.hits.hits);
       const totalHits = response.hits.total.valueOf();
       const blogs = await this.blogRepository
         .createQueryBuilder('blog')
@@ -148,6 +149,43 @@ export class BlogService {
           totalItems: totalHits,
         },
       };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Somethings went wrong!');
+    }
+  };
+
+  getBlogById = async (id: number): Promise<Blog> => {
+    try {
+      const blog = await this.blogRepository
+        .createQueryBuilder('blog')
+        .leftJoinAndSelect('blog.status', 'status')
+        .leftJoinAndSelect('blog.subject', 'subject')
+        .where('blog.id = :id', { id })
+        .select([
+          'blog',
+          'status.code',
+          'status.value',
+          'subject.code',
+          'subject.value',
+        ])
+        .getOne();
+      return blog;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Somethings went wrong!');
+    }
+  };
+
+  deleteBlog = async (id: number): Promise<{ message: string }> => {
+    try {
+      const deletedBlog = this.blogRepository.delete(id);
+      if ((await deletedBlog).affected > 0) {
+        this.searchService.removeBlog(id);
+        return {
+          message: 'success',
+        };
+      }
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Somethings went wrong!');

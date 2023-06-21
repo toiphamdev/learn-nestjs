@@ -21,6 +21,7 @@ export class ProductDetailSeed {
       const productDetails = [
         {
           createdAt: new Date(),
+          updatedAt: new Date(),
           description:
             'Chất liệu Cafe. Thoải mái vận động vào những ngày hè những đặc tính vượt trội. Kiểm soát mùi gấp 2.26 lần vải cotton thông thường. Nhanh khô - Qick Dry 1.9 lần vải thông thường. Vải bền, chắc, và không xù lông, độ co rút vải đang chỉ có 3%. Bảo vệ bạn khỏi tia UV độc hại. Thiết kế đường kẻ đi theo viền cổ áo tạo điểm nhấn cá tính.Form dáng suông phù hợp với nhiều vóc dáng cơ thể.YODY - Look good. Feel good.',
           name: 'APN4396-DEN',
@@ -39,6 +40,7 @@ export class ProductDetailSeed {
         },
         {
           createdAt: new Date(),
+          updatedAt: new Date(),
           description:
             'Chất liệu Cafe. Thoải mái vận động vào những ngày hè những đặc tính vượt trội. Kiểm soát mùi gấp 2.26 lần vải cotton thông thường. Nhanh khô - Qick Dry 1.9 lần vải thông thường. Vải bền, chắc, và không xù lông, độ co rút vải đang chỉ có 3%. Bảo vệ bạn khỏi tia UV độc hại. Thiết kế đường kẻ đi theo viền cổ áo tạo điểm nhấn cá tính.Form dáng suông phù hợp với nhiều vóc dáng cơ thể.YODY - Look good. Feel good.',
           name: 'APN4396-NAV',

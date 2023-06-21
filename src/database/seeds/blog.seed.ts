@@ -28,6 +28,7 @@ export class BlogSeed {
           images: ['hh.jpg', 'qq.jpg'],
           shortDescription: '',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
       await this.blogRepository.save(products);

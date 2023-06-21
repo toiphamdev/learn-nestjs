@@ -18,16 +18,19 @@ export class TypeShipSeed {
           type: 'GHTK',
           price: 10,
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           type: 'GHN',
           price: 15,
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           type: 'GHSE',
           price: 20,
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
       await this.typeShipRepository.save(typeships);

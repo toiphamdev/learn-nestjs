@@ -8,6 +8,7 @@ export class SearchProductDto {
   brandId?: string;
   sold?: 'ASC' | 'DESC';
   createdAt?: 'ASC' | 'DESC';
+  updatedAt?: 'ASC' | 'DESC';
   fromPrice?: number;
   toPrice?: number;
   colors?: string[] | string;

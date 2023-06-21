@@ -30,6 +30,7 @@ export class ProductSeed {
           view: 0,
           colors: ['do', 'xanh'],
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
       await this.productRepository.save(products);

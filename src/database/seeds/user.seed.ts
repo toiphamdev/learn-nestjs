@@ -25,14 +25,17 @@ export class UserSeed {
           email: 'admin@gmail.com',
           password: password,
           roleId: Role.ADMIN,
+          statusId: 'OFF',
           phoneNumber: '02020220',
           genderId: Gender.MALE,
           image: 'avatar.png',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           firstName: 'I am',
           lastName: 'user',
+          statusId: 'OFF',
           email: 'user1@gmail.com',
           password: password,
           roleId: Role.USER,
@@ -40,6 +43,7 @@ export class UserSeed {
           genderId: Gender.MALE,
           image: 'avatar.png',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
 

@@ -20,6 +20,7 @@ export class TypeVoucherSeed {
           value: 50,
           typeVoucher: 'PERCENT',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           maxValue: 10000,
@@ -27,6 +28,7 @@ export class TypeVoucherSeed {
           value: 200,
           typeVoucher: 'CASH',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           maxValue: 50,
@@ -34,6 +36,7 @@ export class TypeVoucherSeed {
           value: 80,
           typeVoucher: 'PERCENT',
           createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
       await this.typeVoucherRepository.save(typevouchers);

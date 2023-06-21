@@ -17,6 +17,7 @@ export class UserService {
       const password = await bcrypt.hashSync(user.password, 10);
       user.password = password;
       user.createdAt = new Date();
+      user.updatedAt = new Date();
       user.roleId = Role.USER;
       const savedUser: UserDto = await this.userRespository.save(user);
       delete savedUser.password;

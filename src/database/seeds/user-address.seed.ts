@@ -23,6 +23,7 @@ export class UserAddressSeed {
           address.userId = item.id;
           address.shipName = 'Anh Bảy Gà';
           address.createdAt = new Date();
+          address.createdAt = new Date();
           address.shipPhoneNumber = '2239283282';
           address.shipAddress =
             'Xã Bà Điểm, Huyện Hóc Môn, Quận 12, Thành phos Hồ Chí Minh';

@@ -38,6 +38,7 @@ export class ProductService {
       const createdProd = await this.productRepository.save({
         statusId: 'DRAFT',
         createdAt: new Date(),
+        updatedAt: new Date(),
         ...product,
       });
       if (createdProd) {
@@ -125,6 +126,7 @@ export class ProductService {
     id: number,
   ): Promise<{ message: string }> {
     try {
+      product.updatedAt = new Date();
       const updatedProduct = await this.productRepository.update(
         {
           id: id,
@@ -296,6 +298,9 @@ export class ProductService {
       }
       if (query.createdAt) {
         queryBuilder.orderBy('product.createdAt', query.createdAt);
+      }
+      if (query.createdAt) {
+        queryBuilder.orderBy('product.updatedAt', query.updatedAt);
       }
       if (query.page && query.size) {
         const skip = (query.page - 1) * query.size;

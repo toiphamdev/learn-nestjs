@@ -17,6 +17,7 @@ export class RegisterUserDto {
   genderId?: string;
   phoneNumber: string;
   image?: string;
+  statusId: string;
   createdAt: Date;
   @Expose()
   updatedAt?: Date;
