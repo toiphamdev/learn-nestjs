@@ -20,7 +20,7 @@ export class BlogSeed {
       const products = [
         {
           title: 'Áo Polo Nữ Cafe Phối Bo Kiểm Soát Mùi Chống Tia UV',
-          subjectId: 'xu huong thoi trang',
+          subjectId: 'xu-huong-thoi-trang',
           contentHtml: '<p>hh</p>',
           contentMarkdown: 'hh',
           userId: 1,
