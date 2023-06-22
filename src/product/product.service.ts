@@ -210,7 +210,7 @@ export class ProductService {
           'product',
           'detail.images',
           'detail.discountPrice',
-          'detail.iginalPrice',
+          'detail.originalPrice',
           'status.value',
           'status.code',
           'color.value',

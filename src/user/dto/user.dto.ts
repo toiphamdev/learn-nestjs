@@ -11,8 +11,9 @@ export class UserDto {
   lastName: string;
   @Transform(({ obj }) => obj.firstName + ' ' + obj.lastName)
   @Expose()
-  fullName: string;
+  fullName?: string;
   @IsNotEmpty()
+  @Expose()
   @IsEmail()
   email: string;
   @IsNotEmpty()
@@ -27,7 +28,7 @@ export class UserDto {
   @Expose()
   image: string;
   @Expose()
-  dob: string;
+  dob?: string;
   @Expose()
   statusId: string;
   @Expose()

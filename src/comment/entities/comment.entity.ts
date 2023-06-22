@@ -15,17 +15,17 @@ export class Comment {
   id: number;
   @Column('text')
   content: string;
-  @Column()
+  @Column({ nullable: true })
   image: string;
-  @Column()
+  @Column({ nullable: true })
   parenId: number;
   @ManyToOne(() => Product, (prod) => prod.comments)
   @JoinColumn()
   product: Product;
   @Column({ nullable: true })
   productId: number;
-  @Column()
-  start: number;
+  @Column({ nullable: true })
+  star: number;
   @ManyToOne(() => Blog, (blog) => blog.comments)
   @JoinColumn()
   blog: Blog;

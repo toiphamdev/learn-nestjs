@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Role } from './roles.enum';
 import { UserAddress } from './user-address.entity';
 import { Blog } from '../../blog/entities/blog.entity';
@@ -7,6 +14,7 @@ import { VoucherUsed } from '../../voucher/entities/voucher-used.entity';
 import { Message } from 'src/message/entities/message.entity';
 import { RoomMessage } from 'src/message/entities/room-message.entity';
 import { Receipt } from 'src/receipt/entities/reciept.entity';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Entity()
 export class User {
@@ -32,6 +40,9 @@ export class User {
   dob?: string;
   @Column({ default: 'OFF' })
   statusId: string;
+  @ManyToOne(() => Allcode, (status) => status.users)
+  @JoinColumn({ name: 'statusId', referencedColumnName: 'code' })
+  status: Allcode;
   @Column({ nullable: true })
   token: string;
   @Column({ default: false })

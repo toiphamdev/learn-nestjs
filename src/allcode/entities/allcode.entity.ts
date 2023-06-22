@@ -2,6 +2,7 @@ import { Banner } from 'src/banner/entities/banner.entity';
 import { Blog } from 'src/blog/entities/blog.entity';
 import { ProductDetail } from 'src/product/entities/product-detail.entity';
 import { Product } from 'src/product/entities/product.entity';
+import { User } from 'src/user/entities/user.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
@@ -24,6 +25,8 @@ export class Allcode {
   blogStatus: Blog[];
   @OneToMany(() => Banner, (banner) => banner.status)
   banners: Banner[];
+  @OneToMany(() => User, (user) => user.status)
+  users: Banner[];
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

@@ -6,7 +6,7 @@ export class CommentDto {
   image: string;
   parentId: number;
   productId: number;
-  start: number;
+  star: number;
   userId: number;
   blogId: number;
   createdAt: Date;

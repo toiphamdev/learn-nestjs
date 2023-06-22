@@ -1,8 +1,17 @@
-import { Controller, Body, Post, Get, UseGuards, Req } from '@nestjs/common';
+import {
+  Controller,
+  Body,
+  Post,
+  Get,
+  UseGuards,
+  Req,
+  Query,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { JwtAuthGuard } from '../auth/guard';
 import { Request } from 'express';
+import { SearchUsersDto } from './dto/search-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -12,8 +21,8 @@ export class UserController {
     return this.userService.createUser(user);
   }
   @Get()
-  getAllUser() {
-    return this.userService.getUser();
+  getAllUser(@Query() query: SearchUsersDto) {
+    return this.userService.getAllUser(query);
   }
   @UseGuards(new JwtAuthGuard('jwt'))
   @Get('profile')

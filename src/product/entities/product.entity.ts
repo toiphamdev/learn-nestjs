@@ -5,9 +5,6 @@ import {
   OneToMany,
   ManyToOne,
   JoinColumn,
-  ManyToMany,
-  JoinTable,
-  AfterLoad,
 } from 'typeorm';
 import { ProductDetail } from './product-detail.entity';
 import { Comment } from '../../comment/entities/comment.entity';
@@ -46,6 +43,8 @@ export class Product {
   comments: Comment[];
   @Column({ type: 'text', array: true, nullable: true })
   colors: string[];
+  @Column({ nullable: true, type: 'real' })
+  rating: number;
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

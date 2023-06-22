@@ -6,12 +6,14 @@ import { Role } from '../../user/entities/roles.enum';
 import { RegisterUserDto } from 'src/user/dto/register-user.dto';
 import { Gender } from '../../user/entities/genders.enum';
 import * as bcrypt from 'bcrypt';
+import { SearchService } from 'src/search/search.service';
 
 @Injectable()
 export class UserSeed {
   constructor(
     @InjectRepository(User)
-    private userRepository: Repository<User>,
+    private readonly userRepository: Repository<User>,
+    private readonly searchService: SearchService,
   ) {}
 
   async seed(): Promise<void> {
@@ -46,8 +48,10 @@ export class UserSeed {
           updatedAt: new Date(),
         },
       ];
-
-      await this.userRepository.save(users);
+      for (const user of users) {
+        const createdUser = await this.userRepository.save(user);
+        this.searchService.indexUser(createdUser);
+      }
       console.log('Seed data users created successfully.');
     } else {
       console.log('Seed data users already exists.');
