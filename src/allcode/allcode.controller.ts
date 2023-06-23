@@ -35,7 +35,12 @@ export class AllcodeController {
   @Get(':type')
   getAllCodeByType(
     @Param() param: { type: string },
-    @Query() query: { page: number | undefined; size: number | undefined },
+    @Query()
+    query: {
+      page: number | undefined;
+      size: number | undefined;
+      parentCode: string | undefined;
+    },
   ): Promise<{
     data: AllcodeDto[];
     meta: {
@@ -48,6 +53,7 @@ export class AllcodeController {
       param.type,
       query.page,
       query.size,
+      query.parentCode,
     );
   }
 

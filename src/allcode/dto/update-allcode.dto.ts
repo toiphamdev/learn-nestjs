@@ -8,5 +8,6 @@ export class UpdateAllcodeDto {
   @IsNotEmpty()
   value: string;
   code?: string;
+  parenCode?: string;
   updatedAt?: Date;
 }
