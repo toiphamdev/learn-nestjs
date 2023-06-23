@@ -74,7 +74,7 @@ export class AllcodeSeed {
         },
         {
           code: 'DRAFT',
-          type: 'STATUS_BLOG',
+          type: 'STATUS',
           value: 'Bản nháp',
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -88,7 +88,7 @@ export class AllcodeSeed {
         },
         {
           code: 'INACTIVE',
-          type: 'STATUS_BLOG',
+          type: 'STATUS',
           value: 'Không hoạt động',
           createdAt: new Date(),
           updatedAt: new Date(),

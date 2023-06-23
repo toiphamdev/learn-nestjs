@@ -45,6 +45,7 @@ export class AllcodeService {
     type: string,
     page: number | undefined,
     size: number | undefined,
+    parentCode: string | undefined,
   ): Promise<{
     data: AllcodeDto[];
     meta: {
@@ -60,7 +61,7 @@ export class AllcodeService {
     const skip = (page - 1) * size;
     try {
       const typecode = await this.allcodeRepository.findAndCount({
-        where: { type },
+        where: { type, parentCode },
         skip: skip,
         take: size,
       });

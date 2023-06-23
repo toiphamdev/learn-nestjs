@@ -15,6 +15,8 @@ export class Allcode {
   value: string;
   @Column({ unique: true })
   code: string;
+  @Column({ nullable: true })
+  parentCode: string;
   @OneToMany(() => Product, (product) => product.status)
   products: Product[];
   @OneToMany(() => ProductDetail, (product) => product.color)
