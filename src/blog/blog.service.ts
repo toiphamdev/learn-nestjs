@@ -109,6 +109,9 @@ export class BlogService {
       if (query.statusId) {
         filler.push({ term: { statusId: query.statusId } });
       }
+      if (query.subjectId) {
+        filler.push({ term: { statusId: query.subjectId } });
+      }
       const must = query.name
         ? [
             {
@@ -120,6 +123,16 @@ export class BlogService {
             },
           ]
         : [];
+      const sortedProperties = Object.entries(query).reduce(
+        (result, [key, value]) => {
+          if (key.startsWith('sort')) {
+            const newKey = key.replace('sort', '');
+            result.push({ [newKey]: { order: value.toLowerCase() } });
+          }
+          return result;
+        },
+        [],
+      );
       const response = await this.searchService.searchBlogs({
         from: (query.page - 1) * query.size, // Vị trí bắt đầu của trang
         size: query.size, // Số lượng kết quả trả về cho mỗi trang
@@ -129,26 +142,43 @@ export class BlogService {
             filter: [...filler],
           },
         },
+        sort: sortedProperties,
       });
       const blogIds = response.hits.hits.map((item) => {
         const blog = item._source as Blog;
         return blog.id;
       });
       const totalHits = response.hits.total.valueOf();
-      const blogs = await this.blogRepository
-        .createQueryBuilder('blog')
-        .leftJoinAndSelect('blog.comments', 'comments')
-        .andWhereInIds(blogIds)
-        .getMany();
+      if (blogIds.length > 0) {
+        const blogs = await this.blogRepository
+          .createQueryBuilder('blog')
+          .leftJoinAndSelect('blog.comments', 'comments')
+          .andWhereInIds(blogIds)
+          .orderBy(
+            `CASE blog.id ${blogIds
+              .map((id, index) => `WHEN ${id} THEN ${index}`)
+              .join(' ')} END`,
+          )
+          .getMany();
 
-      return {
-        data: blogs,
-        meta: {
-          current: query.page,
-          size: query.size,
-          totalItems: totalHits,
-        },
-      };
+        return {
+          data: blogs,
+          meta: {
+            current: query.page,
+            size: query.size,
+            totalItems: totalHits,
+          },
+        };
+      } else {
+        return {
+          data: [],
+          meta: {
+            current: query.page,
+            size: query.size,
+            totalItems: totalHits,
+          },
+        };
+      }
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Somethings went wrong!');

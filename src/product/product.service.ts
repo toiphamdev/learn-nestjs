@@ -184,6 +184,16 @@ export class ProductService {
       const must = query.name
         ? [{ match_phrase_prefix: { name: query.name } }]
         : [];
+      const sortedProperties = Object.entries(query).reduce(
+        (result, [key, value]) => {
+          if (key.startsWith('sort')) {
+            const newKey = key.replace('sort', '');
+            result.push({ [newKey]: { order: value.toLowerCase() } });
+          }
+          return result;
+        },
+        [],
+      );
       const response = await this.searchService.searchProducts({
         from: (query.page - 1) * query.size, // Vị trí bắt đầu của trang
         size: query.size, // Số lượng kết quả trả về cho mỗi trang
@@ -193,6 +203,7 @@ export class ProductService {
             filter: [...filler],
           },
         },
+        sort: sortedProperties,
       });
 
       // Xử lý kết quả tìm kiếm ở đây
@@ -201,31 +212,47 @@ export class ProductService {
         const product = hit._source as Product;
         return product.id;
       });
-      const products = await this.productRepository
-        .createQueryBuilder('product')
-        .leftJoinAndSelect('product.detail', 'detail')
-        .leftJoinAndSelect('product.status', 'status')
-        .leftJoinAndSelect('detail.color', 'color')
-        .select([
-          'product',
-          'detail.images',
-          'detail.discountPrice',
-          'detail.originalPrice',
-          'status.value',
-          'status.code',
-          'color.value',
-          'color.code',
-        ])
-        .where({ id: In(productIds) })
-        .getMany();
-      return {
-        data: products,
-        meta: {
-          current: query.page,
-          size: query.size,
-          totalItems: totalHits,
-        },
-      };
+      if (productIds.length > 0) {
+        const products = await this.productRepository
+          .createQueryBuilder('product')
+          .leftJoinAndSelect('product.detail', 'detail')
+          .leftJoinAndSelect('product.status', 'status')
+          .leftJoinAndSelect('detail.color', 'color')
+          .select([
+            'product',
+            'detail.images',
+            'detail.discountPrice',
+            'detail.originalPrice',
+            'status.value',
+            'status.code',
+            'color.value',
+            'color.code',
+          ])
+          .where({ id: In(productIds) })
+          .orderBy(
+            `CASE product.id ${productIds
+              .map((id, index) => `WHEN ${id} THEN ${index}`)
+              .join(' ')} END`,
+          )
+          .getMany();
+        return {
+          data: products,
+          meta: {
+            current: query.page,
+            size: query.size,
+            totalItems: totalHits,
+          },
+        };
+      } else {
+        return {
+          data: [],
+          meta: {
+            current: query.page,
+            size: query.size,
+            totalItems: totalHits,
+          },
+        };
+      }
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');
@@ -293,15 +320,22 @@ export class ProductService {
           statusId: query.statusId,
         });
       }
-      if (query.sold) {
-        queryBuilder.orderBy('product.price', query.sold);
-      }
-      if (query.createdAt) {
-        queryBuilder.orderBy('product.createdAt', query.createdAt);
-      }
-      if (query.createdAt) {
-        queryBuilder.orderBy('product.updatedAt', query.updatedAt);
-      }
+      const sortedProperties = Object.entries(query)
+        .filter(
+          ([key, value]) =>
+            key.startsWith('sort') && (value === 'DESC' || value === 'ASC'),
+        )
+        .map(([key]) => key);
+      console.log(sortedProperties);
+      // if (query.sortSold) {
+      //   queryBuilder.orderBy('product.price', query.sold);
+      // }
+      // if (query.sortCreatedAt) {
+      //   queryBuilder.orderBy('product.createdAt', query.createdAt);
+      // }
+      // if (query.createdAt) {
+      //   queryBuilder.orderBy('product.updatedAt', query.updatedAt);
+      // }
       if (query.page && query.size) {
         const skip = (query.page - 1) * query.size;
         queryBuilder = queryBuilder.skip(skip).take(query.size);

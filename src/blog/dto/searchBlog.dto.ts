@@ -3,4 +3,5 @@ export class SearchBlogDto {
   size?: number;
   name?: string;
   statusId?: string;
+  subjectId?: string;
 }

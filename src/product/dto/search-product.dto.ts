@@ -6,9 +6,9 @@ export class SearchProductDto {
   statusId?: string;
   color?: string | string[];
   brandId?: string;
-  sold?: 'ASC' | 'DESC';
-  createdAt?: 'ASC' | 'DESC';
-  updatedAt?: 'ASC' | 'DESC';
+  sortsold?: 'ASC' | 'DESC';
+  sortcreatedAt?: 'ASC' | 'DESC';
+  sortupdatedAt?: 'ASC' | 'DESC';
   fromPrice?: number;
   toPrice?: number;
   colors?: string[] | string;

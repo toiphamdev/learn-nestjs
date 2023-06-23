@@ -60,6 +60,16 @@ export class UserService {
       const must = query.name
         ? [{ match_phrase_prefix: { fullName: query.name } }]
         : [];
+      const sortedProperties = Object.entries(query).reduce(
+        (result, [key, value]) => {
+          if (key.startsWith('sort')) {
+            const newKey = key.replace('sort', '');
+            result.push({ [newKey]: { order: value.toLowerCase() } });
+          }
+          return result;
+        },
+        [],
+      );
       const response = await this.searchService.searchUsers({
         from: (query.page - 1) * query.size, // Vị trí bắt đầu của trang
         size: query.size, // Số lượng kết quả trả về cho mỗi trang
@@ -69,32 +79,48 @@ export class UserService {
             filter: [...filler],
           },
         },
+        sort: sortedProperties,
       });
       const totalHits = response.hits.total.valueOf();
       const userIds = response.hits.hits.map((item) => {
         const user = item._source as UserDto;
         return user.id;
       });
-      console.log(response.hits.hits);
-      const users = await this.userRespository
-        .createQueryBuilder('user')
-        .leftJoinAndSelect('user.status', 'status')
-        .select(['user', 'status.code', 'status.value'])
-        .where({ id: In(userIds) })
-        .getManyAndCount();
+      if (userIds.length > 0) {
+        const users = await this.userRespository
+          .createQueryBuilder('user')
+          .leftJoinAndSelect('user.status', 'status')
+          .select(['user', 'status.code', 'status.value'])
+          .where({ id: In(userIds) })
+          .orderBy(
+            `CASE user.id ${userIds
+              .map((id, index) => `WHEN ${id} THEN ${index}`)
+              .join(' ')} END`,
+          )
+          .getMany();
 
-      const userEposes = [];
-      for (const user of users[0]) {
-        userEposes.push(plainToClass(UserDto, user));
+        const userEposes = [];
+        for (const user of users) {
+          userEposes.push(plainToClass(UserDto, user));
+        }
+        return {
+          data: userEposes,
+          meta: {
+            current: query.page,
+            size: query.size,
+            totalItems: totalHits,
+          },
+        };
+      } else {
+        return {
+          data: [],
+          meta: {
+            current: query.page,
+            size: query.size,
+            totalItems: totalHits,
+          },
+        };
       }
-      return {
-        data: userEposes[0],
-        meta: {
-          current: query.page,
-          size: query.size,
-          totalItems: totalHits,
-        },
-      };
     } catch (error) {
       console.log(error);
       throw new ForbiddenException(error?.errmsg);
