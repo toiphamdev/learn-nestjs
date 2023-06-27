@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Supplier } from './entities/supplier.entity';
 import { Repository } from 'typeorm';
 import { SupplierDto } from './dto/supplier.dto';
-import { error } from 'console';
 import { QuerySupplierDto } from './dto/query-supplier.dto';
 
 @Injectable()
@@ -55,7 +54,14 @@ export class SupplierService {
     }
   }
 
-  async getAllSuppliers(query: QuerySupplierDto) {
+  async getAllSuppliers(query: QuerySupplierDto): Promise<{
+    data: Supplier[];
+    meta: {
+      current: number;
+      size: number;
+      totalItems: number;
+    };
+  }> {
     try {
       if (!query.page || !query.size) {
         query.page = 1;
@@ -79,16 +85,14 @@ export class SupplierService {
         (result, [key, value]) => {
           if (key.startsWith('sort')) {
             const newKey = key.replace('sort', '');
-            queryBuilder.orderBy('name', value);
+            queryBuilder.orderBy(`supplier.${newKey}`, value);
             result.push({ [newKey]: value });
           }
           return result;
         },
         [],
       );
-      console.log(sortedProperties, fillterProperty);
       const skip = (query.page - 1) * query.size;
-      console.log(skip, query.page, query.size);
       const suppliers = await queryBuilder
         .skip(skip)
         .take(query.size)

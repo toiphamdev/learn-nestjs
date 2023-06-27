@@ -20,7 +20,7 @@ export class Receipt {
   @ManyToOne(() => Supplier, (sup) => sup.receipts)
   supplier: Supplier;
   @Column()
-  suplierId: number;
+  supplierId: number;
   @OneToMany(() => ReceiptDetail, (detail) => detail.receipt)
   receiptDetails: ReceiptDetail[];
   @Column()
