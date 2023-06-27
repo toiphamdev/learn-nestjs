@@ -326,7 +326,6 @@ export class ProductService {
             key.startsWith('sort') && (value === 'DESC' || value === 'ASC'),
         )
         .map(([key]) => key);
-      console.log(sortedProperties);
       // if (query.sortSold) {
       //   queryBuilder.orderBy('product.price', query.sold);
       // }
