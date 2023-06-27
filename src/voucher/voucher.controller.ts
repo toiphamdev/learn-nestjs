@@ -1,4 +1,9 @@
 import { Controller } from '@nestjs/common';
+import { VoucherService } from './voucher.service';
 
 @Controller('voucher')
-export class VoucherController {}
+export class VoucherController {
+  constructor(private readonly voucherService: VoucherService) {}
+
+  // @Get()
+}

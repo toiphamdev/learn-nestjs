@@ -18,7 +18,7 @@ import { OrderDetail } from '../order/entity/order-detail.entity';
 import { Message } from '../message/entities/message.entity';
 import { RoomMessage } from '../message/entities/room-message.entity';
 import { Receipt } from '../receipt/entities/reciept.entity';
-import { Supplier } from '../receipt/entities/supplier.entity';
+import { Supplier } from '../supplier/entities/supplier.entity';
 import { ReceiptDetail } from '../receipt/entities/reciept-detail.entity';
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',

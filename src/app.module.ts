@@ -23,6 +23,7 @@ import { ReceiptModule } from './receipt/receipt.module';
 import { SocketModule } from './socket/socket.module';
 import { SearchModule } from './search/search.module';
 import { ConfigModule } from '@nestjs/config';
+import { SupplierModule } from './supplier/supplier.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -44,6 +45,7 @@ import { ConfigModule } from '@nestjs/config';
     ReceiptModule,
     SocketModule,
     SearchModule,
+    SupplierModule,
   ],
   controllers: [AppController],
   providers: [AppService, ClearImageService],

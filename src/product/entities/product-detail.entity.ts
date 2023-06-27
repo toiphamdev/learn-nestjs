@@ -29,7 +29,7 @@ export class ProductDetail {
   originalPrice: number;
   @Column()
   discountPrice: number;
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true })
   description: string;
   @Column({ type: 'text', array: true })
   images: string[];

@@ -12,6 +12,7 @@ export class ProductDetailDto {
   @IsNotEmpty()
   originalPrice: number;
   @Expose()
+  @IsNotEmpty()
   discountPrice: number;
   @Expose()
   images: string[];

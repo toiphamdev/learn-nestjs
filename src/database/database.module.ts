@@ -12,7 +12,7 @@ import { TypeShipSeed } from './seeds/type-ship.seed';
 import { TypeShip } from '../order/entity/type-ship.entity';
 import { TypeVoucher } from '../voucher/entities/type-voucher.entity';
 import { TypeVoucherSeed } from './seeds/type-voucher.seed';
-import { Supplier } from '../receipt/entities/supplier.entity';
+import { Supplier } from '../supplier/entities/supplier.entity';
 import { SupplierSeed } from './seeds/supplier.seed';
 import { BannerSeed } from './seeds/banner.seed';
 import { Banner } from '../banner/entities/banner.entity';
