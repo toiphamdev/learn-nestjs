@@ -7,10 +7,16 @@ import { ProductDetail } from './entities/product-detail.entity';
 import { SocketModule } from 'src/socket/socket.module';
 import { SearchModule } from 'src/search/search.module';
 import { ProductDetailSize } from './entities/product-detail-size.entity';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Product, ProductDetail, ProductDetailSize]),
+    TypeOrmModule.forFeature([
+      Product,
+      ProductDetail,
+      ProductDetailSize,
+      Allcode,
+    ]),
     SocketModule,
     SearchModule,
   ],

@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CreatedProductDto } from '../../product/dto/created-product.dto';
 import { Product } from '../../product/entities/product.entity';
 import { SearchService } from 'src/search/search.service';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Injectable()
 export class ProductSeed {
@@ -11,11 +12,17 @@ export class ProductSeed {
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
     private searchService: SearchService,
+    @InjectRepository(Allcode)
+    private readonly allCodeRepo: Repository<Allcode>,
   ) {}
 
   async seed(): Promise<void> {
     const existingUsers = await this.productRepository.count();
-
+    const colors = await this.allCodeRepo.find({
+      where: {
+        type: 'COLOR',
+      },
+    });
     if (existingUsers === 0) {
       const products = [
         {
@@ -28,7 +35,7 @@ export class ProductSeed {
           material: 'cc',
           statusId: 'ACTIVE',
           view: 0,
-          colors: ['do', 'xanh'],
+          colors,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

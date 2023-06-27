@@ -1,5 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 import { ProductDetailDto } from './product-detail.dto';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 export class ProductDto {
   id: number;
@@ -11,7 +12,8 @@ export class ProductDto {
   statusId?: string;
   detail?: ProductDetailDto[];
   view?: number;
-  colors?: string[];
+  colorCodes?: string[];
+  colors: Allcode[];
   sold?: number;
   madeBy?: string;
   material?: string;

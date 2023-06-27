@@ -17,6 +17,7 @@ import { removeDiacritics } from 'src/utils/string.utils';
 import slugify from 'slugify';
 import { ProductDetailSize } from './entities/product-detail-size.entity';
 import { ProductDetailSizeDto } from './dto/product-detail-size.dto';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Injectable()
 export class ProductService {
@@ -29,16 +30,25 @@ export class ProductService {
     private readonly productDetailSizeRepository: Repository<ProductDetailSize>,
     private readonly socketGateway: MyGateway,
     private readonly searchService: SearchService,
+    @InjectRepository(Allcode)
+    private readonly allCodeRepo: Repository<Allcode>,
   ) {}
   //product service
   async createProduct(
     product: ProductDto,
   ): Promise<{ message: string; product: Product }> {
     try {
+      product.statusId = 'DRAFT';
+      product.createdAt = new Date();
+      product.updatedAt = new Date();
+      const colors = await this.allCodeRepo
+        .createQueryBuilder('allcode')
+        .where('allcode.code IN (:...colorCodes)', {
+          colorCodes: product.colorCodes,
+        })
+        .getMany();
+      product.colors = colors;
       const createdProd = await this.productRepository.save({
-        statusId: 'DRAFT',
-        createdAt: new Date(),
-        updatedAt: new Date(),
         ...product,
       });
       if (createdProd) {
@@ -67,9 +77,17 @@ export class ProductService {
         .createQueryBuilder('product')
         .where('product.id = :id', { id: id })
         .leftJoinAndSelect('product.detail', 'detail')
+        .leftJoinAndSelect('product.colors', 'colors')
         .leftJoinAndSelect('detail.size', 'size')
         .leftJoinAndSelect('detail.color', 'color')
-        .select(['product', 'size', 'color.code', 'color.value', 'detail'])
+        .select([
+          'product',
+          'size',
+          'colors',
+          'color.code',
+          'color.value',
+          'detail',
+        ])
         .getOne();
       if (product) {
         await this.productRepository.update(product.id, {
@@ -126,14 +144,35 @@ export class ProductService {
     id: number,
   ): Promise<{ message: string }> {
     try {
+      const oldProduct = await this.productRepository.findOne({
+        where: { id },
+      });
+      const deletedRecords = await this.productRepository
+        .createQueryBuilder('product')
+        .relation(Product, 'colors')
+        .of(id)
+        .addAndRemove(
+          [],
+          product.colorCodes.map((item) => ({ code: item })),
+        );
+
       product.updatedAt = new Date();
-      const updatedProduct = await this.productRepository.update(
-        {
-          id: id,
-        },
-        product,
-      );
-      if (updatedProduct.affected) {
+      const colors = await this.allCodeRepo
+        .createQueryBuilder('allcode')
+        .where('allcode.code IN (:...colorCodes)', {
+          colorCodes: product.colorCodes,
+        })
+        .getMany();
+      oldProduct.colors = colors;
+      oldProduct.brandId = product.brandId;
+      oldProduct.categoryId = product.categoryId;
+      oldProduct.contentHtml = product.contentHtml;
+      oldProduct.contentMarkdown = product.contentMarkdown;
+      oldProduct.madeBy = product.madeBy;
+      oldProduct.material = product.material;
+      oldProduct.name = product.name;
+      const updatedProduct = await this.productRepository.save(oldProduct);
+      if (updatedProduct) {
         const productUpdated = await this.productRepository.findOne({
           where: { id: id },
         });

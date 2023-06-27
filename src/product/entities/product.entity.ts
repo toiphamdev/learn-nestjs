@@ -5,6 +5,8 @@ import {
   OneToMany,
   ManyToOne,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
 } from 'typeorm';
 import { ProductDetail } from './product-detail.entity';
 import { Comment } from '../../comment/entities/comment.entity';
@@ -41,8 +43,13 @@ export class Product {
   detail: ProductDetail[];
   @OneToMany(() => Comment, (comment) => comment.product)
   comments: Comment[];
-  @Column({ type: 'text', array: true, nullable: true })
-  colors: string[];
+  @ManyToMany(() => Allcode)
+  @JoinTable({
+    name: 'product_colors',
+    joinColumn: { name: 'product_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'color_code', referencedColumnName: 'code' },
+  })
+  colors: Allcode[];
   @Column({ nullable: true, type: 'real' })
   rating: number;
   @Column()
