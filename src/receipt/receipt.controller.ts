@@ -17,10 +17,15 @@ import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Roles } from 'src/auth/decorator/roles.decorator';
 import { Role } from 'src/user/entities/roles.enum';
 import { QueryReceiptDto } from './dto/query-receipt.dto';
+import { ReceiptDetailService } from './receipt-detail.service';
+import { ReceiptDetailDto } from './dto/receipt-detail.dto';
 
 @Controller('receipt')
 export class ReceiptController {
-  constructor(private readonly receiptService: ReceiptService) {}
+  constructor(
+    private readonly receiptService: ReceiptService,
+    private readonly receiptDetailService: ReceiptDetailService,
+  ) {}
   @Post()
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -55,5 +60,10 @@ export class ReceiptController {
   @Get()
   getAllReceipt(@Query() query: QueryReceiptDto) {
     return this.receiptService.getAllReceipt(query);
+  }
+
+  @Post('/detail')
+  createReceiptDetail(@Body() rcDt: ReceiptDetailDto) {
+    return this.receiptDetailService.createReceiptDetail(rcDt);
   }
 }

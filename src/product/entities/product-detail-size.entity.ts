@@ -22,7 +22,7 @@ export class ProductDetailSize {
   productDetail: ProductDetail;
   @Column()
   name: string;
-  @Column()
+  @Column({ default: 0 })
   quantity: number;
   @Column()
   width: string;

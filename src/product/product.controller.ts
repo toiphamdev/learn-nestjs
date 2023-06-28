@@ -61,17 +61,6 @@ export class ProductController {
   ): Promise<{ message: string }> {
     return this.productService.updateProduct(product, param.id);
   }
-  //handle detail product
-  @Post('/detail')
-  @Roles(Role.ADMIN)
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  createProductDetail(@Body() detail: ProductDetailDto): Promise<{
-    message: string;
-    productDetail: ProductDetail;
-  }> {
-    return this.productService.createProductDetail(detail);
-  }
-
   @Get('/search')
   getProductByName(
     @Query()
@@ -124,6 +113,16 @@ export class ProductController {
     @Param() param: { id: number },
   ): Promise<{ message: string }> {
     return this.productService.deleteProductDetail(param.id);
+  }
+  //handle detail product
+  @Post('/detail')
+  @Roles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  createProductDetail(@Body() detail: ProductDetailDto): Promise<{
+    message: string;
+    productDetail: ProductDetail;
+  }> {
+    return this.productService.createProductDetail(detail);
   }
 
   @Get('/detail/:productId')
