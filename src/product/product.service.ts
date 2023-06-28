@@ -638,4 +638,19 @@ export class ProductService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
+
+  async getProductColorById(id: number): Promise<Allcode[]> {
+    try {
+      const colors = await this.productRepository
+        .createQueryBuilder('product')
+        .innerJoinAndSelect('product.colors', 'color')
+        .where('product.id = :id', { id })
+        .select(['product', 'color.code', 'color.value'])
+        .getOne();
+      return colors.colors;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
 }

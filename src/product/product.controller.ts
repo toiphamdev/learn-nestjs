@@ -19,6 +19,7 @@ import { Role } from 'src/user/entities/roles.enum';
 import { SearchProductDto } from './dto/search-product.dto';
 import { Product } from './entities/product.entity';
 import { ProductDetailSizeDto } from './dto/product-detail-size.dto';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Controller('product')
 export class ProductController {
@@ -159,5 +160,10 @@ export class ProductController {
   @Get('/size/:productDetailId')
   getSizeByProductDetailId(@Param() param: { productDetailId: number }) {
     return this.productService.getAllSizeByDetailId(param.productDetailId);
+  }
+
+  @Get('/colors/:productId')
+  getColors(@Param() param: { productId: number }): Promise<Allcode[]> {
+    return this.productService.getProductColorById(param.productId);
   }
 }
