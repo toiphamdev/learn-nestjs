@@ -309,40 +309,35 @@ export class ProductService {
     };
   }> => {
     try {
-      let queryBuilder = this.productRepository
+      const queryBuilder = this.productRepository
         .createQueryBuilder('product')
-        .leftJoin('product.detail', 'detail');
-
+        .leftJoinAndSelect('product.colors', 'color') // Kết nối với bảng liên kết
+        .leftJoinAndSelect('product.detail', 'detail')
+        .leftJoinAndSelect('product.status', 'status');
       if (query.fromPrice && query.toPrice) {
-        queryBuilder = queryBuilder.where(
+        queryBuilder.andWhere(
           'detail.discountPrice BETWEEN :fromPrice AND :toPrice',
           { fromPrice: query.fromPrice, toPrice: query.toPrice },
         );
       } else if (query.fromPrice) {
-        queryBuilder = queryBuilder.where(
-          'detail.discountPrice >= :fromPrice',
-          {
-            fromPrice: query.fromPrice,
-          },
-        );
+        queryBuilder.andWhere('detail.discountPrice >= :fromPrice', {
+          fromPrice: query.fromPrice,
+        });
       } else if (query.toPrice) {
-        queryBuilder = queryBuilder.where('detail.discountPrice <= :toPrice', {
+        queryBuilder.andWhere('detail.discountPrice <= :toPrice', {
           toPrice: query.toPrice,
         });
       }
-      if (query.colors) {
-        let colors = [];
-        if (typeof query.colors === 'string') {
-          colors.push(query.colors);
+      if (query.colorCodes) {
+        let colorCodes: string[] = [];
+        if (typeof query.colorCodes === 'string') {
+          colorCodes.push(query.colorCodes);
         } else {
-          colors = query.colors;
+          colorCodes = query.colorCodes;
         }
-        queryBuilder = queryBuilder.andWhere(
-          'ARRAY[:...colors]::text[] && product.colors',
-          {
-            colors: colors,
-          },
-        );
+        queryBuilder.andWhere('color.code IN (:...colorCodes)', {
+          colorCodes,
+        });
       }
       if (query.brandId) {
         queryBuilder.andWhere('product.brandId = :brandId', {
@@ -359,59 +354,66 @@ export class ProductService {
           statusId: query.statusId,
         });
       }
-      const sortedProperties = Object.entries(query)
-        .filter(
-          ([key, value]) =>
-            key.startsWith('sort') && (value === 'DESC' || value === 'ASC'),
-        )
-        .map(([key]) => key);
-      // if (query.sortSold) {
-      //   queryBuilder.orderBy('product.price', query.sold);
-      // }
-      // if (query.sortCreatedAt) {
-      //   queryBuilder.orderBy('product.createdAt', query.createdAt);
-      // }
-      // if (query.createdAt) {
-      //   queryBuilder.orderBy('product.updatedAt', query.updatedAt);
-      // }
-      if (query.page && query.size) {
-        const skip = (query.page - 1) * query.size;
-        queryBuilder = queryBuilder.skip(skip).take(query.size);
-      } else {
+      Object.entries(query).reduce((result, [key, value]) => {
+        if (key.startsWith('sort')) {
+          const newKey = key.replace('sort', '');
+          queryBuilder.orderBy(`product.${newKey}`, value);
+          result.push({ [newKey]: value });
+        }
+        return result;
+      }, []);
+      if (!query.page || !query.size) {
         query.page = 1;
         query.size = 10;
-        const skip = (query.page - 1) * query.size;
-        queryBuilder = queryBuilder.skip(skip).take(query.size);
       }
+      const skip = (query.page - 1) * query.size;
       const response = await queryBuilder
-        .select(['product.id'])
+        .select(['product'])
+        .skip(skip)
+        .take(query.size)
         .getManyAndCount();
       const productIds = response[0].map((item) => item.id);
-      const products = await this.productRepository
-        .createQueryBuilder('product')
-        .leftJoinAndSelect('product.detail', 'detail')
-        .leftJoinAndSelect('product.status', 'status')
-        .leftJoinAndSelect('detail.color', 'color')
-        .select([
-          'product',
-          'detail.images',
-          'detail.discountPrice',
-          'detail.originalPrice',
-          'status.value',
-          'status.code',
-          'color.value',
-          'color.code',
-        ])
-        .where({ id: In(productIds) })
-        .getMany();
-      return {
-        data: products,
-        meta: {
-          current: query.page,
-          size: query.size,
-          totalItems: response[1],
-        },
-      };
+      if (productIds.length > 0) {
+        const products = await this.productRepository
+          .createQueryBuilder('product')
+          .leftJoinAndSelect('product.detail', 'detail')
+          .leftJoinAndSelect('product.status', 'status')
+          .leftJoinAndSelect('detail.color', 'color')
+          .select([
+            'product',
+            'detail.images',
+            'detail.discountPrice',
+            'detail.originalPrice',
+            'status.value',
+            'status.code',
+            'color.value',
+            'color.code',
+          ])
+          .where({ id: In(productIds) })
+          .orderBy(
+            `CASE product.id ${productIds
+              .map((id, index) => `WHEN ${id} THEN ${index}`)
+              .join(' ')} END`,
+          )
+          .getMany();
+        return {
+          data: products,
+          meta: {
+            current: query.page,
+            size: query.size,
+            totalItems: response[1],
+          },
+        };
+      } else {
+        return {
+          data: [],
+          meta: {
+            current: query.page,
+            size: query.size,
+            totalItems: 0,
+          },
+        };
+      }
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');

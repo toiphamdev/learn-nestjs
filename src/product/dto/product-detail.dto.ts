@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 import { ProductDetailSizeDto } from './product-detail-size.dto';
 
 export class ProductDetailDto {
@@ -10,9 +10,11 @@ export class ProductDetailDto {
   name: string;
   @Expose()
   @IsNotEmpty()
+  @IsNumber()
   originalPrice: number;
   @Expose()
   @IsNotEmpty()
+  @IsNumber()
   discountPrice: number;
   @Expose()
   images: string[];

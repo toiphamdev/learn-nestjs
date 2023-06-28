@@ -4,7 +4,7 @@ export class SearchProductDto {
   name?: string;
   categoryId?: string;
   statusId?: string;
-  color?: string | string[];
+  colorCodes?: string | string[];
   brandId?: string;
   sortsold?: 'ASC' | 'DESC';
   sortcreatedAt?: 'ASC' | 'DESC';
