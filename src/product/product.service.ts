@@ -179,7 +179,6 @@ export class ProductService {
         this.socketGateway.server.emit('productUpdated', {
           productId: productUpdated.id,
         });
-        console.log(productUpdated);
         await this.searchService.updateProduct(productUpdated);
         return {
           message: 'success',
@@ -511,7 +510,7 @@ export class ProductService {
         dt,
       );
       if (updatedProdDetail.affected > 0) {
-        this.socketGateway.server.send('productUpdated', {
+        this.socketGateway.server.emit('productUpdated', {
           productId: detail.productId,
         });
         return {
@@ -535,7 +534,7 @@ export class ProductService {
       }
       const deletedProdDetail = await this.productDetailRepository.delete(id);
       if (deletedProdDetail.affected > 0) {
-        this.socketGateway.server.send('productUpdated', {
+        this.socketGateway.server.emit('productUpdated', {
           productId: detail.productId,
         });
         return { message: 'success' };
@@ -570,7 +569,7 @@ export class ProductService {
         const detail = await this.productDetailRepository.findOne({
           where: { id: createdSize.productDetailId },
         });
-        this.socketGateway.server.send('productUpdated', {
+        this.socketGateway.server.emit('productUpdated', {
           productId: detail.productId,
         });
         return {
@@ -596,7 +595,7 @@ export class ProductService {
         const detail = await this.productDetailRepository.findOne({
           where: { id: size.productDetailId },
         });
-        this.socketGateway.server.send('productUpdated', {
+        this.socketGateway.server.emit('productUpdated', {
           productId: detail.productId,
         });
         return {

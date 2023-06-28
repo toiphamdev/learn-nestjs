@@ -87,7 +87,14 @@ export class ReceiptService {
     }
   }
 
-  async getAllReceipt(query: QueryReceiptDto) {
+  async getAllReceipt(query: QueryReceiptDto): Promise<{
+    data: Receipt[];
+    meta: {
+      current: number;
+      size: number;
+      totalItems: number;
+    };
+  }> {
     try {
       if (!query.page || !query.size) {
         query.page = 1;
