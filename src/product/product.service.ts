@@ -446,6 +446,7 @@ export class ProductService {
       productDetail.originalPrice = detail.originalPrice;
       productDetail.discountPrice = detail.discountPrice;
       productDetail.description = detail.description;
+      productDetail.colorId = detail.colorId;
       productDetail.createdAt = new Date();
       productDetail.images = detail.images;
       const updatedProdDetail = await this.productDetailRepository.save(
