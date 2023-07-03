@@ -220,6 +220,19 @@ export class ProductService {
       if (query.statusId) {
         filler.push({ term: { statusId: query.statusId } });
       }
+      if (query.categoryId) {
+        const categories = await this.allCodeRepo.find({
+          where: {
+            type: 'CATEGORY',
+          },
+        });
+        const catToFind = getLeafCategoryCodes(query.categoryId, categories);
+        filler.push({
+          terms: {
+            categoryId: catToFind, // Mảng categoryCode
+          },
+        });
+      }
       const must = query.name
         ? [{ match_phrase_prefix: { name: query.name } }]
         : [];
