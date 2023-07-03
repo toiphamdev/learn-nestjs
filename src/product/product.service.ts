@@ -18,6 +18,7 @@ import slugify from 'slugify';
 import { ProductDetailSize } from './entities/product-detail-size.entity';
 import { ProductDetailSizeDto } from './dto/product-detail-size.dto';
 import { Allcode } from 'src/allcode/entities/allcode.entity';
+import { getLeafCategoryCodes } from 'src/utils/to.utils';
 
 @Injectable()
 export class ProductService {
@@ -344,8 +345,14 @@ export class ProductService {
         });
       }
       if (query.categoryId) {
-        queryBuilder.andWhere('product.categoryId = :categoryId', {
-          categoryId: query.categoryId,
+        const categories = await this.allCodeRepo.find({
+          where: {
+            type: 'CATEGORY',
+          },
+        });
+        const catToFind = getLeafCategoryCodes(query.categoryId, categories);
+        queryBuilder.andWhere('product.categoryId IN (:...categoryCodes)', {
+          categoryCodes: catToFind,
         });
       }
       if (query.statusId) {
