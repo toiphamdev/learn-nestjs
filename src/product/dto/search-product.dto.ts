@@ -12,4 +12,5 @@ export class SearchProductDto {
   fromPrice?: number;
   toPrice?: number;
   colors?: string[] | string;
+  createdAt: any;
 }

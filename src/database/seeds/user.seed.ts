@@ -7,6 +7,7 @@ import { RegisterUserDto } from 'src/user/dto/register-user.dto';
 import { Gender } from '../../user/entities/genders.enum';
 import * as bcrypt from 'bcrypt';
 import { SearchService } from 'src/search/search.service';
+import { UserDto } from 'src/user/dto/user.dto';
 
 @Injectable()
 export class UserSeed {
@@ -49,7 +50,8 @@ export class UserSeed {
         },
       ];
       for (const user of users) {
-        const createdUser = await this.userRepository.save(user);
+        const createdUser: UserDto = await this.userRepository.save(user);
+        delete createdUser.password;
         this.searchService.indexUser(createdUser);
       }
       console.log('Seed data users created successfully.');
