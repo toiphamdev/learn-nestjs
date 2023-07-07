@@ -1,9 +1,9 @@
 export class ProductDetailSizeDto {
   productDetailId: number;
   name: string;
-  width: string;
-  heigth: string;
-  weight: string;
+  width: number;
+  heigth: number;
+  weight: number;
   createdAt: Date;
   updatedAt?: Date;
 }

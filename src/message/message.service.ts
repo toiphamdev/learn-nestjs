@@ -53,4 +53,11 @@ export class MessageService {
       .where('room_message.id = :id', { id: roomId })
       .getOne();
   }
+  async getAMessage(id: number): Promise<Message> {
+    return this.messageRepository
+      .createQueryBuilder('message')
+      .leftJoinAndSelect('message.user', 'user')
+      .where('message.id =:id', { id })
+      .getOne();
+  }
 }
