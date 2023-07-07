@@ -22,6 +22,8 @@ export class MessageService {
       userId,
       roomId,
       text,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
     return this.messageRepository.save(message);
   }
@@ -37,14 +39,18 @@ export class MessageService {
     const roomMessage = this.roomMessageRepository.create({
       userOneId,
       userTwoId,
+      updatedAt: new Date(),
+      createdAt: new Date(),
     });
     return this.roomMessageRepository.save(roomMessage);
   }
 
   async getRoomMessages(roomId: number): Promise<RoomMessage> {
-    return this.roomMessageRepository.findOne({
-      where: { id: roomId },
-      relations: ['messages'],
-    });
+    return this.roomMessageRepository
+      .createQueryBuilder('room_message')
+      .leftJoinAndSelect('room_message.messages', 'message')
+      .leftJoinAndSelect('message.user', 'user')
+      .where('room_message.id = :id', { id: roomId })
+      .getOne();
   }
 }

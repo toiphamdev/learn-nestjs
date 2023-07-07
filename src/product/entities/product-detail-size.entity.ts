@@ -25,11 +25,11 @@ export class ProductDetailSize {
   @Column({ default: 0 })
   quantity: number;
   @Column()
-  width: string;
+  width: number;
   @Column()
-  height: string;
+  height: number;
   @Column()
-  weight: string;
+  weight: number;
   @OneToOne(() => OrderDetail, (detail) => detail.productDetailSize)
   orderDetail: OrderDetail;
   @OneToMany(() => ReceiptDetail, (detail) => detail.productDetailSize)
