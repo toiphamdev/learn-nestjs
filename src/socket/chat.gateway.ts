@@ -32,9 +32,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     client.join(`room:${roomId}`); // Tham gia vào phòng với roomId cụ thể
     const roomMessages = await this.messageService.getRoomMessages(roomId);
     client.emit('roomMessages', roomMessages); // Gửi danh sách tin nhắn trong phòng cho người dùng
-
-    // Lưu client.id và userId vào một bảng hash để theo dõi người dùng kết nối
-    // Ví dụ: this.users[client.id] = userId;
   }
 
   @SubscribeMessage('message')
@@ -56,5 +53,14 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     client.to(`room:${roomId}`).emit('message', messageReceived, () => {
       client.emit('messSent', messageReceived);
     });
+  }
+  @SubscribeMessage('typing')
+  handleOntyping(
+    client: Socket,
+    data: { userId: number; roomId: number; typing: boolean },
+  ) {
+    const { userId, roomId, typing } = data;
+    console.log(typing);
+    client.to(`room:${roomId}`).emit('typing', { userId, typing });
   }
 }

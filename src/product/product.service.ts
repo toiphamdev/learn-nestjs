@@ -171,6 +171,7 @@ export class ProductService {
       oldProduct.contentMarkdown = product.contentMarkdown;
       oldProduct.madeBy = product.madeBy;
       oldProduct.material = product.material;
+      oldProduct.statusId = product.statusId;
       oldProduct.name = product.name;
       const updatedProduct = await this.productRepository.save(oldProduct);
       if (updatedProduct) {
