@@ -9,5 +9,6 @@ export class UpdateAllcodeDto {
   value: string;
   code?: string;
   parenCode?: string;
+  hexCode?: string;
   updatedAt?: Date;
 }

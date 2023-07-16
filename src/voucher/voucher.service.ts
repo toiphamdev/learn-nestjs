@@ -4,6 +4,7 @@ import { Voucher } from './entities/voucher.entity';
 import { Repository } from 'typeorm';
 import { TypeVoucher } from './entities/type-voucher.entity';
 import { QueryVoucherDto } from './dto/query-voucher.dto';
+import { VoucherDto } from './dto/voucher.dto';
 
 @Injectable()
 export class VoucherService {
@@ -52,4 +53,18 @@ export class VoucherService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
+  async createVoucher(voucher: VoucherDto): Promise<{ message: string }> {
+    try {
+      voucher.createdAt = new Date();
+      voucher.updatedAt = new Date();
+      await this.voucherRepo.save(voucher);
+      return {
+        message: 'success',
+      };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+  // async updateVoucher(id:number,)
 }

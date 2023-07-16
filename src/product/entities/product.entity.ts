@@ -24,6 +24,9 @@ export class Product {
   contentHtml: string;
   @Column({ nullable: true })
   categoryId: string;
+  @ManyToOne(() => Allcode, (status) => status.products)
+  @JoinColumn({ name: 'categoryId', referencedColumnName: 'code' })
+  category: Allcode;
   @Column({ default: 'DRAFT' })
   statusId: string;
   @ManyToOne(() => Allcode, (status) => status.products)

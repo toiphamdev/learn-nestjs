@@ -26,6 +26,7 @@ export class AllcodeService {
       typecode.type = allcode.type;
       typecode.value = allcode.value;
       typecode.parentCode = allcode.parentCode ? allcode.parentCode : null;
+      typecode.hexCode = allcode.hexCode ? allcode.hexCode : null;
       typecode.code = allcode.code
         ? allcode.code
         : slugify(removeDiacritics(allcode.value.toLowerCase()), options);

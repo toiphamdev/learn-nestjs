@@ -17,6 +17,8 @@ export class Allcode {
   code: string;
   @Column({ nullable: true })
   parentCode: string;
+  @Column({ nullable: true })
+  hexCode: string;
   @OneToMany(() => Product, (product) => product.status)
   products: Product[];
   @OneToMany(() => ProductDetail, (product) => product.color)

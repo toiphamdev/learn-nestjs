@@ -7,6 +7,7 @@ export class AllcodeDto {
   value: string;
   code?: string;
   parentCode?: string;
+  hexCode?: string;
   createdAt: Date;
   updatedAt?: Date;
 }
