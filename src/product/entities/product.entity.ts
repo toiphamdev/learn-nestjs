@@ -24,12 +24,12 @@ export class Product {
   contentHtml: string;
   @Column({ nullable: true })
   categoryId: string;
-  @ManyToOne(() => Allcode, (status) => status.products)
+  @ManyToOne(() => Allcode, (status) => status.categoryProds)
   @JoinColumn({ name: 'categoryId', referencedColumnName: 'code' })
   category: Allcode;
   @Column({ default: 'DRAFT' })
   statusId: string;
-  @ManyToOne(() => Allcode, (status) => status.products)
+  @ManyToOne(() => Allcode, (status) => status.statusProds)
   @JoinColumn({ name: 'statusId', referencedColumnName: 'code' })
   status: Allcode;
   @Column({ default: 0 })

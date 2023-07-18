@@ -20,7 +20,9 @@ export class Allcode {
   @Column({ nullable: true })
   hexCode: string;
   @OneToMany(() => Product, (product) => product.status)
-  products: Product[];
+  statusProds: Product[];
+  @OneToMany(() => Product, (product) => product.category)
+  categoryProds: Product[];
   @OneToMany(() => ProductDetail, (product) => product.color)
   productDetails: ProductDetail[];
   @OneToMany(() => Blog, (blog) => blog.subject)
