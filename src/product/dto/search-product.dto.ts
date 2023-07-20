@@ -13,4 +13,5 @@ export class SearchProductDto {
   toPrice?: number;
   colors?: string[] | string;
   createdAt: any;
+  material?: string;
 }

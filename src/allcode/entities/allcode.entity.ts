@@ -23,6 +23,8 @@ export class Allcode {
   statusProds: Product[];
   @OneToMany(() => Product, (product) => product.category)
   categoryProds: Product[];
+  @OneToMany(() => Product, (product) => product.materialInfo)
+  materialProds: Product[];
   @OneToMany(() => ProductDetail, (product) => product.color)
   productDetails: ProductDetail[];
   @OneToMany(() => Blog, (blog) => blog.subject)

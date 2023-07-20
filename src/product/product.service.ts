@@ -221,6 +221,9 @@ export class ProductService {
       if (query.statusId) {
         filler.push({ term: { statusId: query.statusId } });
       }
+      if (query.material) {
+        filler.push({ term: { material: query.material } });
+      }
       if (query.categoryId) {
         const categories = await this.allCodeRepo.find({
           where: {
@@ -356,6 +359,11 @@ export class ProductService {
       if (query.brandId) {
         queryBuilder.andWhere('product.brandId = :brandId', {
           brandId: query.brandId,
+        });
+      }
+      if (query.material) {
+        queryBuilder.andWhere('product.material = :material', {
+          material: query.material,
         });
       }
       if (query.categoryId) {

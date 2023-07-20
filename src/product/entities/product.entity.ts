@@ -22,9 +22,11 @@ export class Product {
   contentMarkdown: string;
   @Column({ type: 'text' })
   contentHtml: string;
-  @Column({ nullable: true })
+  @Column()
   categoryId: string;
-  @ManyToOne(() => Allcode, (status) => status.categoryProds)
+  @ManyToOne(() => Allcode, (status) => status.categoryProds, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'categoryId', referencedColumnName: 'code' })
   category: Allcode;
   @Column({ default: 'DRAFT' })
@@ -32,6 +34,9 @@ export class Product {
   @ManyToOne(() => Allcode, (status) => status.statusProds)
   @JoinColumn({ name: 'statusId', referencedColumnName: 'code' })
   status: Allcode;
+  @ManyToOne(() => Allcode, (material) => material.materialProds)
+  @JoinColumn({ name: 'material', referencedColumnName: 'code' })
+  materialInfo: Allcode;
   @Column({ default: 0 })
   view: number;
   @Column({ nullable: true })
