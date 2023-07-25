@@ -101,7 +101,23 @@ export class CommentService {
       }
       const comments = await queryBuilder
         .leftJoinAndSelect('comment.user', 'user')
-        .select('comment', 'user')
+        .leftJoinAndSelect('comment.likeList', 'likeList')
+        .leftJoinAndSelect('comment.dislikeList', 'dislikeList')
+        .select([
+          'comment',
+          'user.id',
+          'user.firstName',
+          'user.lastName',
+          'user.image',
+          'likeList.id',
+          'likeList.email',
+          'likeList.firstName',
+          'likeList.lastName',
+          'dislikeList.id',
+          'dislikeList.email',
+          'dislikeList.firstName',
+          'dislikeList.lastName',
+        ])
         .getManyAndCount();
       return {
         data: comments[0],

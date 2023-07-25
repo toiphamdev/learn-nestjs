@@ -6,6 +6,8 @@ import {
   UseGuards,
   Req,
   Query,
+  Patch,
+  Param,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
@@ -24,10 +26,28 @@ export class UserController {
   getAllUser(@Query() query: SearchUsersDto) {
     return this.userService.getAllUser(query);
   }
-  @UseGuards(new JwtAuthGuard('jwt'))
   @Get('profile')
+  @UseGuards(JwtAuthGuard)
   getProfile(@Req() req: Request) {
     const user = req.user;
     return this.userService.getProfile(user['id']);
+  }
+  @Patch('/comment/dislike/:commentId')
+  @UseGuards(JwtAuthGuard)
+  dislikeCommentAction(
+    @Param() param: { commentId: number },
+    @Req() req: Request,
+  ) {
+    const userId = req.user['id'];
+    return this.userService.dislikeComment(userId, param.commentId);
+  }
+  @Patch('/comment/like/:commentId')
+  @UseGuards(JwtAuthGuard)
+  likeCommentAction(
+    @Param() param: { commentId: number },
+    @Req() req: Request,
+  ) {
+    const userId = req.user['id'];
+    return this.userService.likeComment(userId, param.commentId);
   }
 }

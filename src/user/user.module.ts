@@ -5,9 +5,10 @@ import { User } from './entities/user.entity';
 import { UserController } from './user.controller';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { SearchModule } from 'src/search/search.module';
+import { Comment } from 'src/comment/entities/comment.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), SearchModule],
+  imports: [TypeOrmModule.forFeature([User, Comment]), SearchModule],
   providers: [UserService, JwtAuthGuard],
   controllers: [UserController],
 })

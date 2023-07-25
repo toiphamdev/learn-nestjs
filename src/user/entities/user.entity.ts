@@ -6,6 +6,8 @@ import {
   ManyToOne,
   JoinColumn,
   OneToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Role } from './roles.enum';
 import { UserAddress } from './user-address.entity';
@@ -67,6 +69,20 @@ export class User {
   receipts: Receipt[];
   @OneToOne(() => Cart, (cart) => cart.user)
   cart: Cart;
+  @ManyToMany(() => Comment, (comment) => comment.likeList)
+  @JoinTable({
+    name: 'likeList',
+    joinColumn: { name: 'userId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'commentId', referencedColumnName: 'id' },
+  })
+  likeCommentList: Comment[];
+  @ManyToMany(() => Comment, (comment) => comment.dislikeList)
+  @JoinTable({
+    name: 'dislikeList',
+    joinColumn: { name: 'userId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'commentId', referencedColumnName: 'id' },
+  })
+  dislikeCommentList: Comment[];
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

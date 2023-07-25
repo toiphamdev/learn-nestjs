@@ -10,11 +10,14 @@ import { SearchService } from 'src/search/search.service';
 import slugify from 'slugify';
 import { removeDiacritics } from 'src/utils/string.utils';
 import { SearchUsersDto } from './dto/search-user.dto';
+import { Comment } from 'src/comment/entities/comment.entity';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRespository: Repository<User>,
+    @InjectRepository(Comment)
+    private readonly commentRepo: Repository<Comment>,
     private readonly searchService: SearchService,
   ) {}
   async createUser(user: UserDto): Promise<UserDto> {
@@ -124,6 +127,80 @@ export class UserService {
     } catch (error) {
       console.log(error);
       throw new ForbiddenException(error?.errmsg);
+    }
+  }
+  async likeComment(userId: number, commentId: number) {
+    try {
+      const comment = await this.commentRepo.findOne({
+        where: { id: commentId },
+      });
+      const user = await this.userRespository.findOne({
+        where: { id: userId },
+        relations: ['likeCommentList', 'dislikeCommentList'],
+      });
+      if (user && comment) {
+        // Check if comment already exists in likeCommentList
+        const existingCommentIndex = user.likeCommentList.findIndex(
+          (likedComment) => likedComment.id === comment.id,
+        );
+
+        if (existingCommentIndex !== -1) {
+          // If comment already exists, remove it from the list
+          user.likeCommentList.splice(existingCommentIndex, 1);
+        } else {
+          // If comment does not exist, add it to the list
+          // Check if comment already exists in dislikeCommentList
+          const existingDislikeIndex = user.dislikeCommentList.findIndex(
+            (dislikedComment) => dislikedComment.id === comment.id,
+          );
+
+          if (existingDislikeIndex !== -1) {
+            user.dislikeCommentList.splice(existingDislikeIndex, 1);
+          }
+          user.likeCommentList.push(comment);
+        }
+        await this.userRespository.save(user);
+      }
+      return { message: 'success' };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Somethings went wrong!');
+    }
+  }
+  async dislikeComment(userId: number, commentId: number) {
+    try {
+      const comment = await this.commentRepo.findOne({
+        where: { id: commentId },
+      });
+      const user = await this.userRespository.findOne({
+        where: { id: userId },
+        relations: ['dislikeCommentList', 'likeCommentList'],
+      });
+      if (user && comment) {
+        // Check if comment already exists in likeCommentList
+        const existingCommentIndex = user.dislikeCommentList.findIndex(
+          (dislikedComment) => dislikedComment.id === comment.id,
+        );
+        if (existingCommentIndex !== -1) {
+          // If comment already exists, remove it from the list
+          user.dislikeCommentList.splice(existingCommentIndex, 1);
+        } else {
+          // If comment does not exist, add it to the list
+          const existingLikeIndex = user.likeCommentList.findIndex(
+            (likedComment) => likedComment.id === comment.id,
+          );
+
+          if (existingLikeIndex !== -1) {
+            user.likeCommentList.splice(existingLikeIndex, 1);
+          }
+          user.dislikeCommentList.push(comment);
+        }
+        await this.userRespository.save(user);
+      }
+      return { message: 'success' };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Somethings went wrong!');
     }
   }
 }

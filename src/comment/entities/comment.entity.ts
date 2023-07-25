@@ -5,6 +5,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -35,6 +36,10 @@ export class Comment {
   user: User;
   @Column()
   userId: number;
+  @ManyToMany(() => User, (user) => user.likeCommentList)
+  likeList: User[];
+  @ManyToMany(() => User, (user) => user.dislikeCommentList)
+  dislikeList: User[];
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
