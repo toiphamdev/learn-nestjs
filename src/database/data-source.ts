@@ -20,6 +20,8 @@ import { RoomMessage } from '../message/entities/room-message.entity';
 import { Receipt } from '../receipt/entities/reciept.entity';
 import { Supplier } from '../supplier/entities/supplier.entity';
 import { ReceiptDetail } from '../receipt/entities/reciept-detail.entity';
+import { Cart } from 'src/cart/entities/cart.entity';
+import { CartDetail } from 'src/cart/entities/cart-detail.entitty';
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
   url: `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}/${process.env.POSTGRES_DB}`,
@@ -44,6 +46,8 @@ export const dataSourceOptions: DataSourceOptions = {
     Product,
     ProductDetail,
     ProductDetailSize,
+    Cart,
+    CartDetail,
   ],
   migrations: ['dist/database/migrations/*.js'],
 };

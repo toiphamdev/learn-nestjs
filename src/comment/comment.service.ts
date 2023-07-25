@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Comment } from './entities/comment.entity';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 import { CommentDto } from './dto/comment.dto';
 import { Product } from 'src/product/entities/product.entity';
 import { QueryCommentDto } from './dto/query-comment.dto';
@@ -20,32 +20,43 @@ export class CommentService {
     try {
       comment.createdAt = new Date();
       comment.updatedAt = new Date();
-      const addedComment = await this.commentRepository.save(comment);
-      if (addedComment) {
-        if (comment.star && comment.productId) {
-          const comments = await this.commentRepository.find({
-            where: {
-              productId: comment.productId,
-            },
-          });
-          let length = 0;
-          const totalRating = comments.reduce((sum, comment) => {
-            if (comment.star) {
-              length = length + 1;
-              return sum + comment.star;
-            }
-            return sum;
-          }, 0);
-          await this.productRepository.update(comment.productId, {
-            rating: length > 0 ? totalRating / length : 0,
-          });
-        }
-        return {
-          message: 'success',
-        };
+
+      const existRating = await this.commentRepository.findOne({
+        where: {
+          star: Not(IsNull()),
+          userId: comment.userId,
+          productId: comment.productId,
+        },
+      });
+      if (existRating) {
+        existRating.star = comment.star;
+        existRating.content = comment.content;
+        existRating.updatedAt = new Date();
+        await this.commentRepository.save(existRating);
       } else {
-        throw new ForbiddenException('Somethings went wrong');
+        await this.commentRepository.save(comment);
       }
+      if (comment.star && comment.productId) {
+        const comments = await this.commentRepository.find({
+          where: {
+            productId: comment.productId,
+          },
+        });
+        let length = 0;
+        const totalRating = comments.reduce((sum, comment) => {
+          if (comment.star) {
+            length = length + 1;
+            return sum + comment.star;
+          }
+          return sum;
+        }, 0);
+        await this.productRepository.update(comment.productId, {
+          rating: length > 0 ? totalRating / length : 0,
+        });
+      }
+      return {
+        message: 'success',
+      };
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Somethings went wrong');
@@ -71,6 +82,19 @@ export class CommentService {
           productId: query.productId,
         });
       }
+      if (query.star) {
+        queryBuilder.andWhere('comment.star = :star', {
+          star: query.star,
+        });
+      }
+      Object.entries(query).reduce((result, [key, value]) => {
+        if (key.startsWith('sort')) {
+          const newKey = key.replace('sort', '');
+          queryBuilder.orderBy(`comment.${newKey}`, value);
+          result.push({ [newKey]: value });
+        }
+        return result;
+      }, []);
       if (!query.page || !query.size) {
         query.page = 1;
         query.size = 10;

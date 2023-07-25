@@ -5,6 +5,7 @@ import {
   OneToMany,
   ManyToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import { Role } from './roles.enum';
 import { UserAddress } from './user-address.entity';
@@ -15,6 +16,7 @@ import { Message } from 'src/message/entities/message.entity';
 import { RoomMessage } from 'src/message/entities/room-message.entity';
 import { Receipt } from 'src/receipt/entities/reciept.entity';
 import { Allcode } from 'src/allcode/entities/allcode.entity';
+import { Cart } from 'src/cart/entities/cart.entity';
 
 @Entity()
 export class User {
@@ -63,6 +65,8 @@ export class User {
   roomsAsUserTwo: RoomMessage[];
   @OneToMany(() => Receipt, (receipt) => receipt.user)
   receipts: Receipt[];
+  @OneToOne(() => Cart, (cart) => cart.user)
+  cart: Cart;
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

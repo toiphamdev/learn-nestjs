@@ -10,6 +10,7 @@ import {
 import { ProductDetail } from './product-detail.entity';
 import { OrderDetail } from 'src/order/entity/order-detail.entity';
 import { ReceiptDetail } from 'src/receipt/entities/reciept-detail.entity';
+import { CartDetail } from 'src/cart/entities/cart-detail.entitty';
 
 @Entity()
 export class ProductDetailSize {
@@ -32,6 +33,8 @@ export class ProductDetailSize {
   weight: number;
   @OneToOne(() => OrderDetail, (detail) => detail.productDetailSize)
   orderDetail: OrderDetail;
+  @OneToOne(() => CartDetail, (detail) => detail.productDetailSize)
+  cartDetail: CartDetail;
   @OneToMany(() => ReceiptDetail, (detail) => detail.productDetailSize)
   receiptDetails: ReceiptDetail[];
   @Column()

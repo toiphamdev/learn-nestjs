@@ -24,6 +24,7 @@ import { SocketModule } from './socket/socket.module';
 import { SearchModule } from './search/search.module';
 import { ConfigModule } from '@nestjs/config';
 import { SupplierModule } from './supplier/supplier.module';
+import { CartModule } from './cart/cart.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -46,6 +47,7 @@ import { SupplierModule } from './supplier/supplier.module';
     SocketModule,
     SearchModule,
     SupplierModule,
+    CartModule,
   ],
   controllers: [AppController],
   providers: [AppService, ClearImageService],

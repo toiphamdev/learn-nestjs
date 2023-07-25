@@ -1,3 +1,4 @@
+import { ProductDetailSize } from 'src/product/entities/product-detail-size.entity';
 import {
   Column,
   Entity,
@@ -6,19 +7,18 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Order } from './order.enitity';
-import { ProductDetailSize } from 'src/product/entities/product-detail-size.entity';
+import { Cart } from './cart.entity';
 
 @Entity()
-export class OrderDetail {
+export class CartDetail {
   @PrimaryGeneratedColumn()
   id: number;
-  @ManyToOne(() => Order, (order) => order.orderDetails)
-  @JoinColumn()
-  order: Order;
   @Column()
-  orderId: number;
-  @OneToOne(() => ProductDetailSize, (size) => size.orderDetail)
+  cartId: number;
+  @ManyToOne(() => Cart, (cart) => cart.detail, { onDelete: 'CASCADE' })
+  cart: Cart;
+  @OneToOne(() => ProductDetailSize, (size) => size.cartDetail)
+  @JoinColumn({ name: 'productDetailSizeId', referencedColumnName: 'id' })
   productDetailSize: ProductDetailSize;
   @Column()
   productDetailSizeId: number;
