@@ -21,13 +21,15 @@ export class CommentService {
       comment.createdAt = new Date();
       comment.updatedAt = new Date();
 
-      const existRating = await this.commentRepository.findOne({
-        where: {
-          star: Not(IsNull()),
-          userId: comment.userId,
-          productId: comment.productId,
-        },
-      });
+      const existRating = comment.star
+        ? null
+        : await this.commentRepository.findOne({
+            where: {
+              star: Not(IsNull()),
+              userId: comment.userId,
+              productId: comment.productId,
+            },
+          });
       if (existRating) {
         existRating.star = comment.star;
         existRating.content = comment.content;

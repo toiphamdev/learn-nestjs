@@ -18,7 +18,7 @@ export class Comment {
   content: string;
   @Column({ type: 'text', nullable: true, array: true })
   image: string[];
-  @Column({ nullable: true, array: true })
+  @Column({ nullable: true })
   parenId: number;
   @ManyToOne(() => Product, (prod) => prod.comments)
   @JoinColumn()
