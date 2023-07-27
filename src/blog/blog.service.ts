@@ -209,8 +209,14 @@ export class BlogService {
 
   deleteBlog = async (id: number): Promise<{ message: string }> => {
     try {
-      const deletedBlog = this.blogRepository.delete(id);
-      if ((await deletedBlog).affected > 0) {
+      const blogToDelete = await this.blogRepository.findOne({ where: { id } });
+      const imagesToRemove = blogToDelete.images ? blogToDelete.images : [];
+      for (const image of imagesToRemove) {
+        const destinationPath = `./public/uploads/blogs/${image}`;
+        await fs.remove(destinationPath);
+      }
+      const deletedBlog = await this.blogRepository.delete(id);
+      if (deletedBlog.affected > 0) {
         this.searchService.removeBlog(id);
         return {
           message: 'success',

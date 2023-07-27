@@ -3,7 +3,7 @@ import { IsNotEmpty } from 'class-validator';
 export class CommentDto {
   @IsNotEmpty()
   content: string;
-  image: string[];
+  images: string[];
   parentId: number;
   productId: number;
   star: number;

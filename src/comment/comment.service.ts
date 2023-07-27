@@ -5,6 +5,7 @@ import { IsNull, Not, Repository } from 'typeorm';
 import { CommentDto } from './dto/comment.dto';
 import { Product } from 'src/product/entities/product.entity';
 import { QueryCommentDto } from './dto/query-comment.dto';
+import * as fs from 'fs-extra';
 
 @Injectable()
 export class CommentService {
@@ -20,7 +21,6 @@ export class CommentService {
     try {
       comment.createdAt = new Date();
       comment.updatedAt = new Date();
-
       const existRating = comment.star
         ? await this.commentRepository.findOne({
             where: {
@@ -34,9 +34,34 @@ export class CommentService {
         existRating.star = comment.star;
         existRating.content = comment.content;
         existRating.updatedAt = new Date();
+        const oldImages = existRating.images;
+        const newImages = comment.images ? comment.images : [];
+        const imagesToAdd = newImages.filter(
+          (image) => !oldImages.includes(image),
+        );
+        const imagesToRemove = oldImages.filter(
+          (image) => !newImages.includes(image),
+        );
+        for (const image of imagesToRemove) {
+          const destinationPath = `./public/uploads/comments/${image}`;
+          await fs.remove(destinationPath);
+        }
+        for (const image of imagesToAdd) {
+          const tempPath = `./public/temp/${image}`;
+          const destinationPath = `./public/uploads/comments/${image}`;
+          await fs.move(tempPath, destinationPath);
+        }
         await this.commentRepository.save(existRating);
       } else {
-        await this.commentRepository.save(comment);
+        const createdBlog = await this.commentRepository.save(comment);
+        const images = comment.images ? comment.images : [];
+        if (createdBlog) {
+          for (const image of images) {
+            const tempPath = `./public/temp/${image}`;
+            const destinationPath = `./public/uploads/comments/${image}`;
+            await fs.move(tempPath, destinationPath);
+          }
+        }
       }
       if (comment.star && comment.productId) {
         const comments = await this.commentRepository.find({
@@ -143,10 +168,20 @@ export class CommentService {
           id,
         },
       });
-      if (userId !== (await oldComment.userId)) {
+      if (userId !== oldComment.userId) {
         notPermision = true;
         throw new ForbiddenException('You are not author');
       } else {
+        const commentToDelete = await this.commentRepository.findOne({
+          where: { id },
+        });
+        const imagesToRemove = commentToDelete.images
+          ? commentToDelete.images
+          : [];
+        for (const image of imagesToRemove) {
+          const destinationPath = `./public/uploads/comments/${image}`;
+          await fs.remove(destinationPath);
+        }
         const deletedComment = await this.commentRepository.delete(id);
         if (deletedComment.affected > 0) {
           return {

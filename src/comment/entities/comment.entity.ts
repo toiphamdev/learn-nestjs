@@ -17,13 +17,13 @@ export class Comment {
   @Column('text')
   content: string;
   @Column({ type: 'text', nullable: true, array: true })
-  image: string[];
+  images: string[];
   @Column({ nullable: true })
-  parenId: number;
+  parentId: number;
   @ManyToOne(() => Product, (prod) => prod.comments)
   @JoinColumn()
   product: Product;
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'int' })
   productId: number;
   @Column({ nullable: true })
   star: number;
@@ -36,9 +36,13 @@ export class Comment {
   user: User;
   @Column()
   userId: number;
-  @ManyToMany(() => User, (user) => user.likeCommentList)
+  @ManyToMany(() => User, (user) => user.likeCommentList, {
+    onDelete: 'CASCADE',
+  })
   likeList: User[];
-  @ManyToMany(() => User, (user) => user.dislikeCommentList)
+  @ManyToMany(() => User, (user) => user.dislikeCommentList, {
+    onDelete: 'CASCADE',
+  })
   dislikeList: User[];
   @Column()
   createdAt: Date;
