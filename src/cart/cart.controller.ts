@@ -1,8 +1,9 @@
-import { Controller, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { CartService } from './cart.service';
 import { JwtAuthGuard } from 'src/auth/guard';
 import { Request } from 'express';
 import { Cart } from './entities/cart.entity';
+import { CartDetailDto } from './dto/cart-detail.dto';
 
 @Controller('cart')
 export class CartController {
@@ -10,9 +11,18 @@ export class CartController {
 
   @Put()
   @UseGuards(JwtAuthGuard)
-  initCart(userId: number, @Req() req: Request): Promise<Cart> {
-    userId = req.user['id'];
+  initCart(@Req() req: Request): Promise<{ cart: Cart; totalPrice: number }> {
+    const userId = req.user['id'];
     return this.cartService.initCart(userId);
   }
-  //   @Post()
+  @Post('add-to-cart')
+  @UseGuards(JwtAuthGuard)
+  addTocart(
+    @Body() cartItem: CartDetailDto,
+    @Req() req: Request,
+  ): Promise<{ cart: Cart; totalPrice: number }> {
+    const userId = req.user['id'];
+    cartItem.userId = userId;
+    return this.cartService.addToCart(cartItem);
+  }
 }

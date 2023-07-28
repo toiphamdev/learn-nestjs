@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -17,7 +18,7 @@ export class CartDetail {
   cartId: number;
   @ManyToOne(() => Cart, (cart) => cart.detail, { onDelete: 'CASCADE' })
   cart: Cart;
-  @OneToOne(() => ProductDetailSize, (size) => size.cartDetail)
+  @ManyToOne(() => ProductDetailSize, (size) => size.cartDetail)
   @JoinColumn({ name: 'productDetailSizeId', referencedColumnName: 'id' })
   productDetailSize: ProductDetailSize;
   @Column()

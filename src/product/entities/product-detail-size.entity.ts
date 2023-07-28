@@ -31,10 +31,10 @@ export class ProductDetailSize {
   height: number;
   @Column()
   weight: number;
-  @OneToOne(() => OrderDetail, (detail) => detail.productDetailSize)
-  orderDetail: OrderDetail;
-  @OneToOne(() => CartDetail, (detail) => detail.productDetailSize)
-  cartDetail: CartDetail;
+  @OneToMany(() => OrderDetail, (detail) => detail.productDetailSize)
+  orderDetail: OrderDetail[];
+  @OneToMany(() => CartDetail, (detail) => detail.productDetailSize)
+  cartDetail: CartDetail[];
   @OneToMany(() => ReceiptDetail, (detail) => detail.productDetailSize)
   receiptDetails: ReceiptDetail[];
   @Column()
