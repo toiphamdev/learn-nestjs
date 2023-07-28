@@ -182,7 +182,7 @@ export class CommentService {
         meta: {
           current: currentPage,
           size: ITEMS_PER_PAGE,
-          totalItems,
+          totalItems: parentComments.length,
         },
       };
     } catch (error) {
