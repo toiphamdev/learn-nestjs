@@ -2,7 +2,7 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Comment } from './entities/comment.entity';
 import { IsNull, Not, Repository } from 'typeorm';
-import { CommentDto } from './dto/comment.dto';
+import { CommentDto, CommentWithChildren } from './dto/comment.dto';
 import { Product } from 'src/product/entities/product.entity';
 import { QueryCommentDto } from './dto/query-comment.dto';
 import * as fs from 'fs-extra';
@@ -90,7 +90,7 @@ export class CommentService {
     }
   }
   async getAllComment(query: QueryCommentDto): Promise<{
-    data: Comment[];
+    data: CommentWithChildren[];
     meta: {
       current: number;
       size: number;
@@ -98,7 +98,13 @@ export class CommentService {
     };
   }> {
     try {
+      const ITEMS_PER_PAGE = query.size || 10;
+      const currentPage = query.page || 1;
+      const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
       const queryBuilder = this.commentRepository.createQueryBuilder('comment');
+
+      // Xử lý các điều kiện tìm kiếm
       if (query.blogId) {
         queryBuilder.andWhere('comment.blogId = :blogId', {
           blogId: query.blogId,
@@ -114,19 +120,16 @@ export class CommentService {
           star: query.star,
         });
       }
-      Object.entries(query).reduce((result, [key, value]) => {
+
+      // Xử lý việc sắp xếp
+      Object.entries(query).forEach(([key, value]) => {
         if (key.startsWith('sort')) {
           const newKey = key.replace('sort', '');
           queryBuilder.orderBy(`comment.${newKey}`, value);
-          result.push({ [newKey]: value });
         }
-        return result;
-      }, []);
-      if (!query.page || !query.size) {
-        query.page = 1;
-        query.size = 10;
-      }
-      const comments = await queryBuilder
+      });
+
+      const [comments, totalItems] = await queryBuilder
         .leftJoinAndSelect('comment.user', 'user')
         .leftJoinAndSelect('comment.likeList', 'likeList')
         .leftJoinAndSelect('comment.dislikeList', 'dislikeList')
@@ -137,21 +140,49 @@ export class CommentService {
           'user.lastName',
           'user.image',
           'likeList.id',
-          'likeList.email',
-          'likeList.firstName',
-          'likeList.lastName',
           'dislikeList.id',
-          'dislikeList.email',
-          'dislikeList.firstName',
-          'dislikeList.lastName',
         ])
         .getManyAndCount();
+
+      // Lấy danh sách comment cha
+      const parentComments = comments.filter(
+        (comment) => comment.parentId === null,
+      );
+
+      // Lấy danh sách comment con
+      const childComments = comments.filter(
+        (comment) => comment.parentId !== null,
+      );
+
+      // Phân trang các comment cha
+      const paginatedParentComments = parentComments.slice(
+        offset,
+        offset + ITEMS_PER_PAGE,
+      );
+
+      // Lấy tất cả comment con tương ứng của các comment cha trên trang hiện tại
+      const paginatedChildComments = [];
+      for (const parentComment of paginatedParentComments) {
+        const children = childComments.filter(
+          (comment) => comment.parentId === parentComment.id,
+        );
+        paginatedChildComments.push(...children);
+      }
+
+      // Kết hợp các comment cha và comment con lại thành CommentWithChildren
+      const paginatedResult = paginatedParentComments.map((parentComment) => {
+        const children = paginatedChildComments.filter(
+          (comment) => comment.parentId === parentComment.id,
+        );
+        return { ...parentComment, children };
+      });
+
       return {
-        data: comments[0],
+        data: paginatedResult,
         meta: {
-          current: query.page,
-          size: query.size,
-          totalItems: comments[1],
+          current: currentPage,
+          size: ITEMS_PER_PAGE,
+          totalItems,
         },
       };
     } catch (error) {

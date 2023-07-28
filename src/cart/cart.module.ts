@@ -10,5 +10,6 @@ import { ProductDetailSize } from 'src/product/entities/product-detail-size.enti
   imports: [TypeOrmModule.forFeature([Cart, CartDetail, ProductDetailSize])],
   controllers: [CartController],
   providers: [CartService],
+  exports: [CartService],
 })
 export class CartModule {}

@@ -10,7 +10,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { CommentService } from './comment.service';
-import { CommentDto } from './dto/comment.dto';
+import { CommentDto, CommentWithChildren } from './dto/comment.dto';
 import { JwtAuthGuard } from '../auth/guard';
 import { Request } from 'express';
 import { QueryCommentDto } from './dto/query-comment.dto';
@@ -28,7 +28,7 @@ export class CommentController {
 
   @Get()
   getAllComment(@Query() query: QueryCommentDto): Promise<{
-    data: Comment[];
+    data: CommentWithChildren[];
     meta: {
       current: number;
       size: number;
