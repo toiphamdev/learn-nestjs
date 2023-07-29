@@ -1,10 +1,15 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
+import { UserStatus } from './enum/auth.enum';
 
 @Injectable()
 export class AuthService {
@@ -19,8 +24,10 @@ export class AuthService {
       },
     });
     if (user) {
-      const checkPassword = await bcrypt.compareSync(password, user.password);
+      const checkPassword = bcrypt.compareSync(password, user.password);
       if (checkPassword) {
+        user.statusId = UserStatus.ON;
+        await this.userRespository.save(user);
         return user;
       } else {
         throw new UnauthorizedException('Something went wrong!');
@@ -37,13 +44,6 @@ export class AuthService {
         expiresIn: process.env.EX_TIME_ACCESS,
       },
     );
-    const refreshToken = this.jwtService.sign(
-      { email, id },
-      {
-        secret: process.env.JWT_SECRET,
-        expiresIn: process.env.EX_TIME_REFRESH,
-      },
-    );
     return accessToken;
   }
   savedCookie(email: string, id: number, res: Response): void {
@@ -51,12 +51,33 @@ export class AuthService {
       { email, id },
       {
         secret: process.env.JWT_SECRET,
-        expiresIn: '1d',
+        expiresIn: process.env.EX_TIME_REFRESH,
       },
     );
     res.cookie('refreshToken', refreshToken, {
       maxAge: 12 * 3600 * 1000,
       httpOnly: true,
     });
+  }
+  clearCookie(res: Response): void {
+    res.clearCookie('refreshToken');
+  }
+
+  async logout(userId: number, res: Response) {
+    try {
+      const updated = await this.userRespository.update(
+        { id: userId },
+        { statusId: UserStatus.OFF },
+      );
+      this.clearCookie(res);
+      if (updated.affected > 0) {
+        return res.json({
+          message: 'success',
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Somethings went wrong');
+    }
   }
 }

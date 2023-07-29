@@ -6,9 +6,10 @@ import {
   Res,
   Get,
   ForbiddenException,
+  Patch,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { LocalAuthGuard } from './guard';
+import { JwtAuthGuard, LocalAuthGuard } from './guard';
 import { AuthService } from './auth.service';
 import { plainToClass } from 'class-transformer';
 import { UserDto } from 'src/user/dto/user.dto';
@@ -33,8 +34,8 @@ export class AuthController {
     }
   }
 
-  @UseGuards(new JwtCookieAuthGuard('jwt-cookie'))
   @Get('refresh')
+  @UseGuards(new JwtCookieAuthGuard('jwt-cookie'))
   getAccessToken(@Req() req: Request): { accessToken: string } {
     try {
       const user = plainToClass(UserDto, req.user);
@@ -45,5 +46,11 @@ export class AuthController {
     } catch (error) {
       throw new ForbiddenException('Something went wrong');
     }
+  }
+  @Patch('/logout')
+  @UseGuards(JwtAuthGuard)
+  logout(@Req() req: Request, @Res() res: Response) {
+    const userId = req.user['id'];
+    return this.authService.logout(userId, res);
   }
 }
