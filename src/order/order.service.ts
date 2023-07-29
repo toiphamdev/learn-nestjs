@@ -12,10 +12,9 @@ export class OrderService {
     private readonly cartService: CartService,
   ) {}
 
-  createOrder(userId: number) {
+  async createOrder(userId: number) {
     try {
-      const cart = this.cartService.initCart(userId);
-      return cart;
+      const cart = await this.cartService.initCart(userId);
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');

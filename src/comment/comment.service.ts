@@ -145,10 +145,20 @@ export class CommentService {
         .getManyAndCount();
 
       // Lấy danh sách comment cha
-      const parentComments = comments.filter(
+      let parentComments = comments.filter(
         (comment) => comment.parentId === null,
       );
+      if (query.userId) {
+        // Tạo bản sao của mảng parentComments để không ảnh hưởng đến mảng gốc
+        const sortedParentComments = [...parentComments];
 
+        // Sắp xếp danh sách comment cha dựa trên hàm so sánh
+        // Sắp xếp dữ liệu theo yêu cầu
+        const sortedData = sortedParentComments.sort((a, b) =>
+          b.userId == query.userId ? 1 : a.userId == query.userId ? -1 : 0,
+        );
+        parentComments = sortedData;
+      }
       // Lấy danh sách comment con
       const childComments = comments.filter(
         (comment) => comment.parentId !== null,

@@ -4,5 +4,6 @@ export class QueryCommentDto {
   star?: number;
   size?: number;
   blogId?: number;
+  userId?: number;
   sortcreatedAt?: 'ASC' | 'DESC';
 }

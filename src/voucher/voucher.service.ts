@@ -38,7 +38,6 @@ export class VoucherService {
         },
         [],
       );
-      console.log(sortedProperties);
       const vouchers = await queryBuilder.getManyAndCount();
       return {
         data: vouchers[0],
@@ -66,5 +65,15 @@ export class VoucherService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
-  // async updateVoucher(id:number,)
+  // async getVoucherByCode(code: string) {
+  //   try {
+  //     const voucher = await this.voucherRepo.findOne({
+  //       where: { codeVoucher: code },
+  //       relations: [''],
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     throw new ForbiddenException('Something went wrong!');
+  //   }
+  // }
 }
