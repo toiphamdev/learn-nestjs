@@ -49,7 +49,11 @@ export class VoucherService {
       };
     } catch (error) {
       console.log(error);
-      throw new ForbiddenException('Something went wrong!');
+      // throw new ForbiddenException('Something went wrong!');
+
+      return {
+        mn: 'sjs',
+      };
     }
   }
   async createVoucher(voucher: VoucherDto): Promise<{ message: string }> {
@@ -71,7 +75,7 @@ export class VoucherService {
         where: { codeVoucher: code },
         relations: ['typeVoucher'],
       });
-      return voucher
+      return voucher;
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');

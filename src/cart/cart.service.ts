@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { CartDetail } from './entities/cart-detail.entitty';
 import { CartDetailDto } from './dto/cart-detail.dto';
 import { ProductDetailSize } from 'src/product/entities/product-detail-size.entity';
-import { log } from 'console';
+import { error, log } from 'console';
 
 @Injectable()
 export class CartService {
@@ -78,6 +78,9 @@ export class CartService {
         where: { id: item.productDetailSizeId },
       });
       if (cartDetail) {
+        if (productDetailSize.quantity === 0) {
+          throw new Error('This product is not available!');
+        }
         if (
           cartDetail.quantity + item.quantity > productDetailSize.quantity &&
           cartDetail.quantity + item.quantity > 0
@@ -85,7 +88,6 @@ export class CartService {
           cartDetail.quantity = productDetailSize.quantity;
           await this.cartDetailRepo.save(cartDetail);
         } else if (cartDetail.quantity + item.quantity <= 0) {
-          console.log('hehe');
           await this.cartDetailRepo.remove(cartDetail);
         } else {
           cartDetail.quantity = cartDetail.quantity + item.quantity;
@@ -124,7 +126,9 @@ export class CartService {
     } catch (error) {
       console.log(error);
 
-      throw new ForbiddenException('Something went wrong!');
+      throw new ForbiddenException(
+        error.message ? error.message : 'Something went wrong!',
+      );
     }
   }
 }
