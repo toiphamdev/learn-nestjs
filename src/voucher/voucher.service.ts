@@ -65,15 +65,16 @@ export class VoucherService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
-  // async getVoucherByCode(code: string) {
-  //   try {
-  //     const voucher = await this.voucherRepo.findOne({
-  //       where: { codeVoucher: code },
-  //       relations: [''],
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //     throw new ForbiddenException('Something went wrong!');
-  //   }
-  // }
+  async getVoucherByCode(code: string) {
+    try {
+      const voucher = await this.voucherRepo.findOne({
+        where: { codeVoucher: code },
+        relations: ['typeVoucher'],
+      });
+      return voucher
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
 }
