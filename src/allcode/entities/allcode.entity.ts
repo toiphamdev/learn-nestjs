@@ -1,8 +1,11 @@
 import { Banner } from 'src/banner/entities/banner.entity';
 import { Blog } from 'src/blog/entities/blog.entity';
+import { TypeShip } from 'src/order/entity/type-ship.entity';
 import { ProductDetail } from 'src/product/entities/product-detail.entity';
 import { Product } from 'src/product/entities/product.entity';
+import { UserAddress } from 'src/user/entities/user-address.entity';
 import { User } from 'src/user/entities/user.entity';
+import { TypeVoucher } from 'src/voucher/entities/type-voucher.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
@@ -35,6 +38,12 @@ export class Allcode {
   banners: Banner[];
   @OneToMany(() => User, (user) => user.status)
   users: Banner[];
+  @OneToMany(() => TypeVoucher, (type) => type.typeVoucher)
+  typeVouchers: TypeVoucher[];
+  @OneToMany(() => TypeShip, (type) => type.type)
+  typeShips: TypeVoucher[];
+  @OneToMany(() => UserAddress, (add) => add.status)
+  statusAdds: UserAddress[];
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

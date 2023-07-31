@@ -22,5 +22,6 @@ import { Allcode } from 'src/allcode/entities/allcode.entity';
   ],
   controllers: [ProductController],
   providers: [ProductService],
+  exports: [ProductService],
 })
 export class ProductModule {}

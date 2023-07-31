@@ -11,6 +11,8 @@ import slugify from 'slugify';
 import { removeDiacritics } from 'src/utils/string.utils';
 import { SearchUsersDto } from './dto/search-user.dto';
 import { Comment } from 'src/comment/entities/comment.entity';
+import { VoucherService } from 'src/voucher/voucher.service';
+import e from 'express';
 
 @Injectable()
 export class UserService {
@@ -19,6 +21,7 @@ export class UserService {
     @InjectRepository(Comment)
     private readonly commentRepo: Repository<Comment>,
     private readonly searchService: SearchService,
+    private readonly voucherService: VoucherService,
   ) {}
   async createUser(user: UserDto): Promise<UserDto> {
     try {
@@ -201,6 +204,36 @@ export class UserService {
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Somethings went wrong!');
+    }
+  }
+  async addToVoucherList(userId: number, voucherCode: string) {
+    try {
+      const voucher = await this.voucherService.getVoucherByCode(voucherCode);
+      const usedvoucher = await this.voucherService.getVoucherUsed(
+        userId,
+        voucher.id,
+      );
+      const user = await this.userRespository
+        .createQueryBuilder('user')
+        .leftJoinAndSelect('user.voucherList', 'voucherList')
+
+        .where('user.id =:userId', { userId })
+        .getOne();
+
+      if (usedvoucher) {
+        throw new Error('You already use this coupon');
+      } else {
+        user.voucherList.push(voucher);
+      }
+      await this.userRespository.save(user);
+      return {
+        message: 'success',
+      };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
     }
   }
 }

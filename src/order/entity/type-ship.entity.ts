@@ -1,12 +1,23 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Order } from './order.enitity';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Entity()
 export class TypeShip {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  type: string;
+  typeId: string;
+  @ManyToOne(() => Allcode, (type) => type.typeShips)
+  @JoinColumn({ name: 'typeId', referencedColumnName: 'code' })
+  type: Allcode;
   @Column({ type: 'bigint' })
   price: number;
   @OneToMany(() => Order, (order) => order.typeShip)

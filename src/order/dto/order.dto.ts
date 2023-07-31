@@ -1,10 +1,14 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class OrderDto {
+  @IsNotEmpty()
   addressUserId: number;
-  statusId: string;
-  typeShipId: number;
-  voucherId: number;
-  note: string;
+  statusId?: string;
+  @IsNotEmpty()
+  typeShipId?: number;
+  voucherCode?: string;
+  note?: string;
   isPaymentOnline: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

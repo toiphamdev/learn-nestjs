@@ -115,6 +115,15 @@ export class ReceiptService {
       );
       const skip = (query.page - 1) * query.size;
       const receipts = await queryBuilder
+        .leftJoinAndSelect('receipt.supplier', 'supplier')
+        .leftJoinAndSelect('receipt.user', 'user')
+        .select([
+          'user.firstName',
+          'user.lastName',
+          'user.id',
+          'receipt',
+          'supplier',
+        ])
         .skip(skip)
         .take(query.size)
         .getManyAndCount();

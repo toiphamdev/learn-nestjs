@@ -5,7 +5,30 @@ import { Repository } from 'typeorm';
 import { CartDetail } from './entities/cart-detail.entitty';
 import { CartDetailDto } from './dto/cart-detail.dto';
 import { ProductDetailSize } from 'src/product/entities/product-detail-size.entity';
-import { error, log } from 'console';
+import { User } from 'src/user/entities/user.entity';
+import { VoucherService } from 'src/voucher/voucher.service';
+import { KindVoucher } from 'src/voucher/voucher.enum';
+import { TypeShip } from 'src/order/entity/type-ship.entity';
+
+function isValidDateRange(dateStr1, dateStr2) {
+  // Lấy ngày hôm nay
+  const today = new Date();
+
+  // Chuyển đổi hai chuỗi ngày thành các đối tượng ngày
+  const date1Parts = dateStr1.split('/');
+  const date2Parts = dateStr2.split('/');
+  const dateObj1 = new Date(date1Parts[2], date1Parts[1] - 1, date1Parts[0]);
+  const dateObj2 = new Date(date2Parts[2], date2Parts[1] - 1, date2Parts[0]);
+
+  // So sánh ngày hôm nay với hai ngày đã chuyển đổi
+  const isTodayBeforeDate1 = today <= dateObj1;
+  const isTodayAfterDate2 = today >= dateObj2;
+
+  // Kiểm tra ngày hôm nay có nằm trong khoảng thời gian hay không
+  const isValidDate = isTodayBeforeDate1 || isTodayAfterDate2;
+
+  return isValidDate;
+}
 
 @Injectable()
 export class CartService {
@@ -16,8 +39,23 @@ export class CartService {
     private readonly cartDetailRepo: Repository<CartDetail>,
     @InjectRepository(ProductDetailSize)
     private readonly productDetailSizeRepo: Repository<ProductDetailSize>,
+    @InjectRepository(User)
+    private readonly userRepo: Repository<User>,
+    @InjectRepository(TypeShip)
+    private readonly typeShipRepo: Repository<TypeShip>,
+    private readonly voucherService: VoucherService,
   ) {}
-  async initCart(userId: number): Promise<{ cart: Cart; totalPrice: number }> {
+  async initCart(
+    userId: number,
+    voucherCode?: string,
+    typeShipId?: number,
+  ): Promise<{
+    cart: Cart;
+    totalPrice: number;
+    useVoucherPrice: number;
+    voucherId: number;
+    typeShipId: number;
+  }> {
     try {
       const queryBuilder = this.cartRepo.createQueryBuilder('cart');
       const isExist = await this.cartRepo.exist({ where: { userId } });
@@ -44,25 +82,88 @@ export class CartService {
           'color',
         ])
         .getOne();
-
+      const typeShip = await this.typeShipRepo.findOne({
+        where: { id: typeShipId },
+      });
+      console.log(typeShipId);
+      let price = 0;
+      let IdVoucherUsed: number = null;
       const arrProd = result?.detail as unknown as CartDetail[];
       const totalPrice = arrProd.reduce((acc, cur) => {
         return (
           acc + cur.productDetailSize.productDetail.discountPrice * cur.quantity
         );
       }, 0);
+      if (voucherCode) {
+        const voucher = await this.voucherService.getVoucherByCode(voucherCode);
+
+        const user = await this.userRepo.findOne({
+          where: { id: userId },
+          relations: ['voucherList'],
+        });
+        if (voucher && isValidDateRange(voucher.fromDate, voucher.toDate)) {
+          const voucherExists = user.voucherList.some(
+            (vou) => vou.id === voucher.id,
+          );
+          if (voucherExists) {
+            const maxValue = voucher.typeVoucher.maxValue;
+            const minValue = voucher.typeVoucher.minValue;
+            switch (true) {
+              case totalPrice > maxValue && totalPrice > minValue: {
+                if (maxValue !== 0) {
+                  throw new Error("This voucher can't be used with your order");
+                } else {
+                  price =
+                    voucher.typeVoucher.typeVoucherCode === KindVoucher.PERCENT
+                      ? (totalPrice *
+                          (totalPrice * voucher.typeVoucher.value)) /
+                        100
+                      : totalPrice - voucher.typeVoucher.value;
+                  IdVoucherUsed = voucher.id;
+                }
+                break;
+              }
+              case totalPrice <= maxValue && totalPrice >= minValue: {
+                price =
+                  voucher.typeVoucher.typeVoucherCode === KindVoucher.PERCENT
+                    ? totalPrice -
+                      (totalPrice * voucher.typeVoucher.value) / 100
+                    : totalPrice - voucher.typeVoucher.value;
+                IdVoucherUsed = voucher.id;
+                break;
+              }
+              case totalPrice < minValue: {
+                throw new Error("This voucher can't be used with your order");
+              }
+              default:
+                break;
+            }
+          } else {
+            throw new Error("This voucher isn't for you");
+          }
+        } else {
+          throw new Error("This voucher wasn't found ");
+        }
+      }
+
       return {
         cart: result,
-        totalPrice,
+        useVoucherPrice:
+          price !== 0
+            ? price + Number(typeShip.price)
+            : totalPrice + Number(typeShip.price),
+        totalPrice: totalPrice + Number(typeShip.price),
+        voucherId: IdVoucherUsed,
+        typeShipId: typeShip.id ? typeShip.id : null,
       };
     } catch (error) {
       console.log(error);
-      throw new ForbiddenException('Something went wrong!');
+      throw new ForbiddenException(
+        error.message ? error.message : 'Something went wrong!',
+      );
     }
   }
-  async addToCart(
-    item: CartDetailDto,
-  ): Promise<{ cart: Cart; totalPrice: number }> {
+  async addToCart(item: CartDetailDto): Promise<{ message: string }> {
     try {
       const cart = await this.initCart(item.userId);
       item.createdAt = new Date();
@@ -80,9 +181,8 @@ export class CartService {
       if (cartDetail) {
         if (productDetailSize.quantity === 0) {
           throw new Error('This product is not available!');
-        }
-        if (
-          cartDetail.quantity + item.quantity > productDetailSize.quantity &&
+        } else if (
+          cartDetail.quantity + item.quantity < productDetailSize.quantity &&
           cartDetail.quantity + item.quantity > 0
         ) {
           cartDetail.quantity = productDetailSize.quantity;
@@ -96,32 +196,8 @@ export class CartService {
       } else {
         await this.cartDetailRepo.save(item);
       }
-      const queryBuilder = await this.cartRepo
-        .createQueryBuilder('cart')
-        .leftJoinAndSelect('cart.detail', 'detail')
-        .leftJoinAndSelect('detail.productDetailSize', 'productDetailSize')
-        .leftJoinAndSelect('productDetailSize.productDetail', 'productDetail')
-        .leftJoinAndSelect('productDetail.color', 'color')
-        .leftJoinAndSelect('productDetail.product', 'product')
-        .where('cart.userId = :userId', { userId: item.userId })
-        .select([
-          'cart',
-          'detail',
-          'productDetailSize',
-          'productDetail',
-          'product',
-          'color',
-        ])
-        .getOne();
-      const arrProd = queryBuilder?.detail as unknown as CartDetail[];
-      const totalPrice = arrProd.reduce((acc, cur) => {
-        return (
-          acc + cur.productDetailSize.productDetail.discountPrice * cur.quantity
-        );
-      }, 0);
       return {
-        cart: queryBuilder,
-        totalPrice,
+        message: 'success',
       };
     } catch (error) {
       console.log(error);
@@ -130,5 +206,8 @@ export class CartService {
         error.message ? error.message : 'Something went wrong!',
       );
     }
+  }
+  deleteCart(cart: Cart) {
+    return this.cartRepo.remove(cart);
   }
 }

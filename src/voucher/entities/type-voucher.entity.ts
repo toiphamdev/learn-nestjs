@@ -1,12 +1,23 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Voucher } from './voucher.entity';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Entity()
 export class TypeVoucher {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  typeVoucher: string;
+  typeVoucherCode: string;
+  @ManyToOne(() => Allcode, (all) => all.typeVouchers)
+  @JoinColumn({ name: 'typeVoucherCode', referencedColumnName: 'code' })
+  typeVoucher: Allcode;
   @Column({ type: 'bigint' })
   value: number;
   @Column({ type: 'bigint' })

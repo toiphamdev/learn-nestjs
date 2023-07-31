@@ -5,7 +5,7 @@ import { Roles } from 'src/auth/decorator/roles.decorator';
 import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Role } from 'src/user/entities/roles.enum';
 
-@Controller('vou')
+@Controller('voucher')
 export class VoucherController {
   constructor(private readonly voucherService: VoucherService) {}
 
@@ -13,9 +13,7 @@ export class VoucherController {
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
   createVoucher(@Body() voucher: VoucherDto) {
-    // console.log('jjsjd');
-    // return this.voucherService.createVoucher(voucher);
-    return 'hehe';
+    return this.voucherService.createVoucher(voucher);
   }
 
   @Get('code')

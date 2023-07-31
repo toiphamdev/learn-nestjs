@@ -8,6 +8,8 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Order } from '../../order/entity/order.enitity';
+import { statusEnum } from 'src/allcode/allcode.enum';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Entity()
 export class UserAddress {
@@ -20,6 +22,11 @@ export class UserAddress {
   userId: number;
   @Column()
   shipName: string;
+  @Column({ default: statusEnum.ACTIVE })
+  statusId: string;
+  @ManyToOne(() => Allcode, (code) => code.statusAdds)
+  @JoinColumn({ name: 'statusId', referencedColumnName: 'code' })
+  status: Allcode;
   @Column()
   shipAddress: string;
   @Column()

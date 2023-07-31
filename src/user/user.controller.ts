@@ -50,4 +50,14 @@ export class UserController {
     const userId = req.user['id'];
     return this.userService.likeComment(userId, param.commentId);
   }
+
+  @Patch('/voucher/add/:code')
+  @UseGuards(JwtAuthGuard)
+  addToVoucherList(
+    @Param() param: { voucherCode: string },
+    @Req() req: Request,
+  ) {
+    const userId = req.user['id'];
+    return this.userService.addToVoucherList(userId, param.voucherCode);
+  }
 }

@@ -28,11 +28,11 @@ export class Order {
   voucher: Voucher;
   @OneToMany(() => OrderDetail, (detail) => detail.order)
   orderDetails: OrderDetail[];
-  @Column()
+  @Column({ nullable: true })
   voucherId: number;
-  @Column()
+  @Column({ nullable: true })
   note: string;
-  @Column()
+  @Column({ default: false })
   isPaymentOnline: boolean;
   @Column()
   createdAt: Date;

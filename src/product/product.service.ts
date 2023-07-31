@@ -682,4 +682,17 @@ export class ProductService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
+  async updateSold(productId: number, quantity: number) {
+    try {
+      const product = await this.productRepository.findOne({
+        where: { id: productId },
+      });
+      const sold = product.sold + quantity;
+      product.sold = sold;
+      await this.productRepository.save(product);
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
 }

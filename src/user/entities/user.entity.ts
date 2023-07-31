@@ -19,6 +19,7 @@ import { RoomMessage } from 'src/message/entities/room-message.entity';
 import { Receipt } from 'src/receipt/entities/reciept.entity';
 import { Allcode } from 'src/allcode/entities/allcode.entity';
 import { Cart } from 'src/cart/entities/cart.entity';
+import { Voucher } from 'src/voucher/entities/voucher.entity';
 
 @Entity()
 export class User {
@@ -83,6 +84,14 @@ export class User {
     inverseJoinColumn: { name: 'commentId', referencedColumnName: 'id' },
   })
   dislikeCommentList: Comment[];
+
+  @ManyToMany(() => Voucher, (voucher) => voucher.userList)
+  @JoinTable({
+    name: 'voucherList',
+    joinColumn: { name: 'userId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'voucherId', referencedColumnName: 'id' },
+  })
+  voucherList: Voucher[];
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

@@ -15,19 +15,19 @@ export class TypeShipSeed {
     if (existingTypeShip === 0) {
       const typeships = [
         {
-          type: 'GHTK',
+          typeId: 'GHTK',
           price: 10,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          type: 'GHN',
+          typeId: 'GHN',
           price: 15,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          type: 'GHSE',
+          typeId: 'GHSE',
           price: 20,
           createdAt: new Date(),
           updatedAt: new Date(),

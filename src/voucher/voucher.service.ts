@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { TypeVoucher } from './entities/type-voucher.entity';
 import { QueryVoucherDto } from './dto/query-voucher.dto';
 import { VoucherDto } from './dto/voucher.dto';
+import { VoucherUsed } from './entities/voucher-used.entity';
 
 @Injectable()
 export class VoucherService {
@@ -13,6 +14,8 @@ export class VoucherService {
     private readonly voucherRepo: Repository<Voucher>,
     @InjectRepository(TypeVoucher)
     private readonly typeVoucherRepo: Repository<TypeVoucher>,
+    @InjectRepository(VoucherUsed)
+    private readonly voucherUsedRepo: Repository<VoucherUsed>,
   ) {}
   // voucher
   async getAllVoucher(query: QueryVoucherDto) {
@@ -49,11 +52,7 @@ export class VoucherService {
       };
     } catch (error) {
       console.log(error);
-      // throw new ForbiddenException('Something went wrong!');
-
-      return {
-        mn: 'sjs',
-      };
+      throw new ForbiddenException('Something went wrong!');
     }
   }
   async createVoucher(voucher: VoucherDto): Promise<{ message: string }> {
@@ -72,10 +71,45 @@ export class VoucherService {
   async getVoucherByCode(code: string) {
     try {
       const voucher = await this.voucherRepo.findOne({
-        where: { codeVoucher: code },
+        where: { codeVoucher: code, statusId: 'ACTIVE' },
         relations: ['typeVoucher'],
       });
       return voucher;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+
+  async getVoucherUsed(
+    userId: number,
+    voucherId: number,
+  ): Promise<VoucherUsed> {
+    try {
+      const voucherUsed = await this.voucherUsedRepo.findOne({
+        where: {
+          userId,
+          voucherId,
+        },
+      });
+      return voucherUsed;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong!');
+    }
+  }
+  async createVoucherUsed(
+    voucherId: number,
+    userId: number,
+  ): Promise<VoucherUsed> {
+    try {
+      const created = await this.voucherUsedRepo.save({
+        voucherId,
+        userId,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      return created;
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');
