@@ -101,18 +101,15 @@ export class ReceiptService {
         query.size = 10;
       }
       const queryBuilder = this.receiptRepo.createQueryBuilder('receipt');
-      const sortedProperties = Object.entries(query).reduce(
-        (result, [key, value]) => {
-          if (key.startsWith('sort')) {
-            const newKey = key.replace('sort', '');
-            console.log(newKey);
-            queryBuilder.orderBy(`receipt.${newKey}`, value);
-            result.push({ [newKey]: value });
-          }
-          return result;
-        },
-        [],
-      );
+      Object.entries(query).reduce((result, [key, value]) => {
+        if (key.startsWith('sort')) {
+          const newKey = key.replace('sort', '');
+          console.log(newKey);
+          queryBuilder.orderBy(`receipt.${newKey}`, value);
+          result.push({ [newKey]: value });
+        }
+        return result;
+      }, []);
       const skip = (query.page - 1) * query.size;
       const receipts = await queryBuilder
         .leftJoinAndSelect('receipt.supplier', 'supplier')

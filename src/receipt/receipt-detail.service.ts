@@ -178,6 +178,12 @@ export class ReceiptDetailService {
         .skip(skip)
         .take(query.size)
         .where('receipt_detail.receiptId = :id', { id: receiptId })
+        .leftJoinAndSelect(
+          'receipt_detail.productDetailSize',
+          'productDetailSize',
+        )
+        .leftJoinAndSelect('productDetailSize.productDetail', 'productDetail')
+        .leftJoinAndSelect('productDetail.product', 'product')
         .getManyAndCount();
       return {
         data: receipts[0],

@@ -227,4 +227,14 @@ export class BlogService {
       throw new ForbiddenException('Somethings went wrong!');
     }
   };
+  // getAllBlog(query: SearchBlogDto){
+  //   try {
+  //      if (!query.page && !query.size) {
+  //        query.page = 1;
+  //        query.size = 2;
+  //      }
+  //   } catch (error) {
+
+  //   }
+  // }
 }
