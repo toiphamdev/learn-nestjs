@@ -682,14 +682,25 @@ export class ProductService {
       throw new ForbiddenException('Something went wrong!');
     }
   }
-  async updateSold(productId: number, quantity: number) {
+  async updateSold(
+    productId: number,
+    quantity: number,
+    productDetailId: number,
+  ) {
     try {
       const product = await this.productRepository.findOne({
         where: { id: productId },
       });
+      const size = await this.productDetailSizeRepository.findOne({
+        where: { id: productDetailId },
+      });
       const sold = product.sold + quantity;
+      const sizeQuantity = size.quantity - quantity;
+      console.log(quantity, size.quantity);
+      size.quantity = sizeQuantity;
       product.sold = sold;
       await this.productRepository.save(product);
+      await this.productDetailSizeRepository.save(size);
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');

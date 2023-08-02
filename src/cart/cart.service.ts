@@ -178,10 +178,11 @@ export class CartService {
       const productDetailSize = await this.productDetailSizeRepo.findOne({
         where: { id: item.productDetailSizeId },
       });
+      if (productDetailSize.quantity <= 0) {
+        throw new Error('This product is not available!');
+      }
       if (cartDetail) {
-        if (productDetailSize.quantity === 0) {
-          throw new Error('This product is not available!');
-        } else if (
+        if (
           cartDetail.quantity + item.quantity < productDetailSize.quantity &&
           cartDetail.quantity + item.quantity > 0
         ) {
@@ -194,7 +195,11 @@ export class CartService {
           await this.cartDetailRepo.save(cartDetail);
         }
       } else {
-        await this.cartDetailRepo.save(item);
+        if (item.quantity > 0) {
+          await this.cartDetailRepo.save(item);
+        } else {
+          throw new Error("Quantity isn't comfortable!");
+        }
       }
       return {
         message: 'success',

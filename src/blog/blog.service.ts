@@ -227,14 +227,43 @@ export class BlogService {
       throw new ForbiddenException('Somethings went wrong!');
     }
   };
-  // getAllBlog(query: SearchBlogDto){
+  // getAllBlogs = async (
+  //   query: SearchBlogDto,
+  // ): Promise<{
+  //   data: Blog[];
+  //   meta: {
+  //     current: number;
+  //     size: number;
+  //     totalItems: number | object;
+  //   };
+  // }> => {
   //   try {
-  //      if (!query.page && !query.size) {
-  //        query.page = 1;
-  //        query.size = 2;
-  //      }
+  //     if (!query.page && !query.size) {
+  //       query.page = 1;
+  //       query.size = 2;
+  //     }
+  //     const queryBuilder = this.blogRepository.createQueryBuilder('blog');
+  //     if (query.statusId) {
+  //       queryBuilder.andWhere('blog.statusId =:statusId', {
+  //         statusId: query.statusId,
+  //       });
+  //     }
+  //     if (query.subjectId) {
+  //       queryBuilder.andWhere('blog.subjectId =:subjectId', {
+  //         subjectId: query.subjectId,
+  //       });
+  //     }
+  //     Object.entries(query).reduce((result, [key, value]) => {
+  //       if (key.startsWith('sort')) {
+  //         const newKey = key.replace('sort', '');
+  //         queryBuilder.orderBy(`product.${newKey}`, value);
+  //         result.push({ [newKey]: value });
+  //       }
+  //       return result;
+  //     }, []);
   //   } catch (error) {
-
+  //     console.log(error);
+  //     throw new ForbiddenException('Somethings went wrong!');
   //   }
-  // }
+  // };
 }

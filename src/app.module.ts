@@ -25,6 +25,7 @@ import { SearchModule } from './search/search.module';
 import { ConfigModule } from '@nestjs/config';
 import { SupplierModule } from './supplier/supplier.module';
 import { CartModule } from './cart/cart.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { CartModule } from './cart/cart.module';
     SearchModule,
     SupplierModule,
     CartModule,
+    DashboardModule,
     // LikeListModule,
   ],
   controllers: [AppController],

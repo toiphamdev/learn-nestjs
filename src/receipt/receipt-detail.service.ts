@@ -49,7 +49,7 @@ export class ReceiptDetailService {
             id: created.productDetailSizeId,
           })
           .getOne();
-        product.quantity = product.quantity + rcDetail.quantity;
+        product.quantity = product.quantity + Number(rcDetail.quantity);
         await this.productDetailSizeRepo.save(product);
         this.socketGateway.server.emit('productUpdated', {
           productId: product.productDetail.product.id,

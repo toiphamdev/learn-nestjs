@@ -32,7 +32,7 @@ export class UserService {
       user.roleId = Role.USER;
       const savedUser: UserDto = await this.userRespository.save(user);
       delete savedUser.password;
-      this.searchService.indexUser(savedUser);
+      await this.searchService.indexUser(savedUser);
       return plainToClass(UserDto, savedUser);
     } catch (error) {
       console.log(error);

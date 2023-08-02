@@ -10,3 +10,9 @@ export enum statusOrder {
   DELIVERED = 'DELIVERED',
   CANCEL = 'CANCEL',
 }
+
+export enum statusUser {
+  ON = 'ON',
+  OFF = 'OFF',
+  BLOCK = 'BLOCK',
+}
