@@ -274,6 +274,7 @@ export class ProductService {
           .leftJoinAndSelect('product.detail', 'detail')
           .leftJoinAndSelect('product.status', 'status')
           .leftJoinAndSelect('detail.color', 'color')
+          .leftJoinAndSelect('product.category', 'category')
           .select([
             'product',
             'detail.images',
@@ -283,6 +284,8 @@ export class ProductService {
             'status.code',
             'color.value',
             'color.code',
+            'category.value',
+            'category.code',
           ])
           .where({ id: In(productIds) })
           .orderBy(
@@ -407,6 +410,7 @@ export class ProductService {
           .leftJoinAndSelect('product.detail', 'detail')
           .leftJoinAndSelect('product.status', 'status')
           .leftJoinAndSelect('detail.color', 'color')
+          .leftJoinAndSelect('product.category', 'category')
           .select([
             'product',
             'detail.images',
@@ -416,6 +420,8 @@ export class ProductService {
             'status.code',
             'color.value',
             'color.code',
+            'category.value',
+            'category.code',
           ])
           .where({ id: In(productIds) })
           .orderBy(
