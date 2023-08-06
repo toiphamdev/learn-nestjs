@@ -19,7 +19,7 @@ export class RoomMessageController {
 
   @Post('create')
   @UseGuards(JwtAuthGuard)
-  async createRoomMessage(
+  createRoomMessage(
     @Req() req: Request,
     @Body('userTwoId') userTwoId: number,
   ): Promise<RoomMessage> {
@@ -27,7 +27,7 @@ export class RoomMessageController {
   }
 
   @Post('message')
-  async createMessage(
+  createMessage(
     @Body('userId') userId: number,
     @Body('roomId') roomId: number,
     @Body('text') text: string,
@@ -36,7 +36,13 @@ export class RoomMessageController {
   }
 
   @Get(':roomId')
-  async getRoomMessages(@Param('roomId') roomId: number): Promise<RoomMessage> {
+  getRoomMessages(@Param('roomId') roomId: number): Promise<RoomMessage> {
     return this.messageService.getRoomMessages(roomId);
+  }
+
+  @Get('/rooms')
+  @UseGuards(JwtAuthGuard)
+  getAllRooms(@Req() req: Request) {
+    return this.messageService.getRoomsByUserId(req.user['id']);
   }
 }

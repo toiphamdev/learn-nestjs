@@ -89,6 +89,7 @@ export class ProductService {
           'color.value',
           'detail',
         ])
+        .orderBy('size.height', 'ASC')
         .getOne();
       if (product) {
         await this.productRepository.update(product.id, {

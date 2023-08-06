@@ -81,6 +81,7 @@ export class CartService {
           'product',
           'color',
         ])
+        .orderBy('detail.createdAt', 'ASC')
         .getOne();
       const typeShip = await this.typeShipRepo.findOne({
         where: { id: typeShipId },
