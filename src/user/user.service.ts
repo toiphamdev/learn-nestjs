@@ -63,9 +63,20 @@ export class UserService {
       if (query.statusId) {
         filler.push({ term: { statusId: query.statusId } });
       }
-      const must = query.name
-        ? [{ match_phrase_prefix: { fullName: query.name } }]
-        : [];
+      let must = [];
+      query.name
+        ? (must = [{ match_phrase_prefix: { fullName: query.name } }])
+        : query.roleId
+        ? (must = [
+            {
+              match: {
+                roleId: query.roleId,
+              },
+            },
+          ])
+        : (must = []);
+      console.log(must);
+
       const sortedProperties = Object.entries(query).reduce(
         (result, [key, value]) => {
           if (key.startsWith('sort')) {
@@ -90,6 +101,7 @@ export class UserService {
       const totalHits = response.hits.total.valueOf();
       const userIds = response.hits.hits.map((item) => {
         const user = item._source as UserDto;
+        console.log(user);
         return user.id;
       });
       if (userIds.length > 0) {

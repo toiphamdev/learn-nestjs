@@ -91,4 +91,52 @@ export class OrderService {
       );
     }
   }
+
+  async updateStatusOrder(
+    id: number,
+    statusId: statusOrder,
+  ): Promise<{ message: string }> {
+    try {
+      const updated = await this.orderRepo.update({ statusId }, { id });
+      if (updated.affected > 0) {
+        return {
+          message: 'success',
+        };
+      } else {
+        throw new Error('Failed');
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Something went wrong!',
+      );
+    }
+  }
+
+  async updateStatusOrderByUser(
+    id: number,
+    userId: number,
+  ): Promise<{ message: string }> {
+    try {
+      const order = await this.orderRepo
+        .createQueryBuilder('order')
+        .leftJoinAndSelect('order.addressUser', 'addressUser')
+        .where('order.id =:id', { id })
+        .getOne();
+      if (userId == order.addressUser.userId) {
+        order.statusId = statusOrder.CANCEL;
+        await this.orderRepo.save(order);
+        return {
+          message: 'sucsess',
+        };
+      } else {
+        throw new Error("This isn't your order");
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Something went wrong!',
+      );
+    }
+  }
 }

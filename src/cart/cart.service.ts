@@ -85,7 +85,6 @@ export class CartService {
       const typeShip = await this.typeShipRepo.findOne({
         where: { id: typeShipId },
       });
-      console.log(typeShipId);
       let price = 0;
       let IdVoucherUsed: number = null;
       const arrProd = result?.detail as unknown as CartDetail[];
@@ -186,12 +185,12 @@ export class CartService {
           cartDetail.quantity + item.quantity < productDetailSize.quantity &&
           cartDetail.quantity + item.quantity > 0
         ) {
-          cartDetail.quantity = productDetailSize.quantity;
+          cartDetail.quantity = cartDetail.quantity + item.quantity;
           await this.cartDetailRepo.save(cartDetail);
         } else if (cartDetail.quantity + item.quantity <= 0) {
           await this.cartDetailRepo.remove(cartDetail);
         } else {
-          cartDetail.quantity = cartDetail.quantity + item.quantity;
+          cartDetail.quantity = productDetailSize.quantity;
           await this.cartDetailRepo.save(cartDetail);
         }
       } else {

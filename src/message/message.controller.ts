@@ -1,18 +1,29 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
 import { MessageService } from './message.service';
 import { Message } from './entities/message.entity';
 import { RoomMessage } from './entities/room-message.entity';
+import { JwtAuthGuard } from 'src/auth/guard';
+import { Request } from 'express';
 
 @Controller('room-messages')
 export class RoomMessageController {
   constructor(private readonly messageService: MessageService) {}
 
   @Post('create')
+  @UseGuards(JwtAuthGuard)
   async createRoomMessage(
-    @Body('userOneId') userOneId: number,
+    @Req() req: Request,
     @Body('userTwoId') userTwoId: number,
   ): Promise<RoomMessage> {
-    return this.messageService.createRoomMessage(userOneId, userTwoId);
+    return this.messageService.createRoomMessage(req?.user['id'], userTwoId);
   }
 
   @Post('message')
