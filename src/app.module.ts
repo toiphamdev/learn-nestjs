@@ -26,6 +26,7 @@ import { ConfigModule } from '@nestjs/config';
 import { SupplierModule } from './supplier/supplier.module';
 import { CartModule } from './cart/cart.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     SupplierModule,
     CartModule,
     DashboardModule,
+    MailModule,
     // LikeListModule,
   ],
   controllers: [AppController],

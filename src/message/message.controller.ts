@@ -34,15 +34,14 @@ export class RoomMessageController {
   ): Promise<Message> {
     return this.messageService.createMessage(userId, roomId, text);
   }
-
-  @Get(':roomId')
-  getRoomMessages(@Param('roomId') roomId: number): Promise<RoomMessage> {
-    return this.messageService.getRoomMessages(roomId);
-  }
-
   @Get('/rooms')
   @UseGuards(JwtAuthGuard)
   getAllRooms(@Req() req: Request) {
-    return this.messageService.getRoomsByUserId(req.user['id']);
+    const userId: number = req.user['id'];
+    return this.messageService.getRoomsByUserId(userId);
+  }
+  @Get('messages/:roomId')
+  getRoomMessages(@Param('roomId') roomId: number): Promise<RoomMessage> {
+    return this.messageService.getRoomMessages(roomId);
   }
 }
