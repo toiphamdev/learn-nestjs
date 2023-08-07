@@ -57,7 +57,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       text,
     );
     const messageReceived = await this.messageService.getAMessage(message.id);
-    client.emit('unReadMark', { userIdReceive });
+    const totalRoomUnRead = await this.messageService.unMarkRead(userIdReceive);
+    client.emit('unReadMark', { userIdReceive, totalRoomUnRead });
     // // Gửi tin nhắn tới tất cả các người dùng trong phòng, ngoại trừ người gửi
     client.to(`room:${roomId}`).emit('message', messageReceived, () => {
       client.emit('messSent', messageReceived);
@@ -78,5 +79,11 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const { userId, roomId, typing } = data;
     console.log(typing);
     client.to(`room:${roomId}`).emit('typing', { userId, typing });
+  }
+
+  @SubscribeMessage('unReadCheck')
+  async handleUnReadCheck(client: Socket, data: { userId: number }) {
+    const totalRoomUnRead = await this.messageService.unMarkRead(data.userId);
+    client.emit('unReadMark', { userIdReceive: data.userId, totalRoomUnRead });
   }
 }

@@ -71,7 +71,7 @@ export class MessageService {
   ): Promise<Message[]> {
     try {
       const read = await this.messageRepository.update(
-        { roomId, userId: Not(userId), unRead: true },
+        { roomId, userId: userId, unRead: true },
         { unRead: false },
       );
       const query = this.messageRepository
@@ -174,6 +174,27 @@ export class MessageService {
         { id },
         { unRead: false },
       );
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong');
+    }
+  }
+
+  async unMarkRead(userId: number): Promise<number> {
+    try {
+      const query = this.roomMessageRepository
+        .createQueryBuilder('room_message')
+        .leftJoinAndSelect('room_message.messages', 'message')
+        .where('room_message.userOneId = :id OR room_message.userTwoId = :id', {
+          id: userId,
+        })
+        .andWhere('message.unRead = true')
+        .groupBy('room_message.id')
+        .having('COUNT(message.id) > 0');
+
+      const unreadRoomCount = await query.getCount();
+
+      return unreadRoomCount;
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong');
