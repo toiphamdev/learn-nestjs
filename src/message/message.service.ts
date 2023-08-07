@@ -1,6 +1,6 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 import { Message } from './entities/message.entity';
 import { RoomMessage } from './entities/room-message.entity';
 
@@ -63,8 +63,12 @@ export class MessageService {
     }
   }
 
-  async getRoomMessages(roomId: number): Promise<RoomMessage> {
+  async getRoomMessages(roomId: number, userId: number): Promise<RoomMessage> {
     try {
+      const read = await this.messageRepository.update(
+        { roomId, userId: Not(userId), unRead: true },
+        { unRead: false },
+      );
       return await this.roomMessageRepository
         .createQueryBuilder('room_message')
         .leftJoinAndSelect('room_message.messages', 'message')
@@ -123,6 +127,17 @@ export class MessageService {
         ])
         .getMany();
       return rooms;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong');
+    }
+  }
+  async markRead(id: number): Promise<void> {
+    try {
+      const read = await this.messageRepository.update(
+        { id },
+        { unRead: false },
+      );
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong');

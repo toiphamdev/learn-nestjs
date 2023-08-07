@@ -26,11 +26,14 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('join')
-  async handleJoin(client: Socket, data: { roomId: number }) {
-    const { roomId } = data;
+  async handleJoin(client: Socket, data: { userId: number; roomId: number }) {
+    const { userId, roomId } = data;
     // Xử lý khi một người dùng tham gia vào cuộc hội thoại
     client.join(`room:${roomId}`); // Tham gia vào phòng với roomId cụ thể
-    const roomMessages = await this.messageService.getRoomMessages(roomId);
+    const roomMessages = await this.messageService.getRoomMessages(
+      roomId,
+      userId,
+    );
     client.emit('roomMessages', roomMessages); // Gửi danh sách tin nhắn trong phòng cho người dùng
   }
 
@@ -54,6 +57,13 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       client.emit('messSent', messageReceived);
     });
   }
+
+  @SubscribeMessage('read')
+  async markRead(data: { id: number }) {
+    const read = await this.messageService.markRead(data.id);
+    console.log(read);
+  }
+
   @SubscribeMessage('typing')
   handleOntyping(
     client: Socket,
