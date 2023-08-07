@@ -7,7 +7,6 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { MessageService } from '../message/message.service';
-import { Message } from 'src/message/entities/message.entity';
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -33,6 +32,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const roomMessages = await this.messageService.getRoomMessages(
       roomId,
       userId,
+      1,
+      10,
     );
     client.emit('roomMessages', roomMessages); // Gửi danh sách tin nhắn trong phòng cho người dùng
   }

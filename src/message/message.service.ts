@@ -63,19 +63,27 @@ export class MessageService {
     }
   }
 
-  async getRoomMessages(roomId: number, userId: number): Promise<RoomMessage> {
+  async getRoomMessages(
+    roomId: number,
+    userId: number,
+    page: number,
+    pageSize: number,
+  ): Promise<Message[]> {
     try {
       const read = await this.messageRepository.update(
         { roomId, userId: Not(userId), unRead: true },
         { unRead: false },
       );
-      return await this.roomMessageRepository
-        .createQueryBuilder('room_message')
-        .leftJoinAndSelect('room_message.messages', 'message')
+      const query = this.messageRepository
+        .createQueryBuilder('message')
         .leftJoinAndSelect('message.user', 'user')
-        .where('room_message.id = :id', { id: roomId })
-        .orderBy('message.createdAt', 'ASC')
-        .getOne();
+        .where('message.roomId = :id', { id: roomId })
+        .orderBy('message.createdAt', 'DESC');
+
+      const skip = (page - 1) * pageSize;
+      query.skip(skip).take(pageSize);
+      const data = await query.getMany();
+      return data.reverse();
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong');
@@ -94,7 +102,7 @@ export class MessageService {
     }
   }
 
-  async getRoomsByUserId(userId: number): Promise<RoomMessage[]> {
+  async getRoomsByUserId(userId: number) {
     try {
       const rooms = await this.roomMessageRepository
         .createQueryBuilder('room-message')
@@ -107,7 +115,21 @@ export class MessageService {
           'userTwo.image',
         ])
         .getMany();
-      return rooms;
+      const roomsWithUnreadCount = await Promise.all(
+        rooms.map(async (room) => {
+          const unreadCount = await this.messageRepository.count({
+            where: {
+              roomId: room.id,
+              userId: userId,
+              unRead: true,
+            },
+          });
+
+          return { ...room, unreadCount };
+        }),
+      );
+
+      return roomsWithUnreadCount;
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong');
@@ -126,7 +148,21 @@ export class MessageService {
           'userOne.image',
         ])
         .getMany();
-      return rooms;
+      const roomsWithUnreadCount = await Promise.all(
+        rooms.map(async (room) => {
+          const unreadCount = await this.messageRepository.count({
+            where: {
+              roomId: room.id,
+              userId: userId,
+              unRead: true,
+            },
+          });
+
+          return { ...room, unreadCount };
+        }),
+      );
+
+      return roomsWithUnreadCount;
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong');
