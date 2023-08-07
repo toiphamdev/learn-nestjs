@@ -109,4 +109,23 @@ export class MessageService {
       throw new ForbiddenException('Something went wrong');
     }
   }
+  async getRoomsByAdminId(userId: number): Promise<RoomMessage[]> {
+    try {
+      const rooms = await this.roomMessageRepository
+        .createQueryBuilder('room-message')
+        .leftJoinAndSelect('room-message.userOne', 'userOne')
+        .where('room-message.userTwoId =:id', { id: userId })
+        .select([
+          'room-message',
+          'userOne.firstName',
+          'userOne.lastName',
+          'userOne.image',
+        ])
+        .getMany();
+      return rooms;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong');
+    }
+  }
 }

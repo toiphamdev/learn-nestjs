@@ -26,8 +26,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('join')
-  async handleJoin(client: Socket, data: { userId: number; roomId: number }) {
-    const { userId, roomId } = data;
+  async handleJoin(client: Socket, data: { roomId: number }) {
+    const { roomId } = data;
     // Xử lý khi một người dùng tham gia vào cuộc hội thoại
     client.join(`room:${roomId}`); // Tham gia vào phòng với roomId cụ thể
     const roomMessages = await this.messageService.getRoomMessages(roomId);

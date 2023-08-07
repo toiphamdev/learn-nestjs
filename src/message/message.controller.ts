@@ -27,12 +27,13 @@ export class RoomMessageController {
   }
 
   @Post('message')
+  @UseGuards(JwtAuthGuard)
   createMessage(
-    @Body('userId') userId: number,
     @Body('roomId') roomId: number,
     @Body('text') text: string,
+    @Req() req: Request,
   ): Promise<Message> {
-    return this.messageService.createMessage(userId, roomId, text);
+    return this.messageService.createMessage(req.user['id'], roomId, text);
   }
   @Get('messages/:roomId')
   getRoomMessages(@Param('roomId') roomId: number) {
@@ -44,5 +45,11 @@ export class RoomMessageController {
   getAllRooms(@Req() req: Request) {
     const userId: number = req.user['id'];
     return this.messageService.getRoomsByUserId(userId);
+  }
+  @Get('/rooms-admin')
+  @UseGuards(JwtAuthGuard)
+  getAllAdminRooms(@Req() req: Request) {
+    const userId: number = req.user['id'];
+    return this.messageService.getRoomsByAdminId(userId);
   }
 }
