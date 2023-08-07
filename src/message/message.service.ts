@@ -92,12 +92,17 @@ export class MessageService {
 
   async getRoomsByUserId(userId: number): Promise<RoomMessage[]> {
     try {
-      const rooms = await this.roomMessageRepository.find({
-        where: {
-          userOneId: userId,
-        },
-        order: { createdAt: 'DESC' },
-      });
+      const rooms = await this.roomMessageRepository
+        .createQueryBuilder('room-message')
+        .leftJoinAndSelect('room-message.userTwo', 'userTwo')
+        .where('room-message.userOneId =:id', { id: userId })
+        .select([
+          'room-message',
+          'userTwo.firstName',
+          'userTwo.lastName',
+          'userTwo.image',
+        ])
+        .getMany();
       return rooms;
     } catch (error) {
       console.log(error);
