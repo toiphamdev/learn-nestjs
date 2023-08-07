@@ -41,18 +41,23 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('message')
   async handleMessage(
     client: Socket,
-    data: { userId: number; roomId: number; text: string },
+    data: {
+      userIdSend: number;
+      userIdReceive: number;
+      roomId: number;
+      text: string;
+    },
   ) {
     // console.log(data, ack);
-    const { userId, roomId, text } = data;
+    const { userIdSend, userIdReceive, roomId, text } = data;
     // Xử lý khi một người dùng gửi tin nhắn
     const message = await this.messageService.createMessage(
-      userId,
+      userIdSend,
       roomId,
       text,
     );
     const messageReceived = await this.messageService.getAMessage(message.id);
-
+    client.emit('unReadMark', { userIdReceive });
     // // Gửi tin nhắn tới tất cả các người dùng trong phòng, ngoại trừ người gửi
     client.to(`room:${roomId}`).emit('message', messageReceived, () => {
       client.emit('messSent', messageReceived);
