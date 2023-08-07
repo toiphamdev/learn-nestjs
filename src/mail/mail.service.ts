@@ -10,7 +10,7 @@ export class MailService {
       const email = await this.mailerService.sendMail({
         to: emailToSend,
         from: 'TĐfashion',
-        subject: 'Testing Nest Mailermodule with template ✔',
+        subject: 'Confirm your email',
         template: 'welcome', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
         context: {
           // Data to be sent to template engine.

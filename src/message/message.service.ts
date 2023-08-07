@@ -70,7 +70,7 @@ export class MessageService {
         .leftJoinAndSelect('room_message.messages', 'message')
         .leftJoinAndSelect('message.user', 'user')
         .where('room_message.id = :id', { id: roomId })
-        .orderBy('createdAt', 'ASC')
+        .orderBy('message.createdAt', 'ASC')
         .getOne();
     } catch (error) {
       console.log(error);
