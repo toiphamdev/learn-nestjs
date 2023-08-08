@@ -57,8 +57,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       text,
     );
     const messageReceived = await this.messageService.getAMessage(message.id);
-    const totalRoomUnRead = await this.messageService.unMarkRead(userIdReceive);
-    this.server.emit('unReadMark', { userId: userIdSend, totalRoomUnRead });
+    this.server.emit('pleaseCheck', { userId: userIdReceive });
     // // Gửi tin nhắn tới tất cả các người dùng trong phòng, ngoại trừ người gửi
     client.to(`room:${roomId}`).emit('message', messageReceived, () => {
       client.emit('messSent', messageReceived);
