@@ -52,4 +52,9 @@ export class RoomMessageController {
     const userId: number = req.user['id'];
     return this.messageService.getRoomsByAdminId(userId);
   }
+
+  @Get('/test')
+  getCount(@Body() body: { userId: number }) {
+    return this.messageService.unMarkRead(body.userId);
+  }
 }

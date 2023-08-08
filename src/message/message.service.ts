@@ -195,7 +195,7 @@ export class MessageService {
         .createQueryBuilder('room_message')
         .leftJoinAndSelect('room_message.messages', 'message')
         .where(
-          '(room_message.userOneId = :userId OR room_message.userTwoId = :userId) AND message.unRead = :unRead',
+          '(room_message.userOneId = :userId AND message.userId = room_message.userTwoId AND message.unRead = :unRead) OR (room_message.userTwoId = :userId AND message.userId = room_message.userOneId AND message.unRead = :unRead) ',
           {
             userId: userId,
             unRead: true,
