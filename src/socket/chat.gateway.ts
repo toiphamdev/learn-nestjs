@@ -35,6 +35,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       1,
       10,
     );
+    client
+      .to(`room:${data.roomId}`)
+      .emit('AlreadyRead', { userId: data.userId });
     client.emit('roomMessages', roomMessages); // Gửi danh sách tin nhắn trong phòng cho người dùng
   }
 
@@ -65,9 +68,14 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('read')
-  async markRead(data: { id: number }) {
+  async markRead(
+    client: Socket,
+    data: { id: number; roomId: number; userId: number },
+  ) {
     const read = await this.messageService.markRead(data.id);
-    console.log(read);
+    client
+      .to(`room:${data.roomId}`)
+      .emit('AlreadyRead', { userId: data.userId });
   }
 
   @SubscribeMessage('typing')
