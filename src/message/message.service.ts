@@ -191,19 +191,17 @@ export class MessageService {
 
   async unMarkRead(userId: number): Promise<number> {
     try {
-      const query = this.roomMessageRepository
-        .createQueryBuilder('room_message')
-        .leftJoinAndSelect('room_message.messages', 'message')
-        .where('room_message.userOneId = :id OR room_message.userTwoId = :id', {
-          id: userId,
-        })
-        .andWhere('message.unRead = true')
-        .groupBy('room_message.id')
-        .having('COUNT(message.id) > 0');
+      const query = await this.messageRepository.find({ where: { userId } });
 
-      const unreadRoomCount = await query.getCount();
+      const uniqueRoomIds = new Set();
 
-      return unreadRoomCount;
+      // Lặp qua mảng query và thêm roomId vào Set
+      for (const item of query) {
+        uniqueRoomIds.add(item.roomId);
+      }
+
+      const numberOfUniqueRoomIds = uniqueRoomIds.size;
+      return numberOfUniqueRoomIds;
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong');

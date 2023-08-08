@@ -13,6 +13,8 @@ import { SearchUsersDto } from './dto/search-user.dto';
 import { Comment } from 'src/comment/entities/comment.entity';
 import { VoucherService } from 'src/voucher/voucher.service';
 import e from 'express';
+import { MailService } from 'src/mail/mail.service';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class UserService {
@@ -22,6 +24,8 @@ export class UserService {
     private readonly commentRepo: Repository<Comment>,
     private readonly searchService: SearchService,
     private readonly voucherService: VoucherService,
+    private readonly mailService: MailService,
+    private readonly authService: AuthService,
   ) {}
   async createUser(user: UserDto): Promise<UserDto> {
     try {
@@ -241,6 +245,20 @@ export class UserService {
       return {
         message: 'success',
       };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
+  async verifyEmail(userEmail: string) {
+    try {
+      const token = this.authService.generateTokenEmail(userEmail);
+      // const update = await this.userRespository.update({email:userEmail},{token:token});
+      // if(update.affected>0){
+      //   this.mailService.sendEmailConfirm(userEmail,token)
+      // }
     } catch (error) {
       console.log(error);
       throw new ForbiddenException(

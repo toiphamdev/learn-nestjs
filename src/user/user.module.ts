@@ -8,7 +8,7 @@ import { SearchModule } from 'src/search/search.module';
 import { Comment } from 'src/comment/entities/comment.entity';
 import { VoucherModule } from 'src/voucher/voucher.module';
 import { MailModule } from 'src/mail/mail.module';
-import { AuthService } from 'src/auth/auth.service';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { AuthService } from 'src/auth/auth.service';
     SearchModule,
     VoucherModule,
     MailModule,
-    AuthService,
+    AuthModule,
   ],
   providers: [UserService, JwtAuthGuard],
   controllers: [UserController],
