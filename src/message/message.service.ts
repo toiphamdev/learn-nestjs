@@ -129,7 +129,7 @@ export class MessageService {
           const unreadCount = await this.messageRepository.count({
             where: {
               roomId: room.id,
-              userId: userId,
+              userId: room.userTwoId,
               unRead: true,
             },
           });
@@ -162,7 +162,7 @@ export class MessageService {
           const unreadCount = await this.messageRepository.count({
             where: {
               roomId: room.id,
-              userId: userId,
+              userId: room.userOneId,
               unRead: true,
             },
           });
