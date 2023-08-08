@@ -46,6 +46,16 @@ export class AuthService {
     );
     return accessToken;
   }
+  generateTokenEmail(email: string): string {
+    const accessToken = this.jwtService.sign(
+      { email },
+      {
+        secret: process.env.JWT_SECRET,
+        expiresIn: process.env.EX_TIME_VERIFY,
+      },
+    );
+    return accessToken;
+  }
   savedCookie(email: string, id: number, res: Response): void {
     const refreshToken = this.jwtService.sign(
       { email, id },

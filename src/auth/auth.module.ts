@@ -13,5 +13,6 @@ import { JwtCookieStrategy } from './strategy';
   imports: [TypeOrmModule.forFeature([User]), PassportModule, JwtModule],
   providers: [AuthService, LocalStrategy, JwtStrategy, JwtCookieStrategy],
   controllers: [AuthController],
+  exports: [AuthService],
 })
 export class AuthModule {}

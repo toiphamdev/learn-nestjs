@@ -70,9 +70,18 @@ export class MessageService {
     pageSize: number,
   ): Promise<Message[]> {
     try {
-      const read = await this.messageRepository.update(
-        { roomId, userId: userId, unRead: true },
-        { unRead: false },
+      const reads = await this.messageRepository.find({
+        where: {
+          roomId,
+          userId,
+          unRead: true,
+        },
+      });
+      Promise.all(
+        reads.map(async (item) => {
+          item.unRead = false;
+          await this.messageRepository.save(item);
+        }),
       );
       const query = this.messageRepository
         .createQueryBuilder('message')
