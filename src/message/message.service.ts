@@ -189,22 +189,22 @@ export class MessageService {
     }
   }
 
-  async unMarkRead(userId: number): Promise<number> {
+  async unMarkRead(userId: number) {
     try {
       const query = this.roomMessageRepository
         .createQueryBuilder('room_message')
         .leftJoinAndSelect('room_message.messages', 'message')
         .where(
-          `(room_message.userOneId = :userId AND message.userId = room_message.userTwoId) OR (room_message.userTwoId = :userId AND message.userId = room_message.userOneId) AND message.unRead = :unRead`,
+          '(room_message.userOneId = :userId OR room_message.userTwoId = :userId) AND message.unRead = :unRead',
           {
             userId: userId,
             unRead: true,
           },
         )
-        .groupBy('room_message.id');
+        .groupBy('room_message.id')
+        .having('COUNT(message.id) > 0');
 
       const unreadMessageCount = await query.getCount();
-
       return unreadMessageCount;
     } catch (error) {
       console.log(error);
