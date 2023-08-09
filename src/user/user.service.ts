@@ -252,18 +252,51 @@ export class UserService {
       );
     }
   }
-  async verifyEmail(userEmail: string) {
+  async sendVerifyEmail(userEmail: string) {
     try {
       const token = this.authService.generateTokenEmail(userEmail);
-      // const update = await this.userRespository.update({email:userEmail},{token:token});
-      // if(update.affected>0){
-      //   this.mailService.sendEmailConfirm(userEmail,token)
-      // }
+      const update = await this.userRespository.update(
+        { email: userEmail },
+        { token: token },
+      );
+      if (update.affected > 0) {
+        this.mailService.sendEmailConfirm(userEmail, token);
+        return { message: 'success' };
+      }
     } catch (error) {
       console.log(error);
       throw new ForbiddenException(
         error.message ? error.message : 'Somethings went wrong!',
       );
     }
+  }
+  async verifyEmail(token: string) {
+    try {
+      const decode = await this.authService.decode(token);
+      const user = await this.userRespository.findOne({
+        where: { email: decode.email },
+      });
+      if (token == user.token) {
+        user.token = '';
+        user.isActiveEmail = true;
+        await this.userRespository.save(user);
+        return {
+          message: 'success',
+        };
+      } else {
+        throw new Error('This token is not correct');
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
+  async isVerifyEmail(userId: number) {
+    const user = await this.userRespository.findOne({
+      where: { id: userId, isActiveEmail: true },
+    });
+    return user ? true : false;
   }
 }

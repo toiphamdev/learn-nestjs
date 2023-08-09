@@ -11,6 +11,7 @@ import { OrderDto } from './dto/order.dto';
 import { statusOrder } from 'src/allcode/allcode.enum';
 import { ProductService } from 'src/product/product.service';
 import { VoucherUsed } from 'src/voucher/entities/voucher-used.entity';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class OrderService {
@@ -23,10 +24,15 @@ export class OrderService {
     private readonly voucherUsed: Repository<VoucherUsed>,
     private readonly productService: ProductService,
     private readonly cartService: CartService,
+    private readonly userService: UserService,
   ) {}
 
   async createOrder(userId: number, order: OrderDto) {
     try {
+      const verify = this.userService.isVerifyEmail(userId);
+      if (!verify) {
+        throw new Error('Please verify your email to create order');
+      }
       const cart = await this.cartService.initCart(
         userId,
         order.voucherCode,

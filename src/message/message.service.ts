@@ -1,6 +1,6 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Not, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Message } from './entities/message.entity';
 import { RoomMessage } from './entities/room-message.entity';
 
@@ -50,6 +50,15 @@ export class MessageService {
     userTwoId: number,
   ): Promise<RoomMessage> {
     try {
+      const exist = await this.roomMessageRepository.exist({
+        where: {
+          userOneId,
+          userTwoId,
+        },
+      });
+      if (exist) {
+        throw new Error('Đã có phòng');
+      }
       const roomMessage = this.roomMessageRepository.create({
         userOneId,
         userTwoId,
@@ -121,6 +130,7 @@ export class MessageService {
           'room-message',
           'userTwo.firstName',
           'userTwo.lastName',
+          'userTwo.statusId',
           'userTwo.image',
         ])
         .getMany();
@@ -154,6 +164,7 @@ export class MessageService {
           'room-message',
           'userOne.firstName',
           'userOne.lastName',
+          'userOne.statusId',
           'userOne.image',
         ])
         .getMany();

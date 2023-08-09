@@ -60,4 +60,13 @@ export class UserController {
     const userId = req.user['id'];
     return this.userService.addToVoucherList(userId, param.voucherCode);
   }
+  @Post('/verify-email')
+  @UseGuards(JwtAuthGuard)
+  sendVerifyEmail(@Req() req: Request) {
+    return this.userService.sendVerifyEmail(req?.user['email']);
+  }
+  @Patch('/verify/:token')
+  verifyEmail(@Param() param: { token: string }) {
+    return this.userService.verifyEmail(param.token);
+  }
 }
