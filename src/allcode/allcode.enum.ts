@@ -1,7 +1,7 @@
 export enum statusEnum {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
-  DELETE = 'DELETE',
+  DELETED = 'DELETED',
   DRAFT = 'DRAFT',
 }
 export enum statusOrder {

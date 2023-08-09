@@ -200,6 +200,8 @@ export class BlogService {
           'subject.value',
         ])
         .getOne();
+      blog.view = blog.view + 1;
+      await this.blogRepository.save(blog);
       return blog;
     } catch (error) {
       console.log(error);

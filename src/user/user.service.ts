@@ -12,9 +12,11 @@ import { removeDiacritics } from 'src/utils/string.utils';
 import { SearchUsersDto } from './dto/search-user.dto';
 import { Comment } from 'src/comment/entities/comment.entity';
 import { VoucherService } from 'src/voucher/voucher.service';
-import e from 'express';
 import { MailService } from 'src/mail/mail.service';
 import { AuthService } from 'src/auth/auth.service';
+import { UserAddress } from './entities/user-address.entity';
+import { statusEnum } from 'src/allcode/allcode.enum';
+import { UserAddressDto } from './dto/user-address.dto';
 
 @Injectable()
 export class UserService {
@@ -22,6 +24,8 @@ export class UserService {
     @InjectRepository(User) private readonly userRespository: Repository<User>,
     @InjectRepository(Comment)
     private readonly commentRepo: Repository<Comment>,
+    @InjectRepository(UserAddress)
+    private readonly userAddRepo: Repository<UserAddress>,
     private readonly searchService: SearchService,
     private readonly voucherService: VoucherService,
     private readonly mailService: MailService,
@@ -298,5 +302,73 @@ export class UserService {
       where: { id: userId, isActiveEmail: true },
     });
     return user ? true : false;
+  }
+
+  async createAdd(address: UserAddressDto): Promise<{ message: string }> {
+    try {
+      address.createdAt = new Date();
+      address.updatedAt = new Date();
+      address.statusId = statusEnum.ACTIVE;
+      const createdAdd = await this.userAddRepo.save(address);
+      return { message: 'success' };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
+  async updateAdd(
+    id: number,
+    address: UserAddressDto,
+  ): Promise<{ message: string }> {
+    try {
+      address.updatedAt = new Date();
+      const updatedAdd = await this.userAddRepo.update(
+        { id, userId: address.userId },
+        address,
+      );
+      if (updatedAdd.affected > 0) {
+        return { message: 'success' };
+      } else {
+        throw new Error('Not found');
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
+  async deleteAdd(id: number): Promise<{ message: string }> {
+    try {
+      const updatedAdd = await this.userAddRepo.update(
+        { id },
+        { statusId: statusEnum.DELETED },
+      );
+      if (updatedAdd.affected > 0) {
+        return { message: 'success' };
+      } else {
+        throw new Error('Not found');
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
+
+  async getAddByUserId(userId: number): Promise<UserAddress[]> {
+    try {
+      const adds = await this.userAddRepo.find({
+        where: { userId, statusId: statusEnum.ACTIVE },
+      });
+      return adds;
+    } catch (error) {
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
   }
 }
