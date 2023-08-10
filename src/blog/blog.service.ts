@@ -105,12 +105,13 @@ export class BlogService {
         const q = slugify(removeDiacritics(query.name.toLowerCase()), options);
         query.name = q;
       }
+
       const filler = [];
       if (query.statusId) {
         filler.push({ term: { statusId: query.statusId } });
       }
       if (query.subjectId) {
-        filler.push({ term: { statusId: query.subjectId } });
+        filler.push({ term: { subjectId: query.subjectId } });
       }
       const must = query.name
         ? [
