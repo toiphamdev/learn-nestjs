@@ -153,7 +153,7 @@ export class BlogService {
       if (blogIds.length > 0) {
         const blogs = await this.blogRepository
           .createQueryBuilder('blog')
-          .leftJoinAndSelect('blog.comments', 'comments')
+          .leftJoinAndSelect('blog.subject', 'subject')
           .andWhereInIds(blogIds)
           .orderBy(
             `CASE blog.id ${blogIds
