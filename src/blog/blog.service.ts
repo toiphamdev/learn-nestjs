@@ -8,6 +8,7 @@ import { removeDiacritics } from 'src/utils/string.utils';
 import slugify from 'slugify';
 import { SearchBlogDto } from './dto/searchBlog.dto';
 import * as fs from 'fs-extra';
+import { statusEnum } from 'src/allcode/allcode.enum';
 
 @Injectable()
 export class BlogService {
@@ -112,6 +113,12 @@ export class BlogService {
       }
       if (query.subjectId) {
         filler.push({ term: { subjectId: query.subjectId } });
+      }
+      if (query.notDel) {
+        // Check if notDel is truthy
+        filler.push({
+          bool: { must_not: [{ term: { statusId: statusEnum.DELETED } }] },
+        });
       }
       const must = query.name
         ? [

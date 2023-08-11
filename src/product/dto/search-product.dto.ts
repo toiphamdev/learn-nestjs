@@ -14,4 +14,5 @@ export class SearchProductDto {
   colors?: string[] | string;
   createdAt: any;
   material?: string;
+  notDel?: boolean;
 }

@@ -4,4 +4,5 @@ export class SearchBlogDto {
   name?: string;
   statusId?: string;
   subjectId?: string;
+  notDel?: boolean;
 }

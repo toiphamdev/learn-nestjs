@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Voucher } from './voucher.entity';
 import { Allcode } from 'src/allcode/entities/allcode.entity';
+import { statusEnum } from 'src/allcode/allcode.enum';
 
 @Entity()
 export class TypeVoucher {
@@ -26,6 +27,8 @@ export class TypeVoucher {
   minValue: number;
   @OneToMany(() => Voucher, (voucher) => voucher.typeVoucher)
   voucher: Voucher[];
+  @Column({ default: statusEnum.ACTIVE })
+  statusId: statusEnum;
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

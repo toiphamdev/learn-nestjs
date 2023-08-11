@@ -19,6 +19,7 @@ import { ProductDetailSize } from './entities/product-detail-size.entity';
 import { ProductDetailSizeDto } from './dto/product-detail-size.dto';
 import { Allcode } from 'src/allcode/entities/allcode.entity';
 import { getLeafCategoryCodes } from 'src/utils/to.utils';
+import { statusEnum } from 'src/allcode/allcode.enum';
 
 @Injectable()
 export class ProductService {
@@ -231,6 +232,12 @@ export class ProductService {
             type: 'CATEGORY',
           },
         });
+        if (query.notDel) {
+          // Check if notDel is truthy
+          filler.push({
+            bool: { must_not: [{ term: { statusId: statusEnum.DELETED } }] },
+          });
+        }
         const catToFind = getLeafCategoryCodes(query.categoryId, categories);
         filler.push({
           terms: {
@@ -379,6 +386,11 @@ export class ProductService {
         const catToFind = getLeafCategoryCodes(query.categoryId, categories);
         queryBuilder.andWhere('product.categoryId IN (:...categoryCodes)', {
           categoryCodes: catToFind,
+        });
+      }
+      if (query.notDel) {
+        queryBuilder.andWhere('product.statusId != :statusId', {
+          statusId: statusEnum.DELETED,
         });
       }
       if (query.statusId) {

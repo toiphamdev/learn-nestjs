@@ -101,7 +101,10 @@ export class CartService {
           where: { id: userId },
           relations: ['voucherList'],
         });
-        if (voucher && isValidDateRange(voucher.fromDate, voucher.toDate)) {
+        if (voucher) {
+          if (isValidDateRange(voucher.fromDate, voucher.toDate)) {
+            throw new Error('Thí Voucher is expried');
+          }
           const voucherExists = user.voucherList.some(
             (vou) => vou.id === voucher.id,
           );
