@@ -17,6 +17,7 @@ import { JwtAuthGuard } from '../auth/guard';
 import { Request } from 'express';
 import { SearchUsersDto } from './dto/search-user.dto';
 import { UserAddressDto } from './dto/user-address.dto';
+import { type } from 'os';
 
 @Controller('user')
 export class UserController {
@@ -63,11 +64,29 @@ export class UserController {
   @Post('/verify-email')
   @UseGuards(JwtAuthGuard)
   sendVerifyEmail(@Req() req: Request) {
-    return this.userService.sendVerifyEmail(req?.user['email']);
+    return this.userService.sendVerifyEmail(
+      req?.user['email'],
+      'EMAIL',
+      `${req?.user['firstName']} ${req?.user['lastName']}`,
+    );
   }
-  @Patch('/verify/:token')
+  @Post('/change-pass')
+  @UseGuards(JwtAuthGuard)
+  sendVerifyChangePass(@Req() req: Request) {
+    return this.userService.sendVerifyEmail(
+      req?.user['email'],
+      'PASS',
+      `${req?.user['firstName']} ${req?.user['lastName']}`,
+    );
+  }
+  @Patch('/verify')
   verifyEmail(@Body('token') token: string) {
     return this.userService.verifyEmail(token);
+  }
+
+  @Patch('/change-pass')
+  verifyPass(@Body('token') token: string, @Body('newPass') newPass: string) {
+    return this.userService.verifyPass(token, newPass);
   }
 
   @Post('/address')

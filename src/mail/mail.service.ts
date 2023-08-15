@@ -28,7 +28,7 @@ export class MailService {
       throw new ForbiddenException('Something went wrong');
     }
   }
-  async sendEmailConfirm(emailToSend: string, token: string) {
+  async sendEmailConfirm(emailToSend: string, token: string, userName: string) {
     try {
       const email = await this.mailerService.sendMail({
         to: emailToSend,
@@ -39,14 +39,35 @@ export class MailService {
           // Data to be sent to template engine.
           // url: `${process.env.CLIENT_URL}/verify/${token}`,
           verificationUrl: `${process.env.CLIENT_URL}/verify/${token}`,
-          code: 'cf1a3f828287',
-          username: 'john doe',
+          username: userName,
         },
       });
-      return email;
-      // return {
-      //   message: 'success',
-      // };
+      return {
+        message: 'success',
+      };
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException('Something went wrong');
+    }
+  }
+
+  async sendEmailChangePass(emailToSend: string, token: string, userName) {
+    try {
+      const email = await this.mailerService.sendMail({
+        to: emailToSend,
+        from: 'TĐ Shop',
+        subject: 'Đổi mật khẩu',
+        template: 'change-password', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
+        context: {
+          // Data to be sent to template engine.
+          // url: `${process.env.CLIENT_URL}/verify/${token}`,
+          verificationUrl: `${process.env.CLIENT_URL}/confirm/${token}`,
+          username: userName,
+        },
+      });
+      return {
+        message: 'success',
+      };
     } catch (error) {
       console.log(error);
       throw new ForbiddenException('Something went wrong');

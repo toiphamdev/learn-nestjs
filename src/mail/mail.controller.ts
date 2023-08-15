@@ -5,8 +5,12 @@ import { MailService } from './mail.service';
 export class MailController {
   constructor(private readonly mailService: MailService) {}
 
-  @Post('send-confirm-email')
-  sendEmailConfirm(@Body('email') email: string, @Body('token') token: string) {
-    return this.mailService.sendEmailConfirm(email, token);
-  }
+  // @Post('send-confirm-email')
+  // sendEmailConfirm(@Body('email') email: string, @Body('token') token: string) {
+  //   return this.mailService.sendEmailConfirm(email, token);
+  // }
+  // @Post('send-confirm-email')
+  // sendEmailConfirm(@Body('email') email: string, @Body('token') token: string,userName: string) {
+  //   return this.mailService.sendEmailConfirm(email, token, userName);
+  // }
 }

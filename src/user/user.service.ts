@@ -33,7 +33,7 @@ export class UserService {
   ) {}
   async createUser(user: UserDto): Promise<UserDto> {
     try {
-      const password = await bcrypt.hashSync(user.password, 10);
+      const password = bcrypt.hashSync(user.password, 10);
       user.password = password;
       user.createdAt = new Date();
       user.updatedAt = new Date();
@@ -265,7 +265,11 @@ export class UserService {
       );
     }
   }
-  async sendVerifyEmail(userEmail: string) {
+  async sendVerifyEmail(
+    userEmail: string,
+    type: 'EMAIL' | 'PASS',
+    userName: string,
+  ) {
     try {
       const token = this.authService.generateTokenEmail(userEmail);
       const update = await this.userRespository.update(
@@ -273,7 +277,13 @@ export class UserService {
         { token: token },
       );
       if (update.affected > 0) {
-        this.mailService.sendEmailConfirm(userEmail, token);
+        type === 'EMAIL'
+          ? await this.mailService.sendEmailConfirm(userEmail, token, userName)
+          : await this.mailService.sendEmailChangePass(
+              userEmail,
+              token,
+              userName,
+            );
         return { message: 'success' };
       }
     } catch (error) {
@@ -375,6 +385,33 @@ export class UserService {
       });
       return adds;
     } catch (error) {
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
+  async verifyPass(
+    token: string,
+    newPass: string,
+  ): Promise<{ message: string }> {
+    try {
+      const decode = await this.authService.decode(token);
+      const user = await this.userRespository.findOne({
+        where: { email: decode.email },
+      });
+      if (token == user.token) {
+        user.token = '';
+        const password = bcrypt.hashSync(newPass, 10);
+        user.password = password;
+        await this.userRespository.save(user);
+        return {
+          message: 'success',
+        };
+      } else {
+        throw new Error('This token is not correct');
+      }
+    } catch (error) {
+      console.log(error);
       throw new ForbiddenException(
         error.message ? error.message : 'Somethings went wrong!',
       );
