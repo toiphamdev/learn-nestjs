@@ -1,7 +1,6 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
 import { DateQuery } from './dto/dashboard.dto';
-import { query } from 'express';
 
 @Controller('dashboard')
 export class DashboardController {

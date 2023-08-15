@@ -1,4 +1,4 @@
-export class QueryVoucherDto {
+export interface QueryVoucherDto {
   page: number;
   size: number;
   typeVoucherId: number;

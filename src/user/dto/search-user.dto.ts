@@ -1,6 +1,6 @@
 import { Role } from '../entities/roles.enum';
 
-export class SearchUsersDto {
+export interface SearchUsersDto {
   name?: string;
   statusId?: string;
   size?: number;

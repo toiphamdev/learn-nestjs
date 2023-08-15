@@ -1,4 +1,4 @@
-export class VoucherDto {
+export interface VoucherDto {
   toDate: string;
   fromDate: string;
   typeVoucherId: number;

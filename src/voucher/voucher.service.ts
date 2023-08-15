@@ -8,6 +8,7 @@ import { VoucherDto } from './dto/voucher.dto';
 import { VoucherUsed } from './entities/voucher-used.entity';
 import { statusEnum } from 'src/allcode/allcode.enum';
 import { TypeVoucherDto } from './dto/type-voucher.dto';
+import { async } from 'rxjs';
 
 @Injectable()
 export class VoucherService {
@@ -205,5 +206,8 @@ export class VoucherService {
       console.log(error);
       throw new ForbiddenException('Something went wrong!');
     }
+  }
+  async updateAddToUserVoucherList(voucher: Voucher) {
+    return await this.voucherRepo.save(voucher);
   }
 }

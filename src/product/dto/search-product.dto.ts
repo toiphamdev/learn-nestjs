@@ -1,4 +1,4 @@
-export class SearchProductDto {
+export interface SearchProductDto {
   page: number;
   size: number;
   name?: string;

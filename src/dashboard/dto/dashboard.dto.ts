@@ -1,4 +1,4 @@
-export class DateQuery {
+export interface DateQuery {
   startDate: Date;
   endDate: Date;
 }

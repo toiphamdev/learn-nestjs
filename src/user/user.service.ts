@@ -229,6 +229,11 @@ export class UserService {
   async addToVoucherList(userId: number, voucherCode: string) {
     try {
       const voucher = await this.voucherService.getVoucherByCode(voucherCode);
+      if (!voucher) {
+        throw new Error('Voucher not found');
+      }
+      if (voucher.addToUserAmount == voucher.amount)
+        throw new Error('This voucher is not available');
       const usedvoucher = await this.voucherService.getVoucherUsed(
         userId,
         voucher.id,
@@ -236,16 +241,20 @@ export class UserService {
       const user = await this.userRespository
         .createQueryBuilder('user')
         .leftJoinAndSelect('user.voucherList', 'voucherList')
-
         .where('user.id =:userId', { userId })
         .getOne();
 
+      if (user.voucherList.some((v) => v.id === voucher.id)) {
+        throw new Error('You added this voucher before!');
+      }
       if (usedvoucher) {
         throw new Error('You already use this coupon');
       } else {
         user.voucherList.push(voucher);
+        voucher.addToUserAmount += 1;
+        await this.voucherService.updateAddToUserVoucherList(voucher);
+        await this.userRespository.save(user);
       }
-      await this.userRespository.save(user);
       return {
         message: 'success',
       };

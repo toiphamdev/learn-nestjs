@@ -1,4 +1,4 @@
-export class OrderDetailDto {
+export interface OrderDetailDto {
   orderId: number;
   productDetailSizeId: number;
   quantity: number;

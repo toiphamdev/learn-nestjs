@@ -1,4 +1,4 @@
-export class QueryCommentDto {
+export interface QueryCommentDto {
   productId?: number;
   page?: number;
   star?: number;

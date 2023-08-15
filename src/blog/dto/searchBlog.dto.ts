@@ -1,4 +1,4 @@
-export class SearchBlogDto {
+export interface SearchBlogDto {
   page?: number;
   size?: number;
   name?: string;

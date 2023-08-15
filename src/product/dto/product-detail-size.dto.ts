@@ -1,4 +1,4 @@
-export class ProductDetailSizeDto {
+export interface ProductDetailSizeDto {
   productDetailId: number;
   name: string;
   width: number;

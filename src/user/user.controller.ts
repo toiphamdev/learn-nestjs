@@ -56,12 +56,9 @@ export class UserController {
 
   @Patch('/voucher/add/:code')
   @UseGuards(JwtAuthGuard)
-  addToVoucherList(
-    @Param() param: { voucherCode: string },
-    @Req() req: Request,
-  ) {
+  addToVoucherList(@Param() param: { code: string }, @Req() req: Request) {
     const userId = req.user['id'];
-    return this.userService.addToVoucherList(userId, param.voucherCode);
+    return this.userService.addToVoucherList(userId, param.code);
   }
   @Post('/verify-email')
   @UseGuards(JwtAuthGuard)
@@ -69,8 +66,8 @@ export class UserController {
     return this.userService.sendVerifyEmail(req?.user['email']);
   }
   @Patch('/verify/:token')
-  verifyEmail(@Param() param: { token: string }) {
-    return this.userService.verifyEmail(param.token);
+  verifyEmail(@Body('token') token: string) {
+    return this.userService.verifyEmail(token);
   }
 
   @Post('/address')

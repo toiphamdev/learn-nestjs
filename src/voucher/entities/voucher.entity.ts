@@ -24,6 +24,8 @@ export class Voucher {
   typeVoucherId: number;
   @Column()
   amount: number;
+  @Column({ default: 0 })
+  addToUserAmount: number;
   @Column({ default: 'DRAFT' })
   statusId: string;
   @Column({ default: 0 })

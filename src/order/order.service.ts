@@ -12,6 +12,7 @@ import { statusOrder } from 'src/allcode/allcode.enum';
 import { ProductService } from 'src/product/product.service';
 import { VoucherUsed } from 'src/voucher/entities/voucher-used.entity';
 import { UserService } from 'src/user/user.service';
+import { Voucher } from 'src/voucher/entities/voucher.entity';
 
 @Injectable()
 export class OrderService {
@@ -22,6 +23,8 @@ export class OrderService {
     private readonly orderdetailRepo: Repository<OrderDetail>,
     @InjectRepository(VoucherUsed)
     private readonly voucherUsed: Repository<VoucherUsed>,
+    @InjectRepository(Voucher)
+    private readonly voucherRepo: Repository<Voucher>,
     private readonly productService: ProductService,
     private readonly cartService: CartService,
     private readonly userService: UserService,
@@ -79,6 +82,11 @@ export class OrderService {
         }
         await this.orderdetailRepo.save(data);
         if (result.voucherId) {
+          const voucher = await this.voucherRepo.findOne({
+            where: { id: result.voucherId },
+          });
+          voucher.usedAmount += 1;
+          await this.voucherRepo.save(voucher);
           await this.voucherUsed.save({
             userId: userId,
             voucherId: result.voucherId,
