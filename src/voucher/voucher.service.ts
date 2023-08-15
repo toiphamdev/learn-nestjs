@@ -40,6 +40,11 @@ export class VoucherService {
           statusId: statusEnum.DELETED,
         });
       }
+      if (query.statusId) {
+        queryBuilder.andWhere('voucher.statusId =:statusId', {
+          statusId: query.statusId,
+        });
+      }
       if (!query.page || !query.size) {
         query.page = 1;
         query.size = 10;

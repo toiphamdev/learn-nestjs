@@ -1,3 +1,5 @@
+import { statusEnum } from 'src/allcode/allcode.enum';
+
 export interface QueryVoucherDto {
   page: number;
   size: number;
@@ -6,4 +8,5 @@ export interface QueryVoucherDto {
   sortcreatedAt: 'DESC' | 'ASC';
   sortupdatedAt: 'DESC' | 'ASC';
   notDel: boolean;
+  statusId: statusEnum;
 }
