@@ -185,6 +185,13 @@ export class AllcodeSeed {
           updatedAt: new Date(),
         },
         {
+          code: 'WAIT_FOR_PAYMENT',
+          type: 'STATUS_ORDER',
+          value: 'Đã giao hàng',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
           code: 'CANCEL',
           type: 'STATUS_ORDER',
           value: 'Hủy đơn',

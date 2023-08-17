@@ -30,6 +30,8 @@ export class Order {
   orderDetails: OrderDetail[];
   @Column({ nullable: true })
   voucherId: number;
+  @Column({ default: 0 })
+  totalPrice: number;
   @Column({ nullable: true })
   note: string;
   @Column({ default: false })

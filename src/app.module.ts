@@ -27,6 +27,7 @@ import { SupplierModule } from './supplier/supplier.module';
 import { CartModule } from './cart/cart.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MailModule } from './mail/mail.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { MailModule } from './mail/mail.module';
     CartModule,
     DashboardModule,
     MailModule,
+    PaymentModule,
     // LikeListModule,
   ],
   controllers: [AppController],

@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title=title
+    link(rel='stylesheet', href='/stylesheets/jumbotron-narrow.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  body
+    div.container
+      div.header.clearfix
+        h3.text-muted VNPAY
+        img.d-flex.logo(src="/uploads/logo.webp", alt="logo")
+      block content
+      footer.footer
+        p &copy; VNPAY #{new Date().getFullYear()}

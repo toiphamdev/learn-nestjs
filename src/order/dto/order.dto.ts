@@ -9,6 +9,7 @@ export class OrderDto {
   voucherCode?: string;
   note?: string;
   isPaymentOnline: boolean;
+  type: 'PAYMENT' | 'COD';
   createdAt?: Date;
   updatedAt?: Date;
 }

@@ -9,15 +9,23 @@ import { ProductModule } from 'src/product/product.module';
 import { VoucherUsed } from 'src/voucher/entities/voucher-used.entity';
 import { UserModule } from 'src/user/user.module';
 import { Voucher } from 'src/voucher/entities/voucher.entity';
+import { TypeShip } from './entity/type-ship.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Order, OrderDetail, VoucherUsed, Voucher]),
+    TypeOrmModule.forFeature([
+      Order,
+      OrderDetail,
+      VoucherUsed,
+      Voucher,
+      TypeShip,
+    ]),
     CartModule,
     ProductModule,
     UserModule,
   ],
   controllers: [OrderController],
   providers: [OrderService],
+  exports: [OrderService],
 })
 export class OrderModule {}

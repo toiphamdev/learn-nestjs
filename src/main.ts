@@ -9,6 +9,8 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
+  app.setViewEngine('pug');
+  app.setBaseViewsDir(join(__dirname, '..', './src/payment/views'));
   app.enableCors({
     origin: [process.env.CLIENT_URL],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
