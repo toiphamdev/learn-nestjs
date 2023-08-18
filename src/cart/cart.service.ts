@@ -103,7 +103,7 @@ export class CartService {
         });
         if (voucher) {
           if (isValidDateRange(voucher.fromDate, voucher.toDate)) {
-            throw new Error('Thí Voucher is expried');
+            throw new Error('This Voucher is expried');
           }
           const voucherExists = user.voucherList.some(
             (vou) => vou.id === voucher.id,

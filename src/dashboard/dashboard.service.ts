@@ -56,40 +56,13 @@ export class DashboardService {
     const order = await this.orderRepo
       .createQueryBuilder('order')
       .where('order.id =:orderId', { orderId })
-      .leftJoinAndSelect('order.orderDetails', 'orderDetails')
-      .leftJoinAndSelect('orderDetails.productDetailSize', 'productDetailSize')
-      .leftJoinAndSelect('productDetailSize.productDetail', 'productDetail')
-      .leftJoinAndSelect('productDetail.product', 'product')
-      .leftJoinAndSelect('order.voucher', 'voucher')
-      .leftJoinAndSelect('voucher.typeVoucher', 'typeVoucher')
-      .leftJoinAndSelect('order.typeShip', 'typeShip')
       .getOne();
 
     if (!order) {
       throw new Error('Order not found.');
     }
 
-    let totalRevenue = 0;
-    for (const orderDetail of order.orderDetails) {
-      totalRevenue +=
-        orderDetail.productDetailSize.productDetail.discountPrice *
-        orderDetail.quantity;
-    }
-
-    if (order.voucherId) {
-      const totalRevenueWithVoucher =
-        order.voucher.typeVoucher.typeVoucherCode === KindVoucher.CASH
-          ? totalRevenue - order.voucher.typeVoucher.value
-          : totalRevenue -
-            (totalRevenue * order.voucher.typeVoucher.value) / 100;
-
-      return (
-        totalRevenueWithVoucher +
-        parseInt(order.typeShip.price as unknown as string)
-      );
-    }
-
-    return totalRevenue + parseInt(order.typeShip.price as unknown as string);
+    return order.totalPrice;
   }
   async getRevenueByInterval(
     startDate: Date,

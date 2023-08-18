@@ -61,7 +61,9 @@ export class OrderService {
         type === 'PAYMENT'
           ? statusOrder.WAIT_FOR_PAYMENT
           : statusOrder.WAIT_FOR_COMFIRMATION;
-      createOrder.totalPrice = cart.totalPrice;
+      createOrder.totalPrice = cart.voucherId
+        ? cart.useVoucherPrice
+        : cart.totalPrice;
 
       const savedOrder = await this.orderRepo.save(createOrder); // Step 1: Save the order to get the orderId
 
