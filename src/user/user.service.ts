@@ -422,6 +422,7 @@ export class UserService {
     try {
       const user = await this.userRespository.findOne({
         where: { id: userId },
+        relations: ['voucherList'],
       });
       const newVoucherList = user.voucherList.filter((voucher) => {
         return Number(voucher.id) !== Number(id);
