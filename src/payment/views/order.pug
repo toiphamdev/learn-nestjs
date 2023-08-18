@@ -11,6 +11,23 @@ block content
                 label(for='orderId') Mã hóa đơn
                 input.form-control#amount(name='orderId', disable=true , placeholder='Mã hóa đơn', value=orderId, readonly)
             div.form-group
+                label(for='bankCode') Chọn Phương thức thanh toán:
+                label.control-label
+                div.controls
+                    label.radio-inline
+                        input(type='radio', name='bankCode', id='defaultPaymentMethod', value='', checked='checked')
+                        | Cổng thanh toán VNPAYQR
+                    label.radio-inline
+                        input(type='radio', name='bankCode', id='vnpayqrPaymentMethod', value='VNPAYQR')
+                        | Thanh toán qua ứng dụng hỗ trợ VNPAYQR
+                    label.radio-inline
+                        input(type='radio', name='bankCode', id='vnbankPaymentMethod', value='VNBANK')
+                        | Thanh toán qua ATM-Tài khoản ngân hàng nội địa
+                    label.radio-inline
+                        input(type='radio', name='bankCode', id='intcardPaymentMethod', value='INTCARD')
+                        | Thanh toán qua thẻ quốc tế
+
+            div.form-group
                 label(for='language') Ngôn ngữ
                 label.control-label
                 div.controls
