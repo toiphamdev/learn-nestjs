@@ -1,10 +1,25 @@
 
-extends layout
 
-block content
-    if code == "00"
-        p(style="text-align: center") GD thành công
-    else
-        p(style="text-align: center; color: red") GD thất bại
-    p(style="text-align: center")
-        a.btn.btn-default(href=href) Về danh sách
+html
+  head
+    title=title
+    link(rel='stylesheet', href='/stylesheets/jumbotron-narrow.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  body
+    div.container.body-1
+      div.header.clearfix.text-center
+        img.logo-2(src="/uploads/logo.webp", alt="logo")
+        block content
+            if code == "00"
+                .text-center
+                    .success-icon &#10004;
+                    .message Thanh toán thành công!
+                    p(style="text-align: center")
+                    a.btn.btn-primary(href=href) Về danh sách đơn hàng
+            else
+                .text-center
+                    .failed-icon &#10060;
+                    .message Thanh toán thất bại!
+                    a.btn.btn-primary(href=href) Về danh sách đơn hàng
+      footer.footer
+        p &copy; VNPAY #{new Date().getFullYear()}

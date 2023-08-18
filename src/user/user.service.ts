@@ -17,6 +17,7 @@ import { AuthService } from 'src/auth/auth.service';
 import { UserAddress } from './entities/user-address.entity';
 import { statusEnum } from 'src/allcode/allcode.enum';
 import { UserAddressDto } from './dto/user-address.dto';
+import * as fs from 'fs-extra';
 
 @Injectable()
 export class UserService {
@@ -429,6 +430,32 @@ export class UserService {
       });
       user.voucherList = newVoucherList;
       await this.userRespository.save(user);
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
+  async updateUser(user: UserDto): Promise<{ message: string }> {
+    try {
+      const oldUser = await this.userRespository.findOne({
+        where: { email: user.email },
+      });
+      const oldImage = oldUser.image;
+      if (oldImage !== 'avatar.png') {
+        const destinationPath = `./public/uploads/avatars/${oldImage}`;
+        await fs.remove(destinationPath);
+      }
+      const update = await this.userRespository.update(
+        { email: user.email },
+        { ...user },
+      );
+      if (update.affected > 0) {
+        return { message: 'success' };
+      } else {
+        throw new Error('Can not update');
+      }
     } catch (error) {
       console.log(error);
       throw new ForbiddenException(

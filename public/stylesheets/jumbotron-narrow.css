@@ -91,6 +91,10 @@ body {
 }
 .footer {
   text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
 }
 /* Pager */
 .pager {
@@ -131,4 +135,33 @@ body {
   width: 120px;
   /* padding-top: 50%; */
   margin-top: -56px;
+}
+
+.success-icon {
+  font-size: 64px;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.message {
+  font-size: 28px;
+  color: #333;
+}
+
+.button-container {
+  margin-top: 30px;
+}
+
+.failed-icon {
+  font-size: 64px;
+  color: #e74c3c;
+  margin-bottom: 20px;
+}
+
+.logo-2 {
+  width: 200px;
+}
+
+.body-1 {
+  height: 100vh;
 }
