@@ -103,6 +103,7 @@ export class OrderService {
             createdAt: new Date(),
             updatedAt: new Date(),
           });
+          await this.userService.removeVoucher(result.voucherId, userId);
         }
         await this.cartService.deleteCart(cart.cart);
       }

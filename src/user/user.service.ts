@@ -417,4 +417,22 @@ export class UserService {
       );
     }
   }
+
+  async removeVoucher(id: number, userId: number) {
+    try {
+      const user = await this.userRespository.findOne({
+        where: { id: userId },
+      });
+      const newVoucherList = user.voucherList.filter((voucher) => {
+        return Number(voucher.id) !== Number(id);
+      });
+      user.voucherList = newVoucherList;
+      await this.userRespository.save(user);
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
 }
