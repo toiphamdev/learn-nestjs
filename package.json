@@ -35,6 +35,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/platform-socket.io": "^9.4.2",
     "@nestjs/schedule": "^2.2.2",
+    "@nestjs/swagger": "^7.1.8",
     "@nestjs/typeorm": "^9.0.1",
     "@nestjs/websockets": "^9.4.2",
     "@types/bcrypt": "^5.0.0",
@@ -56,6 +57,7 @@
     "rxjs": "^7.2.0",
     "slugify": "^1.6.6",
     "socket.io": "^4.6.1",
+    "swagger-ui-express": "^5.0.0",
     "type": "^2.7.2",
     "typeorm": "^0.3.16"
   },

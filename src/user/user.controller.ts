@@ -12,7 +12,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserDto } from './dto/user.dto';
+import { UpdateUserDto, UserDto } from './dto/user.dto';
 import { JwtAuthGuard } from '../auth/guard';
 import { Request } from 'express';
 import { SearchUsersDto } from './dto/search-user.dto';
@@ -115,5 +115,17 @@ export class UserController {
   getAdds(@Req() req: Request) {
     const userId = req.user['id'];
     return this.userService.getAddByUserId(userId);
+  }
+
+  @Put()
+  @UseGuards(JwtAuthGuard)
+  updateUser(@Body() user: UpdateUserDto, @Req() req: Request) {
+    user.email = req.user['email'];
+    return this.userService.updateUser(user);
+  }
+
+  @Post('/take-pass')
+  sendVerifyTakePass(@Body('email') email: string) {
+    return this.userService.sendTakePassEmail(email);
   }
 }

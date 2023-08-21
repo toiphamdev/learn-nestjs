@@ -40,3 +40,17 @@ export class UserDto {
   @Expose()
   updatedAt: Date;
 }
+
+export class UpdateUserDto {
+  @IsNotEmpty()
+  firstName: string;
+  @IsNotEmpty()
+  lastName: string;
+  genderId?: string;
+  phoneNumber: string;
+  image: string;
+  dob?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  email: string;
+}

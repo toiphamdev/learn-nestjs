@@ -10,7 +10,6 @@ import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 import { UserStatus } from './enum/auth.enum';
-import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class AuthService {

@@ -14,14 +14,39 @@ import { AllcodeDto } from './dto/allcode.dto';
 import { JwtAuthGuard, RolesGuard } from '../auth/guard';
 import { Role } from '../user/entities/roles.enum';
 import { Roles } from '../auth/decorator/roles.decorator';
-import { type } from 'os';
 import { UpdateAllcodeDto } from './dto/update-allcode.dto';
-import { query } from 'express';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiForbiddenResponse,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiSecurity,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import {
+  AllcodeApiResponseDto,
+  ResponseWithErrDto,
+} from './dto/allcode-api-response.dto';
 
+@ApiTags('allcode')
 @Controller('all-code')
 export class AllcodeController {
   constructor(private readonly allcodeService: AllcodeService) {}
 
+  @ApiOperation({ summary: 'Create new allcode' })
+  @ApiBody({
+    type: AllcodeDto,
+    examples: {
+      example1: new AllcodeDto(), // Sử dụng instance của AllcodeDto với các giá trị mặc định
+    },
+  })
+  @ApiBearerAuth()
+  @ApiResponse({ status: 201, description: 'The allcode has been created' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @Post()
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -32,6 +57,19 @@ export class AllcodeController {
     return this.allcodeService.createTypeCode(typecode);
   }
   //da push len
+  @ApiOperation({ summary: 'Get allcodes by type' })
+  @ApiParam({
+    name: 'type',
+    required: true,
+    type: String,
+    description: 'Type allcode',
+  })
+  @ApiResponse({
+    status: 200,
+    type: AllcodeApiResponseDto,
+    description: 'List and pagination of allcode',
+  })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @Get(':type')
   getAllCodeByType(
     @Param() param: { type: string },
@@ -41,14 +79,7 @@ export class AllcodeController {
       size: number | undefined;
       parentCode: string | undefined;
     },
-  ): Promise<{
-    data: AllcodeDto[];
-    meta: {
-      current: number;
-      size: number;
-      totalItems: number;
-    };
-  }> {
+  ): Promise<AllcodeApiResponseDto> {
     return this.allcodeService.getAllCodeByType(
       param.type,
       query.page,
@@ -57,6 +88,13 @@ export class AllcodeController {
     );
   }
 
+  @ApiOperation({ summary: 'Update allcode' })
+  @ApiBody({ type: AllcodeDto })
+  @ApiParam({ name: 'id', type: Number, description: 'Id of allcode' })
+  @ApiResponse({ status: 201, type: ResponseWithErrDto })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @Put()
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)

@@ -2,7 +2,7 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { In, Repository } from 'typeorm';
-import { UserDto } from './dto/user.dto';
+import { UpdateUserDto, UserDto } from './dto/user.dto';
 import { plainToClass } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 import { Role } from './entities/roles.enum';
@@ -437,7 +437,7 @@ export class UserService {
       );
     }
   }
-  async updateUser(user: UserDto): Promise<{ message: string }> {
+  async updateUser(user: UpdateUserDto): Promise<{ message: string }> {
     try {
       const oldUser = await this.userRespository.findOne({
         where: { email: user.email },
@@ -447,6 +447,9 @@ export class UserService {
         const destinationPath = `./public/uploads/avatars/${oldImage}`;
         await fs.remove(destinationPath);
       }
+      const tempPath = `./public/temp/${user.image}`;
+      const destinationPath = `./public/uploads/avatars/${user.image}`;
+      await fs.move(tempPath, destinationPath);
       const update = await this.userRespository.update(
         { email: user.email },
         { ...user },
@@ -455,6 +458,32 @@ export class UserService {
         return { message: 'success' };
       } else {
         throw new Error('Can not update');
+      }
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Somethings went wrong!',
+      );
+    }
+  }
+
+  async sendTakePassEmail(userEmail: string) {
+    try {
+      const user = await this.userRespository.findOne({
+        where: { email: userEmail },
+      });
+      if (!user) {
+        throw new Error('User not found');
+      }
+      const token = this.authService.generateTokenEmail(userEmail);
+      const update = await this.userRespository.update(
+        { email: userEmail },
+        { token: token },
+      );
+      const userName = `${user.firstName} ${user.lastName}`;
+      if (update.affected > 0) {
+        await this.mailService.sendEmailTakePass(userEmail, token, userName);
+        return { message: 'success' };
       }
     } catch (error) {
       console.log(error);
