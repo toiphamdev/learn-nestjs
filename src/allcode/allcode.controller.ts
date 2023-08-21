@@ -36,7 +36,7 @@ import {
 export class AllcodeController {
   constructor(private readonly allcodeService: AllcodeService) {}
 
-  @ApiOperation({ summary: 'Create new allcode' })
+  @ApiOperation({ summary: 'Admin create new allcode' })
   @ApiBody({
     type: AllcodeDto,
     examples: {
@@ -57,7 +57,7 @@ export class AllcodeController {
     return this.allcodeService.createTypeCode(typecode);
   }
   //da push len
-  @ApiOperation({ summary: 'Get allcodes by type' })
+  @ApiOperation({ summary: 'User get allcodes by type' })
   @ApiParam({
     name: 'type',
     required: true,
@@ -88,7 +88,7 @@ export class AllcodeController {
     );
   }
 
-  @ApiOperation({ summary: 'Update allcode' })
+  @ApiOperation({ summary: 'Admin update allcode' })
   @ApiBody({ type: AllcodeDto })
   @ApiParam({ name: 'id', type: Number, description: 'Id of allcode' })
   @ApiResponse({ status: 201, type: ResponseWithErrDto })

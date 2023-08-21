@@ -25,3 +25,8 @@ export class ResponseWithErrDto {
   @ApiProperty({ type: Boolean })
   err: boolean;
 }
+
+export class ResponseCommonDto {
+  @ApiProperty({ type: String })
+  message: string;
+}

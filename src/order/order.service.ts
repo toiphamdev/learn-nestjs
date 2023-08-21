@@ -249,4 +249,30 @@ export class OrderService {
       );
     }
   }
+
+  async getDetailInforOrder(id: number): Promise<Order> {
+    try {
+      const order = await this.orderRepo
+        .createQueryBuilder('order')
+        .leftJoinAndSelect('order.addressUser', 'addressUser')
+        .leftJoinAndSelect('order.orderDetails', 'orderDetails')
+        .leftJoinAndSelect(
+          'orderDetails.productDetailSize',
+          'productDetailSize',
+        )
+        .leftJoinAndSelect('productDetailSize.productDetail', 'productDetail')
+        .leftJoinAndSelect('productDetail.product', 'product')
+        .where('order.id =:id', { id })
+        .getOne();
+      if (!order) {
+        throw new Error('Not found');
+      }
+      return order;
+    } catch (error) {
+      console.log(error);
+      throw new ForbiddenException(
+        error.message ? error.message : 'Something went wrong!',
+      );
+    }
+  }
 }

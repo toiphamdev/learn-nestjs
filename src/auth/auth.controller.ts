@@ -20,7 +20,6 @@ import {
   ApiCookieAuth,
   ApiForbiddenResponse,
   ApiOperation,
-  ApiProperty,
   ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
@@ -57,7 +56,7 @@ export class AuthController {
   }
 
   @ApiCookieAuth('refreshToken')
-  @ApiOperation({ summary: 'Get access token when it was expried' })
+  @ApiOperation({ summary: 'User get access token when it was expried' })
   @ApiResponse({ status: 200, type: ResponseRereshTokenDto })
   @ApiForbiddenResponse({ description: 'Somethings went wrong' })
   @Get('refresh')

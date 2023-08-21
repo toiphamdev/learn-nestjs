@@ -18,11 +18,28 @@ import { JwtAuthGuard, RolesGuard } from 'src/auth/guard';
 import { Request } from 'express';
 import { SearchBlogDto } from './dto/searchBlog.dto';
 import { Blog } from './entities/blog.entity';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiForbiddenResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import { ResponseCommonDto } from 'src/allcode/dto/allcode-api-response.dto';
 
+@ApiTags('blogs')
 @Controller('blog')
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
+  @ApiOperation({ summary: 'Create new Blog' })
+  @ApiBearerAuth()
+  @ApiBody({ type: BlogDto, description: 'blog information' })
+  @ApiForbiddenResponse({ description: 'Somethings went wrong' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized!' })
+  @ApiResponse({ status: 201, type: ResponseCommonDto })
   @Post()
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
