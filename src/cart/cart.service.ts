@@ -90,9 +90,10 @@ export class CartService {
       let IdVoucherUsed: number = null;
       const arrProd = result?.detail as unknown as CartDetail[];
       const totalPrice = arrProd.reduce((acc, cur) => {
-        return (
-          acc + cur.productDetailSize.productDetail.discountPrice * cur.quantity
-        );
+        return cur.productDetailSize.productDetail.discountPrice !== 0
+          ? acc +
+              cur.productDetailSize.productDetail.discountPrice * cur.quantity
+          : cur.productDetailSize.productDetail.originalPrice * cur.quantity;
       }, 0);
       if (voucherCode) {
         const voucher = await this.voucherService.getVoucherByCode(voucherCode);
