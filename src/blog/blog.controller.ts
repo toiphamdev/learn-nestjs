@@ -23,6 +23,7 @@ import {
   ApiBody,
   ApiForbiddenResponse,
   ApiOperation,
+  ApiParam,
   ApiQuery,
   ApiResponse,
   ApiTags,
@@ -80,11 +81,19 @@ export class BlogController {
     return this.blogService.updateBlog(blog, param.id);
   }
 
+  @ApiOperation({ summary: 'Get bog infor detail' })
+  @ApiResponse({ type: Blog })
+  @ApiForbiddenResponse()
   @Get(':id')
   getBlogDetail(@Param() param: { id: number }): Promise<Blog> {
     return this.blogService.getBlogById(param.id);
   }
 
+  @ApiOperation({ summary: 'Delete Blog by id' })
+  @ApiBearerAuth()
+  @ApiParam({ name: 'id', type: Number })
+  @ApiForbiddenResponse({ description: 'Somethings went wrong' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized!' })
   @Delete(':id')
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)

@@ -7,6 +7,7 @@ includes: []
 search: true
 highlight_theme: darkula
 headingLevel: 2
+
 ---
 
 <!-- Generator: Widdershins v4.0.1 -->
@@ -27,9 +28,9 @@ Base URLs:
 
 <h3 id="appcontroller_gethello-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -52,15 +53,15 @@ This operation does not require authentication
 
 <h3 id="usercontroller_createuser-parameters">Parameters</h3>
 
-| Name | In   | Type                      | Required | Description |
-| ---- | ---- | ------------------------- | -------- | ----------- |
-| body | body | [UserDto](#schemauserdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UserDto](#schemauserdto)|true|none|
 
 <h3 id="usercontroller_createuser-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -74,9 +75,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_getalluser-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -99,15 +100,15 @@ This operation does not require authentication
 
 <h3 id="usercontroller_updateuser-parameters">Parameters</h3>
 
-| Name | In   | Type                                  | Required | Description |
-| ---- | ---- | ------------------------------------- | -------- | ----------- |
-| body | body | [UpdateUserDto](#schemaupdateuserdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UpdateUserDto](#schemaupdateuserdto)|true|none|
 
 <h3 id="usercontroller_updateuser-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -121,9 +122,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_getprofile-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -137,9 +138,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_dislikecommentaction-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -153,9 +154,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_likecommentaction-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -169,9 +170,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_addtovoucherlist-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -185,9 +186,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_sendverifyemail-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -201,9 +202,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_sendverifychangepass-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -217,9 +218,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_verifypass-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -233,9 +234,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_verifyemail-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -285,15 +286,15 @@ This operation does not require authentication
 
 <h3 id="usercontroller_createadd-parameters">Parameters</h3>
 
-| Name | In   | Type                                    | Required | Description |
-| ---- | ---- | --------------------------------------- | -------- | ----------- |
-| body | body | [UserAddressDto](#schemauseraddressdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UserAddressDto](#schemauseraddressdto)|true|none|
 
 <h3 id="usercontroller_createadd-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -307,9 +308,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_getadds-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -359,16 +360,16 @@ This operation does not require authentication
 
 <h3 id="usercontroller_updateadd-parameters">Parameters</h3>
 
-| Name | In   | Type                                    | Required | Description |
-| ---- | ---- | --------------------------------------- | -------- | ----------- |
-| id   | path | number                                  | true     | none        |
-| body | body | [UserAddressDto](#schemauseraddressdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|none|
+|body|body|[UserAddressDto](#schemauseraddressdto)|true|none|
 
 <h3 id="usercontroller_updateadd-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -382,15 +383,15 @@ This operation does not require authentication
 
 <h3 id="usercontroller_deleteadd-parameters">Parameters</h3>
 
-| Name | In   | Type   | Required | Description |
-| ---- | ---- | ------ | -------- | ----------- |
-| id   | path | number | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|none|
 
 <h3 id="usercontroller_deleteadd-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -404,9 +405,9 @@ This operation does not require authentication
 
 <h3 id="usercontroller_sendverifytakepass-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -420,9 +421,9 @@ This operation does not require authentication
 
 <h3 id="vouchercontroller_createvoucher-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -436,9 +437,9 @@ This operation does not require authentication
 
 <h3 id="vouchercontroller_getallvoucher-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -452,9 +453,9 @@ This operation does not require authentication
 
 <h3 id="vouchercontroller_getvoucherbycode-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -468,15 +469,15 @@ This operation does not require authentication
 
 <h3 id="vouchercontroller_updatevoucher-parameters">Parameters</h3>
 
-| Name | In   | Type   | Required | Description |
-| ---- | ---- | ------ | -------- | ----------- |
-| id   | path | number | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|none|
 
 <h3 id="vouchercontroller_updatevoucher-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -499,15 +500,15 @@ This operation does not require authentication
 
 <h3 id="vouchercontroller_createtypevoucher-parameters">Parameters</h3>
 
-| Name | In   | Type                                    | Required | Description |
-| ---- | ---- | --------------------------------------- | -------- | ----------- |
-| body | body | [TypeVoucherDto](#schematypevoucherdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[TypeVoucherDto](#schematypevoucherdto)|true|none|
 
 <h3 id="vouchercontroller_createtypevoucher-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -521,9 +522,9 @@ This operation does not require authentication
 
 <h3 id="vouchercontroller_getalltypevoucher-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -545,16 +546,16 @@ This operation does not require authentication
 
 <h3 id="vouchercontroller_updatetypevoucher-parameters">Parameters</h3>
 
-| Name | In   | Type   | Required | Description |
-| ---- | ---- | ------ | -------- | ----------- |
-| id   | path | number | true     | none        |
-| body | body | string | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|none|
+|body|body|string|true|none|
 
 <h3 id="vouchercontroller_updatetypevoucher-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -577,15 +578,15 @@ This operation does not require authentication
 
 <h3 id="productcontroller_createnewproduct-parameters">Parameters</h3>
 
-| Name | In   | Type                            | Required | Description |
-| ---- | ---- | ------------------------------- | -------- | ----------- |
-| body | body | [ProductDto](#schemaproductdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ProductDto](#schemaproductdto)|true|none|
 
 <h3 id="productcontroller_createnewproduct-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -599,9 +600,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_fillterproduct-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -615,9 +616,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_deleteproductbyid-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -640,15 +641,15 @@ This operation does not require authentication
 
 <h3 id="productcontroller_updateproductbyid-parameters">Parameters</h3>
 
-| Name | In   | Type                            | Required | Description |
-| ---- | ---- | ------------------------------- | -------- | ----------- |
-| body | body | [ProductDto](#schemaproductdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ProductDto](#schemaproductdto)|true|none|
 
 <h3 id="productcontroller_updateproductbyid-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -662,9 +663,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_getproductbyid-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -678,9 +679,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_getproductbyname-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -703,15 +704,15 @@ This operation does not require authentication
 
 <h3 id="productcontroller_updateproductdetail-parameters">Parameters</h3>
 
-| Name | In   | Type                                  | Required | Description |
-| ---- | ---- | ------------------------------------- | -------- | ----------- |
-| body | body | [ProductDetail](#schemaproductdetail) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ProductDetail](#schemaproductdetail)|true|none|
 
 <h3 id="productcontroller_updateproductdetail-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -725,9 +726,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_deleteproddetail-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -750,15 +751,15 @@ This operation does not require authentication
 
 <h3 id="productcontroller_createproductdetail-parameters">Parameters</h3>
 
-| Name | In   | Type                                        | Required | Description |
-| ---- | ---- | ------------------------------------------- | -------- | ----------- |
-| body | body | [ProductDetailDto](#schemaproductdetaildto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ProductDetailDto](#schemaproductdetaildto)|true|none|
 
 <h3 id="productcontroller_createproductdetail-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -772,9 +773,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_getallproductdetail-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -788,9 +789,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_createsize-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -804,9 +805,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_updatesize-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -820,9 +821,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_deletesize-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -836,9 +837,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_getsizebyproductdetailid-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -852,9 +853,9 @@ This operation does not require authentication
 
 <h3 id="productcontroller_getcolors-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -868,9 +869,9 @@ This operation does not require authentication
 
 <h3 id="roommessagecontroller_createroommessage-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -884,9 +885,9 @@ This operation does not require authentication
 
 <h3 id="roommessagecontroller_createmessage-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -900,9 +901,9 @@ This operation does not require authentication
 
 <h3 id="roommessagecontroller_getallrooms-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -916,9 +917,9 @@ This operation does not require authentication
 
 <h3 id="roommessagecontroller_getalladminrooms-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -932,9 +933,9 @@ This operation does not require authentication
 
 <h3 id="roommessagecontroller_getcount-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -948,9 +949,9 @@ This operation does not require authentication
 
 <h3 id="uploadcontroller_uploadfile-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -964,9 +965,9 @@ This operation does not require authentication
 
 <h3 id="uploadcontroller_uploadfiles-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -989,15 +990,15 @@ This operation does not require authentication
 
 <h3 id="commentcontroller_createcomment-parameters">Parameters</h3>
 
-| Name | In   | Type                            | Required | Description |
-| ---- | ---- | ------------------------------- | -------- | ----------- |
-| body | body | [CommentDto](#schemacommentdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CommentDto](#schemacommentdto)|true|none|
 
 <h3 id="commentcontroller_createcomment-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1011,9 +1012,9 @@ This operation does not require authentication
 
 <h3 id="commentcontroller_getallcomment-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1027,9 +1028,9 @@ This operation does not require authentication
 
 <h3 id="commentcontroller_deletecomment-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1043,9 +1044,9 @@ This operation does not require authentication
 
 <h3 id="cartcontroller_initcart-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1068,15 +1069,15 @@ This operation does not require authentication
 
 <h3 id="cartcontroller_addtocart-parameters">Parameters</h3>
 
-| Name | In   | Type                                  | Required | Description |
-| ---- | ---- | ------------------------------------- | -------- | ----------- |
-| body | body | [CartDetailDto](#schemacartdetaildto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CartDetailDto](#schemacartdetaildto)|true|none|
 
 <h3 id="cartcontroller_addtocart-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1099,15 +1100,15 @@ This operation does not require authentication
 
 <h3 id="receiptcontroller_createreceipt-parameters">Parameters</h3>
 
-| Name | In   | Type                            | Required | Description |
-| ---- | ---- | ------------------------------- | -------- | ----------- |
-| body | body | [ReceiptDto](#schemareceiptdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ReceiptDto](#schemareceiptdto)|true|none|
 
 <h3 id="receiptcontroller_createreceipt-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1121,9 +1122,9 @@ This operation does not require authentication
 
 <h3 id="receiptcontroller_getallreceipt-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1146,15 +1147,15 @@ This operation does not require authentication
 
 <h3 id="receiptcontroller_updatereceipt-parameters">Parameters</h3>
 
-| Name | In   | Type                            | Required | Description |
-| ---- | ---- | ------------------------------- | -------- | ----------- |
-| body | body | [ReceiptDto](#schemareceiptdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ReceiptDto](#schemareceiptdto)|true|none|
 
 <h3 id="receiptcontroller_updatereceipt-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1168,9 +1169,9 @@ This operation does not require authentication
 
 <h3 id="receiptcontroller_deletereceipt-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1193,15 +1194,15 @@ This operation does not require authentication
 
 <h3 id="receiptcontroller_createreceiptdetail-parameters">Parameters</h3>
 
-| Name | In   | Type                                        | Required | Description |
-| ---- | ---- | ------------------------------------------- | -------- | ----------- |
-| body | body | [ReceiptDetailDto](#schemareceiptdetaildto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ReceiptDetailDto](#schemareceiptdetaildto)|true|none|
 
 <h3 id="receiptcontroller_createreceiptdetail-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1224,15 +1225,15 @@ This operation does not require authentication
 
 <h3 id="receiptcontroller_updatereceiptdetail-parameters">Parameters</h3>
 
-| Name | In   | Type                                        | Required | Description |
-| ---- | ---- | ------------------------------------------- | -------- | ----------- |
-| body | body | [ReceiptDetailDto](#schemareceiptdetaildto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ReceiptDetailDto](#schemareceiptdetaildto)|true|none|
 
 <h3 id="receiptcontroller_updatereceiptdetail-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1246,9 +1247,9 @@ This operation does not require authentication
 
 <h3 id="receiptcontroller_deletereceiptdetail-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1262,9 +1263,9 @@ This operation does not require authentication
 
 <h3 id="receiptcontroller_getallreceiptdeatil-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1287,15 +1288,15 @@ This operation does not require authentication
 
 <h3 id="suppliercontroller_createsup-parameters">Parameters</h3>
 
-| Name | In   | Type                              | Required | Description |
-| ---- | ---- | --------------------------------- | -------- | ----------- |
-| body | body | [SupplierDto](#schemasupplierdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[SupplierDto](#schemasupplierdto)|true|none|
 
 <h3 id="suppliercontroller_createsup-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1309,9 +1310,9 @@ This operation does not require authentication
 
 <h3 id="suppliercontroller_getallsupplier-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1334,15 +1335,15 @@ This operation does not require authentication
 
 <h3 id="suppliercontroller_updatesup-parameters">Parameters</h3>
 
-| Name | In   | Type                              | Required | Description |
-| ---- | ---- | --------------------------------- | -------- | ----------- |
-| body | body | [SupplierDto](#schemasupplierdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[SupplierDto](#schemasupplierdto)|true|none|
 
 <h3 id="suppliercontroller_updatesup-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1356,9 +1357,9 @@ This operation does not require authentication
 
 <h3 id="suppliercontroller_deletesup-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1372,9 +1373,9 @@ This operation does not require authentication
 
 <h3 id="dashboardcontroller_gettotalusers-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1388,9 +1389,9 @@ This operation does not require authentication
 
 <h3 id="dashboardcontroller_gettotaluser-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1404,9 +1405,9 @@ This operation does not require authentication
 
 <h3 id="dashboardcontroller_getuseronline-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1420,9 +1421,9 @@ This operation does not require authentication
 
 <h3 id="dashboardcontroller_getorder-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1436,9 +1437,9 @@ This operation does not require authentication
 
 <h3 id="dashboardcontroller_getproductsold-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1452,9 +1453,9 @@ This operation does not require authentication
 
 <h3 id="dashboardcontroller_getcountorder-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1468,9 +1469,9 @@ This operation does not require authentication
 
 <h3 id="paymentcontroller_paymentdisplay-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1484,9 +1485,9 @@ This operation does not require authentication
 
 <h3 id="paymentcontroller_createpaymenturl-responses">Responses</h3>
 
-| Status | Meaning                                                      | Description | Schema |
-| ------ | ------------------------------------------------------------ | ----------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1500,9 +1501,9 @@ This operation does not require authentication
 
 <h3 id="paymentcontroller_returndisplay-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1516,15 +1517,15 @@ This operation does not require authentication
 
 <h3 id="paymentcontroller_displayerror-parameters">Parameters</h3>
 
-| Name    | In    | Type   | Required | Description |
-| ------- | ----- | ------ | -------- | ----------- |
-| message | query | string | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|message|query|string|true|none|
 
 <h3 id="paymentcontroller_displayerror-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1538,13 +1539,13 @@ This operation does not require authentication
 
 `GET /doc/json`
 
-_Get Swagger JSON_
+*Get Swagger JSON*
 
 <h3 id="swaggercontroller_getswaggerjson-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description  | Schema |
-| ------ | ------------------------------------------------------- | ------------ | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | Swagger JSON | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Swagger JSON|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1558,7 +1559,7 @@ This operation does not require authentication
 
 `POST /auth/login`
 
-_login user_
+*login user*
 
 > Body parameter
 
@@ -1573,15 +1574,18 @@ _login user_
       "type": "string"
     }
   },
-  "required": ["email", "password"]
+  "required": [
+    "email",
+    "password"
+  ]
 }
 ```
 
 <h3 id="authcontroller_login-parameters">Parameters</h3>
 
-| Name | In   | Type                        | Required | Description |
-| ---- | ---- | --------------------------- | -------- | ----------- |
-| body | body | [LoginDto](#schemalogindto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[LoginDto](#schemalogindto)|true|none|
 
 > Example responses
 
@@ -1644,7 +1648,11 @@ _login user_
         },
         "statusId": {
           "type": "string",
-          "enum": ["ON", "OFF", "BLOCK"],
+          "enum": [
+            "ON",
+            "OFF",
+            "BLOCK"
+          ],
           "example": "ON",
           "description": "User statusId"
         },
@@ -1671,7 +1679,13 @@ _login user_
                   "type": "string"
                 }
               },
-              "required": ["type", "value", "code", "parentCode", "hexCode"]
+              "required": [
+                "type",
+                "value",
+                "code",
+                "parentCode",
+                "hexCode"
+              ]
             }
           ]
         },
@@ -1686,7 +1700,9 @@ _login user_
           "description": "User active email"
         },
         "address": {
-          "example": [{}],
+          "example": [
+            {}
+          ],
           "description": "User list address",
           "type": "array",
           "items": {
@@ -1695,7 +1711,9 @@ _login user_
           }
         },
         "voucherList": {
-          "example": [{}],
+          "example": [
+            {}
+          ],
           "description": "User list vouchers",
           "type": "array",
           "items": {
@@ -1743,7 +1761,12 @@ _login user_
               },
               "statusId": {
                 "type": "string",
-                "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+                "enum": [
+                  "ACTIVE",
+                  "INACTIVE",
+                  "DELETED",
+                  "DRAFT"
+                ],
                 "example": "ACTIVE",
                 "description": "Status Id of voucher"
               },
@@ -1820,16 +1843,19 @@ _login user_
       ]
     }
   },
-  "required": ["accessToken", "user"]
+  "required": [
+    "accessToken",
+    "user"
+  ]
 }
 ```
 
 <h3 id="authcontroller_login-responses">Responses</h3>
 
-| Status | Meaning                                                         | Description  | Schema                                      |
-| ------ | --------------------------------------------------------------- | ------------ | ------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)         | none         | [ResponseLoginDto](#schemaresponselogindto) |
-| 401    | [Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1) | Unauthorized | None                                        |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[ResponseLoginDto](#schemaresponselogindto)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -1841,7 +1867,7 @@ This operation does not require authentication
 
 `GET /auth/refresh`
 
-_User get access token when it was expried_
+*User get access token when it was expried*
 
 > Example responses
 
@@ -1855,16 +1881,18 @@ _User get access token when it was expried_
       "type": "string"
     }
   },
-  "required": ["accessToken"]
+  "required": [
+    "accessToken"
+  ]
 }
 ```
 
 <h3 id="authcontroller_getaccesstoken-responses">Responses</h3>
 
-| Status | Meaning                                                        | Description           | Schema                                                  |
-| ------ | -------------------------------------------------------------- | --------------------- | ------------------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)        | none                  | [ResponseRereshTokenDto](#schemaresponserereshtokendto) |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | Somethings went wrong | None                                                    |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[ResponseRereshTokenDto](#schemaresponserereshtokendto)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Somethings went wrong|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1877,13 +1905,13 @@ None
 
 `PATCH /auth/logout`
 
-_User logout method_
+*User logout method*
 
 <h3 id="authcontroller_logout-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1898,7 +1926,7 @@ None
 
 `POST /all-code`
 
-_Admin create new allcode_
+*Admin create new allcode*
 
 > Body parameter
 
@@ -1908,17 +1936,17 @@ undefined
 
 <h3 id="allcodecontroller_createtypecode-parameters">Parameters</h3>
 
-| Name | In   | Type                            | Required | Description |
-| ---- | ---- | ------------------------------- | -------- | ----------- |
-| body | body | [AllcodeDto](#schemaallcodedto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[AllcodeDto](#schemaallcodedto)|true|none|
 
 <h3 id="allcodecontroller_createtypecode-responses">Responses</h3>
 
-| Status | Meaning                                                         | Description                  | Schema |
-| ------ | --------------------------------------------------------------- | ---------------------------- | ------ |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)    | The allcode has been created | None   |
-| 401    | [Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1) | Unauthorized                 | None   |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)  | Forbidden                    | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|The allcode has been created|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1931,7 +1959,7 @@ None
 
 `PUT /all-code`
 
-_Admin update allcode_
+*Admin update allcode*
 
 > Body parameter
 
@@ -1955,16 +1983,22 @@ _Admin update allcode_
       "type": "string"
     }
   },
-  "required": ["type", "value", "code", "parentCode", "hexCode"]
+  "required": [
+    "type",
+    "value",
+    "code",
+    "parentCode",
+    "hexCode"
+  ]
 }
 ```
 
 <h3 id="allcodecontroller_updateallcode-parameters">Parameters</h3>
 
-| Name | In   | Type                            | Required | Description   |
-| ---- | ---- | ------------------------------- | -------- | ------------- |
-| id   | path | number                          | true     | Id of allcode |
-| body | body | [AllcodeDto](#schemaallcodedto) | true     | none          |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|Id of allcode|
+|body|body|[AllcodeDto](#schemaallcodedto)|true|none|
 
 > Example responses
 
@@ -1981,17 +2015,20 @@ _Admin update allcode_
       "type": "boolean"
     }
   },
-  "required": ["message", "err"]
+  "required": [
+    "message",
+    "err"
+  ]
 }
 ```
 
 <h3 id="allcodecontroller_updateallcode-responses">Responses</h3>
 
-| Status | Meaning                                                         | Description  | Schema                                          |
-| ------ | --------------------------------------------------------------- | ------------ | ----------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)    | none         | [ResponseWithErrDto](#schemaresponsewitherrdto) |
-| 401    | [Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1) | Unauthorized | None                                            |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)  | Forbidden    | None                                            |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ResponseWithErrDto](#schemaresponsewitherrdto)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2004,13 +2041,13 @@ None
 
 `GET /all-code/{type}`
 
-_User get allcodes by type_
+*User get allcodes by type*
 
 <h3 id="allcodecontroller_getallcodebytype-parameters">Parameters</h3>
 
-| Name | In   | Type   | Required | Description  |
-| ---- | ---- | ------ | -------- | ------------ |
-| type | path | string | true     | Type allcode |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|type|path|string|true|Type allcode|
 
 > Example responses
 
@@ -2041,7 +2078,13 @@ _User get allcodes by type_
             "type": "string"
           }
         },
-        "required": ["type", "value", "code", "parentCode", "hexCode"]
+        "required": [
+          "type",
+          "value",
+          "code",
+          "parentCode",
+          "hexCode"
+        ]
       }
     },
     "meta": {
@@ -2053,16 +2096,19 @@ _User get allcodes by type_
       }
     }
   },
-  "required": ["data", "meta"]
+  "required": [
+    "data",
+    "meta"
+  ]
 }
 ```
 
 <h3 id="allcodecontroller_getallcodebytype-responses">Responses</h3>
 
-| Status | Meaning                                                        | Description                    | Schema                                                |
-| ------ | -------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)        | List and pagination of allcode | [AllcodeApiResponseDto](#schemaallcodeapiresponsedto) |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | Forbidden                      | None                                                  |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List and pagination of allcode|[AllcodeApiResponseDto](#schemaallcodeapiresponsedto)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -2076,9 +2122,9 @@ This operation does not require authentication
 
 <h3 id="allcodecontroller_deleteallcode-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -2092,7 +2138,7 @@ This operation does not require authentication
 
 `POST /banner`
 
-_Create new banner_
+*Create new banner*
 
 > Body parameter
 
@@ -2113,15 +2159,20 @@ _Create new banner_
       "type": "string"
     }
   },
-  "required": ["description", "name", "statusId", "image"]
+  "required": [
+    "description",
+    "name",
+    "statusId",
+    "image"
+  ]
 }
 ```
 
 <h3 id="bannercontroller_createbanner-parameters">Parameters</h3>
 
-| Name | In   | Type                          | Required | Description |
-| ---- | ---- | ----------------------------- | -------- | ----------- |
-| body | body | [BannerDto](#schemabannerdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[BannerDto](#schemabannerdto)|true|none|
 
 > Example responses
 
@@ -2135,16 +2186,18 @@ _Create new banner_
       "type": "string"
     }
   },
-  "required": ["message"]
+  "required": [
+    "message"
+  ]
 }
 ```
 
 <h3 id="bannercontroller_createbanner-responses">Responses</h3>
 
-| Status | Meaning                                                        | Description | Schema                                        |
-| ------ | -------------------------------------------------------------- | ----------- | --------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)   | none        | [ResponseCommonDto](#schemaresponsecommondto) |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | none        | None                                          |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ResponseCommonDto](#schemaresponsecommondto)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|none|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2157,23 +2210,23 @@ None
 
 `GET /banner`
 
-_Get all banner_
+*Get all banner*
 
 <h3 id="bannercontroller_getallbanner-parameters">Parameters</h3>
 
-| Name      | In    | Type   | Required | Description |
-| --------- | ----- | ------ | -------- | ----------- |
-| statusId  | query | string | false    | none        |
-| page      | query | number | false    | none        |
-| size      | query | number | false    | none        |
-| updatedAt | query | string | false    | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|statusId|query|string|false|none|
+|page|query|number|false|none|
+|size|query|number|false|none|
+|updatedAt|query|string|false|none|
 
 #### Enumerated Values
 
-| Parameter | Value |
-| --------- | ----- |
-| updatedAt | DESC  |
-| updatedAt | ASC   |
+|Parameter|Value|
+|---|---|
+|updatedAt|DESC|
+|updatedAt|ASC|
 
 > Example responses
 
@@ -2219,7 +2272,13 @@ _Get all banner_
                 "type": "string"
               }
             },
-            "required": ["type", "value", "code", "parentCode", "hexCode"]
+            "required": [
+              "type",
+              "value",
+              "code",
+              "parentCode",
+              "hexCode"
+            ]
           },
           "image": {
             "type": "string"
@@ -2254,16 +2313,19 @@ _Get all banner_
       }
     }
   },
-  "required": ["data", "meta"]
+  "required": [
+    "data",
+    "meta"
+  ]
 }
 ```
 
 <h3 id="bannercontroller_getallbanner-responses">Responses</h3>
 
-| Status | Meaning                                                        | Description | Schema                                              |
-| ------ | -------------------------------------------------------------- | ----------- | --------------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)        | none        | [BannerApiResponseDto](#schemabannerapiresponsedto) |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | none        | None                                                |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[BannerApiResponseDto](#schemabannerapiresponsedto)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -2275,7 +2337,7 @@ This operation does not require authentication
 
 `PUT /banner/{id}`
 
-_Update banner by id_
+*Update banner by id*
 
 > Body parameter
 
@@ -2296,16 +2358,21 @@ _Update banner by id_
       "type": "string"
     }
   },
-  "required": ["description", "name", "statusId", "image"]
+  "required": [
+    "description",
+    "name",
+    "statusId",
+    "image"
+  ]
 }
 ```
 
 <h3 id="bannercontroller_updatebanner-parameters">Parameters</h3>
 
-| Name | In   | Type                          | Required | Description |
-| ---- | ---- | ----------------------------- | -------- | ----------- |
-| id   | path | number                        | true     | none        |
-| body | body | [BannerDto](#schemabannerdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|none|
+|body|body|[BannerDto](#schemabannerdto)|true|none|
 
 > Example responses
 
@@ -2319,16 +2386,18 @@ _Update banner by id_
       "type": "string"
     }
   },
-  "required": ["message"]
+  "required": [
+    "message"
+  ]
 }
 ```
 
 <h3 id="bannercontroller_updatebanner-responses">Responses</h3>
 
-| Status | Meaning                                                        | Description | Schema                                        |
-| ------ | -------------------------------------------------------------- | ----------- | --------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)   | none        | [ResponseCommonDto](#schemaresponsecommondto) |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | none        | None                                          |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ResponseCommonDto](#schemaresponsecommondto)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|none|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2343,9 +2412,9 @@ None
 
 <h3 id="bannercontroller_deletebanner-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -2359,7 +2428,7 @@ This operation does not require authentication
 
 `POST /blog`
 
-_Create new Blog_
+*Create new Blog*
 
 > Body parameter
 
@@ -2392,15 +2461,17 @@ _Create new Blog_
       "type": "number"
     }
   },
-  "required": ["title"]
+  "required": [
+    "title"
+  ]
 }
 ```
 
 <h3 id="blogcontroller_createblog-parameters">Parameters</h3>
 
-| Name | In   | Type                      | Required | Description      |
-| ---- | ---- | ------------------------- | -------- | ---------------- |
-| body | body | [BlogDto](#schemablogdto) | true     | blog information |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[BlogDto](#schemablogdto)|true|blog information|
 
 > Example responses
 
@@ -2414,17 +2485,19 @@ _Create new Blog_
       "type": "string"
     }
   },
-  "required": ["message"]
+  "required": [
+    "message"
+  ]
 }
 ```
 
 <h3 id="blogcontroller_createblog-responses">Responses</h3>
 
-| Status | Meaning                                                         | Description           | Schema                                        |
-| ------ | --------------------------------------------------------------- | --------------------- | --------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)    | none                  | [ResponseCommonDto](#schemaresponsecommondto) |
-| 401    | [Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1) | Unauthorized!         | None                                          |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)  | Somethings went wrong | None                                          |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ResponseCommonDto](#schemaresponsecommondto)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized!|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Somethings went wrong|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2437,18 +2510,18 @@ None
 
 `GET /blog`
 
-_Search blog by query_
+*Search blog by query*
 
 <h3 id="blogcontroller_searchblogs-parameters">Parameters</h3>
 
-| Name      | In    | Type    | Required | Description |
-| --------- | ----- | ------- | -------- | ----------- |
-| page      | query | number  | false    | none        |
-| size      | query | number  | false    | none        |
-| name      | query | string  | false    | none        |
-| statusId  | query | string  | false    | none        |
-| subjectId | query | string  | false    | none        |
-| notDel    | query | boolean | false    | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|page|query|number|false|none|
+|size|query|number|false|none|
+|name|query|string|false|none|
+|statusId|query|string|false|none|
+|subjectId|query|string|false|none|
+|notDel|query|boolean|false|none|
 
 > Example responses
 
@@ -2476,16 +2549,19 @@ _Search blog by query_
       }
     }
   },
-  "required": ["data", "meta"]
+  "required": [
+    "data",
+    "meta"
+  ]
 }
 ```
 
 <h3 id="blogcontroller_searchblogs-responses">Responses</h3>
 
-| Status | Meaning                                                        | Description | Schema                                          |
-| ------ | -------------------------------------------------------------- | ----------- | ----------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)        | none        | [BlogApiResponseDto](#schemablogapiresponsedto) |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | none        | None                                            |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[BlogApiResponseDto](#schemablogapiresponsedto)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -2497,7 +2573,7 @@ This operation does not require authentication
 
 `PUT /blog/{id}`
 
-_Updateblog_
+*Updateblog*
 
 > Body parameter
 
@@ -2530,21 +2606,23 @@ _Updateblog_
       "type": "number"
     }
   },
-  "required": ["title"]
+  "required": [
+    "title"
+  ]
 }
 ```
 
 <h3 id="blogcontroller_updateblog-parameters">Parameters</h3>
 
-| Name | In   | Type                      | Required | Description |
-| ---- | ---- | ------------------------- | -------- | ----------- |
-| body | body | [BlogDto](#schemablogdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[BlogDto](#schemablogdto)|true|none|
 
 <h3 id="blogcontroller_updateblog-responses">Responses</h3>
 
-| Status  | Meaning | Description | Schema |
-| ------- | ------- | ----------- | ------ |
-| default | Default | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|default|Default|none|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2559,9 +2637,9 @@ None
 
 <h3 id="blogcontroller_getblogdetail-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -2575,9 +2653,9 @@ This operation does not require authentication
 
 <h3 id="blogcontroller_deleteblog-responses">Responses</h3>
 
-| Status | Meaning                                                 | Description | Schema |
-| ------ | ------------------------------------------------------- | ----------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1) | none        | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -2591,7 +2669,7 @@ This operation does not require authentication
 
 `POST /order`
 
-_User create new order _
+*User create new order *
 
 > Body parameter
 
@@ -2619,7 +2697,10 @@ _User create new order _
     },
     "type": {
       "type": "string",
-      "enum": ["PAYMENT", "COD"]
+      "enum": [
+        "PAYMENT",
+        "COD"
+      ]
     }
   },
   "required": [
@@ -2636,9 +2717,9 @@ _User create new order _
 
 <h3 id="ordercontroller_createorder-parameters">Parameters</h3>
 
-| Name | In   | Type                        | Required | Description |
-| ---- | ---- | --------------------------- | -------- | ----------- |
-| body | body | [OrderDto](#schemaorderdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[OrderDto](#schemaorderdto)|true|none|
 
 > Example responses
 
@@ -2689,7 +2770,14 @@ _User create new order _
           "type": "string"
         }
       },
-      "required": ["id", "typeId", "type", "price", "createdAt", "updatedAt"]
+      "required": [
+        "id",
+        "typeId",
+        "type",
+        "price",
+        "createdAt",
+        "updatedAt"
+      ]
     },
     "typeShipId": {
       "type": "number"
@@ -2739,7 +2827,12 @@ _User create new order _
         },
         "statusId": {
           "type": "string",
-          "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+          "enum": [
+            "ACTIVE",
+            "INACTIVE",
+            "DELETED",
+            "DRAFT"
+          ],
           "example": "ACTIVE",
           "description": "Status Id of voucher"
         },
@@ -2830,11 +2923,11 @@ _User create new order _
 
 <h3 id="ordercontroller_createorder-responses">Responses</h3>
 
-| Status | Meaning                                                         | Description             | Schema                |
-| ------ | --------------------------------------------------------------- | ----------------------- | --------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)    | none                    | [Order](#schemaorder) |
-| 401    | [Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1) | Unauthorized            | None                  |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)  | Some things wwent wrong | None                  |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[Order](#schemaorder)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Some things wwent wrong|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2847,29 +2940,29 @@ None
 
 `GET /order`
 
-_User get order_
+*User get order*
 
 <h3 id="ordercontroller_getallorder-parameters">Parameters</h3>
 
-| Name           | In    | Type   | Required | Description |
-| -------------- | ----- | ------ | -------- | ----------- |
-| statusId       | query | string | false    | none        |
-| userId         | query | number | false    | none        |
-| sortcreatedAt  | query | string | false    | none        |
-| sortupdatedAt  | query | string | false    | none        |
-| sorttotalPrice | query | string | false    | none        |
-| page           | query | number | false    | none        |
-| size           | query | number | false    | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|statusId|query|string|false|none|
+|userId|query|number|false|none|
+|sortcreatedAt|query|string|false|none|
+|sortupdatedAt|query|string|false|none|
+|sorttotalPrice|query|string|false|none|
+|page|query|number|false|none|
+|size|query|number|false|none|
 
 #### Enumerated Values
 
-| Parameter | Value                 |
-| --------- | --------------------- |
-| statusId  | WAIT_FOR_COMFIRMATION |
-| statusId  | WAIT_FOR_PAYMENT      |
-| statusId  | DELIVERING            |
-| statusId  | DELIVERED             |
-| statusId  | CANCEL                |
+|Parameter|Value|
+|---|---|
+|statusId|WAIT_FOR_COMFIRMATION|
+|statusId|WAIT_FOR_PAYMENT|
+|statusId|DELIVERING|
+|statusId|DELIVERED|
+|statusId|CANCEL|
 
 > Example responses
 
@@ -2982,7 +3075,12 @@ _User get order_
               },
               "statusId": {
                 "type": "string",
-                "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+                "enum": [
+                  "ACTIVE",
+                  "INACTIVE",
+                  "DELETED",
+                  "DRAFT"
+                ],
                 "example": "ACTIVE",
                 "description": "Status Id of voucher"
               },
@@ -3079,16 +3177,19 @@ _User get order_
       }
     }
   },
-  "required": ["data", "meta"]
+  "required": [
+    "data",
+    "meta"
+  ]
 }
 ```
 
 <h3 id="ordercontroller_getallorder-responses">Responses</h3>
 
-| Status | Meaning                                                        | Description             | Schema                                            |
-| ------ | -------------------------------------------------------------- | ----------------------- | ------------------------------------------------- |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)        | none                    | [OrderApiResponseDto](#schemaorderapiresponsedto) |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | Some things wwent wrong | None                                              |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[OrderApiResponseDto](#schemaorderapiresponsedto)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Some things wwent wrong|None|
 
 <aside class="success">
 This operation does not require authentication
@@ -3100,7 +3201,7 @@ This operation does not require authentication
 
 `PATCH /order/change-status/{id}`
 
-_Admin change status order_
+*Admin change status order*
 
 > Body parameter
 
@@ -3119,16 +3220,18 @@ _Admin change status order_
       ]
     }
   },
-  "required": ["statusId"]
+  "required": [
+    "statusId"
+  ]
 }
 ```
 
 <h3 id="ordercontroller_changeorderstatus-parameters">Parameters</h3>
 
-| Name | In   | Type                                      | Required | Description |
-| ---- | ---- | ----------------------------------------- | -------- | ----------- |
-| id   | path | number                                    | true     | none        |
-| body | body | [ChangeStatusDto](#schemachangestatusdto) | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|none|
+|body|body|[ChangeStatusDto](#schemachangestatusdto)|true|none|
 
 > Example responses
 
@@ -3142,17 +3245,19 @@ _Admin change status order_
       "type": "string"
     }
   },
-  "required": ["message"]
+  "required": [
+    "message"
+  ]
 }
 ```
 
 <h3 id="ordercontroller_changeorderstatus-responses">Responses</h3>
 
-| Status | Meaning                                                         | Description             | Schema                                        |
-| ------ | --------------------------------------------------------------- | ----------------------- | --------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)    | none                    | [ResponseCommonDto](#schemaresponsecommondto) |
-| 401    | [Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1) | Unauthorized            | None                                          |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)  | Some things wwent wrong | None                                          |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ResponseCommonDto](#schemaresponsecommondto)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Some things wwent wrong|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -3165,13 +3270,13 @@ None
 
 `PATCH /order/cancel/{id}`
 
-_User cancel order_
+*User cancel order*
 
 <h3 id="ordercontroller_cancelorder-parameters">Parameters</h3>
 
-| Name | In   | Type   | Required | Description |
-| ---- | ---- | ------ | -------- | ----------- |
-| id   | path | number | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|none|
 
 > Example responses
 
@@ -3185,17 +3290,19 @@ _User cancel order_
       "type": "string"
     }
   },
-  "required": ["message"]
+  "required": [
+    "message"
+  ]
 }
 ```
 
 <h3 id="ordercontroller_cancelorder-responses">Responses</h3>
 
-| Status | Meaning                                                         | Description             | Schema                                        |
-| ------ | --------------------------------------------------------------- | ----------------------- | --------------------------------------------- |
-| 201    | [Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)    | none                    | [ResponseCommonDto](#schemaresponsecommondto) |
-| 401    | [Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1) | Unauthorized            | None                                          |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)  | Some things wwent wrong | None                                          |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ResponseCommonDto](#schemaresponsecommondto)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Some things wwent wrong|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -3208,7 +3315,7 @@ None
 
 `GET /order/type-ship`
 
-_User get all type ship_
+*User get all type ship*
 
 > Example responses
 
@@ -3242,31 +3349,38 @@ _User get all type ship_
         "type": "string"
       }
     },
-    "required": ["id", "typeId", "type", "price", "createdAt", "updatedAt"]
+    "required": [
+      "id",
+      "typeId",
+      "type",
+      "price",
+      "createdAt",
+      "updatedAt"
+    ]
   }
 }
 ```
 
 <h3 id="ordercontroller_getalltypeship-responses">Responses</h3>
 
-| Status | Meaning                                                        | Description           | Schema |
-| ------ | -------------------------------------------------------------- | --------------------- | ------ |
-| 200    | [OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)        | none                  | Inline |
-| 403    | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | Somethings went wrong | None   |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Somethings went wrong|None|
 
 <h3 id="ordercontroller_getalltypeship-responseschema">Response Schema</h3>
 
 Status Code **200**
 
-| Name        | Type                          | Required | Restrictions | Description |
-| ----------- | ----------------------------- | -------- | ------------ | ----------- |
-| _anonymous_ | [[TypeShip](#schematypeship)] | false    | none         | none        |
-| » id        | number                        | true     | none         | none        |
-| » typeId    | string                        | true     | none         | none        |
-| » type      | [Allcode](#schemaallcode)     | true     | none         | none        |
-| » price     | number                        | true     | none         | none        |
-| » createdAt | string(date-time)             | true     | none         | none        |
-| » updatedAt | string(date-time)             | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[TypeShip](#schematypeship)]|false|none|none|
+|» id|number|true|none|none|
+|» typeId|string|true|none|none|
+|» type|[Allcode](#schemaallcode)|true|none|none|
+|» price|number|true|none|none|
+|» createdAt|string(date-time)|true|none|none|
+|» updatedAt|string(date-time)|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -3278,13 +3392,13 @@ This operation does not require authentication
 
 `GET /order/{id}`
 
-_Get detail order_
+*Get detail order*
 
 <h3 id="ordercontroller_getorderbyid-parameters">Parameters</h3>
 
-| Name | In   | Type   | Required | Description |
-| ---- | ---- | ------ | -------- | ----------- |
-| id   | path | number | true     | none        |
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|number|true|none|
 
 > Example responses
 
@@ -3335,7 +3449,14 @@ _Get detail order_
           "type": "string"
         }
       },
-      "required": ["id", "typeId", "type", "price", "createdAt", "updatedAt"]
+      "required": [
+        "id",
+        "typeId",
+        "type",
+        "price",
+        "createdAt",
+        "updatedAt"
+      ]
     },
     "typeShipId": {
       "type": "number"
@@ -3385,7 +3506,12 @@ _Get detail order_
         },
         "statusId": {
           "type": "string",
-          "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+          "enum": [
+            "ACTIVE",
+            "INACTIVE",
+            "DELETED",
+            "DRAFT"
+          ],
           "example": "ACTIVE",
           "description": "Status Id of voucher"
         },
@@ -3476,10 +3602,10 @@ _Get detail order_
 
 <h3 id="ordercontroller_getorderbyid-responses">Responses</h3>
 
-| Status  | Meaning                                                        | Description             | Schema                |
-| ------- | -------------------------------------------------------------- | ----------------------- | --------------------- |
-| 403     | [Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3) | Some things wwent wrong | None                  |
-| default | Default                                                        | none                    | [Order](#schemaorder) |
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Some things wwent wrong|None|
+|default|Default|none|[Order](#schemaorder)|
 
 <aside class="success">
 This operation does not require authentication
@@ -3505,16 +3631,20 @@ This operation does not require authentication
       "type": "string"
     }
   },
-  "required": ["email", "password"]
+  "required": [
+    "email",
+    "password"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name     | Type   | Required | Restrictions | Description |
-| -------- | ------ | -------- | ------------ | ----------- |
-| email    | string | true     | none         | none        |
-| password | string | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|email|string|true|none|none|
+|password|string|true|none|none|
 
 <h2 id="tocS_AllcodeDto">AllcodeDto</h2>
 <!-- backwards compatibility -->
@@ -3543,19 +3673,26 @@ This operation does not require authentication
       "type": "string"
     }
   },
-  "required": ["type", "value", "code", "parentCode", "hexCode"]
+  "required": [
+    "type",
+    "value",
+    "code",
+    "parentCode",
+    "hexCode"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name       | Type   | Required | Restrictions | Description |
-| ---------- | ------ | -------- | ------------ | ----------- |
-| type       | string | true     | none         | none        |
-| value      | string | true     | none         | none        |
-| code       | string | true     | none         | none        |
-| parentCode | string | true     | none         | none        |
-| hexCode    | string | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|type|string|true|none|none|
+|value|string|true|none|none|
+|code|string|true|none|none|
+|parentCode|string|true|none|none|
+|hexCode|string|true|none|none|
 
 <h2 id="tocS_UserAddress">UserAddress</h2>
 <!-- backwards compatibility -->
@@ -3569,11 +3706,12 @@ This operation does not require authentication
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_TypeVoucher">TypeVoucher</h2>
 <!-- backwards compatibility -->
@@ -3587,11 +3725,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_Voucher">Voucher</h2>
 <!-- backwards compatibility -->
@@ -3646,7 +3785,12 @@ _None_
     },
     "statusId": {
       "type": "string",
-      "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+      "enum": [
+        "ACTIVE",
+        "INACTIVE",
+        "DELETED",
+        "DRAFT"
+      ],
       "example": "ACTIVE",
       "description": "Status Id of voucher"
     },
@@ -3688,33 +3832,34 @@ _None_
     "updatedAt"
   ]
 }
+
 ```
 
 ### Properties
 
-| Name            | Type                              | Required | Restrictions | Description                                       |
-| --------------- | --------------------------------- | -------- | ------------ | ------------------------------------------------- |
-| id              | number                            | true     | none         | Voucher id                                        |
-| fromDate        | string                            | true     | none         | Voucher active from date                          |
-| toDate          | string                            | true     | none         | Voucher active to date                            |
-| typeVoucher     | [TypeVoucher](#schematypevoucher) | true     | none         | Type of voucher                                   |
-| typeVoucherId   | number                            | true     | none         | id of type voucher                                |
-| amount          | number                            | true     | none         | Total voucher can be used                         |
-| addToUserAmount | number                            | true     | none         | A count of user add voucher to user's voucherList |
-| statusId        | string                            | true     | none         | Status Id of voucher                              |
-| usedAmount      | number                            | true     | none         | Total numer of vocher which user have to use      |
-| codeVoucher     | string                            | true     | none         | Enter this code to use in user's order            |
-| createdAt       | string(date-time)                 | true     | none         | Voucher created at the date                       |
-| updatedAt       | string(date-time)                 | true     | none         | Voucher updated at the date                       |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|number|true|none|Voucher id|
+|fromDate|string|true|none|Voucher active from date|
+|toDate|string|true|none|Voucher active to date|
+|typeVoucher|[TypeVoucher](#schematypevoucher)|true|none|Type of voucher|
+|typeVoucherId|number|true|none|id of type voucher|
+|amount|number|true|none|Total voucher can be used|
+|addToUserAmount|number|true|none|A count of user add voucher to user's voucherList|
+|statusId|string|true|none|Status Id of voucher|
+|usedAmount|number|true|none|Total numer of vocher which user have to use|
+|codeVoucher|string|true|none|Enter this code to use in user's order|
+|createdAt|string(date-time)|true|none|Voucher created at the date|
+|updatedAt|string(date-time)|true|none|Voucher updated at the date|
 
 #### Enumerated Values
 
-| Property | Value    |
-| -------- | -------- |
-| statusId | ACTIVE   |
-| statusId | INACTIVE |
-| statusId | DELETED  |
-| statusId | DRAFT    |
+|Property|Value|
+|---|---|
+|statusId|ACTIVE|
+|statusId|INACTIVE|
+|statusId|DELETED|
+|statusId|DRAFT|
 
 <h2 id="tocS_User">User</h2>
 <!-- backwards compatibility -->
@@ -3774,7 +3919,11 @@ _None_
     },
     "statusId": {
       "type": "string",
-      "enum": ["ON", "OFF", "BLOCK"],
+      "enum": [
+        "ON",
+        "OFF",
+        "BLOCK"
+      ],
       "example": "ON",
       "description": "User statusId"
     },
@@ -3801,7 +3950,13 @@ _None_
               "type": "string"
             }
           },
-          "required": ["type", "value", "code", "parentCode", "hexCode"]
+          "required": [
+            "type",
+            "value",
+            "code",
+            "parentCode",
+            "hexCode"
+          ]
         }
       ]
     },
@@ -3816,7 +3971,9 @@ _None_
       "description": "User active email"
     },
     "address": {
-      "example": [{}],
+      "example": [
+        {}
+      ],
       "description": "User list address",
       "type": "array",
       "items": {
@@ -3825,7 +3982,9 @@ _None_
       }
     },
     "voucherList": {
-      "example": [{}],
+      "example": [
+        {}
+      ],
       "description": "User list vouchers",
       "type": "array",
       "items": {
@@ -3873,7 +4032,12 @@ _None_
           },
           "statusId": {
             "type": "string",
-            "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              "DELETED",
+              "DRAFT"
+            ],
             "example": "ACTIVE",
             "description": "Status Id of voucher"
           },
@@ -3949,37 +4113,38 @@ _None_
     "updatedAt"
   ]
 }
+
 ```
 
 ### Properties
 
-| Name          | Type                                | Required | Restrictions | Description              |
-| ------------- | ----------------------------------- | -------- | ------------ | ------------------------ |
-| id            | number                              | true     | none         | User Id                  |
-| firstName     | string                              | true     | none         | User firstname           |
-| lastName      | string                              | true     | none         | User lastname            |
-| email         | string                              | true     | none         | User email               |
-| genderId      | string                              | true     | none         | User genderId            |
-| roleId        | string                              | true     | none         | User RoleId              |
-| phoneNumber   | string                              | true     | none         | User phone number        |
-| image         | string                              | true     | none         | User avatar              |
-| dob           | string                              | true     | none         | User date of birth       |
-| statusId      | string                              | true     | none         | User statusId            |
-| status        | [AllcodeDto](#schemaallcodedto)     | true     | none         | User status              |
-| token         | string                              | true     | none         | User token               |
-| isActiveEmail | boolean                             | true     | none         | User active email        |
-| address       | [[UserAddress](#schemauseraddress)] | true     | none         | User list address        |
-| voucherList   | [[Voucher](#schemavoucher)]         | true     | none         | User list vouchers       |
-| createdAt     | string(date-time)                   | true     | none         | User created at the date |
-| updatedAt     | string(date-time)                   | true     | none         | User updated at the date |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|number|true|none|User Id|
+|firstName|string|true|none|User firstname|
+|lastName|string|true|none|User lastname|
+|email|string|true|none|User email|
+|genderId|string|true|none|User genderId|
+|roleId|string|true|none|User RoleId|
+|phoneNumber|string|true|none|User phone number|
+|image|string|true|none|User avatar|
+|dob|string|true|none|User date of birth|
+|statusId|string|true|none|User statusId|
+|status|[AllcodeDto](#schemaallcodedto)|true|none|User status|
+|token|string|true|none|User token|
+|isActiveEmail|boolean|true|none|User active email|
+|address|[[UserAddress](#schemauseraddress)]|true|none|User list address|
+|voucherList|[[Voucher](#schemavoucher)]|true|none|User list vouchers|
+|createdAt|string(date-time)|true|none|User created at the date|
+|updatedAt|string(date-time)|true|none|User updated at the date|
 
 #### Enumerated Values
 
-| Property | Value |
-| -------- | ----- |
-| statusId | ON    |
-| statusId | OFF   |
-| statusId | BLOCK |
+|Property|Value|
+|---|---|
+|statusId|ON|
+|statusId|OFF|
+|statusId|BLOCK|
 
 <h2 id="tocS_ResponseLoginDto">ResponseLoginDto</h2>
 <!-- backwards compatibility -->
@@ -4045,7 +4210,11 @@ _None_
         },
         "statusId": {
           "type": "string",
-          "enum": ["ON", "OFF", "BLOCK"],
+          "enum": [
+            "ON",
+            "OFF",
+            "BLOCK"
+          ],
           "example": "ON",
           "description": "User statusId"
         },
@@ -4072,7 +4241,13 @@ _None_
                   "type": "string"
                 }
               },
-              "required": ["type", "value", "code", "parentCode", "hexCode"]
+              "required": [
+                "type",
+                "value",
+                "code",
+                "parentCode",
+                "hexCode"
+              ]
             }
           ]
         },
@@ -4087,7 +4262,9 @@ _None_
           "description": "User active email"
         },
         "address": {
-          "example": [{}],
+          "example": [
+            {}
+          ],
           "description": "User list address",
           "type": "array",
           "items": {
@@ -4096,7 +4273,9 @@ _None_
           }
         },
         "voucherList": {
-          "example": [{}],
+          "example": [
+            {}
+          ],
           "description": "User list vouchers",
           "type": "array",
           "items": {
@@ -4144,7 +4323,12 @@ _None_
               },
               "statusId": {
                 "type": "string",
-                "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+                "enum": [
+                  "ACTIVE",
+                  "INACTIVE",
+                  "DELETED",
+                  "DRAFT"
+                ],
                 "example": "ACTIVE",
                 "description": "Status Id of voucher"
               },
@@ -4221,16 +4405,20 @@ _None_
       ]
     }
   },
-  "required": ["accessToken", "user"]
+  "required": [
+    "accessToken",
+    "user"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name        | Type                | Required | Restrictions | Description |
-| ----------- | ------------------- | -------- | ------------ | ----------- |
-| accessToken | string              | true     | none         | none        |
-| user        | [User](#schemauser) | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|accessToken|string|true|none|none|
+|user|[User](#schemauser)|true|none|none|
 
 <h2 id="tocS_ResponseRereshTokenDto">ResponseRereshTokenDto</h2>
 <!-- backwards compatibility -->
@@ -4247,15 +4435,18 @@ _None_
       "type": "string"
     }
   },
-  "required": ["accessToken"]
+  "required": [
+    "accessToken"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name        | Type   | Required | Restrictions | Description |
-| ----------- | ------ | -------- | ------------ | ----------- |
-| accessToken | string | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|accessToken|string|true|none|none|
 
 <h2 id="tocS_UserDto">UserDto</h2>
 <!-- backwards compatibility -->
@@ -4269,11 +4460,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_UserAddressDto">UserAddressDto</h2>
 <!-- backwards compatibility -->
@@ -4314,18 +4506,19 @@ _None_
     "shipEmail"
   ]
 }
+
 ```
 
 ### Properties
 
-| Name            | Type   | Required | Restrictions | Description |
-| --------------- | ------ | -------- | ------------ | ----------- |
-| userId          | number | true     | none         | none        |
-| shipName        | string | true     | none         | none        |
-| statusId        | string | true     | none         | none        |
-| shipAddress     | string | true     | none         | none        |
-| shipPhoneNumber | string | true     | none         | none        |
-| shipEmail       | string | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|userId|number|true|none|none|
+|shipName|string|true|none|none|
+|statusId|string|true|none|none|
+|shipAddress|string|true|none|none|
+|shipPhoneNumber|string|true|none|none|
+|shipEmail|string|true|none|none|
 
 <h2 id="tocS_UpdateUserDto">UpdateUserDto</h2>
 <!-- backwards compatibility -->
@@ -4339,11 +4532,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_TypeVoucherDto">TypeVoucherDto</h2>
 <!-- backwards compatibility -->
@@ -4357,11 +4551,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_ProductDto">ProductDto</h2>
 <!-- backwards compatibility -->
@@ -4375,11 +4570,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_ProductDetail">ProductDetail</h2>
 <!-- backwards compatibility -->
@@ -4393,11 +4589,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_ProductDetailDto">ProductDetailDto</h2>
 <!-- backwards compatibility -->
@@ -4411,11 +4608,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_AllcodeApiResponseDto">AllcodeApiResponseDto</h2>
 <!-- backwards compatibility -->
@@ -4449,7 +4647,13 @@ _None_
             "type": "string"
           }
         },
-        "required": ["type", "value", "code", "parentCode", "hexCode"]
+        "required": [
+          "type",
+          "value",
+          "code",
+          "parentCode",
+          "hexCode"
+        ]
       }
     },
     "meta": {
@@ -4461,16 +4665,20 @@ _None_
       }
     }
   },
-  "required": ["data", "meta"]
+  "required": [
+    "data",
+    "meta"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name | Type                              | Required | Restrictions | Description |
-| ---- | --------------------------------- | -------- | ------------ | ----------- |
-| data | [[AllcodeDto](#schemaallcodedto)] | true     | none         | none        |
-| meta | object                            | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|data|[[AllcodeDto](#schemaallcodedto)]|true|none|none|
+|meta|object|true|none|none|
 
 <h2 id="tocS_ResponseWithErrDto">ResponseWithErrDto</h2>
 <!-- backwards compatibility -->
@@ -4490,16 +4698,20 @@ _None_
       "type": "boolean"
     }
   },
-  "required": ["message", "err"]
+  "required": [
+    "message",
+    "err"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name    | Type    | Required | Restrictions | Description |
-| ------- | ------- | -------- | ------------ | ----------- |
-| message | string  | true     | none         | none        |
-| err     | boolean | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|message|string|true|none|none|
+|err|boolean|true|none|none|
 
 <h2 id="tocS_BannerDto">BannerDto</h2>
 <!-- backwards compatibility -->
@@ -4525,18 +4737,24 @@ _None_
       "type": "string"
     }
   },
-  "required": ["description", "name", "statusId", "image"]
+  "required": [
+    "description",
+    "name",
+    "statusId",
+    "image"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name        | Type   | Required | Restrictions | Description |
-| ----------- | ------ | -------- | ------------ | ----------- |
-| description | string | true     | none         | none        |
-| name        | string | true     | none         | none        |
-| statusId    | string | true     | none         | none        |
-| image       | string | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|description|string|true|none|none|
+|name|string|true|none|none|
+|statusId|string|true|none|none|
+|image|string|true|none|none|
 
 <h2 id="tocS_ResponseCommonDto">ResponseCommonDto</h2>
 <!-- backwards compatibility -->
@@ -4553,15 +4771,18 @@ _None_
       "type": "string"
     }
   },
-  "required": ["message"]
+  "required": [
+    "message"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name    | Type   | Required | Restrictions | Description |
-| ------- | ------ | -------- | ------------ | ----------- |
-| message | string | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|message|string|true|none|none|
 
 <h2 id="tocS_Banner">Banner</h2>
 <!-- backwards compatibility -->
@@ -4605,7 +4826,13 @@ _None_
           "type": "string"
         }
       },
-      "required": ["type", "value", "code", "parentCode", "hexCode"]
+      "required": [
+        "type",
+        "value",
+        "code",
+        "parentCode",
+        "hexCode"
+      ]
     },
     "image": {
       "type": "string"
@@ -4630,20 +4857,21 @@ _None_
     "updatedAt"
   ]
 }
+
 ```
 
 ### Properties
 
-| Name        | Type                            | Required | Restrictions | Description |
-| ----------- | ------------------------------- | -------- | ------------ | ----------- |
-| id          | number                          | true     | none         | none        |
-| description | string                          | true     | none         | none        |
-| name        | string                          | true     | none         | none        |
-| statusId    | string                          | true     | none         | none        |
-| status      | [AllcodeDto](#schemaallcodedto) | true     | none         | none        |
-| image       | string                          | true     | none         | none        |
-| createdAt   | string(date-time)               | true     | none         | none        |
-| updatedAt   | string(date-time)               | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|number|true|none|none|
+|description|string|true|none|none|
+|name|string|true|none|none|
+|statusId|string|true|none|none|
+|status|[AllcodeDto](#schemaallcodedto)|true|none|none|
+|image|string|true|none|none|
+|createdAt|string(date-time)|true|none|none|
+|updatedAt|string(date-time)|true|none|none|
 
 <h2 id="tocS_BannerApiResponseDto">BannerApiResponseDto</h2>
 <!-- backwards compatibility -->
@@ -4692,7 +4920,13 @@ _None_
                 "type": "string"
               }
             },
-            "required": ["type", "value", "code", "parentCode", "hexCode"]
+            "required": [
+              "type",
+              "value",
+              "code",
+              "parentCode",
+              "hexCode"
+            ]
           },
           "image": {
             "type": "string"
@@ -4727,16 +4961,20 @@ _None_
       }
     }
   },
-  "required": ["data", "meta"]
+  "required": [
+    "data",
+    "meta"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name | Type                      | Required | Restrictions | Description |
-| ---- | ------------------------- | -------- | ------------ | ----------- |
-| data | [[Banner](#schemabanner)] | true     | none         | none        |
-| meta | object                    | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|data|[[Banner](#schemabanner)]|true|none|none|
+|meta|object|true|none|none|
 
 <h2 id="tocS_CommentDto">CommentDto</h2>
 <!-- backwards compatibility -->
@@ -4750,11 +4988,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_BlogDto">BlogDto</h2>
 <!-- backwards compatibility -->
@@ -4792,21 +5031,24 @@ _None_
       "type": "number"
     }
   },
-  "required": ["title"]
+  "required": [
+    "title"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name             | Type     | Required | Restrictions | Description |
-| ---------------- | -------- | -------- | ------------ | ----------- |
-| title            | string   | true     | none         | none        |
-| shortDescription | string   | false    | none         | none        |
-| subjectId        | string   | false    | none         | none        |
-| statusId         | string   | false    | none         | none        |
-| images           | [string] | false    | none         | none        |
-| contentMarkdown  | string   | false    | none         | none        |
-| userId           | number   | false    | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|title|string|true|none|none|
+|shortDescription|string|false|none|none|
+|subjectId|string|false|none|none|
+|statusId|string|false|none|none|
+|images|[string]|false|none|none|
+|contentMarkdown|string|false|none|none|
+|userId|number|false|none|none|
 
 <h2 id="tocS_Blog">Blog</h2>
 <!-- backwards compatibility -->
@@ -4820,11 +5062,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_BlogApiResponseDto">BlogApiResponseDto</h2>
 <!-- backwards compatibility -->
@@ -4855,16 +5098,20 @@ _None_
       }
     }
   },
-  "required": ["data", "meta"]
+  "required": [
+    "data",
+    "meta"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name | Type                  | Required | Restrictions | Description |
-| ---- | --------------------- | -------- | ------------ | ----------- |
-| data | [[Blog](#schemablog)] | true     | none         | none        |
-| meta | object                | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|data|[[Blog](#schemablog)]|true|none|none|
+|meta|object|true|none|none|
 
 <h2 id="tocS_OrderDto">OrderDto</h2>
 <!-- backwards compatibility -->
@@ -4897,7 +5144,10 @@ _None_
     },
     "type": {
       "type": "string",
-      "enum": ["PAYMENT", "COD"]
+      "enum": [
+        "PAYMENT",
+        "COD"
+      ]
     }
   },
   "required": [
@@ -4910,26 +5160,27 @@ _None_
     "type"
   ]
 }
+
 ```
 
 ### Properties
 
-| Name            | Type    | Required | Restrictions | Description |
-| --------------- | ------- | -------- | ------------ | ----------- |
-| addressUserId   | number  | true     | none         | none        |
-| statusId        | string  | true     | none         | none        |
-| typeShipId      | number  | true     | none         | none        |
-| voucherCode     | string  | true     | none         | none        |
-| note            | string  | true     | none         | none        |
-| isPaymentOnline | boolean | true     | none         | none        |
-| type            | string  | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|addressUserId|number|true|none|none|
+|statusId|string|true|none|none|
+|typeShipId|number|true|none|none|
+|voucherCode|string|true|none|none|
+|note|string|true|none|none|
+|isPaymentOnline|boolean|true|none|none|
+|type|string|true|none|none|
 
 #### Enumerated Values
 
-| Property | Value   |
-| -------- | ------- |
-| type     | PAYMENT |
-| type     | COD     |
+|Property|Value|
+|---|---|
+|type|PAYMENT|
+|type|COD|
 
 <h2 id="tocS_Allcode">Allcode</h2>
 <!-- backwards compatibility -->
@@ -4943,11 +5194,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_TypeShip">TypeShip</h2>
 <!-- backwards compatibility -->
@@ -4982,20 +5234,28 @@ _None_
       "type": "string"
     }
   },
-  "required": ["id", "typeId", "type", "price", "createdAt", "updatedAt"]
+  "required": [
+    "id",
+    "typeId",
+    "type",
+    "price",
+    "createdAt",
+    "updatedAt"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name      | Type                      | Required | Restrictions | Description |
-| --------- | ------------------------- | -------- | ------------ | ----------- |
-| id        | number                    | true     | none         | none        |
-| typeId    | string                    | true     | none         | none        |
-| type      | [Allcode](#schemaallcode) | true     | none         | none        |
-| price     | number                    | true     | none         | none        |
-| createdAt | string(date-time)         | true     | none         | none        |
-| updatedAt | string(date-time)         | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|number|true|none|none|
+|typeId|string|true|none|none|
+|type|[Allcode](#schemaallcode)|true|none|none|
+|price|number|true|none|none|
+|createdAt|string(date-time)|true|none|none|
+|updatedAt|string(date-time)|true|none|none|
 
 <h2 id="tocS_OrderDetail">OrderDetail</h2>
 <!-- backwards compatibility -->
@@ -5009,11 +5269,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_Order">Order</h2>
 <!-- backwards compatibility -->
@@ -5067,7 +5328,14 @@ _None_
           "type": "string"
         }
       },
-      "required": ["id", "typeId", "type", "price", "createdAt", "updatedAt"]
+      "required": [
+        "id",
+        "typeId",
+        "type",
+        "price",
+        "createdAt",
+        "updatedAt"
+      ]
     },
     "typeShipId": {
       "type": "number"
@@ -5117,7 +5385,12 @@ _None_
         },
         "statusId": {
           "type": "string",
-          "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+          "enum": [
+            "ACTIVE",
+            "INACTIVE",
+            "DELETED",
+            "DRAFT"
+          ],
           "example": "ACTIVE",
           "description": "Status Id of voucher"
         },
@@ -5204,26 +5477,27 @@ _None_
     "updatedAt"
   ]
 }
+
 ```
 
 ### Properties
 
-| Name            | Type                                | Required | Restrictions | Description |
-| --------------- | ----------------------------------- | -------- | ------------ | ----------- |
-| id              | number                              | true     | none         | none        |
-| addressUser     | [[UserAddress](#schemauseraddress)] | true     | none         | none        |
-| addressUserId   | number                              | true     | none         | none        |
-| statusId        | string                              | true     | none         | none        |
-| typeShip        | [TypeShip](#schematypeship)         | true     | none         | none        |
-| typeShipId      | number                              | true     | none         | none        |
-| voucher         | [Voucher](#schemavoucher)           | true     | none         | none        |
-| orderDetails    | [[OrderDetail](#schemaorderdetail)] | true     | none         | none        |
-| voucherId       | number                              | true     | none         | none        |
-| totalPrice      | number                              | true     | none         | none        |
-| note            | string                              | true     | none         | none        |
-| isPaymentOnline | boolean                             | true     | none         | none        |
-| createdAt       | string(date-time)                   | true     | none         | none        |
-| updatedAt       | string(date-time)                   | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|number|true|none|none|
+|addressUser|[[UserAddress](#schemauseraddress)]|true|none|none|
+|addressUserId|number|true|none|none|
+|statusId|string|true|none|none|
+|typeShip|[TypeShip](#schematypeship)|true|none|none|
+|typeShipId|number|true|none|none|
+|voucher|[Voucher](#schemavoucher)|true|none|none|
+|orderDetails|[[OrderDetail](#schemaorderdetail)]|true|none|none|
+|voucherId|number|true|none|none|
+|totalPrice|number|true|none|none|
+|note|string|true|none|none|
+|isPaymentOnline|boolean|true|none|none|
+|createdAt|string(date-time)|true|none|none|
+|updatedAt|string(date-time)|true|none|none|
 
 <h2 id="tocS_ChangeStatusDto">ChangeStatusDto</h2>
 <!-- backwards compatibility -->
@@ -5247,25 +5521,28 @@ _None_
       ]
     }
   },
-  "required": ["statusId"]
+  "required": [
+    "statusId"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name     | Type   | Required | Restrictions | Description |
-| -------- | ------ | -------- | ------------ | ----------- |
-| statusId | string | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|statusId|string|true|none|none|
 
 #### Enumerated Values
 
-| Property | Value                 |
-| -------- | --------------------- |
-| statusId | WAIT_FOR_COMFIRMATION |
-| statusId | WAIT_FOR_PAYMENT      |
-| statusId | DELIVERING            |
-| statusId | DELIVERED             |
-| statusId | CANCEL                |
+|Property|Value|
+|---|---|
+|statusId|WAIT_FOR_COMFIRMATION|
+|statusId|WAIT_FOR_PAYMENT|
+|statusId|DELIVERING|
+|statusId|DELIVERED|
+|statusId|CANCEL|
 
 <h2 id="tocS_OrderApiResponseDto">OrderApiResponseDto</h2>
 <!-- backwards compatibility -->
@@ -5381,7 +5658,12 @@ _None_
               },
               "statusId": {
                 "type": "string",
-                "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
+                "enum": [
+                  "ACTIVE",
+                  "INACTIVE",
+                  "DELETED",
+                  "DRAFT"
+                ],
                 "example": "ACTIVE",
                 "description": "Status Id of voucher"
               },
@@ -5478,16 +5760,20 @@ _None_
       }
     }
   },
-  "required": ["data", "meta"]
+  "required": [
+    "data",
+    "meta"
+  ]
 }
+
 ```
 
 ### Properties
 
-| Name | Type                    | Required | Restrictions | Description |
-| ---- | ----------------------- | -------- | ------------ | ----------- |
-| data | [[Order](#schemaorder)] | true     | none         | none        |
-| meta | object                  | true     | none         | none        |
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|data|[[Order](#schemaorder)]|true|none|none|
+|meta|object|true|none|none|
 
 <h2 id="tocS_CartDetailDto">CartDetailDto</h2>
 <!-- backwards compatibility -->
@@ -5501,11 +5787,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_ReceiptDto">ReceiptDto</h2>
 <!-- backwards compatibility -->
@@ -5519,11 +5806,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_ReceiptDetailDto">ReceiptDetailDto</h2>
 <!-- backwards compatibility -->
@@ -5537,11 +5825,12 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
 
 <h2 id="tocS_SupplierDto">SupplierDto</h2>
 <!-- backwards compatibility -->
@@ -5555,8 +5844,10 @@ _None_
   "type": "object",
   "properties": {}
 }
+
 ```
 
 ### Properties
 
-_None_
+*None*
+

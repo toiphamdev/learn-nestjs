@@ -35,11 +35,7 @@ export class RoomMessageController {
   ): Promise<Message> {
     return this.messageService.createMessage(req.user['id'], roomId, text);
   }
-  // @Get('messages/:roomId')
-  // getRoomMessages(@Param('roomId') roomId: number) {
-  //   console.log(roomId);
-  //   return this.messageService.getRoomMessages(roomId);
-  // }
+
   @Get('/rooms')
   @UseGuards(JwtAuthGuard)
   getAllRooms(@Req() req: Request) {

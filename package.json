@@ -22,7 +22,7 @@
     "generate:migration": "npm run typeorm -- migration:generate",
     "run:migration": "npm run typeorm -- migration:run",
     "revert:migration": "npm run typeorm -- migration:revert",
-    "generate-doc": "swagger-markdown -i http://localhost:8080/api -o swagger.md"
+    "generate-doc": "swagger-markdown -i swagger.json -o swagger.md"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8.8.1",
@@ -61,7 +61,8 @@
     "swagger-markdown": "^2.3.0",
     "swagger-ui-express": "^5.0.0",
     "type": "^2.7.2",
-    "typeorm": "^0.3.16"
+    "typeorm": "^0.3.16",
+    "widdershins": "^4.0.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

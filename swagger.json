@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.1.0",
   "paths": {
     "/": {
       "get": {
@@ -22,9 +22,7 @@
             "description": "Swagger JSON"
           }
         },
-        "tags": [
-          "Swagger"
-        ]
+        "tags": ["Swagger"]
       }
     },
     "/auth/login": {
@@ -57,9 +55,7 @@
             "description": "Unauthorized"
           }
         },
-        "tags": [
-          "auth"
-        ]
+        "tags": ["auth"]
       }
     },
     "/auth/refresh": {
@@ -82,9 +78,7 @@
             "description": "Somethings went wrong"
           }
         },
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "security": [
           {
             "refreshToken": []
@@ -102,9 +96,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "security": [
           {
             "bearer": []
@@ -726,9 +718,7 @@
             "description": "Forbidden"
           }
         },
-        "tags": [
-          "allcode"
-        ],
+        "tags": ["allcode"],
         "security": [
           {
             "bearer": []
@@ -777,9 +767,7 @@
             "description": "Forbidden"
           }
         },
-        "tags": [
-          "allcode"
-        ],
+        "tags": ["allcode"],
         "security": [
           {
             "bearer": []
@@ -817,9 +805,7 @@
             "description": "Forbidden"
           }
         },
-        "tags": [
-          "allcode"
-        ]
+        "tags": ["allcode"]
       }
     },
     "/all-code/{id}": {
@@ -831,9 +817,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "allcode"
-        ]
+        "tags": ["allcode"]
       }
     },
     "/upload/image": {
@@ -888,9 +872,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "banners"
-        ],
+        "tags": ["banners"],
         "security": [
           {
             "bearer": []
@@ -930,10 +912,7 @@
             "required": false,
             "in": "query",
             "schema": {
-              "enum": [
-                "DESC",
-                "ASC"
-              ],
+              "enum": ["DESC", "ASC"],
               "type": "string"
             }
           }
@@ -953,9 +932,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "banners"
-        ]
+        "tags": ["banners"]
       }
     },
     "/banner/{id}": {
@@ -997,9 +974,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "banners"
-        ],
+        "tags": ["banners"],
         "security": [
           {
             "bearer": []
@@ -1014,9 +989,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "banners"
-        ]
+        "tags": ["banners"]
       }
     },
     "/comment": {
@@ -1094,9 +1067,7 @@
             "description": "Somethings went wrong"
           }
         },
-        "tags": [
-          "blogs"
-        ],
+        "tags": ["blogs"],
         "security": [
           {
             "bearer": []
@@ -1219,9 +1190,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "blogs"
-        ]
+        "tags": ["blogs"]
       }
     },
     "/blog/{id}": {
@@ -1244,9 +1213,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "blogs"
-        ],
+        "tags": ["blogs"],
         "security": [
           {
             "bearer": []
@@ -1261,9 +1228,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "blogs"
-        ]
+        "tags": ["blogs"]
       },
       "delete": {
         "operationId": "BlogController_deleteBlog",
@@ -1273,9 +1238,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "blogs"
-        ]
+        "tags": ["blogs"]
       }
     },
     "/order": {
@@ -1311,9 +1274,7 @@
             "description": "Some things wwent wrong"
           }
         },
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "security": [
           {
             "bearer": []
@@ -1466,9 +1427,7 @@
             "description": "Some things wwent wrong"
           }
         },
-        "tags": [
-          "Orders"
-        ]
+        "tags": ["Orders"]
       }
     },
     "/order/change-status/{id}": {
@@ -1513,9 +1472,7 @@
             "description": "Some things wwent wrong"
           }
         },
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "security": [
           {
             "bearer": []
@@ -1555,9 +1512,7 @@
             "description": "Some things wwent wrong"
           }
         },
-        "tags": [
-          "Orders"
-        ],
+        "tags": ["Orders"],
         "security": [
           {
             "bearer": []
@@ -1588,9 +1543,7 @@
             "description": "Somethings went wrong"
           }
         },
-        "tags": [
-          "Orders"
-        ]
+        "tags": ["Orders"]
       }
     },
     "/order/{id}": {
@@ -1622,9 +1575,7 @@
             }
           }
         },
-        "tags": [
-          "Orders"
-        ]
+        "tags": ["Orders"]
       }
     },
     "/cart": {
@@ -1979,10 +1930,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "email",
-          "password"
-        ]
+        "required": ["email", "password"]
       },
       "AllcodeDto": {
         "type": "object",
@@ -2003,13 +1951,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "type",
-          "value",
-          "code",
-          "parentCode",
-          "hexCode"
-        ]
+        "required": ["type", "value", "code", "parentCode", "hexCode"]
       },
       "UserAddress": {
         "type": "object",
@@ -2063,12 +2005,7 @@
           },
           "statusId": {
             "type": "string",
-            "enum": [
-              "ACTIVE",
-              "INACTIVE",
-              "DELETED",
-              "DRAFT"
-            ],
+            "enum": ["ACTIVE", "INACTIVE", "DELETED", "DRAFT"],
             "example": "ACTIVE",
             "description": "Status Id of voucher"
           },
@@ -2160,11 +2097,7 @@
           },
           "statusId": {
             "type": "string",
-            "enum": [
-              "ON",
-              "OFF",
-              "BLOCK"
-            ],
+            "enum": ["ON", "OFF", "BLOCK"],
             "example": "ON",
             "description": "User statusId"
           },
@@ -2188,9 +2121,7 @@
             "description": "User active email"
           },
           "address": {
-            "example": [
-              {}
-            ],
+            "example": [{}],
             "description": "User list address",
             "type": "array",
             "items": {
@@ -2198,9 +2129,7 @@
             }
           },
           "voucherList": {
-            "example": [
-              {}
-            ],
+            "example": [{}],
             "description": "User list vouchers",
             "type": "array",
             "items": {
@@ -2250,10 +2179,7 @@
             "$ref": "#/components/schemas/User"
           }
         },
-        "required": [
-          "accessToken",
-          "user"
-        ]
+        "required": ["accessToken", "user"]
       },
       "ResponseRereshTokenDto": {
         "type": "object",
@@ -2262,9 +2188,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "accessToken"
-        ]
+        "required": ["accessToken"]
       },
       "UserDto": {
         "type": "object",
@@ -2339,10 +2263,7 @@
             }
           }
         },
-        "required": [
-          "data",
-          "meta"
-        ]
+        "required": ["data", "meta"]
       },
       "ResponseWithErrDto": {
         "type": "object",
@@ -2354,10 +2275,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "message",
-          "err"
-        ]
+        "required": ["message", "err"]
       },
       "BannerDto": {
         "type": "object",
@@ -2375,12 +2293,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "description",
-          "name",
-          "statusId",
-          "image"
-        ]
+        "required": ["description", "name", "statusId", "image"]
       },
       "ResponseCommonDto": {
         "type": "object",
@@ -2389,9 +2302,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
       },
       "Banner": {
         "type": "object",
@@ -2452,10 +2363,7 @@
             }
           }
         },
-        "required": [
-          "data",
-          "meta"
-        ]
+        "required": ["data", "meta"]
       },
       "CommentDto": {
         "type": "object",
@@ -2489,9 +2397,7 @@
             "type": "number"
           }
         },
-        "required": [
-          "title"
-        ]
+        "required": ["title"]
       },
       "Blog": {
         "type": "object",
@@ -2517,10 +2423,7 @@
             }
           }
         },
-        "required": [
-          "data",
-          "meta"
-        ]
+        "required": ["data", "meta"]
       },
       "OrderDto": {
         "type": "object",
@@ -2545,10 +2448,7 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "PAYMENT",
-              "COD"
-            ]
+            "enum": ["PAYMENT", "COD"]
           }
         },
         "required": [
@@ -2589,14 +2489,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "id",
-          "typeId",
-          "type",
-          "price",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["id", "typeId", "type", "price", "createdAt", "updatedAt"]
       },
       "OrderDetail": {
         "type": "object",
@@ -2687,9 +2580,7 @@
             ]
           }
         },
-        "required": [
-          "statusId"
-        ]
+        "required": ["statusId"]
       },
       "OrderApiResponseDto": {
         "type": "object",
@@ -2709,10 +2600,7 @@
             }
           }
         },
-        "required": [
-          "data",
-          "meta"
-        ]
+        "required": ["data", "meta"]
       },
       "CartDetailDto": {
         "type": "object",
