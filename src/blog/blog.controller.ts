@@ -23,11 +23,13 @@ import {
   ApiBody,
   ApiForbiddenResponse,
   ApiOperation,
+  ApiQuery,
   ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ResponseCommonDto } from 'src/allcode/dto/allcode-api-response.dto';
+import { BlogApiResponseDto } from './dto/blog-api-response.dto';
 
 @ApiTags('blogs')
 @Controller('blog')
@@ -52,6 +54,10 @@ export class BlogController {
     return this.blogService.createBlog(blog);
   }
 
+  @ApiOperation({ summary: 'Search blog by query' })
+  @ApiQuery({ type: SearchBlogDto })
+  @ApiResponse({ status: 200, type: BlogApiResponseDto })
+  @ApiForbiddenResponse()
   @Get()
   searchBlogs(@Query() query: SearchBlogDto): Promise<{
     data: Blog[];
@@ -64,6 +70,9 @@ export class BlogController {
     return this.blogService.searchBlogs(query);
   }
 
+  @ApiOperation({ summary: 'Updateblog' })
+  @ApiBearerAuth()
+  @ApiResponse({})
   @Put(':id')
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -75,6 +84,7 @@ export class BlogController {
   getBlogDetail(@Param() param: { id: number }): Promise<Blog> {
     return this.blogService.getBlogById(param.id);
   }
+
   @Delete(':id')
   @Roles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)

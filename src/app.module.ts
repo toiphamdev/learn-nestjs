@@ -28,6 +28,7 @@ import { CartModule } from './cart/cart.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MailModule } from './mail/mail.module';
 import { PaymentModule } from './payment/payment.module';
+import { SwaggerController, SwaggerService } from './swagger.controller';
 
 @Module({
   imports: [
@@ -57,7 +58,7 @@ import { PaymentModule } from './payment/payment.module';
     PaymentModule,
     // LikeListModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, ClearImageService],
+  controllers: [AppController, SwaggerController],
+  providers: [AppService, ClearImageService, SwaggerService],
 })
 export class AppModule {}

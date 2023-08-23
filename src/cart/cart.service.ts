@@ -93,7 +93,8 @@ export class CartService {
         return cur.productDetailSize.productDetail.discountPrice !== 0
           ? acc +
               cur.productDetailSize.productDetail.discountPrice * cur.quantity
-          : cur.productDetailSize.productDetail.originalPrice * cur.quantity;
+          : acc +
+              cur.productDetailSize.productDetail.originalPrice * cur.quantity;
       }, 0);
       if (voucherCode) {
         const voucher = await this.voucherService.getVoucherByCode(voucherCode);

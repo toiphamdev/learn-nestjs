@@ -122,7 +122,7 @@ export class OrderService {
     statusId: statusOrder,
   ): Promise<{ message: string }> {
     try {
-      const updated = await this.orderRepo.update({ statusId }, { id });
+      const updated = await this.orderRepo.update({ id }, { statusId });
       if (updated.affected > 0) {
         return {
           message: 'success',

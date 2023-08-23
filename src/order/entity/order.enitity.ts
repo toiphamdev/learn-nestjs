@@ -10,7 +10,6 @@ import {
 import { TypeShip } from './type-ship.entity';
 import { OrderDetail } from './order-detail.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { type } from 'os';
 
 @Entity()
 export class Order {
