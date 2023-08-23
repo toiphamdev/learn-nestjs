@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Param,
-  UseGuards,
-  Req,
-} from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards, Req } from '@nestjs/common';
 import { MessageService } from './message.service';
 import { Message } from './entities/message.entity';
 import { RoomMessage } from './entities/room-message.entity';

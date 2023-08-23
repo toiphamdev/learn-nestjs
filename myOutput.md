@@ -24,6 +24,23 @@ Base URLs:
 
 <a id="opIdAppController_getHello"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /`
 
 <h3 id="appcontroller_gethello-responses">Responses</h3>
@@ -40,15 +57,34 @@ This operation does not require authentication
 
 <a id="opIdUserController_createUser"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/user',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /user`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="usercontroller_createuser-parameters">Parameters</h3>
@@ -71,6 +107,23 @@ This operation does not require authentication
 
 <a id="opIdUserController_getAllUser"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/user',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /user`
 
 <h3 id="usercontroller_getalluser-responses">Responses</h3>
@@ -87,15 +140,34 @@ This operation does not require authentication
 
 <a id="opIdUserController_updateUser"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/user',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /user`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="usercontroller_updateuser-parameters">Parameters</h3>
@@ -118,6 +190,23 @@ This operation does not require authentication
 
 <a id="opIdUserController_getProfile"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/user/profile',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /user/profile`
 
 <h3 id="usercontroller_getprofile-responses">Responses</h3>
@@ -133,6 +222,23 @@ This operation does not require authentication
 ## UserController_dislikeCommentAction
 
 <a id="opIdUserController_dislikeCommentAction"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/user/comment/dislike/{commentId}',
+{
+  method: 'PATCH'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `PATCH /user/comment/dislike/{commentId}`
 
@@ -150,6 +256,23 @@ This operation does not require authentication
 
 <a id="opIdUserController_likeCommentAction"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/user/comment/like/{commentId}',
+{
+  method: 'PATCH'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PATCH /user/comment/like/{commentId}`
 
 <h3 id="usercontroller_likecommentaction-responses">Responses</h3>
@@ -165,6 +288,23 @@ This operation does not require authentication
 ## UserController_addToVoucherList
 
 <a id="opIdUserController_addToVoucherList"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/user/voucher/add/{code}',
+{
+  method: 'PATCH'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `PATCH /user/voucher/add/{code}`
 
@@ -182,6 +322,23 @@ This operation does not require authentication
 
 <a id="opIdUserController_sendVerifyEmail"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/user/verify-email',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /user/verify-email`
 
 <h3 id="usercontroller_sendverifyemail-responses">Responses</h3>
@@ -197,6 +354,23 @@ This operation does not require authentication
 ## UserController_sendVerifyChangePass
 
 <a id="opIdUserController_sendVerifyChangePass"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/user/change-pass',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `POST /user/change-pass`
 
@@ -214,6 +388,23 @@ This operation does not require authentication
 
 <a id="opIdUserController_verifyPass"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/user/change-pass',
+{
+  method: 'PATCH'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PATCH /user/change-pass`
 
 <h3 id="usercontroller_verifypass-responses">Responses</h3>
@@ -229,6 +420,23 @@ This operation does not require authentication
 ## UserController_verifyEmail
 
 <a id="opIdUserController_verifyEmail"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/user/verify',
+{
+  method: 'PATCH'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `PATCH /user/verify`
 
@@ -246,41 +454,47 @@ This operation does not require authentication
 
 <a id="opIdUserController_createAdd"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": 0,
+  "shipName": "string",
+  "statusId": "string",
+  "shipAddress": "string",
+  "shipPhoneNumber": "string",
+  "shipEmail": "string"
+}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/user/address',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /user/address`
 
 > Body parameter
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "userId": {
-      "type": "number"
-    },
-    "shipName": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "shipAddress": {
-      "type": "string"
-    },
-    "shipPhoneNumber": {
-      "type": "string"
-    },
-    "shipEmail": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "userId",
-    "shipName",
-    "statusId",
-    "shipAddress",
-    "shipPhoneNumber",
-    "shipEmail"
-  ]
+  "userId": 0,
+  "shipName": "string",
+  "statusId": "string",
+  "shipAddress": "string",
+  "shipPhoneNumber": "string",
+  "shipEmail": "string"
 }
 ```
 
@@ -304,6 +518,23 @@ This operation does not require authentication
 
 <a id="opIdUserController_getAdds"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/user/address',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /user/address`
 
 <h3 id="usercontroller_getadds-responses">Responses</h3>
@@ -320,41 +551,47 @@ This operation does not require authentication
 
 <a id="opIdUserController_updateAdd"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "userId": 0,
+  "shipName": "string",
+  "statusId": "string",
+  "shipAddress": "string",
+  "shipPhoneNumber": "string",
+  "shipEmail": "string"
+}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/user/address/{id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /user/address/{id}`
 
 > Body parameter
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "userId": {
-      "type": "number"
-    },
-    "shipName": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "shipAddress": {
-      "type": "string"
-    },
-    "shipPhoneNumber": {
-      "type": "string"
-    },
-    "shipEmail": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "userId",
-    "shipName",
-    "statusId",
-    "shipAddress",
-    "shipPhoneNumber",
-    "shipEmail"
-  ]
+  "userId": 0,
+  "shipName": "string",
+  "statusId": "string",
+  "shipAddress": "string",
+  "shipPhoneNumber": "string",
+  "shipEmail": "string"
 }
 ```
 
@@ -379,6 +616,23 @@ This operation does not require authentication
 
 <a id="opIdUserController_deleteAdd"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/user/address/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `DELETE /user/address/{id}`
 
 <h3 id="usercontroller_deleteadd-parameters">Parameters</h3>
@@ -401,6 +655,23 @@ This operation does not require authentication
 
 <a id="opIdUserController_sendVerifyTakePass"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/user/take-pass',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /user/take-pass`
 
 <h3 id="usercontroller_sendverifytakepass-responses">Responses</h3>
@@ -416,6 +687,23 @@ This operation does not require authentication
 ## VoucherController_createVoucher
 
 <a id="opIdVoucherController_createVoucher"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/voucher',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `POST /voucher`
 
@@ -433,6 +721,23 @@ This operation does not require authentication
 
 <a id="opIdVoucherController_getAllVoucher"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/voucher',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /voucher`
 
 <h3 id="vouchercontroller_getallvoucher-responses">Responses</h3>
@@ -449,6 +754,23 @@ This operation does not require authentication
 
 <a id="opIdVoucherController_getVoucherByCode"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/voucher/code',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /voucher/code`
 
 <h3 id="vouchercontroller_getvoucherbycode-responses">Responses</h3>
@@ -464,6 +786,23 @@ This operation does not require authentication
 ## VoucherController_updateVoucher
 
 <a id="opIdVoucherController_updateVoucher"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/voucher/update/{id}',
+{
+  method: 'PATCH'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `PATCH /voucher/update/{id}`
 
@@ -487,15 +826,34 @@ This operation does not require authentication
 
 <a id="opIdVoucherController_createTypeVoucher"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/voucher/type-voucher',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /voucher/type-voucher`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="vouchercontroller_createtypevoucher-parameters">Parameters</h3>
@@ -518,6 +876,23 @@ This operation does not require authentication
 
 <a id="opIdVoucherController_getAllTypeVoucher"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/voucher/type-voucher',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /voucher/type-voucher`
 
 <h3 id="vouchercontroller_getalltypevoucher-responses">Responses</h3>
@@ -534,14 +909,34 @@ This operation does not require authentication
 
 <a id="opIdVoucherController_updateTypeVoucher"></a>
 
+> Code samples
+
+```javascript
+const inputBody = 'string';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/voucher/type-voucher/{id}',
+{
+  method: 'PATCH',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PATCH /voucher/type-voucher/{id}`
 
 > Body parameter
 
 ```json
-{
-  "type": "string"
-}
+"string"
 ```
 
 <h3 id="vouchercontroller_updatetypevoucher-parameters">Parameters</h3>
@@ -565,15 +960,34 @@ This operation does not require authentication
 
 <a id="opIdProductController_createNewProduct"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/product',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /product`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="productcontroller_createnewproduct-parameters">Parameters</h3>
@@ -596,6 +1010,23 @@ This operation does not require authentication
 
 <a id="opIdProductController_fillterProduct"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/product',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /product`
 
 <h3 id="productcontroller_fillterproduct-responses">Responses</h3>
@@ -611,6 +1042,23 @@ This operation does not require authentication
 ## ProductController_deleteProductById
 
 <a id="opIdProductController_deleteProductById"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/product/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `DELETE /product/{id}`
 
@@ -628,15 +1076,34 @@ This operation does not require authentication
 
 <a id="opIdProductController_updateProductById"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/product/{id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /product/{id}`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="productcontroller_updateproductbyid-parameters">Parameters</h3>
@@ -659,6 +1126,23 @@ This operation does not require authentication
 
 <a id="opIdProductController_getProductById"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/product/{id}',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /product/{id}`
 
 <h3 id="productcontroller_getproductbyid-responses">Responses</h3>
@@ -674,6 +1158,23 @@ This operation does not require authentication
 ## ProductController_getProductByName
 
 <a id="opIdProductController_getProductByName"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/product/search',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /product/search`
 
@@ -691,15 +1192,34 @@ This operation does not require authentication
 
 <a id="opIdProductController_updateProductDetail"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/product/detail/{id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /product/detail/{id}`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="productcontroller_updateproductdetail-parameters">Parameters</h3>
@@ -722,6 +1242,23 @@ This operation does not require authentication
 
 <a id="opIdProductController_deleteProdDetail"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/product/detail/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `DELETE /product/detail/{id}`
 
 <h3 id="productcontroller_deleteproddetail-responses">Responses</h3>
@@ -738,15 +1275,34 @@ This operation does not require authentication
 
 <a id="opIdProductController_createProductDetail"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/product/detail',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /product/detail`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="productcontroller_createproductdetail-parameters">Parameters</h3>
@@ -769,6 +1325,23 @@ This operation does not require authentication
 
 <a id="opIdProductController_getAllProductDetail"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/product/detail/{productId}',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /product/detail/{productId}`
 
 <h3 id="productcontroller_getallproductdetail-responses">Responses</h3>
@@ -784,6 +1357,23 @@ This operation does not require authentication
 ## ProductController_createSize
 
 <a id="opIdProductController_createSize"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/product/size',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `POST /product/size`
 
@@ -801,6 +1391,23 @@ This operation does not require authentication
 
 <a id="opIdProductController_updateSize"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/product/size/{id}',
+{
+  method: 'PUT'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /product/size/{id}`
 
 <h3 id="productcontroller_updatesize-responses">Responses</h3>
@@ -816,6 +1423,23 @@ This operation does not require authentication
 ## ProductController_deleteSize
 
 <a id="opIdProductController_deleteSize"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/product/size/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `DELETE /product/size/{id}`
 
@@ -833,6 +1457,23 @@ This operation does not require authentication
 
 <a id="opIdProductController_getSizeByProductDetailId"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/product/size/{productDetailId}',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /product/size/{productDetailId}`
 
 <h3 id="productcontroller_getsizebyproductdetailid-responses">Responses</h3>
@@ -848,6 +1489,23 @@ This operation does not require authentication
 ## ProductController_getColors
 
 <a id="opIdProductController_getColors"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/product/colors/{productId}',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /product/colors/{productId}`
 
@@ -865,6 +1523,23 @@ This operation does not require authentication
 
 <a id="opIdRoomMessageController_createRoomMessage"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/room-messages/create',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /room-messages/create`
 
 <h3 id="roommessagecontroller_createroommessage-responses">Responses</h3>
@@ -880,6 +1555,23 @@ This operation does not require authentication
 ## RoomMessageController_createMessage
 
 <a id="opIdRoomMessageController_createMessage"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/room-messages/message',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `POST /room-messages/message`
 
@@ -897,6 +1589,23 @@ This operation does not require authentication
 
 <a id="opIdRoomMessageController_getAllRooms"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/room-messages/rooms',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /room-messages/rooms`
 
 <h3 id="roommessagecontroller_getallrooms-responses">Responses</h3>
@@ -912,6 +1621,23 @@ This operation does not require authentication
 ## RoomMessageController_getAllAdminRooms
 
 <a id="opIdRoomMessageController_getAllAdminRooms"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/room-messages/rooms-admin',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /room-messages/rooms-admin`
 
@@ -929,6 +1655,23 @@ This operation does not require authentication
 
 <a id="opIdRoomMessageController_getCount"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/room-messages/test',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /room-messages/test`
 
 <h3 id="roommessagecontroller_getcount-responses">Responses</h3>
@@ -944,6 +1687,23 @@ This operation does not require authentication
 ## UploadController_uploadFile
 
 <a id="opIdUploadController_uploadFile"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/upload/image',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `POST /upload/image`
 
@@ -961,6 +1721,23 @@ This operation does not require authentication
 
 <a id="opIdUploadController_uploadFiles"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/upload/images',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /upload/images`
 
 <h3 id="uploadcontroller_uploadfiles-responses">Responses</h3>
@@ -977,15 +1754,34 @@ This operation does not require authentication
 
 <a id="opIdCommentController_createComment"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/comment',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /comment`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="commentcontroller_createcomment-parameters">Parameters</h3>
@@ -1008,6 +1804,23 @@ This operation does not require authentication
 
 <a id="opIdCommentController_getAllComment"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/comment',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /comment`
 
 <h3 id="commentcontroller_getallcomment-responses">Responses</h3>
@@ -1023,6 +1836,23 @@ This operation does not require authentication
 ## CommentController_deleteComment
 
 <a id="opIdCommentController_deleteComment"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/comment/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `DELETE /comment/{id}`
 
@@ -1040,6 +1870,23 @@ This operation does not require authentication
 
 <a id="opIdCartController_initCart"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/cart',
+{
+  method: 'PUT'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /cart`
 
 <h3 id="cartcontroller_initcart-responses">Responses</h3>
@@ -1056,15 +1903,34 @@ This operation does not require authentication
 
 <a id="opIdCartController_addTocart"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/cart/add-to-cart',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /cart/add-to-cart`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="cartcontroller_addtocart-parameters">Parameters</h3>
@@ -1087,15 +1953,34 @@ This operation does not require authentication
 
 <a id="opIdReceiptController_createReceipt"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/receipt',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /receipt`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="receiptcontroller_createreceipt-parameters">Parameters</h3>
@@ -1118,6 +2003,23 @@ This operation does not require authentication
 
 <a id="opIdReceiptController_getAllReceipt"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/receipt',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /receipt`
 
 <h3 id="receiptcontroller_getallreceipt-responses">Responses</h3>
@@ -1134,15 +2036,34 @@ This operation does not require authentication
 
 <a id="opIdReceiptController_updateReceipt"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/receipt/{id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /receipt/{id}`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="receiptcontroller_updatereceipt-parameters">Parameters</h3>
@@ -1165,6 +2086,23 @@ This operation does not require authentication
 
 <a id="opIdReceiptController_deleteReceipt"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/receipt/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `DELETE /receipt/{id}`
 
 <h3 id="receiptcontroller_deletereceipt-responses">Responses</h3>
@@ -1181,15 +2119,34 @@ This operation does not require authentication
 
 <a id="opIdReceiptController_createReceiptDetail"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/receipt/detail',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /receipt/detail`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="receiptcontroller_createreceiptdetail-parameters">Parameters</h3>
@@ -1212,15 +2169,34 @@ This operation does not require authentication
 
 <a id="opIdReceiptController_updateReceiptDetail"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/receipt/detail/{id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /receipt/detail/{id}`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="receiptcontroller_updatereceiptdetail-parameters">Parameters</h3>
@@ -1243,6 +2219,23 @@ This operation does not require authentication
 
 <a id="opIdReceiptController_deleteReceiptDetail"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/receipt/detail/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `DELETE /receipt/detail/{id}`
 
 <h3 id="receiptcontroller_deletereceiptdetail-responses">Responses</h3>
@@ -1258,6 +2251,23 @@ This operation does not require authentication
 ## ReceiptController_getAllReceiptDeatil
 
 <a id="opIdReceiptController_getAllReceiptDeatil"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/receipt/{receiptId}',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /receipt/{receiptId}`
 
@@ -1275,15 +2285,34 @@ This operation does not require authentication
 
 <a id="opIdSupplierController_createSup"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/supplier',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /supplier`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="suppliercontroller_createsup-parameters">Parameters</h3>
@@ -1306,6 +2335,23 @@ This operation does not require authentication
 
 <a id="opIdSupplierController_getAllSupplier"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/supplier',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /supplier`
 
 <h3 id="suppliercontroller_getallsupplier-responses">Responses</h3>
@@ -1322,15 +2368,34 @@ This operation does not require authentication
 
 <a id="opIdSupplierController_updateSup"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/supplier/{id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /supplier/{id}`
 
 > Body parameter
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 ```
 
 <h3 id="suppliercontroller_updatesup-parameters">Parameters</h3>
@@ -1353,6 +2418,23 @@ This operation does not require authentication
 
 <a id="opIdSupplierController_deleteSup"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/supplier/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `DELETE /supplier/{id}`
 
 <h3 id="suppliercontroller_deletesup-responses">Responses</h3>
@@ -1368,6 +2450,23 @@ This operation does not require authentication
 ## DashboardController_getTotalUsers
 
 <a id="opIdDashboardController_getTotalUsers"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/dashboard/new-user',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /dashboard/new-user`
 
@@ -1385,6 +2484,23 @@ This operation does not require authentication
 
 <a id="opIdDashboardController_getTotalUser"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/dashboard/total-user',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /dashboard/total-user`
 
 <h3 id="dashboardcontroller_gettotaluser-responses">Responses</h3>
@@ -1400,6 +2516,23 @@ This operation does not require authentication
 ## DashboardController_getUserOnline
 
 <a id="opIdDashboardController_getUserOnline"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/dashboard/user-online',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /dashboard/user-online`
 
@@ -1417,6 +2550,23 @@ This operation does not require authentication
 
 <a id="opIdDashboardController_getOrder"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/dashboard/order',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /dashboard/order`
 
 <h3 id="dashboardcontroller_getorder-responses">Responses</h3>
@@ -1432,6 +2582,23 @@ This operation does not require authentication
 ## DashboardController_getProductSold
 
 <a id="opIdDashboardController_getProductSold"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/dashboard/product-sold',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /dashboard/product-sold`
 
@@ -1449,6 +2616,23 @@ This operation does not require authentication
 
 <a id="opIdDashboardController_getCountOrder"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/dashboard/count-order',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /dashboard/count-order`
 
 <h3 id="dashboardcontroller_getcountorder-responses">Responses</h3>
@@ -1464,6 +2648,23 @@ This operation does not require authentication
 ## PaymentController_paymentDisplay
 
 <a id="opIdPaymentController_paymentDisplay"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/payments/create_payment_url',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /payments/create_payment_url`
 
@@ -1481,6 +2682,23 @@ This operation does not require authentication
 
 <a id="opIdPaymentController_createPaymentUrl"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/payments/create_payment_url',
+{
+  method: 'POST'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /payments/create_payment_url`
 
 <h3 id="paymentcontroller_createpaymenturl-responses">Responses</h3>
@@ -1497,6 +2715,23 @@ This operation does not require authentication
 
 <a id="opIdPaymentController_returnDisplay"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/payments/vnpay_return',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /payments/vnpay_return`
 
 <h3 id="paymentcontroller_returndisplay-responses">Responses</h3>
@@ -1512,6 +2747,23 @@ This operation does not require authentication
 ## PaymentController_displayError
 
 <a id="opIdPaymentController_displayError"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/payments/error?message=string',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /payments/error`
 
@@ -1537,6 +2789,23 @@ This operation does not require authentication
 
 <a id="opIdSwaggerController_getSwaggerJson"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/doc/json',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /doc/json`
 
 *Get Swagger JSON*
@@ -1557,6 +2826,32 @@ This operation does not require authentication
 
 <a id="opIdAuthController_login"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "email": "string",
+  "password": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/auth/login',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /auth/login`
 
 *login user*
@@ -1565,19 +2860,8 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "email": {
-      "type": "string"
-    },
-    "password": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "email",
-    "password"
-  ]
+  "email": "string",
+  "password": "string"
 }
 ```
 
@@ -1593,260 +2877,30 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "accessToken": {
-      "type": "string"
-    },
-    "user": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1,
-          "description": "User Id"
-        },
-        "firstName": {
-          "type": "string",
-          "example": "Phạm",
-          "description": "User firstname"
-        },
-        "lastName": {
-          "type": "string",
-          "example": "Tới",
-          "description": "User lastname"
-        },
-        "email": {
-          "type": "string",
-          "example": "toi@gmail.com",
-          "description": "User email"
-        },
-        "genderId": {
-          "type": "string",
-          "example": "MALE",
-          "description": "User genderId"
-        },
-        "roleId": {
-          "type": "string",
-          "example": "USER",
-          "description": "User RoleId"
-        },
-        "phoneNumber": {
-          "type": "string",
-          "example": "02838483",
-          "description": "User phone number"
-        },
-        "image": {
-          "type": "string",
-          "example": "avatar.png",
-          "description": "User avatar"
-        },
-        "dob": {
-          "type": "string",
-          "example": "19/5/2000",
-          "description": "User date of birth"
-        },
-        "statusId": {
-          "type": "string",
-          "enum": [
-            "ON",
-            "OFF",
-            "BLOCK"
-          ],
-          "example": "ON",
-          "description": "User statusId"
-        },
-        "status": {
-          "example": {},
-          "description": "User status",
-          "allOf": [
-            {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": "string"
-                },
-                "code": {
-                  "type": "string"
-                },
-                "parentCode": {
-                  "type": "string"
-                },
-                "hexCode": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "type",
-                "value",
-                "code",
-                "parentCode",
-                "hexCode"
-              ]
-            }
-          ]
-        },
-        "token": {
-          "type": "string",
-          "example": "2392uehp1901",
-          "description": "User token"
-        },
-        "isActiveEmail": {
-          "type": "boolean",
-          "example": false,
-          "description": "User active email"
-        },
-        "address": {
-          "example": [
-            {}
-          ],
-          "description": "User list address",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {}
-          }
-        },
-        "voucherList": {
-          "example": [
-            {}
-          ],
-          "description": "User list vouchers",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number",
-                "example": 1,
-                "description": "Voucher id"
-              },
-              "fromDate": {
-                "type": "string",
-                "example": "30/7/2023",
-                "description": "Voucher active from date"
-              },
-              "toDate": {
-                "type": "string",
-                "example": "30/8/2023",
-                "description": "Voucher active to date"
-              },
-              "typeVoucher": {
-                "example": {},
-                "description": "Type of voucher",
-                "allOf": [
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              "typeVoucherId": {
-                "type": "number",
-                "example": 1,
-                "description": "id of type voucher"
-              },
-              "amount": {
-                "type": "number",
-                "example": 10,
-                "description": "Total voucher can be used"
-              },
-              "addToUserAmount": {
-                "type": "number",
-                "example": 2,
-                "description": "A count of user add voucher to user's voucherList"
-              },
-              "statusId": {
-                "type": "string",
-                "enum": [
-                  "ACTIVE",
-                  "INACTIVE",
-                  "DELETED",
-                  "DRAFT"
-                ],
-                "example": "ACTIVE",
-                "description": "Status Id of voucher"
-              },
-              "usedAmount": {
-                "type": "number",
-                "example": 2,
-                "description": "Total numer of vocher which user have to use"
-              },
-              "codeVoucher": {
-                "type": "string",
-                "example": "HOLIDAY",
-                "description": "Enter this code to use in user's order"
-              },
-              "createdAt": {
-                "format": "date-time",
-                "type": "string",
-                "example": "2023-08-23T09:00:45.976Z",
-                "description": "Voucher created at the date"
-              },
-              "updatedAt": {
-                "format": "date-time",
-                "type": "string",
-                "example": "2023-08-23T09:00:45.976Z",
-                "description": "Voucher updated at the date"
-              }
-            },
-            "required": [
-              "id",
-              "fromDate",
-              "toDate",
-              "typeVoucher",
-              "typeVoucherId",
-              "amount",
-              "addToUserAmount",
-              "statusId",
-              "usedAmount",
-              "codeVoucher",
-              "createdAt",
-              "updatedAt"
-            ]
-          }
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.981Z",
-          "description": "User created at the date"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.981Z",
-          "description": "User updated at the date"
-        }
-      },
-      "required": [
-        "id",
-        "firstName",
-        "lastName",
-        "email",
-        "genderId",
-        "roleId",
-        "phoneNumber",
-        "image",
-        "dob",
-        "statusId",
-        "status",
-        "token",
-        "isActiveEmail",
-        "address",
-        "voucherList",
-        "createdAt",
-        "updatedAt"
-      ]
-    }
-  },
-  "required": [
-    "accessToken",
-    "user"
-  ]
+  "accessToken": "string",
+  "user": {
+    "id": 1,
+    "firstName": "Phạm",
+    "lastName": "Tới",
+    "email": "toi@gmail.com",
+    "genderId": "MALE",
+    "roleId": "USER",
+    "phoneNumber": "02838483",
+    "image": "avatar.png",
+    "dob": "19/5/2000",
+    "statusId": "ON",
+    "status": {},
+    "token": "2392uehp1901",
+    "isActiveEmail": false,
+    "address": [
+      {}
+    ],
+    "voucherList": [
+      {}
+    ],
+    "createdAt": "2023-08-23T09:00:45.981Z",
+    "updatedAt": "2023-08-23T09:00:45.981Z"
+  }
 }
 ```
 
@@ -1865,6 +2919,28 @@ This operation does not require authentication
 
 <a id="opIdAuthController_getAccessToken"></a>
 
+> Code samples
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/auth/refresh',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /auth/refresh`
 
 *User get access token when it was expried*
@@ -1875,15 +2951,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "accessToken": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "accessToken"
-  ]
+  "accessToken": "string"
 }
 ```
 
@@ -1902,6 +2970,23 @@ None
 ## AuthController_logout
 
 <a id="opIdAuthController_logout"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/auth/logout',
+{
+  method: 'PATCH'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `PATCH /auth/logout`
 
@@ -1923,6 +3008,28 @@ None
 ## AllcodeController_createTypeCode
 
 <a id="opIdAllcodeController_createTypeCode"></a>
+
+> Code samples
+
+```javascript
+const inputBody = 'undefined';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/all-code',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `POST /all-code`
 
@@ -1957,6 +3064,35 @@ None
 
 <a id="opIdAllcodeController_updateAllcode"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "type": "string",
+  "value": "string",
+  "code": "string",
+  "parentCode": "string",
+  "hexCode": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/all-code',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /all-code`
 
 *Admin update allcode*
@@ -1965,31 +3101,11 @@ None
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "type": {
-      "type": "string"
-    },
-    "value": {
-      "type": "string"
-    },
-    "code": {
-      "type": "string"
-    },
-    "parentCode": {
-      "type": "string"
-    },
-    "hexCode": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "type",
-    "value",
-    "code",
-    "parentCode",
-    "hexCode"
-  ]
+  "type": "string",
+  "value": "string",
+  "code": "string",
+  "parentCode": "string",
+  "hexCode": "string"
 }
 ```
 
@@ -2006,19 +3122,8 @@ None
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    },
-    "err": {
-      "type": "boolean"
-    }
-  },
-  "required": [
-    "message",
-    "err"
-  ]
+  "message": "string",
+  "err": true
 }
 ```
 
@@ -2039,6 +3144,28 @@ None
 
 <a id="opIdAllcodeController_getAllCodeByType"></a>
 
+> Code samples
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/all-code/{type}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /all-code/{type}`
 
 *User get allcodes by type*
@@ -2055,51 +3182,20 @@ None
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "code": {
-            "type": "string"
-          },
-          "parentCode": {
-            "type": "string"
-          },
-          "hexCode": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "value",
-          "code",
-          "parentCode",
-          "hexCode"
-        ]
-      }
-    },
-    "meta": {
-      "type": "object",
-      "example": {
-        "current": 1,
-        "size": 10,
-        "totalItems": 100
-      }
+  "data": [
+    {
+      "type": "string",
+      "value": "string",
+      "code": "string",
+      "parentCode": "string",
+      "hexCode": "string"
     }
-  },
-  "required": [
-    "data",
-    "meta"
-  ]
+  ],
+  "meta": {
+    "current": 1,
+    "size": 10,
+    "totalItems": 100
+  }
 }
 ```
 
@@ -2117,6 +3213,23 @@ This operation does not require authentication
 ## AllcodeController_deleteAllcode
 
 <a id="opIdAllcodeController_deleteAllcode"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/all-code/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `DELETE /all-code/{id}`
 
@@ -2136,6 +3249,34 @@ This operation does not require authentication
 
 <a id="opIdBannerController_createBanner"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "description": "string",
+  "name": "string",
+  "statusId": "string",
+  "image": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/banner',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /banner`
 
 *Create new banner*
@@ -2144,27 +3285,10 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "description": {
-      "type": "string"
-    },
-    "name": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "image": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "description",
-    "name",
-    "statusId",
-    "image"
-  ]
+  "description": "string",
+  "name": "string",
+  "statusId": "string",
+  "image": "string"
 }
 ```
 
@@ -2180,15 +3304,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "message"
-  ]
+  "message": "string"
 }
 ```
 
@@ -2207,6 +3323,28 @@ None
 ## BannerController_getAllBanner
 
 <a id="opIdBannerController_getAllBanner"></a>
+
+> Code samples
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/banner',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /banner`
 
@@ -2234,89 +3372,29 @@ None
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "description": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "statusId": {
-            "type": "string"
-          },
-          "status": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              },
-              "code": {
-                "type": "string"
-              },
-              "parentCode": {
-                "type": "string"
-              },
-              "hexCode": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "type",
-              "value",
-              "code",
-              "parentCode",
-              "hexCode"
-            ]
-          },
-          "image": {
-            "type": "string"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "description",
-          "name",
-          "statusId",
-          "status",
-          "image",
-          "createdAt",
-          "updatedAt"
-        ]
-      }
-    },
-    "meta": {
-      "type": "object",
-      "example": {
-        "current": 1,
-        "size": 10,
-        "totalItems": 100
-      }
+  "data": [
+    {
+      "id": 0,
+      "description": "string",
+      "name": "string",
+      "statusId": "string",
+      "status": {
+        "type": "string",
+        "value": "string",
+        "code": "string",
+        "parentCode": "string",
+        "hexCode": "string"
+      },
+      "image": "string",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
     }
-  },
-  "required": [
-    "data",
-    "meta"
-  ]
+  ],
+  "meta": {
+    "current": 1,
+    "size": 10,
+    "totalItems": 100
+  }
 }
 ```
 
@@ -2335,6 +3413,34 @@ This operation does not require authentication
 
 <a id="opIdBannerController_updateBanner"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "description": "string",
+  "name": "string",
+  "statusId": "string",
+  "image": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/banner/{id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /banner/{id}`
 
 *Update banner by id*
@@ -2343,27 +3449,10 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "description": {
-      "type": "string"
-    },
-    "name": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "image": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "description",
-    "name",
-    "statusId",
-    "image"
-  ]
+  "description": "string",
+  "name": "string",
+  "statusId": "string",
+  "image": "string"
 }
 ```
 
@@ -2380,15 +3469,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "message"
-  ]
+  "message": "string"
 }
 ```
 
@@ -2408,6 +3489,23 @@ None
 
 <a id="opIdBannerController_deleteBanner"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/banner/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `DELETE /banner/{id}`
 
 <h3 id="bannercontroller_deletebanner-responses">Responses</h3>
@@ -2426,6 +3524,39 @@ This operation does not require authentication
 
 <a id="opIdBlogController_createBlog"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "title": "string",
+  "shortDescription": "string",
+  "subjectId": "string",
+  "statusId": "string",
+  "images": [
+    "string"
+  ],
+  "contentMarkdown": "string",
+  "userId": 0
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/blog',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /blog`
 
 *Create new Blog*
@@ -2434,36 +3565,15 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "title": {
-      "type": "string"
-    },
-    "shortDescription": {
-      "type": "string"
-    },
-    "subjectId": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "images": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "contentMarkdown": {
-      "type": "string"
-    },
-    "userId": {
-      "type": "number"
-    }
-  },
-  "required": [
-    "title"
-  ]
+  "title": "string",
+  "shortDescription": "string",
+  "subjectId": "string",
+  "statusId": "string",
+  "images": [
+    "string"
+  ],
+  "contentMarkdown": "string",
+  "userId": 0
 }
 ```
 
@@ -2479,15 +3589,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "message"
-  ]
+  "message": "string"
 }
 ```
 
@@ -2507,6 +3609,28 @@ None
 ## BlogController_searchBlogs
 
 <a id="opIdBlogController_searchBlogs"></a>
+
+> Code samples
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/blog',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /blog`
 
@@ -2529,30 +3653,16 @@ None
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "meta": {
-      "type": "object",
-      "example": {
-        "current": 1,
-        "size": 10,
-        "totalItems": {
-          "items": 4
-        }
-      }
+  "data": [
+    {}
+  ],
+  "meta": {
+    "current": 1,
+    "size": 10,
+    "totalItems": {
+      "items": 4
     }
-  },
-  "required": [
-    "data",
-    "meta"
-  ]
+  }
 }
 ```
 
@@ -2571,6 +3681,38 @@ This operation does not require authentication
 
 <a id="opIdBlogController_updateBlog"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "title": "string",
+  "shortDescription": "string",
+  "subjectId": "string",
+  "statusId": "string",
+  "images": [
+    "string"
+  ],
+  "contentMarkdown": "string",
+  "userId": 0
+}';
+const headers = {
+  'Content-Type':'application/json'
+};
+
+fetch('/blog/{id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PUT /blog/{id}`
 
 *Updateblog*
@@ -2579,36 +3721,15 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "title": {
-      "type": "string"
-    },
-    "shortDescription": {
-      "type": "string"
-    },
-    "subjectId": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "images": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "contentMarkdown": {
-      "type": "string"
-    },
-    "userId": {
-      "type": "number"
-    }
-  },
-  "required": [
-    "title"
-  ]
+  "title": "string",
+  "shortDescription": "string",
+  "subjectId": "string",
+  "statusId": "string",
+  "images": [
+    "string"
+  ],
+  "contentMarkdown": "string",
+  "userId": 0
 }
 ```
 
@@ -2633,6 +3754,23 @@ None
 
 <a id="opIdBlogController_getBlogDetail"></a>
 
+> Code samples
+
+```javascript
+
+fetch('/blog/{id}',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /blog/{id}`
 
 <h3 id="blogcontroller_getblogdetail-responses">Responses</h3>
@@ -2648,6 +3786,23 @@ This operation does not require authentication
 ## BlogController_deleteBlog
 
 <a id="opIdBlogController_deleteBlog"></a>
+
+> Code samples
+
+```javascript
+
+fetch('/blog/{id}',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `DELETE /blog/{id}`
 
@@ -2667,6 +3822,37 @@ This operation does not require authentication
 
 <a id="opIdOrderController_createOrder"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "addressUserId": 0,
+  "statusId": "string",
+  "typeShipId": 0,
+  "voucherCode": "string",
+  "note": "string",
+  "isPaymentOnline": true,
+  "type": "PAYMENT"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/order',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `POST /order`
 
 *User create new order *
@@ -2675,43 +3861,13 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "addressUserId": {
-      "type": "number"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "typeShipId": {
-      "type": "number"
-    },
-    "voucherCode": {
-      "type": "string"
-    },
-    "note": {
-      "type": "string"
-    },
-    "isPaymentOnline": {
-      "type": "boolean"
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "PAYMENT",
-        "COD"
-      ]
-    }
-  },
-  "required": [
-    "addressUserId",
-    "statusId",
-    "typeShipId",
-    "voucherCode",
-    "note",
-    "isPaymentOnline",
-    "type"
-  ]
+  "addressUserId": 0,
+  "statusId": "string",
+  "typeShipId": 0,
+  "voucherCode": "string",
+  "note": "string",
+  "isPaymentOnline": true,
+  "type": "PAYMENT"
 }
 ```
 
@@ -2727,197 +3883,44 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "number"
-    },
-    "addressUser": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "addressUserId": {
-      "type": "number"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "typeShip": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "typeId": {
-          "type": "string"
-        },
-        "type": {
-          "type": "object",
-          "properties": {}
-        },
-        "price": {
-          "type": "number"
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string"
-        }
-      },
-      "required": [
-        "id",
-        "typeId",
-        "type",
-        "price",
-        "createdAt",
-        "updatedAt"
-      ]
-    },
-    "typeShipId": {
-      "type": "number"
-    },
-    "voucher": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1,
-          "description": "Voucher id"
-        },
-        "fromDate": {
-          "type": "string",
-          "example": "30/7/2023",
-          "description": "Voucher active from date"
-        },
-        "toDate": {
-          "type": "string",
-          "example": "30/8/2023",
-          "description": "Voucher active to date"
-        },
-        "typeVoucher": {
-          "example": {},
-          "description": "Type of voucher",
-          "allOf": [
-            {
-              "type": "object",
-              "properties": {}
-            }
-          ]
-        },
-        "typeVoucherId": {
-          "type": "number",
-          "example": 1,
-          "description": "id of type voucher"
-        },
-        "amount": {
-          "type": "number",
-          "example": 10,
-          "description": "Total voucher can be used"
-        },
-        "addToUserAmount": {
-          "type": "number",
-          "example": 2,
-          "description": "A count of user add voucher to user's voucherList"
-        },
-        "statusId": {
-          "type": "string",
-          "enum": [
-            "ACTIVE",
-            "INACTIVE",
-            "DELETED",
-            "DRAFT"
-          ],
-          "example": "ACTIVE",
-          "description": "Status Id of voucher"
-        },
-        "usedAmount": {
-          "type": "number",
-          "example": 2,
-          "description": "Total numer of vocher which user have to use"
-        },
-        "codeVoucher": {
-          "type": "string",
-          "example": "HOLIDAY",
-          "description": "Enter this code to use in user's order"
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.976Z",
-          "description": "Voucher created at the date"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.976Z",
-          "description": "Voucher updated at the date"
-        }
-      },
-      "required": [
-        "id",
-        "fromDate",
-        "toDate",
-        "typeVoucher",
-        "typeVoucherId",
-        "amount",
-        "addToUserAmount",
-        "statusId",
-        "usedAmount",
-        "codeVoucher",
-        "createdAt",
-        "updatedAt"
-      ]
-    },
-    "orderDetails": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "voucherId": {
-      "type": "number"
-    },
-    "totalPrice": {
-      "type": "number"
-    },
-    "note": {
-      "type": "string"
-    },
-    "isPaymentOnline": {
-      "type": "boolean"
-    },
-    "createdAt": {
-      "format": "date-time",
-      "type": "string"
-    },
-    "updatedAt": {
-      "format": "date-time",
-      "type": "string"
-    }
+  "id": 0,
+  "addressUser": [
+    {}
+  ],
+  "addressUserId": 0,
+  "statusId": "string",
+  "typeShip": {
+    "id": 0,
+    "typeId": "string",
+    "type": {},
+    "price": 0,
+    "createdAt": "2019-08-24T14:15:22Z",
+    "updatedAt": "2019-08-24T14:15:22Z"
   },
-  "required": [
-    "id",
-    "addressUser",
-    "addressUserId",
-    "statusId",
-    "typeShip",
-    "typeShipId",
-    "voucher",
-    "orderDetails",
-    "voucherId",
-    "totalPrice",
-    "note",
-    "isPaymentOnline",
-    "createdAt",
-    "updatedAt"
-  ]
+  "typeShipId": 0,
+  "voucher": {
+    "id": 1,
+    "fromDate": "30/7/2023",
+    "toDate": "30/8/2023",
+    "typeVoucher": {},
+    "typeVoucherId": 1,
+    "amount": 10,
+    "addToUserAmount": 2,
+    "statusId": "ACTIVE",
+    "usedAmount": 2,
+    "codeVoucher": "HOLIDAY",
+    "createdAt": "2023-08-23T09:00:45.976Z",
+    "updatedAt": "2023-08-23T09:00:45.976Z"
+  },
+  "orderDetails": [
+    {}
+  ],
+  "voucherId": 0,
+  "totalPrice": 0,
+  "note": "string",
+  "isPaymentOnline": true,
+  "createdAt": "2019-08-24T14:15:22Z",
+  "updatedAt": "2019-08-24T14:15:22Z"
 }
 ```
 
@@ -2937,6 +3940,28 @@ None
 ## OrderController_getAllOrder
 
 <a id="opIdOrderController_getAllOrder"></a>
+
+> Code samples
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/order',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
 
 `GET /order`
 
@@ -2970,217 +3995,53 @@ None
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "addressUser": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "addressUserId": {
-            "type": "number"
-          },
-          "statusId": {
-            "type": "string"
-          },
-          "typeShip": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "typeId": {
-                "type": "string"
-              },
-              "type": {
-                "type": "object",
-                "properties": {}
-              },
-              "price": {
-                "type": "number"
-              },
-              "createdAt": {
-                "format": "date-time",
-                "type": "string"
-              },
-              "updatedAt": {
-                "format": "date-time",
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "typeId",
-              "type",
-              "price",
-              "createdAt",
-              "updatedAt"
-            ]
-          },
-          "typeShipId": {
-            "type": "number"
-          },
-          "voucher": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number",
-                "example": 1,
-                "description": "Voucher id"
-              },
-              "fromDate": {
-                "type": "string",
-                "example": "30/7/2023",
-                "description": "Voucher active from date"
-              },
-              "toDate": {
-                "type": "string",
-                "example": "30/8/2023",
-                "description": "Voucher active to date"
-              },
-              "typeVoucher": {
-                "example": {},
-                "description": "Type of voucher",
-                "allOf": [
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              "typeVoucherId": {
-                "type": "number",
-                "example": 1,
-                "description": "id of type voucher"
-              },
-              "amount": {
-                "type": "number",
-                "example": 10,
-                "description": "Total voucher can be used"
-              },
-              "addToUserAmount": {
-                "type": "number",
-                "example": 2,
-                "description": "A count of user add voucher to user's voucherList"
-              },
-              "statusId": {
-                "type": "string",
-                "enum": [
-                  "ACTIVE",
-                  "INACTIVE",
-                  "DELETED",
-                  "DRAFT"
-                ],
-                "example": "ACTIVE",
-                "description": "Status Id of voucher"
-              },
-              "usedAmount": {
-                "type": "number",
-                "example": 2,
-                "description": "Total numer of vocher which user have to use"
-              },
-              "codeVoucher": {
-                "type": "string",
-                "example": "HOLIDAY",
-                "description": "Enter this code to use in user's order"
-              },
-              "createdAt": {
-                "format": "date-time",
-                "type": "string",
-                "example": "2023-08-23T09:00:45.976Z",
-                "description": "Voucher created at the date"
-              },
-              "updatedAt": {
-                "format": "date-time",
-                "type": "string",
-                "example": "2023-08-23T09:00:45.976Z",
-                "description": "Voucher updated at the date"
-              }
-            },
-            "required": [
-              "id",
-              "fromDate",
-              "toDate",
-              "typeVoucher",
-              "typeVoucherId",
-              "amount",
-              "addToUserAmount",
-              "statusId",
-              "usedAmount",
-              "codeVoucher",
-              "createdAt",
-              "updatedAt"
-            ]
-          },
-          "orderDetails": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "voucherId": {
-            "type": "number"
-          },
-          "totalPrice": {
-            "type": "number"
-          },
-          "note": {
-            "type": "string"
-          },
-          "isPaymentOnline": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "addressUser",
-          "addressUserId",
-          "statusId",
-          "typeShip",
-          "typeShipId",
-          "voucher",
-          "orderDetails",
-          "voucherId",
-          "totalPrice",
-          "note",
-          "isPaymentOnline",
-          "createdAt",
-          "updatedAt"
-        ]
-      }
-    },
-    "meta": {
-      "type": "object",
-      "example": {
-        "current": 1,
-        "size": 10,
-        "totalItems": 100
-      }
+  "data": [
+    {
+      "id": 0,
+      "addressUser": [
+        {}
+      ],
+      "addressUserId": 0,
+      "statusId": "string",
+      "typeShip": {
+        "id": 0,
+        "typeId": "string",
+        "type": {},
+        "price": 0,
+        "createdAt": "2019-08-24T14:15:22Z",
+        "updatedAt": "2019-08-24T14:15:22Z"
+      },
+      "typeShipId": 0,
+      "voucher": {
+        "id": 1,
+        "fromDate": "30/7/2023",
+        "toDate": "30/8/2023",
+        "typeVoucher": {},
+        "typeVoucherId": 1,
+        "amount": 10,
+        "addToUserAmount": 2,
+        "statusId": "ACTIVE",
+        "usedAmount": 2,
+        "codeVoucher": "HOLIDAY",
+        "createdAt": "2023-08-23T09:00:45.976Z",
+        "updatedAt": "2023-08-23T09:00:45.976Z"
+      },
+      "orderDetails": [
+        {}
+      ],
+      "voucherId": 0,
+      "totalPrice": 0,
+      "note": "string",
+      "isPaymentOnline": true,
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
     }
-  },
-  "required": [
-    "data",
-    "meta"
-  ]
+  ],
+  "meta": {
+    "current": 1,
+    "size": 10,
+    "totalItems": 100
+  }
 }
 ```
 
@@ -3199,6 +4060,31 @@ This operation does not require authentication
 
 <a id="opIdOrderController_changeorderStatus"></a>
 
+> Code samples
+
+```javascript
+const inputBody = '{
+  "statusId": "WAIT_FOR_COMFIRMATION"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/order/change-status/{id}',
+{
+  method: 'PATCH',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PATCH /order/change-status/{id}`
 
 *Admin change status order*
@@ -3207,22 +4093,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "statusId": {
-      "type": "string",
-      "enum": [
-        "WAIT_FOR_COMFIRMATION",
-        "WAIT_FOR_PAYMENT",
-        "DELIVERING",
-        "DELIVERED",
-        "CANCEL"
-      ]
-    }
-  },
-  "required": [
-    "statusId"
-  ]
+  "statusId": "WAIT_FOR_COMFIRMATION"
 }
 ```
 
@@ -3239,15 +4110,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "message"
-  ]
+  "message": "string"
 }
 ```
 
@@ -3268,6 +4131,28 @@ None
 
 <a id="opIdOrderController_cancelOrder"></a>
 
+> Code samples
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/order/cancel/{id}',
+{
+  method: 'PATCH',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `PATCH /order/cancel/{id}`
 
 *User cancel order*
@@ -3284,15 +4169,7 @@ None
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "message"
-  ]
+  "message": "string"
 }
 ```
 
@@ -3313,6 +4190,28 @@ None
 
 <a id="opIdOrderController_getAllTypeShip"></a>
 
+> Code samples
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/order/type-ship',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /order/type-ship`
 
 *User get all type ship*
@@ -3322,43 +4221,16 @@ None
 > 200 Response
 
 ```json
-{
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "number"
-      },
-      "typeId": {
-        "type": "string"
-      },
-      "type": {
-        "type": "object",
-        "properties": {}
-      },
-      "price": {
-        "type": "number"
-      },
-      "createdAt": {
-        "format": "date-time",
-        "type": "string"
-      },
-      "updatedAt": {
-        "format": "date-time",
-        "type": "string"
-      }
-    },
-    "required": [
-      "id",
-      "typeId",
-      "type",
-      "price",
-      "createdAt",
-      "updatedAt"
-    ]
+[
+  {
+    "id": 0,
+    "typeId": "string",
+    "type": {},
+    "price": 0,
+    "createdAt": "2019-08-24T14:15:22Z",
+    "updatedAt": "2019-08-24T14:15:22Z"
   }
-}
+]
 ```
 
 <h3 id="ordercontroller_getalltypeship-responses">Responses</h3>
@@ -3390,6 +4262,28 @@ This operation does not require authentication
 
 <a id="opIdOrderController_getOrderById"></a>
 
+> Code samples
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/order/{id}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 `GET /order/{id}`
 
 *Get detail order*
@@ -3406,197 +4300,44 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "number"
-    },
-    "addressUser": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "addressUserId": {
-      "type": "number"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "typeShip": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "typeId": {
-          "type": "string"
-        },
-        "type": {
-          "type": "object",
-          "properties": {}
-        },
-        "price": {
-          "type": "number"
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string"
-        }
-      },
-      "required": [
-        "id",
-        "typeId",
-        "type",
-        "price",
-        "createdAt",
-        "updatedAt"
-      ]
-    },
-    "typeShipId": {
-      "type": "number"
-    },
-    "voucher": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1,
-          "description": "Voucher id"
-        },
-        "fromDate": {
-          "type": "string",
-          "example": "30/7/2023",
-          "description": "Voucher active from date"
-        },
-        "toDate": {
-          "type": "string",
-          "example": "30/8/2023",
-          "description": "Voucher active to date"
-        },
-        "typeVoucher": {
-          "example": {},
-          "description": "Type of voucher",
-          "allOf": [
-            {
-              "type": "object",
-              "properties": {}
-            }
-          ]
-        },
-        "typeVoucherId": {
-          "type": "number",
-          "example": 1,
-          "description": "id of type voucher"
-        },
-        "amount": {
-          "type": "number",
-          "example": 10,
-          "description": "Total voucher can be used"
-        },
-        "addToUserAmount": {
-          "type": "number",
-          "example": 2,
-          "description": "A count of user add voucher to user's voucherList"
-        },
-        "statusId": {
-          "type": "string",
-          "enum": [
-            "ACTIVE",
-            "INACTIVE",
-            "DELETED",
-            "DRAFT"
-          ],
-          "example": "ACTIVE",
-          "description": "Status Id of voucher"
-        },
-        "usedAmount": {
-          "type": "number",
-          "example": 2,
-          "description": "Total numer of vocher which user have to use"
-        },
-        "codeVoucher": {
-          "type": "string",
-          "example": "HOLIDAY",
-          "description": "Enter this code to use in user's order"
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.976Z",
-          "description": "Voucher created at the date"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.976Z",
-          "description": "Voucher updated at the date"
-        }
-      },
-      "required": [
-        "id",
-        "fromDate",
-        "toDate",
-        "typeVoucher",
-        "typeVoucherId",
-        "amount",
-        "addToUserAmount",
-        "statusId",
-        "usedAmount",
-        "codeVoucher",
-        "createdAt",
-        "updatedAt"
-      ]
-    },
-    "orderDetails": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "voucherId": {
-      "type": "number"
-    },
-    "totalPrice": {
-      "type": "number"
-    },
-    "note": {
-      "type": "string"
-    },
-    "isPaymentOnline": {
-      "type": "boolean"
-    },
-    "createdAt": {
-      "format": "date-time",
-      "type": "string"
-    },
-    "updatedAt": {
-      "format": "date-time",
-      "type": "string"
-    }
+  "id": 0,
+  "addressUser": [
+    {}
+  ],
+  "addressUserId": 0,
+  "statusId": "string",
+  "typeShip": {
+    "id": 0,
+    "typeId": "string",
+    "type": {},
+    "price": 0,
+    "createdAt": "2019-08-24T14:15:22Z",
+    "updatedAt": "2019-08-24T14:15:22Z"
   },
-  "required": [
-    "id",
-    "addressUser",
-    "addressUserId",
-    "statusId",
-    "typeShip",
-    "typeShipId",
-    "voucher",
-    "orderDetails",
-    "voucherId",
-    "totalPrice",
-    "note",
-    "isPaymentOnline",
-    "createdAt",
-    "updatedAt"
-  ]
+  "typeShipId": 0,
+  "voucher": {
+    "id": 1,
+    "fromDate": "30/7/2023",
+    "toDate": "30/8/2023",
+    "typeVoucher": {},
+    "typeVoucherId": 1,
+    "amount": 10,
+    "addToUserAmount": 2,
+    "statusId": "ACTIVE",
+    "usedAmount": 2,
+    "codeVoucher": "HOLIDAY",
+    "createdAt": "2023-08-23T09:00:45.976Z",
+    "updatedAt": "2023-08-23T09:00:45.976Z"
+  },
+  "orderDetails": [
+    {}
+  ],
+  "voucherId": 0,
+  "totalPrice": 0,
+  "note": "string",
+  "isPaymentOnline": true,
+  "createdAt": "2019-08-24T14:15:22Z",
+  "updatedAt": "2019-08-24T14:15:22Z"
 }
 ```
 
@@ -3622,19 +4363,8 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "email": {
-      "type": "string"
-    },
-    "password": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "email",
-    "password"
-  ]
+  "email": "string",
+  "password": "string"
 }
 
 ```
@@ -3655,31 +4385,11 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "type": {
-      "type": "string"
-    },
-    "value": {
-      "type": "string"
-    },
-    "code": {
-      "type": "string"
-    },
-    "parentCode": {
-      "type": "string"
-    },
-    "hexCode": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "type",
-    "value",
-    "code",
-    "parentCode",
-    "hexCode"
-  ]
+  "type": "string",
+  "value": "string",
+  "code": "string",
+  "parentCode": "string",
+  "hexCode": "string"
 }
 
 ```
@@ -3702,10 +4412,7 @@ This operation does not require authentication
 <a id="tocsuseraddress"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -3721,10 +4428,7 @@ This operation does not require authentication
 <a id="tocstypevoucher"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -3741,96 +4445,18 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "number",
-      "example": 1,
-      "description": "Voucher id"
-    },
-    "fromDate": {
-      "type": "string",
-      "example": "30/7/2023",
-      "description": "Voucher active from date"
-    },
-    "toDate": {
-      "type": "string",
-      "example": "30/8/2023",
-      "description": "Voucher active to date"
-    },
-    "typeVoucher": {
-      "example": {},
-      "description": "Type of voucher",
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {}
-        }
-      ]
-    },
-    "typeVoucherId": {
-      "type": "number",
-      "example": 1,
-      "description": "id of type voucher"
-    },
-    "amount": {
-      "type": "number",
-      "example": 10,
-      "description": "Total voucher can be used"
-    },
-    "addToUserAmount": {
-      "type": "number",
-      "example": 2,
-      "description": "A count of user add voucher to user's voucherList"
-    },
-    "statusId": {
-      "type": "string",
-      "enum": [
-        "ACTIVE",
-        "INACTIVE",
-        "DELETED",
-        "DRAFT"
-      ],
-      "example": "ACTIVE",
-      "description": "Status Id of voucher"
-    },
-    "usedAmount": {
-      "type": "number",
-      "example": 2,
-      "description": "Total numer of vocher which user have to use"
-    },
-    "codeVoucher": {
-      "type": "string",
-      "example": "HOLIDAY",
-      "description": "Enter this code to use in user's order"
-    },
-    "createdAt": {
-      "format": "date-time",
-      "type": "string",
-      "example": "2023-08-23T09:00:45.976Z",
-      "description": "Voucher created at the date"
-    },
-    "updatedAt": {
-      "format": "date-time",
-      "type": "string",
-      "example": "2023-08-23T09:00:45.976Z",
-      "description": "Voucher updated at the date"
-    }
-  },
-  "required": [
-    "id",
-    "fromDate",
-    "toDate",
-    "typeVoucher",
-    "typeVoucherId",
-    "amount",
-    "addToUserAmount",
-    "statusId",
-    "usedAmount",
-    "codeVoucher",
-    "createdAt",
-    "updatedAt"
-  ]
+  "id": 1,
+  "fromDate": "30/7/2023",
+  "toDate": "30/8/2023",
+  "typeVoucher": {},
+  "typeVoucherId": 1,
+  "amount": 10,
+  "addToUserAmount": 2,
+  "statusId": "ACTIVE",
+  "usedAmount": 2,
+  "codeVoucher": "HOLIDAY",
+  "createdAt": "2023-08-23T09:00:45.976Z",
+  "updatedAt": "2023-08-23T09:00:45.976Z"
 }
 
 ```
@@ -3870,248 +4496,27 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "number",
-      "example": 1,
-      "description": "User Id"
-    },
-    "firstName": {
-      "type": "string",
-      "example": "Phạm",
-      "description": "User firstname"
-    },
-    "lastName": {
-      "type": "string",
-      "example": "Tới",
-      "description": "User lastname"
-    },
-    "email": {
-      "type": "string",
-      "example": "toi@gmail.com",
-      "description": "User email"
-    },
-    "genderId": {
-      "type": "string",
-      "example": "MALE",
-      "description": "User genderId"
-    },
-    "roleId": {
-      "type": "string",
-      "example": "USER",
-      "description": "User RoleId"
-    },
-    "phoneNumber": {
-      "type": "string",
-      "example": "02838483",
-      "description": "User phone number"
-    },
-    "image": {
-      "type": "string",
-      "example": "avatar.png",
-      "description": "User avatar"
-    },
-    "dob": {
-      "type": "string",
-      "example": "19/5/2000",
-      "description": "User date of birth"
-    },
-    "statusId": {
-      "type": "string",
-      "enum": [
-        "ON",
-        "OFF",
-        "BLOCK"
-      ],
-      "example": "ON",
-      "description": "User statusId"
-    },
-    "status": {
-      "example": {},
-      "description": "User status",
-      "allOf": [
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string"
-            },
-            "value": {
-              "type": "string"
-            },
-            "code": {
-              "type": "string"
-            },
-            "parentCode": {
-              "type": "string"
-            },
-            "hexCode": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "type",
-            "value",
-            "code",
-            "parentCode",
-            "hexCode"
-          ]
-        }
-      ]
-    },
-    "token": {
-      "type": "string",
-      "example": "2392uehp1901",
-      "description": "User token"
-    },
-    "isActiveEmail": {
-      "type": "boolean",
-      "example": false,
-      "description": "User active email"
-    },
-    "address": {
-      "example": [
-        {}
-      ],
-      "description": "User list address",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "voucherList": {
-      "example": [
-        {}
-      ],
-      "description": "User list vouchers",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number",
-            "example": 1,
-            "description": "Voucher id"
-          },
-          "fromDate": {
-            "type": "string",
-            "example": "30/7/2023",
-            "description": "Voucher active from date"
-          },
-          "toDate": {
-            "type": "string",
-            "example": "30/8/2023",
-            "description": "Voucher active to date"
-          },
-          "typeVoucher": {
-            "example": {},
-            "description": "Type of voucher",
-            "allOf": [
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
-          },
-          "typeVoucherId": {
-            "type": "number",
-            "example": 1,
-            "description": "id of type voucher"
-          },
-          "amount": {
-            "type": "number",
-            "example": 10,
-            "description": "Total voucher can be used"
-          },
-          "addToUserAmount": {
-            "type": "number",
-            "example": 2,
-            "description": "A count of user add voucher to user's voucherList"
-          },
-          "statusId": {
-            "type": "string",
-            "enum": [
-              "ACTIVE",
-              "INACTIVE",
-              "DELETED",
-              "DRAFT"
-            ],
-            "example": "ACTIVE",
-            "description": "Status Id of voucher"
-          },
-          "usedAmount": {
-            "type": "number",
-            "example": 2,
-            "description": "Total numer of vocher which user have to use"
-          },
-          "codeVoucher": {
-            "type": "string",
-            "example": "HOLIDAY",
-            "description": "Enter this code to use in user's order"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "example": "2023-08-23T09:00:45.976Z",
-            "description": "Voucher created at the date"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "example": "2023-08-23T09:00:45.976Z",
-            "description": "Voucher updated at the date"
-          }
-        },
-        "required": [
-          "id",
-          "fromDate",
-          "toDate",
-          "typeVoucher",
-          "typeVoucherId",
-          "amount",
-          "addToUserAmount",
-          "statusId",
-          "usedAmount",
-          "codeVoucher",
-          "createdAt",
-          "updatedAt"
-        ]
-      }
-    },
-    "createdAt": {
-      "format": "date-time",
-      "type": "string",
-      "example": "2023-08-23T09:00:45.981Z",
-      "description": "User created at the date"
-    },
-    "updatedAt": {
-      "format": "date-time",
-      "type": "string",
-      "example": "2023-08-23T09:00:45.981Z",
-      "description": "User updated at the date"
-    }
-  },
-  "required": [
-    "id",
-    "firstName",
-    "lastName",
-    "email",
-    "genderId",
-    "roleId",
-    "phoneNumber",
-    "image",
-    "dob",
-    "statusId",
-    "status",
-    "token",
-    "isActiveEmail",
-    "address",
-    "voucherList",
-    "createdAt",
-    "updatedAt"
-  ]
+  "id": 1,
+  "firstName": "Phạm",
+  "lastName": "Tới",
+  "email": "toi@gmail.com",
+  "genderId": "MALE",
+  "roleId": "USER",
+  "phoneNumber": "02838483",
+  "image": "avatar.png",
+  "dob": "19/5/2000",
+  "statusId": "ON",
+  "status": {},
+  "token": "2392uehp1901",
+  "isActiveEmail": false,
+  "address": [
+    {}
+  ],
+  "voucherList": [
+    {}
+  ],
+  "createdAt": "2023-08-23T09:00:45.981Z",
+  "updatedAt": "2023-08-23T09:00:45.981Z"
 }
 
 ```
@@ -4155,260 +4560,30 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "accessToken": {
-      "type": "string"
-    },
-    "user": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1,
-          "description": "User Id"
-        },
-        "firstName": {
-          "type": "string",
-          "example": "Phạm",
-          "description": "User firstname"
-        },
-        "lastName": {
-          "type": "string",
-          "example": "Tới",
-          "description": "User lastname"
-        },
-        "email": {
-          "type": "string",
-          "example": "toi@gmail.com",
-          "description": "User email"
-        },
-        "genderId": {
-          "type": "string",
-          "example": "MALE",
-          "description": "User genderId"
-        },
-        "roleId": {
-          "type": "string",
-          "example": "USER",
-          "description": "User RoleId"
-        },
-        "phoneNumber": {
-          "type": "string",
-          "example": "02838483",
-          "description": "User phone number"
-        },
-        "image": {
-          "type": "string",
-          "example": "avatar.png",
-          "description": "User avatar"
-        },
-        "dob": {
-          "type": "string",
-          "example": "19/5/2000",
-          "description": "User date of birth"
-        },
-        "statusId": {
-          "type": "string",
-          "enum": [
-            "ON",
-            "OFF",
-            "BLOCK"
-          ],
-          "example": "ON",
-          "description": "User statusId"
-        },
-        "status": {
-          "example": {},
-          "description": "User status",
-          "allOf": [
-            {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": "string"
-                },
-                "code": {
-                  "type": "string"
-                },
-                "parentCode": {
-                  "type": "string"
-                },
-                "hexCode": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "type",
-                "value",
-                "code",
-                "parentCode",
-                "hexCode"
-              ]
-            }
-          ]
-        },
-        "token": {
-          "type": "string",
-          "example": "2392uehp1901",
-          "description": "User token"
-        },
-        "isActiveEmail": {
-          "type": "boolean",
-          "example": false,
-          "description": "User active email"
-        },
-        "address": {
-          "example": [
-            {}
-          ],
-          "description": "User list address",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {}
-          }
-        },
-        "voucherList": {
-          "example": [
-            {}
-          ],
-          "description": "User list vouchers",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number",
-                "example": 1,
-                "description": "Voucher id"
-              },
-              "fromDate": {
-                "type": "string",
-                "example": "30/7/2023",
-                "description": "Voucher active from date"
-              },
-              "toDate": {
-                "type": "string",
-                "example": "30/8/2023",
-                "description": "Voucher active to date"
-              },
-              "typeVoucher": {
-                "example": {},
-                "description": "Type of voucher",
-                "allOf": [
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              "typeVoucherId": {
-                "type": "number",
-                "example": 1,
-                "description": "id of type voucher"
-              },
-              "amount": {
-                "type": "number",
-                "example": 10,
-                "description": "Total voucher can be used"
-              },
-              "addToUserAmount": {
-                "type": "number",
-                "example": 2,
-                "description": "A count of user add voucher to user's voucherList"
-              },
-              "statusId": {
-                "type": "string",
-                "enum": [
-                  "ACTIVE",
-                  "INACTIVE",
-                  "DELETED",
-                  "DRAFT"
-                ],
-                "example": "ACTIVE",
-                "description": "Status Id of voucher"
-              },
-              "usedAmount": {
-                "type": "number",
-                "example": 2,
-                "description": "Total numer of vocher which user have to use"
-              },
-              "codeVoucher": {
-                "type": "string",
-                "example": "HOLIDAY",
-                "description": "Enter this code to use in user's order"
-              },
-              "createdAt": {
-                "format": "date-time",
-                "type": "string",
-                "example": "2023-08-23T09:00:45.976Z",
-                "description": "Voucher created at the date"
-              },
-              "updatedAt": {
-                "format": "date-time",
-                "type": "string",
-                "example": "2023-08-23T09:00:45.976Z",
-                "description": "Voucher updated at the date"
-              }
-            },
-            "required": [
-              "id",
-              "fromDate",
-              "toDate",
-              "typeVoucher",
-              "typeVoucherId",
-              "amount",
-              "addToUserAmount",
-              "statusId",
-              "usedAmount",
-              "codeVoucher",
-              "createdAt",
-              "updatedAt"
-            ]
-          }
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.981Z",
-          "description": "User created at the date"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.981Z",
-          "description": "User updated at the date"
-        }
-      },
-      "required": [
-        "id",
-        "firstName",
-        "lastName",
-        "email",
-        "genderId",
-        "roleId",
-        "phoneNumber",
-        "image",
-        "dob",
-        "statusId",
-        "status",
-        "token",
-        "isActiveEmail",
-        "address",
-        "voucherList",
-        "createdAt",
-        "updatedAt"
-      ]
-    }
-  },
-  "required": [
-    "accessToken",
-    "user"
-  ]
+  "accessToken": "string",
+  "user": {
+    "id": 1,
+    "firstName": "Phạm",
+    "lastName": "Tới",
+    "email": "toi@gmail.com",
+    "genderId": "MALE",
+    "roleId": "USER",
+    "phoneNumber": "02838483",
+    "image": "avatar.png",
+    "dob": "19/5/2000",
+    "statusId": "ON",
+    "status": {},
+    "token": "2392uehp1901",
+    "isActiveEmail": false,
+    "address": [
+      {}
+    ],
+    "voucherList": [
+      {}
+    ],
+    "createdAt": "2023-08-23T09:00:45.981Z",
+    "updatedAt": "2023-08-23T09:00:45.981Z"
+  }
 }
 
 ```
@@ -4429,15 +4604,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "accessToken": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "accessToken"
-  ]
+  "accessToken": "string"
 }
 
 ```
@@ -4456,10 +4623,7 @@ This operation does not require authentication
 <a id="tocsuserdto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -4476,35 +4640,12 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "userId": {
-      "type": "number"
-    },
-    "shipName": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "shipAddress": {
-      "type": "string"
-    },
-    "shipPhoneNumber": {
-      "type": "string"
-    },
-    "shipEmail": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "userId",
-    "shipName",
-    "statusId",
-    "shipAddress",
-    "shipPhoneNumber",
-    "shipEmail"
-  ]
+  "userId": 0,
+  "shipName": "string",
+  "statusId": "string",
+  "shipAddress": "string",
+  "shipPhoneNumber": "string",
+  "shipEmail": "string"
 }
 
 ```
@@ -4528,10 +4669,7 @@ This operation does not require authentication
 <a id="tocsupdateuserdto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -4547,10 +4685,7 @@ This operation does not require authentication
 <a id="tocstypevoucherdto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -4566,10 +4701,7 @@ This operation does not require authentication
 <a id="tocsproductdto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -4585,10 +4717,7 @@ This operation does not require authentication
 <a id="tocsproductdetail"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -4604,10 +4733,7 @@ This operation does not require authentication
 <a id="tocsproductdetaildto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -4624,51 +4750,20 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "code": {
-            "type": "string"
-          },
-          "parentCode": {
-            "type": "string"
-          },
-          "hexCode": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "value",
-          "code",
-          "parentCode",
-          "hexCode"
-        ]
-      }
-    },
-    "meta": {
-      "type": "object",
-      "example": {
-        "current": 1,
-        "size": 10,
-        "totalItems": 100
-      }
+  "data": [
+    {
+      "type": "string",
+      "value": "string",
+      "code": "string",
+      "parentCode": "string",
+      "hexCode": "string"
     }
-  },
-  "required": [
-    "data",
-    "meta"
-  ]
+  ],
+  "meta": {
+    "current": 1,
+    "size": 10,
+    "totalItems": 100
+  }
 }
 
 ```
@@ -4689,19 +4784,8 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    },
-    "err": {
-      "type": "boolean"
-    }
-  },
-  "required": [
-    "message",
-    "err"
-  ]
+  "message": "string",
+  "err": true
 }
 
 ```
@@ -4722,27 +4806,10 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "description": {
-      "type": "string"
-    },
-    "name": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "image": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "description",
-    "name",
-    "statusId",
-    "image"
-  ]
+  "description": "string",
+  "name": "string",
+  "statusId": "string",
+  "image": "string"
 }
 
 ```
@@ -4765,15 +4832,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "message"
-  ]
+  "message": "string"
 }
 
 ```
@@ -4793,69 +4852,20 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "number"
-    },
-    "description": {
-      "type": "string"
-    },
-    "name": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "status": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
-        },
-        "parentCode": {
-          "type": "string"
-        },
-        "hexCode": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "type",
-        "value",
-        "code",
-        "parentCode",
-        "hexCode"
-      ]
-    },
-    "image": {
-      "type": "string"
-    },
-    "createdAt": {
-      "format": "date-time",
-      "type": "string"
-    },
-    "updatedAt": {
-      "format": "date-time",
-      "type": "string"
-    }
+  "id": 0,
+  "description": "string",
+  "name": "string",
+  "statusId": "string",
+  "status": {
+    "type": "string",
+    "value": "string",
+    "code": "string",
+    "parentCode": "string",
+    "hexCode": "string"
   },
-  "required": [
-    "id",
-    "description",
-    "name",
-    "statusId",
-    "status",
-    "image",
-    "createdAt",
-    "updatedAt"
-  ]
+  "image": "string",
+  "createdAt": "2019-08-24T14:15:22Z",
+  "updatedAt": "2019-08-24T14:15:22Z"
 }
 
 ```
@@ -4882,89 +4892,29 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "description": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "statusId": {
-            "type": "string"
-          },
-          "status": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              },
-              "code": {
-                "type": "string"
-              },
-              "parentCode": {
-                "type": "string"
-              },
-              "hexCode": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "type",
-              "value",
-              "code",
-              "parentCode",
-              "hexCode"
-            ]
-          },
-          "image": {
-            "type": "string"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "description",
-          "name",
-          "statusId",
-          "status",
-          "image",
-          "createdAt",
-          "updatedAt"
-        ]
-      }
-    },
-    "meta": {
-      "type": "object",
-      "example": {
-        "current": 1,
-        "size": 10,
-        "totalItems": 100
-      }
+  "data": [
+    {
+      "id": 0,
+      "description": "string",
+      "name": "string",
+      "statusId": "string",
+      "status": {
+        "type": "string",
+        "value": "string",
+        "code": "string",
+        "parentCode": "string",
+        "hexCode": "string"
+      },
+      "image": "string",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
     }
-  },
-  "required": [
-    "data",
-    "meta"
-  ]
+  ],
+  "meta": {
+    "current": 1,
+    "size": 10,
+    "totalItems": 100
+  }
 }
 
 ```
@@ -4984,10 +4934,7 @@ This operation does not require authentication
 <a id="tocscommentdto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -5004,36 +4951,15 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "title": {
-      "type": "string"
-    },
-    "shortDescription": {
-      "type": "string"
-    },
-    "subjectId": {
-      "type": "string"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "images": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "contentMarkdown": {
-      "type": "string"
-    },
-    "userId": {
-      "type": "number"
-    }
-  },
-  "required": [
-    "title"
-  ]
+  "title": "string",
+  "shortDescription": "string",
+  "subjectId": "string",
+  "statusId": "string",
+  "images": [
+    "string"
+  ],
+  "contentMarkdown": "string",
+  "userId": 0
 }
 
 ```
@@ -5058,10 +4984,7 @@ This operation does not require authentication
 <a id="tocsblog"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -5078,30 +5001,16 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "meta": {
-      "type": "object",
-      "example": {
-        "current": 1,
-        "size": 10,
-        "totalItems": {
-          "items": 4
-        }
-      }
+  "data": [
+    {}
+  ],
+  "meta": {
+    "current": 1,
+    "size": 10,
+    "totalItems": {
+      "items": 4
     }
-  },
-  "required": [
-    "data",
-    "meta"
-  ]
+  }
 }
 
 ```
@@ -5122,43 +5031,13 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "addressUserId": {
-      "type": "number"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "typeShipId": {
-      "type": "number"
-    },
-    "voucherCode": {
-      "type": "string"
-    },
-    "note": {
-      "type": "string"
-    },
-    "isPaymentOnline": {
-      "type": "boolean"
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "PAYMENT",
-        "COD"
-      ]
-    }
-  },
-  "required": [
-    "addressUserId",
-    "statusId",
-    "typeShipId",
-    "voucherCode",
-    "note",
-    "isPaymentOnline",
-    "type"
-  ]
+  "addressUserId": 0,
+  "statusId": "string",
+  "typeShipId": 0,
+  "voucherCode": "string",
+  "note": "string",
+  "isPaymentOnline": true,
+  "type": "PAYMENT"
 }
 
 ```
@@ -5190,10 +5069,7 @@ This operation does not require authentication
 <a id="tocsallcode"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -5210,38 +5086,12 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "number"
-    },
-    "typeId": {
-      "type": "string"
-    },
-    "type": {
-      "type": "object",
-      "properties": {}
-    },
-    "price": {
-      "type": "number"
-    },
-    "createdAt": {
-      "format": "date-time",
-      "type": "string"
-    },
-    "updatedAt": {
-      "format": "date-time",
-      "type": "string"
-    }
-  },
-  "required": [
-    "id",
-    "typeId",
-    "type",
-    "price",
-    "createdAt",
-    "updatedAt"
-  ]
+  "id": 0,
+  "typeId": "string",
+  "type": {},
+  "price": 0,
+  "createdAt": "2019-08-24T14:15:22Z",
+  "updatedAt": "2019-08-24T14:15:22Z"
 }
 
 ```
@@ -5265,10 +5115,7 @@ This operation does not require authentication
 <a id="tocsorderdetail"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -5285,197 +5132,44 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "number"
-    },
-    "addressUser": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "addressUserId": {
-      "type": "number"
-    },
-    "statusId": {
-      "type": "string"
-    },
-    "typeShip": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "typeId": {
-          "type": "string"
-        },
-        "type": {
-          "type": "object",
-          "properties": {}
-        },
-        "price": {
-          "type": "number"
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string"
-        }
-      },
-      "required": [
-        "id",
-        "typeId",
-        "type",
-        "price",
-        "createdAt",
-        "updatedAt"
-      ]
-    },
-    "typeShipId": {
-      "type": "number"
-    },
-    "voucher": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1,
-          "description": "Voucher id"
-        },
-        "fromDate": {
-          "type": "string",
-          "example": "30/7/2023",
-          "description": "Voucher active from date"
-        },
-        "toDate": {
-          "type": "string",
-          "example": "30/8/2023",
-          "description": "Voucher active to date"
-        },
-        "typeVoucher": {
-          "example": {},
-          "description": "Type of voucher",
-          "allOf": [
-            {
-              "type": "object",
-              "properties": {}
-            }
-          ]
-        },
-        "typeVoucherId": {
-          "type": "number",
-          "example": 1,
-          "description": "id of type voucher"
-        },
-        "amount": {
-          "type": "number",
-          "example": 10,
-          "description": "Total voucher can be used"
-        },
-        "addToUserAmount": {
-          "type": "number",
-          "example": 2,
-          "description": "A count of user add voucher to user's voucherList"
-        },
-        "statusId": {
-          "type": "string",
-          "enum": [
-            "ACTIVE",
-            "INACTIVE",
-            "DELETED",
-            "DRAFT"
-          ],
-          "example": "ACTIVE",
-          "description": "Status Id of voucher"
-        },
-        "usedAmount": {
-          "type": "number",
-          "example": 2,
-          "description": "Total numer of vocher which user have to use"
-        },
-        "codeVoucher": {
-          "type": "string",
-          "example": "HOLIDAY",
-          "description": "Enter this code to use in user's order"
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.976Z",
-          "description": "Voucher created at the date"
-        },
-        "updatedAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2023-08-23T09:00:45.976Z",
-          "description": "Voucher updated at the date"
-        }
-      },
-      "required": [
-        "id",
-        "fromDate",
-        "toDate",
-        "typeVoucher",
-        "typeVoucherId",
-        "amount",
-        "addToUserAmount",
-        "statusId",
-        "usedAmount",
-        "codeVoucher",
-        "createdAt",
-        "updatedAt"
-      ]
-    },
-    "orderDetails": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    "voucherId": {
-      "type": "number"
-    },
-    "totalPrice": {
-      "type": "number"
-    },
-    "note": {
-      "type": "string"
-    },
-    "isPaymentOnline": {
-      "type": "boolean"
-    },
-    "createdAt": {
-      "format": "date-time",
-      "type": "string"
-    },
-    "updatedAt": {
-      "format": "date-time",
-      "type": "string"
-    }
+  "id": 0,
+  "addressUser": [
+    {}
+  ],
+  "addressUserId": 0,
+  "statusId": "string",
+  "typeShip": {
+    "id": 0,
+    "typeId": "string",
+    "type": {},
+    "price": 0,
+    "createdAt": "2019-08-24T14:15:22Z",
+    "updatedAt": "2019-08-24T14:15:22Z"
   },
-  "required": [
-    "id",
-    "addressUser",
-    "addressUserId",
-    "statusId",
-    "typeShip",
-    "typeShipId",
-    "voucher",
-    "orderDetails",
-    "voucherId",
-    "totalPrice",
-    "note",
-    "isPaymentOnline",
-    "createdAt",
-    "updatedAt"
-  ]
+  "typeShipId": 0,
+  "voucher": {
+    "id": 1,
+    "fromDate": "30/7/2023",
+    "toDate": "30/8/2023",
+    "typeVoucher": {},
+    "typeVoucherId": 1,
+    "amount": 10,
+    "addToUserAmount": 2,
+    "statusId": "ACTIVE",
+    "usedAmount": 2,
+    "codeVoucher": "HOLIDAY",
+    "createdAt": "2023-08-23T09:00:45.976Z",
+    "updatedAt": "2023-08-23T09:00:45.976Z"
+  },
+  "orderDetails": [
+    {}
+  ],
+  "voucherId": 0,
+  "totalPrice": 0,
+  "note": "string",
+  "isPaymentOnline": true,
+  "createdAt": "2019-08-24T14:15:22Z",
+  "updatedAt": "2019-08-24T14:15:22Z"
 }
 
 ```
@@ -5508,22 +5202,7 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "statusId": {
-      "type": "string",
-      "enum": [
-        "WAIT_FOR_COMFIRMATION",
-        "WAIT_FOR_PAYMENT",
-        "DELIVERING",
-        "DELIVERED",
-        "CANCEL"
-      ]
-    }
-  },
-  "required": [
-    "statusId"
-  ]
+  "statusId": "WAIT_FOR_COMFIRMATION"
 }
 
 ```
@@ -5553,217 +5232,53 @@ This operation does not require authentication
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "addressUser": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "addressUserId": {
-            "type": "number"
-          },
-          "statusId": {
-            "type": "string"
-          },
-          "typeShip": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "typeId": {
-                "type": "string"
-              },
-              "type": {
-                "type": "object",
-                "properties": {}
-              },
-              "price": {
-                "type": "number"
-              },
-              "createdAt": {
-                "format": "date-time",
-                "type": "string"
-              },
-              "updatedAt": {
-                "format": "date-time",
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "typeId",
-              "type",
-              "price",
-              "createdAt",
-              "updatedAt"
-            ]
-          },
-          "typeShipId": {
-            "type": "number"
-          },
-          "voucher": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number",
-                "example": 1,
-                "description": "Voucher id"
-              },
-              "fromDate": {
-                "type": "string",
-                "example": "30/7/2023",
-                "description": "Voucher active from date"
-              },
-              "toDate": {
-                "type": "string",
-                "example": "30/8/2023",
-                "description": "Voucher active to date"
-              },
-              "typeVoucher": {
-                "example": {},
-                "description": "Type of voucher",
-                "allOf": [
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              "typeVoucherId": {
-                "type": "number",
-                "example": 1,
-                "description": "id of type voucher"
-              },
-              "amount": {
-                "type": "number",
-                "example": 10,
-                "description": "Total voucher can be used"
-              },
-              "addToUserAmount": {
-                "type": "number",
-                "example": 2,
-                "description": "A count of user add voucher to user's voucherList"
-              },
-              "statusId": {
-                "type": "string",
-                "enum": [
-                  "ACTIVE",
-                  "INACTIVE",
-                  "DELETED",
-                  "DRAFT"
-                ],
-                "example": "ACTIVE",
-                "description": "Status Id of voucher"
-              },
-              "usedAmount": {
-                "type": "number",
-                "example": 2,
-                "description": "Total numer of vocher which user have to use"
-              },
-              "codeVoucher": {
-                "type": "string",
-                "example": "HOLIDAY",
-                "description": "Enter this code to use in user's order"
-              },
-              "createdAt": {
-                "format": "date-time",
-                "type": "string",
-                "example": "2023-08-23T09:00:45.976Z",
-                "description": "Voucher created at the date"
-              },
-              "updatedAt": {
-                "format": "date-time",
-                "type": "string",
-                "example": "2023-08-23T09:00:45.976Z",
-                "description": "Voucher updated at the date"
-              }
-            },
-            "required": [
-              "id",
-              "fromDate",
-              "toDate",
-              "typeVoucher",
-              "typeVoucherId",
-              "amount",
-              "addToUserAmount",
-              "statusId",
-              "usedAmount",
-              "codeVoucher",
-              "createdAt",
-              "updatedAt"
-            ]
-          },
-          "orderDetails": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "voucherId": {
-            "type": "number"
-          },
-          "totalPrice": {
-            "type": "number"
-          },
-          "note": {
-            "type": "string"
-          },
-          "isPaymentOnline": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "addressUser",
-          "addressUserId",
-          "statusId",
-          "typeShip",
-          "typeShipId",
-          "voucher",
-          "orderDetails",
-          "voucherId",
-          "totalPrice",
-          "note",
-          "isPaymentOnline",
-          "createdAt",
-          "updatedAt"
-        ]
-      }
-    },
-    "meta": {
-      "type": "object",
-      "example": {
-        "current": 1,
-        "size": 10,
-        "totalItems": 100
-      }
+  "data": [
+    {
+      "id": 0,
+      "addressUser": [
+        {}
+      ],
+      "addressUserId": 0,
+      "statusId": "string",
+      "typeShip": {
+        "id": 0,
+        "typeId": "string",
+        "type": {},
+        "price": 0,
+        "createdAt": "2019-08-24T14:15:22Z",
+        "updatedAt": "2019-08-24T14:15:22Z"
+      },
+      "typeShipId": 0,
+      "voucher": {
+        "id": 1,
+        "fromDate": "30/7/2023",
+        "toDate": "30/8/2023",
+        "typeVoucher": {},
+        "typeVoucherId": 1,
+        "amount": 10,
+        "addToUserAmount": 2,
+        "statusId": "ACTIVE",
+        "usedAmount": 2,
+        "codeVoucher": "HOLIDAY",
+        "createdAt": "2023-08-23T09:00:45.976Z",
+        "updatedAt": "2023-08-23T09:00:45.976Z"
+      },
+      "orderDetails": [
+        {}
+      ],
+      "voucherId": 0,
+      "totalPrice": 0,
+      "note": "string",
+      "isPaymentOnline": true,
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
     }
-  },
-  "required": [
-    "data",
-    "meta"
-  ]
+  ],
+  "meta": {
+    "current": 1,
+    "size": 10,
+    "totalItems": 100
+  }
 }
 
 ```
@@ -5783,10 +5298,7 @@ This operation does not require authentication
 <a id="tocscartdetaildto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -5802,10 +5314,7 @@ This operation does not require authentication
 <a id="tocsreceiptdto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -5821,10 +5330,7 @@ This operation does not require authentication
 <a id="tocsreceiptdetaildto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 
@@ -5840,10 +5346,7 @@ This operation does not require authentication
 <a id="tocssupplierdto"></a>
 
 ```json
-{
-  "type": "object",
-  "properties": {}
-}
+{}
 
 ```
 

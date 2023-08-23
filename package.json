@@ -22,7 +22,7 @@
     "generate:migration": "npm run typeorm -- migration:generate",
     "run:migration": "npm run typeorm -- migration:run",
     "revert:migration": "npm run typeorm -- migration:revert",
-    "generate-doc": "swagger-markdown -i swagger.json -o swagger.md"
+    "generate-doc": "node ./src/convertMd.js"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8.8.1",
@@ -58,7 +58,6 @@
     "rxjs": "^7.2.0",
     "slugify": "^1.6.6",
     "socket.io": "^4.6.1",
-    "swagger-markdown": "^2.3.0",
     "swagger-ui-express": "^5.0.0",
     "type": "^2.7.2",
     "typeorm": "^0.3.16",
