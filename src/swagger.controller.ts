@@ -1,7 +1,6 @@
 import { Controller, Get, Res, Injectable } from '@nestjs/common';
 import {
   ApiResponse,
-  ApiExcludeEndpoint,
   ApiOperation,
   ApiTags,
   DocumentBuilder,
