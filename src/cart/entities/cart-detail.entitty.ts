@@ -22,7 +22,7 @@ export class CartDetail {
   @ApiProperty()
   @ManyToOne(() => Cart, (cart) => cart.detail, { onDelete: 'CASCADE' })
   cart: Cart;
-  @ApiProperty({ type: ProductDetailSize })
+  @ApiProperty({ type: () => ProductDetailSize })
   @ManyToOne(() => ProductDetailSize, (size) => size.cartDetail)
   @JoinColumn({ name: 'productDetailSizeId', referencedColumnName: 'id' })
   productDetailSize: ProductDetailSize;

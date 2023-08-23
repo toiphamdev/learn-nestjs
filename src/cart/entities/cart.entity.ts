@@ -18,11 +18,11 @@ export class Cart {
   @ApiProperty()
   @Column({ unique: true })
   userId: number;
-  @ApiProperty()
+  @ApiProperty({ type: () => User })
   @OneToOne(() => User, (user) => user.cart)
   @JoinColumn({ name: 'userId' })
   user: User;
-  @ApiProperty({ type: CartDetail })
+  @ApiProperty({ type: () => CartDetail })
   @OneToMany(() => CartDetail, (detail) => detail.cart)
   detail: CartDetail;
   @Column()
