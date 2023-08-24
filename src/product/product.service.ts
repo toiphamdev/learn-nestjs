@@ -353,7 +353,9 @@ export class ProductService {
         });
       }
       if (query.discount) {
-        queryBuilder.orderBy('detail.discountPrice', 'DESC');
+        queryBuilder
+          .andWhere('detail.discountPrice <> 0')
+          .orderBy('detail.discountPrice', 'DESC');
       }
       if (query.colorCodes) {
         let colorCodes: string[] = [];
