@@ -9,6 +9,7 @@ export interface SearchProductDto {
   sortsold?: 'ASC' | 'DESC';
   sortcreatedAt?: 'ASC' | 'DESC';
   sortupdatedAt?: 'ASC' | 'DESC';
+  discount: boolean;
   fromPrice?: number;
   toPrice?: number;
   colors?: string[] | string;

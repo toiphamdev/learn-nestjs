@@ -352,6 +352,9 @@ export class ProductService {
           toPrice: query.toPrice,
         });
       }
+      if (query.discount) {
+        queryBuilder.orderBy('detail.discountPrice', 'DESC');
+      }
       if (query.colorCodes) {
         let colorCodes: string[] = [];
         if (typeof query.colorCodes === 'string') {
