@@ -601,6 +601,7 @@ export class ProductService {
         where: {
           productId: productId,
         },
+        relations: ['size'],
       });
       return details;
     } catch (error) {
