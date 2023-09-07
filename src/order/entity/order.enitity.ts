@@ -10,6 +10,7 @@ import {
 import { TypeShip } from './type-ship.entity';
 import { OrderDetail } from './order-detail.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Allcode } from 'src/allcode/entities/allcode.entity';
 
 @Entity()
 export class Order {
@@ -25,6 +26,8 @@ export class Order {
   @ApiProperty()
   @Column()
   statusId: string;
+  @ManyToOne(() => Allcode, (all) => all.orderStatus)
+  status: Allcode;
   @ApiProperty({ type: TypeShip })
   @ManyToOne(() => TypeShip, (type) => type.orders)
   typeShip: TypeShip;

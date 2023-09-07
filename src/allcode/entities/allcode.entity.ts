@@ -1,5 +1,6 @@
 import { Banner } from 'src/banner/entities/banner.entity';
 import { Blog } from 'src/blog/entities/blog.entity';
+import { Order } from 'src/order/entity/order.enitity';
 import { TypeShip } from 'src/order/entity/type-ship.entity';
 import { ProductDetail } from 'src/product/entities/product-detail.entity';
 import { Product } from 'src/product/entities/product.entity';
@@ -44,6 +45,8 @@ export class Allcode {
   typeShips: TypeVoucher[];
   @OneToMany(() => UserAddress, (add) => add.status)
   statusAdds: UserAddress[];
+  @OneToMany(() => Order, (order) => order.status)
+  orderStatus: Order;
   @Column()
   createdAt: Date;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

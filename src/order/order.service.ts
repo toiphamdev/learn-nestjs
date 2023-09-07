@@ -260,6 +260,7 @@ export class OrderService {
           'orderDetails.productDetailSize',
           'productDetailSize',
         )
+        .leftJoinAndSelect('order.status', 'status')
         .leftJoinAndSelect('productDetailSize.productDetail', 'productDetail')
         .leftJoinAndSelect('productDetail.product', 'product')
         .where('order.id =:id', { id })
