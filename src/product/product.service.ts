@@ -374,8 +374,14 @@ export class ProductService {
         });
       }
       if (query.material) {
-        queryBuilder.andWhere('product.material = :material', {
-          material: query.material,
+        let materials: string[] = [];
+        if (typeof query.material === 'string') {
+          materials.push(query.material);
+        } else {
+          materials = query.material;
+        }
+        queryBuilder.andWhere('product.material IN (:...materials)', {
+          materials,
         });
       }
       if (query.categoryId) {
